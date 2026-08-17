@@ -1,5 +1,18 @@
-version: 1
+version: 2
 font_family: Arial
+roles:
+  page_title: {size: 44, bold: true, color: ink}
+  boundary_title: {size: 24, bold: true, color: ink}
+  section: {size: 24, bold: true, color: ink}
+  use_case: {size: 28, bold: false, color: ink}
+  node: {size: 12, bold: false, color: ink}
+  actor: {size: 22, bold: false, color: ink}
+  stereotype: {size: 20, bold: false, color: ink}
+  condition: {size: 16, bold: false, color: muted_ink}
+  edge: {size: 11, bold: false, color: ink}
+  note: {size: 10, bold: false, color: muted_ink}
+  minimum: {size: 10, bold: false, color: muted_ink}
+# Compatibility aliases for renderers that have not moved to role-based APIs.
 title: {size: 20, bold: true}
 section: {size: 14, bold: true}
 node: {size: 12, bold: false}

@@ -1,0 +1,60 @@
+{
+  "compilerHash": "52656ae2811378d9c736375cc4563af98ac0a2bc355aee159a965b7f055c4651",
+  "designSystemHash": "11a52aaedb9b8607f91ee031789ac2cbac7e9fcca74843f0377f3aedb6f0409f",
+  "diagramId": "aafiatak-main-use-case",
+  "diagramType": "use_case",
+  "drawioExporterVersion": "31.1.8",
+  "drawioSkillHash": "adb43193626e95024aa4b69943300278305a2795bfaed3ab514ac93435d60204",
+  "drawioSkillVersion": "2.1.0",
+  "generatedAt": "2026-08-17T04:25:51.089523+00:00",
+  "governanceHash": "4b8718e3953c5f07221458016f08a1e136b10ca72eb8e26e7cebea0fe024aacc",
+  "lecturerRulesHash": "0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73",
+  "outputs": {
+    "build\\final\\aafiatak-main-use-case.drawio": "ecd257e3a34569f779b99340361e11aa05f64ccd51ca7775953ea10a87dc8bc4",
+    "build\\final\\aafiatak-main-use-case.drawio.png": "fa6c90ddba7df3cc4fbb623450ab9e77ef85a25fd82682016aee4f4d6a92f360",
+    "build\\final\\aafiatak-main-use-case.svg": "74ef9d05020c96ea3a2a187f9fc65f1e1c7e61881c36f13b996184b2848bece1"
+  },
+  "projectSpecHash": "9ff2337c1fb334cff24e93d2830c5c3648ef001e5f3e06ab2ad951ba8854d593",
+  "qa": {
+    "Q7": "pass",
+    "gates": {
+      "Q4": "pass",
+      "Q5": "pass_with_warnings",
+      "Q6": {
+        "applicable": true,
+        "hashPurpose": "Identifies the reviewed preview; it does not constitute visual review.",
+        "humanReview": {
+          "approvedExporterVersion": "31.1.8",
+          "approvedPreviewHash": "d81a761777f7abd63c64c1595fe79a31ecedd3a9133de14824cae33261faa7ae",
+          "currentExporterVersion": "31.1.8",
+          "declaredStatus": "approved",
+          "exporterVersionMatches": true,
+          "hashMatchesCurrentPreview": true,
+          "notes": "Reviewed the actual 2000px PNG after three targeted composition and routing refinements; zones, actors, labels, dependency notation, color balance, and dense association corridors remain readable.",
+          "reviewedAt": "2026-08-16T00:00:00Z",
+          "reviewer": "OpenCode visual inspection",
+          "status": "approved_current_preview"
+        },
+        "preview": "build\\preview\\aafiatak-main-use-case.png",
+        "previewHash": "d81a761777f7abd63c64c1595fe79a31ecedd3a9133de14824cae33261faa7ae",
+        "previewSize": {
+          "height": 1143,
+          "width": 2000
+        },
+        "status": "pass"
+      }
+    },
+    "report": "build\\qa\\aafiatak-main-use-case.json",
+    "result": "pass"
+  },
+  "rendererVersion": "0.1.0",
+  "requestedTargets": [
+    "drawio",
+    "png",
+    "svg"
+  ],
+  "semanticModelHash": "3d2bea528fb0f1918aaa85537221ed094852fe437a40ddc666556aab8459cf76",
+  "semanticModelPath": "model\\catalog\\use-cases\\aafiatak-main-use-case.yaml",
+  "viewHash": "dd877c47a72083a4e157a8253c20b8bd98371fe5c24dbb40578990276cd53cb0",
+  "viewPath": "views\\use-case\\aafiatak-main-use-case.yaml"
+}

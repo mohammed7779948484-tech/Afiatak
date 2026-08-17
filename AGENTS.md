@@ -34,6 +34,17 @@ Never invent an Aafiatak requirement. Record genuine ambiguity in `governance/de
 
 A diagram is done only when source integrity, schema, traceability, UML semantics, draw.io structure, geometry, preview review, and release gates pass. Generated `.drawio` may be manually refined, but changes must be represented back in semantic/view/layout sources before they become permanent truth.
 
+## Visual Diagram Engineering Rules
+
+- Semantic correctness and visual quality are separate requirements; structural QA passing does not imply visual quality.
+- `design/` is the single visual source of truth. Renderers must not contain arbitrary diagram-specific colors, font sizes, or geometry values.
+- Views select semantics and express high-level presentation intent; they must not become collections of manually authored edge waypoints.
+- Layout engines own node placement, routing engines own connector paths, and type-specific composition planners may be used when generic layout is insufficient.
+- Generated diagrams must be visually inspected from an actual PNG or SVG render.
+- Manual refinement is allowed only when represented back in canonical layout or design configuration.
+- No web app, frontend, backend, server, database, diagrams.net plugin, hosted platform, or unrelated product is required.
+- The system remains a small local diagram-generation workspace producing editable `.drawio`, SVG, and PNG artifacts.
+
 ## Main Use Case Diagram Execution
 
 - `docs/use case.md` (stored at `docs/use_case.md`) is the approved execution specification for the Main Use Case Diagram.

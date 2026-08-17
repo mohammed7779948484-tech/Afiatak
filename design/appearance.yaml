@@ -1,0 +1,20 @@
+version: 1
+defaults:
+  node: {stroke_width: 1, opacity: 100}
+  text: {opacity: 100}
+  edge: {stroke_width: 1, opacity: 100}
+roles:
+  nodes:
+    use_case: {stroke_width: 2, opacity: 100}
+    actor: {stroke_width: 2, opacity: 100}
+    boundary: {stroke_width: 2, opacity: 100}
+    region: {stroke_width: 1, opacity: 45, dashed: true}
+    helper: {stroke_width: 1.5, opacity: 92}
+    shared: {stroke_width: 1.5, opacity: 96}
+    external_service: {stroke_width: 1.5, opacity: 100, dashed: false}
+  edges:
+    association: {stroke_width: 1.6, opacity: 88}
+    external_association: {stroke_width: 2, opacity: 96}
+    dependency: {stroke_width: 2.2, opacity: 100}
+    include: {stroke_width: 2.2, opacity: 100}
+    extend: {stroke_width: 2.2, opacity: 100}

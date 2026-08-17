@@ -11,11 +11,13 @@
     "approval": {"enum": ["draft", "reviewed", "approved"]},
     "visualReview": {
       "type": "object", "additionalProperties": false,
-      "required": ["status", "reviewer", "reviewedAt"],
+      "required": ["status", "reviewer", "reviewedAt", "previewHash"],
       "properties": {
         "status": {"const": "approved"}, "reviewer": {"type": "string", "minLength": 1},
         "reviewedAt": {"type": "string", "format": "date-time"},
-        "previewHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        "notes": {"type": "string", "minLength": 1},
+        "previewHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "exporterVersion": {"type": "string", "minLength": 1}
       }
     },
     "options": {"type": "object"}

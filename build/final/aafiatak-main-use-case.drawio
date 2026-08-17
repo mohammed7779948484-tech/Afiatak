@@ -1,6 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="drawio" version="26.0.0">
   <diagram id="page-1" name="Aafiatak Main Use Case Diagram">
-    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3840" pageHeight="2160" math="0" shadow="0" background="#FBFAF7">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4480" pageHeight="2570" math="0" shadow="0" background="#FBFAF7">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,680 +13,696 @@
         <mxCell id="layer-notes" value="06 Notes" parent="0" />
         <mxCell id="layer-qa" value="99 QA Guides" parent="0" />
         <object id="diagram-title" label="Aafiatak Main Use Case Diagram">
-          <mxCell style="text=1;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=44;fontStyle=1;fontColor=#1F2937;" vertex="1" parent="layer-labels">
-            <mxGeometry x="420" y="10" width="3000" height="70" as="geometry" />
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=44;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="layer-labels">
+            <mxGeometry x="440" y="40" width="3600" height="60" as="geometry" />
           </mxCell>
         </object>
         <object id="system-boundary" label="Aafiatak Medical Appointment Booking System">
-          <mxCell style="swimlane=1;horizontal=1;startSize=50;container=1;pointerEvents=0;html=1;verticalAlign=top;align=left;spacingLeft=14;fillColor=none;strokeColor=#243B53;strokeWidth=2;fontStyle=1;fontSize=20;fontColor=#18324B;" vertex="1" parent="layer-containers">
-            <mxGeometry x="420" y="300" width="3000" height="1720" as="geometry" />
+          <mxCell style="swimlane=1;horizontal=1;container=1;pointerEvents=0;html=1;verticalAlign=top;align=left;whiteSpace=wrap;fillColor=none;strokeColor=#243B53;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=24;fontStyle=1;startSize=50;spacingLeft=20;" vertex="1" parent="layer-containers">
+            <mxGeometry x="440" y="510" width="3600" height="2020" as="geometry" />
           </mxCell>
         </object>
-        <object id="section-heading-1" label="Access &amp; Discovery">
-          <mxCell style="text=1;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#4C78A8;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="70" width="500" height="50" as="geometry" />
+        <object id="section-heading-1" label="Access &amp; Discovery" presentationZone="access">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="260" width="880" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="section-heading-2" label="Patient Booking &amp; Payments">
-          <mxCell style="text=1;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#A97832;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1130" y="70" width="700" height="50" as="geometry" />
+        <object id="section-heading-2" label="Patient Booking &amp; Payments" presentationZone="booking">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="260" width="1360" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="section-heading-3" label="Facility &amp; Reception Operations">
-          <mxCell style="text=1;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#7D614F;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="860" width="800" height="50" as="geometry" />
+        <object id="section-heading-3" label="Facility Administration" presentationZone="facility">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="1080" width="880" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="section-heading-4" label="Doctor &amp; Platform Administration">
-          <mxCell style="text=1;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#6E6A8F;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="860" width="760" height="50" as="geometry" />
+        <object id="section-heading-4" label="Reception Operations" presentationZone="reception">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="1080" width="1360" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-01" label="Discover Medical Services" semanticId="uc.muc-01" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="160" width="400" height="130" as="geometry" />
+        <object id="section-heading-5" label="Doctor Operations" presentationZone="doctor">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2570" y="260" width="880" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-02" label="View Facility Location" semanticId="uc.muc-02" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="560" y="160" width="400" height="130" as="geometry" />
+        <object id="section-heading-6" label="Platform Administration" presentationZone="platform">
+          <mxCell style="text=1;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#1F2937;opacity=100;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2570" y="1080" width="880" height="40" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-03" label="Register Patient" semanticId="uc.muc-03" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="400" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-01" label="Discover Medical Services" semanticId="uc.muc-01" semanticType="use_case" presentationZone="access">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-04" label="Log In" semanticId="uc.muc-04" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="560" y="400" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-02" label="View Facility Location" semanticId="uc.muc-02" semanticType="use_case" presentationZone="access">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="630" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-05" label="Verify WhatsApp OTP" semanticId="uc.muc-05" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="560" y="620" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-03" label="Register Patient" semanticId="uc.muc-03" semanticType="use_case" presentationZone="access">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="630" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-06" label="Book Appointment" semanticId="uc.muc-06" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="160" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-04" label="Log In" semanticId="uc.muc-04" semanticType="use_case" presentationZone="access">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DCEAF7;strokeColor=#4C78A8;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="630" y="630" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-07" label="Check Bookable Availability" semanticId="uc.muc-07" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1610" y="160" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-05" label="Verify WhatsApp OTP" semanticId="uc.muc-05" semanticType="use_case" presentationZone="access">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F4F5F6;strokeColor=#667784;strokeWidth=1.5;opacity=92;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="860" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-08" label="Create Reservation Hold" semanticId="uc.muc-08" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="390" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-06" label="Book Appointment" semanticId="uc.muc-06" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-09" label="Process Full Payment" semanticId="uc.muc-09" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2570" y="160" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-07" label="Check Bookable Availability" semanticId="uc.muc-07" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F4F5F6;strokeColor=#667784;strokeWidth=1.5;opacity=92;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1600" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-10" label="Verify Payment Result" semanticId="uc.muc-10" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2570" y="390" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-08" label="Create Reservation Hold" semanticId="uc.muc-08" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F4F5F6;strokeColor=#667784;strokeWidth=1.5;opacity=92;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2080" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-11" label="Subscribe to Availability Alert" semanticId="uc.muc-11" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1130" y="160" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-09" label="Process Full Payment" semanticId="uc.muc-09" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="630" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-12" label="Manage Patient Appointments" semanticId="uc.muc-12" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1130" y="590" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-10" label="Verify Payment Result" semanticId="uc.muc-10" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F4F5F6;strokeColor=#667784;strokeWidth=1.5;opacity=92;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1600" y="630" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-13" label="Track Visit &amp; Queue" semanticId="uc.muc-13" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1610" y="590" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-11" label="Subscribe to Availability Alert" semanticId="uc.muc-11" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2080" y="630" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-14" label="Deliver Notifications" semanticId="uc.muc-14" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="590" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-12" label="Manage Patient Appointments" semanticId="uc.muc-12" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1600" y="860" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-15" label="Manage Facility Configuration" semanticId="uc.muc-15" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-13" label="Track Visit &amp; Queue" semanticId="uc.muc-13" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2080" y="860" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-16" label="Manage Schedules &amp; Availability" semanticId="uc.muc-16" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="560" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-14" label="Deliver Notifications" semanticId="uc.muc-14" semanticType="use_case" presentationZone="booking">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F5E7C6;strokeColor=#A97832;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="860" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-17" label="Manage Facility Staff Accounts" semanticId="uc.muc-17" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="80" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-15" label="Manage Facility Configuration" semanticId="uc.muc-15" semanticType="use_case" presentationZone="facility">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-18" label="Review Daily Operations" semanticId="uc.muc-18" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1040" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-16" label="Manage Schedules &amp; Availability" semanticId="uc.muc-16" semanticType="use_case" presentationZone="facility">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="630" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-19" label="Manage Operational Exceptions" semanticId="uc.muc-19" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1520" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-17" label="Manage Facility Staff Accounts" semanticId="uc.muc-17" semanticType="use_case" presentationZone="facility">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#DDEBDD;strokeColor=#5D8668;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="150" y="1450" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-20" label="Manage Facility Appointments" semanticId="uc.muc-20" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1040" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-18" label="Review Daily Operations" semanticId="uc.muc-18" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E9EEF2;strokeColor=#536D7A;strokeWidth=1.5;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-21" label="Manage Capacity" semanticId="uc.muc-21" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="560" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-19" label="Manage Operational Exceptions" semanticId="uc.muc-19" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E9EEF2;strokeColor=#536D7A;strokeWidth=1.5;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1600" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-22" label="Manage Patient Arrival &amp; Queue" semanticId="uc.muc-22" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1520" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-20" label="Manage Facility Appointments" semanticId="uc.muc-20" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2080" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-23" label="Record Visit Outcomes" semanticId="uc.muc-23" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1040" y="1420" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-21" label="Manage Capacity" semanticId="uc.muc-21" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E9EEF2;strokeColor=#536D7A;strokeWidth=1.5;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="1450" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-24" label="Handle Late Arrival" semanticId="uc.muc-24" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="1520" y="1420" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-22" label="Manage Patient Arrival &amp; Queue" semanticId="uc.muc-22" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1600" y="1450" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-25" label="View Assigned Appointments &amp; Queue" semanticId="uc.muc-25" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-23" label="Record Visit Outcomes" semanticId="uc.muc-23" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2080" y="1450" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-26" label="Call Next Patient" semanticId="uc.muc-26" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2570" y="960" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-24" label="Handle Late Arrival" semanticId="uc.muc-24" semanticType="use_case" presentationZone="reception">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F0E1D6;strokeColor=#9A6B4F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="1120" y="1680" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-27" label="Manage Facility Onboarding" semanticId="uc.muc-27" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-25" label="View Assigned Appointments &amp; Queue" semanticId="uc.muc-25" semanticType="use_case" presentationZone="doctor">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E7EDF0;strokeColor=#56717F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="3050" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-28" label="Manage Platform Reference &amp; Staff Data" semanticId="uc.muc-28" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2570" y="1190" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-26" label="Call Next Patient" semanticId="uc.muc-26" semanticType="use_case" presentationZone="doctor">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E9EEF2;strokeColor=#536D7A;strokeWidth=1.5;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2570" y="400" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-29" label="Handle Support &amp; Escalations" semanticId="uc.muc-29" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2090" y="1420" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-27" label="Manage Facility Onboarding" semanticId="uc.muc-27" semanticType="use_case" presentationZone="platform">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2570" y="1220" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
-        <object id="sem-uc.muc-30" label="Review Audit Logs" semanticId="uc.muc-30" semanticType="use_case">
-          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;fontColor=#18324B;fontFamily=Arial;fontSize=28;strokeWidth=2;" vertex="1" parent="system-boundary">
-            <mxGeometry x="2570" y="1420" width="400" height="130" as="geometry" />
+        <object id="sem-uc.muc-28" label="Manage Platform Reference &amp; Staff Data" semanticId="uc.muc-28" semanticType="use_case" presentationZone="platform">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="3050" y="1220" width="400" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="sem-uc.muc-29" label="Handle Support &amp; Escalations" semanticId="uc.muc-29" semanticType="use_case" presentationZone="platform">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="2570" y="1450" width="400" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="sem-uc.muc-30" label="Review Audit Logs" semanticId="uc.muc-30" semanticType="use_case" presentationZone="platform">
+          <mxCell style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E4E3EE;strokeColor=#6E6A8F;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=28;fontStyle=0;" vertex="1" parent="system-boundary">
+            <mxGeometry x="3050" y="1450" width="400" height="130" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.visitor" label="Visitor" semanticId="actor.visitor" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="50" y="420" width="200" height="180" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="100" y="990" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.patient" label="Patient" semanticId="actor.patient" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="50" y="730" width="200" height="180" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="100" y="1210" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.facility-administrator" label="Facility Administrator" semanticId="actor.facility-administrator" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="40" y="1250" width="220" height="190" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="100" y="1860" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.booking-reception-staff" label="Booking &amp; Reception Staff" semanticId="actor.booking-reception-staff" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="30" y="1640" width="240" height="200" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="100" y="1640" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.doctor" label="Doctor" semanticId="actor.doctor" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="3590" y="1230" width="200" height="180" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="4160" y="960" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.platform-administrator" label="Platform Administrator" semanticId="actor.platform-administrator" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="3560" y="1640" width="240" height="200" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=none;strokeColor=#737373;strokeWidth=2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="4160" y="1670" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.payment-gateway" label="Payment Gateway" semanticId="actor.payment-gateway" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="3580" y="400" width="220" height="190" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=#F7F7F6;strokeColor=#737373;strokeWidth=1.5;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="1900" y="200" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.notification-service" label="Notification Service" semanticId="actor.notification-service" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="3560" y="760" width="240" height="190" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=#F7F7F6;strokeColor=#737373;strokeWidth=1.5;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="1650" y="200" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.map-service" label="Map Service" semanticId="actor.map-service" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="850" y="90" width="200" height="170" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=#F7F7F6;strokeColor=#737373;strokeWidth=1.5;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="1160" y="200" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
         <object id="sem-actor.whatsapp-auth-provider" label="WhatsApp Authentication Provider" semanticId="actor.whatsapp-auth-provider" semanticType="actor">
-          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=middle;whiteSpace=wrap;html=1;align=center;fillColor=#FBFAF7;strokeColor=#334E68;fontColor=#18324B;fontFamily=Arial;fontSize=22;strokeWidth=2;" vertex="1" parent="layer-nodes">
-            <mxGeometry x="1400" y="90" width="240" height="180" as="geometry" />
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;whiteSpace=wrap;html=1;align=center;fillColor=#F7F7F6;strokeColor=#737373;strokeWidth=1.5;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=22;fontStyle=0;" vertex="1" parent="layer-nodes">
+            <mxGeometry x="680" y="200" width="220" height="190" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="sem-relation.visitor-muc-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-01">
+        <mxCell id="sem-relation.visitor-muc-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-01">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="330" y="510" />
-              <mxPoint x="330" y="525" />
-              <mxPoint x="700" y="525" />
+              <mxPoint x="590" y="1028" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.visitor-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-02">
+        <mxCell id="sem-relation.visitor-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-02">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="330" y="510" />
-              <mxPoint x="330" y="430" />
-              <mxPoint x="1180" y="430" />
+              <mxPoint x="320" y="900" />
+              <mxPoint x="1070" y="900" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.visitor-muc-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-03">
+        <mxCell id="sem-relation.visitor-muc-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-03">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="330" y="510" />
-              <mxPoint x="330" y="765" />
-              <mxPoint x="700" y="765" />
+              <mxPoint x="590" y="1104" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.visitor-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.visitor-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.166667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.visitor" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="330" y="510" />
-              <mxPoint x="330" y="650" />
-              <mxPoint x="1180" y="650" />
+              <mxPoint x="320" y="1130" />
+              <mxPoint x="1070" y="1130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-01">
+        <mxCell id="sem-relation.patient-muc-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.1;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-01">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="610" />
-              <mxPoint x="700" y="610" />
+              <mxPoint x="330" y="1229" />
+              <mxPoint x="330" y="1130" />
+              <mxPoint x="590" y="1130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-02">
+        <mxCell id="sem-relation.patient-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-02">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="625" />
-              <mxPoint x="1180" y="625" />
+              <mxPoint x="580" y="1248" />
+              <mxPoint x="580" y="1130" />
+              <mxPoint x="1070" y="1130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.patient-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="640" />
-              <mxPoint x="1180" y="640" />
+              <mxPoint x="1070" y="1286" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-06" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-06">
+        <mxCell id="sem-relation.patient-muc-06" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-06">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="620" />
-              <mxPoint x="2710" y="620" />
+              <mxPoint x="90" y="1267" />
+              <mxPoint x="90" y="820" />
+              <mxPoint x="1560" y="820" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-09" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-09">
+        <mxCell id="sem-relation.patient-muc-09" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-09">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="635" />
-              <mxPoint x="3190" y="635" />
+              <mxPoint x="320" y="1510" />
+              <mxPoint x="1480" y="1510" />
+              <mxPoint x="1480" y="1205" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-11">
+        <mxCell id="sem-relation.patient-muc-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-11">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="605" />
-              <mxPoint x="1750" y="605" />
+              <mxPoint x="580" y="1324" />
+              <mxPoint x="580" y="1580" />
+              <mxPoint x="1150" y="1580" />
+              <mxPoint x="1150" y="1324" />
+              <mxPoint x="2520" y="1324" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-12">
+        <mxCell id="sem-relation.patient-muc-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-12">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="1080" />
-              <mxPoint x="1750" y="1080" />
+              <mxPoint x="320" y="1580" />
+              <mxPoint x="2040" y="1580" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-13">
+        <mxCell id="sem-relation.patient-muc-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-13">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="1095" />
-              <mxPoint x="2230" y="1095" />
+              <mxPoint x="320" y="1580" />
+              <mxPoint x="2520" y="1580" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.patient-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-14">
+        <mxCell id="sem-relation.patient-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.patient" target="sem-uc.muc-14">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="350" y="820" />
-              <mxPoint x="350" y="1110" />
-              <mxPoint x="2710" y="1110" />
+              <mxPoint x="320" y="1580" />
+              <mxPoint x="1560" y="1580" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.facility-admin-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.111111;exitDx=0;exitDy=0;entryX=0;entryY=0.833333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="660" />
-              <mxPoint x="1180" y="660" />
+              <mxPoint x="90" y="1881.11" />
+              <mxPoint x="90" y="1580" />
+              <mxPoint x="1070" y="1580" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-14">
+        <mxCell id="sem-relation.facility-admin-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.222222;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-14">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1130" />
-              <mxPoint x="2710" y="1130" />
+              <mxPoint x="580" y="1902.22" />
+              <mxPoint x="580" y="1720" />
+              <mxPoint x="1560" y="1720" />
+              <mxPoint x="1560" y="1660" />
+              <mxPoint x="1550" y="1660" />
+              <mxPoint x="1550" y="1467.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-15">
+        <mxCell id="sem-relation.facility-admin-muc-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-15">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1325" />
-              <mxPoint x="700" y="1325" />
+              <mxPoint x="590" y="1923.33" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-16">
+        <mxCell id="sem-relation.facility-admin-muc-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.444444;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-16">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1220" />
-              <mxPoint x="1180" y="1220" />
+              <mxPoint x="1070" y="1944.44" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-17">
+        <mxCell id="sem-relation.facility-admin-muc-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.777778;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-17">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1555" />
-              <mxPoint x="700" y="1555" />
+              <mxPoint x="590" y="2007.78" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-18">
+        <mxCell id="sem-relation.facility-admin-muc-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.555556;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-18">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1210" />
-              <mxPoint x="1660" y="1210" />
+              <mxPoint x="320" y="1950" />
+              <mxPoint x="1560" y="1950" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-19">
+        <mxCell id="sem-relation.facility-admin-muc-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.666667;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-19">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1230" />
-              <mxPoint x="2140" y="1230" />
+              <mxPoint x="320" y="1950" />
+              <mxPoint x="2040" y="1950" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.facility-admin-muc-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-21">
+        <mxCell id="sem-relation.facility-admin-muc-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.888889;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.facility-administrator" target="sem-uc.muc-21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="370" y="1345" />
-              <mxPoint x="370" y="1450" />
-              <mxPoint x="1180" y="1450" />
+              <mxPoint x="320" y="2100" />
+              <mxPoint x="1560" y="2100" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.reception-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.181818;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="675" />
-              <mxPoint x="1180" y="675" />
+              <mxPoint x="320" y="1510" />
+              <mxPoint x="1070" y="1510" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-14">
+        <mxCell id="sem-relation.reception-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.272727;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-14">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1140" />
-              <mxPoint x="2710" y="1140" />
+              <mxPoint x="1480" y="1691.82" />
+              <mxPoint x="1480" y="1435" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-18">
+        <mxCell id="sem-relation.reception-muc-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.363636;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-18">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1240" />
-              <mxPoint x="1660" y="1240" />
+              <mxPoint x="1560" y="1709.09" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-19">
+        <mxCell id="sem-relation.reception-muc-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.454545;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-19">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1250" />
-              <mxPoint x="2140" y="1250" />
+              <mxPoint x="320" y="1660" />
+              <mxPoint x="2040" y="1660" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-20">
+        <mxCell id="sem-relation.reception-muc-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.545455;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-20">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1460" />
-              <mxPoint x="1660" y="1460" />
+              <mxPoint x="320" y="1660" />
+              <mxPoint x="2520" y="1660" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-21">
+        <mxCell id="sem-relation.reception-muc-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.636364;exitDx=0;exitDy=0;entryX=0;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1470" />
-              <mxPoint x="1180" y="1470" />
+              <mxPoint x="320" y="1720" />
+              <mxPoint x="1480" y="1720" />
+              <mxPoint x="1480" y="2003.33" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-22">
+        <mxCell id="sem-relation.reception-muc-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.727273;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-22">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1440" />
-              <mxPoint x="2140" y="1440" />
+              <mxPoint x="320" y="1640" />
+              <mxPoint x="1970" y="1640" />
+              <mxPoint x="1970" y="2025" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-23">
+        <mxCell id="sem-relation.reception-muc-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.818182;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-23">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1690" />
-              <mxPoint x="1660" y="1690" />
+              <mxPoint x="20" y="1795.45" />
+              <mxPoint x="20" y="2180" />
+              <mxPoint x="2520" y="2180" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-24">
+        <mxCell id="sem-relation.reception-muc-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.909091;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-24">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1670" />
-              <mxPoint x="2140" y="1670" />
+              <mxPoint x="90" y="1812.73" />
+              <mxPoint x="90" y="2255" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.reception-muc-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-26">
+        <mxCell id="sem-relation.reception-muc-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=1;exitY=0.0909091;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.booking-reception-staff" target="sem-uc.muc-26">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="390" y="1740" />
-              <mxPoint x="390" y="1210" />
-              <mxPoint x="3190" y="1210" />
+              <mxPoint x="3000" y="1657.27" />
+              <mxPoint x="3000" y="975" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.doctor-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.doctor-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.333333;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="1320" />
-              <mxPoint x="3490" y="650" />
-              <mxPoint x="1180" y="650" />
+              <mxPoint x="4160" y="1280" />
+              <mxPoint x="1470" y="1280" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.doctor-muc-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-25">
+        <mxCell id="sem-relation.doctor-muc-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-25">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="1320" />
-              <mxPoint x="3490" y="1210" />
-              <mxPoint x="2710" y="1210" />
+              <mxPoint x="4160" y="975" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.doctor-muc-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-26">
+        <mxCell id="sem-relation.doctor-muc-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.doctor" target="sem-uc.muc-26">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="1320" />
-              <mxPoint x="3490" y="1325" />
-              <mxPoint x="3190" y="1325" />
+              <mxPoint x="4160" y="1050" />
+              <mxPoint x="3410" y="1050" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.platform-admin-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-04">
+        <mxCell id="sem-relation.platform-admin-muc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.166667;exitDx=0;exitDy=0;entryX=1;entryY=0.666667;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-04">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3510" y="1740" />
-              <mxPoint x="3510" y="630" />
-              <mxPoint x="1180" y="630" />
+              <mxPoint x="4160" y="1360" />
+              <mxPoint x="1470" y="1360" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.platform-admin-muc-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-27">
+        <mxCell id="sem-relation.platform-admin-muc-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.333333;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-27">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3510" y="1740" />
-              <mxPoint x="3510" y="1450" />
-              <mxPoint x="2710" y="1450" />
+              <mxPoint x="4160" y="1720" />
+              <mxPoint x="3410" y="1720" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.platform-admin-muc-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-28">
+        <mxCell id="sem-relation.platform-admin-muc-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-28">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3510" y="1740" />
-              <mxPoint x="3510" y="1555" />
-              <mxPoint x="3190" y="1555" />
+              <mxPoint x="3890" y="1765" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.platform-admin-muc-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-29">
+        <mxCell id="sem-relation.platform-admin-muc-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.666667;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-29">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3510" y="1740" />
-              <mxPoint x="3510" y="1680" />
-              <mxPoint x="2710" y="1680" />
+              <mxPoint x="4160" y="1950" />
+              <mxPoint x="3410" y="1950" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.platform-admin-muc-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#5F7485;fontColor=#1F2937;strokeWidth=1.2;opacity=70;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-30">
+        <mxCell id="sem-relation.platform-admin-muc-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#5F7485;strokeWidth=1.6;opacity=88;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0;exitY=0.833333;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.platform-administrator" target="sem-uc.muc-30">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3510" y="1740" />
-              <mxPoint x="3510" y="1785" />
-              <mxPoint x="3190" y="1785" />
+              <mxPoint x="4160" y="2025" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.payment-gateway-muc-09" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#405F73;fontColor=#1F2937;strokeWidth=1.6;opacity=88;" edge="1" parent="layer-relationships" source="sem-actor.payment-gateway" target="sem-uc.muc-09">
+        <mxCell id="sem-relation.payment-gateway-muc-09" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#405F73;strokeWidth=2;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0.333333;exitY=1;exitDx=0;exitDy=0;entryX=0.666667;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.payment-gateway" target="sem-uc.muc-09">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="495" />
-              <mxPoint x="3490" y="525" />
-              <mxPoint x="3190" y="525" />
+              <mxPoint x="1973.33" y="760" />
+              <mxPoint x="1550" y="760" />
+              <mxPoint x="1550" y="1140" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.payment-gateway-muc-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#405F73;fontColor=#1F2937;strokeWidth=1.6;opacity=88;" edge="1" parent="layer-relationships" source="sem-actor.payment-gateway" target="sem-uc.muc-10">
+        <mxCell id="sem-relation.payment-gateway-muc-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#405F73;strokeWidth=2;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0.666667;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.payment-gateway" target="sem-uc.muc-10">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="495" />
-              <mxPoint x="3490" y="755" />
-              <mxPoint x="3190" y="755" />
+              <mxPoint x="2930" y="390" />
+              <mxPoint x="2930" y="1050" />
+              <mxPoint x="2240" y="1050" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.notification-service-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#405F73;fontColor=#1F2937;strokeWidth=1.6;opacity=88;" edge="1" parent="layer-relationships" source="sem-actor.notification-service" target="sem-uc.muc-14">
+        <mxCell id="sem-relation.notification-service-muc-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#405F73;strokeWidth=2;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.notification-service" target="sem-uc.muc-14">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3490" y="855" />
-              <mxPoint x="3490" y="955" />
-              <mxPoint x="2710" y="955" />
+              <mxPoint x="1550" y="390" />
+              <mxPoint x="1550" y="1370" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.map-service-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#405F73;fontColor=#1F2937;strokeWidth=1.6;opacity=88;" edge="1" parent="layer-relationships" source="sem-actor.map-service" target="sem-uc.muc-02">
+        <mxCell id="sem-relation.map-service-muc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#405F73;strokeWidth=2;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.map-service" target="sem-uc.muc-02">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="950" y="260" />
-              <mxPoint x="1180" y="260" />
+              <mxPoint x="1480" y="390" />
+              <mxPoint x="1480" y="910" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.whatsapp-provider-muc-05" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FFFFFF;fontSize=11;strokeColor=#405F73;fontColor=#1F2937;strokeWidth=1.6;opacity=88;" edge="1" parent="layer-relationships" source="sem-actor.whatsapp-auth-provider" target="sem-uc.muc-05">
+        <mxCell id="sem-relation.whatsapp-provider-muc-05" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;labelBackgroundColor=#FBFAF7;strokeColor=#405F73;strokeWidth=2;opacity=96;fontColor=#1F2937;fontFamily=Arial;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.333333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-actor.whatsapp-auth-provider" target="sem-uc.muc-05">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1520" y="270" />
-              <mxPoint x="1440" y="270" />
-              <mxPoint x="1440" y="985" />
+              <mxPoint x="580" y="390" />
+              <mxPoint x="580" y="900" />
+              <mxPoint x="1000" y="900" />
+              <mxPoint x="1000" y="1370" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.inc-01" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-03" target="sem-uc.muc-05">
+        <mxCell id="sem-relation.inc-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.666667;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-03" target="sem-uc.muc-05">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="900" y="765" />
-              <mxPoint x="900" y="985" />
+              <mxPoint x="790" y="1370" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.inc-02" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-04" target="sem-uc.muc-05">
+        <mxCell id="sem-relation.inc-01-label" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.inc-01">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.inc-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-04" target="sem-uc.muc-05">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1180" y="875" />
+              <mxPoint x="1070" y="1435" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.inc-03" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-06" target="sem-uc.muc-07">
+        <mxCell id="sem-relation.inc-02-label" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.inc-02">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.inc-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;exitX=1;exitY=0.333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-06" target="sem-uc.muc-07">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2470" y="525" />
+              <mxPoint x="2040" y="953.333" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.inc-04" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-06" target="sem-uc.muc-08">
+        <mxCell id="sem-relation.inc-03-label" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.inc-03">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.inc-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;exitX=1;exitY=0.666667;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-06" target="sem-uc.muc-08">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2710" y="640" />
+              <mxPoint x="1960" y="1050" />
+              <mxPoint x="2520" y="1050" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.inc-05" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-09" target="sem-uc.muc-10">
+        <mxCell id="sem-relation.inc-04-label" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.inc-04">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.inc-05" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-09" target="sem-uc.muc-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sem-relation.inc-05-label" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.inc-05">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.ext-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.333333;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-09" target="sem-uc.muc-06">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3190" y="640" />
+              <mxPoint x="1693.33" y="1040" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.ext-01" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;br&gt;[Booking policy = FULL_PAYMENT_REQUIRED]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-09" target="sem-uc.muc-06">
+        <mxCell id="sem-relation.ext-01-label" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.ext-01">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.ext-01-condition" value="[Booking policy = FULL_PAYMENT_REQUIRED]" style="edgeLabel=1;html=1;align=left;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;fontStyle=0;fontColor=#4B5563;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.ext-01">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.ext-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FBFAF7;strokeColor=#244E70;strokeWidth=2.2;opacity=100;fontColor=#1F2937;fontFamily=Arial;fontSize=20;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.333333;exitDx=0;exitDy=0;" edge="1" parent="layer-relationships" source="sem-uc.muc-11" target="sem-uc.muc-07">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3190" y="420" />
-              <mxPoint x="2710" y="420" />
+              <mxPoint x="2520" y="1050" />
+              <mxPoint x="2440" y="1050" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sem-relation.ext-02" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;br&gt;[No bookable capacity available]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=20;strokeColor=#244E70;fontColor=#1F2937;strokeWidth=2;" edge="1" parent="layer-relationships" source="sem-uc.muc-11" target="sem-uc.muc-07">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1750" y="650" />
-              <mxPoint x="2230" y="650" />
-            </Array>
+        <mxCell id="sem-relation.ext-02-label" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeLabel=1;html=1;align=center;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=20;fontStyle=0;fontColor=#1F2937;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.ext-02">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sem-relation.ext-02-condition" value="[No bookable capacity available]" style="edgeLabel=1;html=1;align=left;verticalAlign=middle;resizable=0;points=[];text=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;fontStyle=0;fontColor=#4B5563;opacity=100;labelBackgroundColor=#FBFAF7;" vertex="1" connectable="0" parent="sem-relation.ext-02">
+          <mxGeometry x="0" relative="1" as="geometry">
+            <mxPoint x="0" y="16.0" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>

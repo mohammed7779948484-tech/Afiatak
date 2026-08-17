@@ -1,49 +1,10 @@
 from __future__ import annotations
 
-import importlib.util
-import re
-from copy import deepcopy
 from xml.etree import ElementTree as ET
 
 from engine.core.io import ROOT, load_yaml
 from qa.diagnostics import Diagnostic
-
-
-def _routing_warnings(root, clearance: float) -> list[str]:
-    validator = ROOT / ".agents" / "skills" / "drawio" / "scripts" / "validate.py"
-    spec = importlib.util.spec_from_file_location("vendored_drawio_validate", validator)
-    if spec is None or spec.loader is None:
-        return ["vendored route validator could not be loaded"]
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    expanded = deepcopy(root)
-    for geometry in expanded.findall(".//mxCell[@vertex='1']/mxGeometry"):
-        if geometry.get("relative") == "1" or geometry.get("width") is None:
-            continue
-        geometry.set("x", str(float(geometry.get("x", 0)) - clearance))
-        geometry.set("y", str(float(geometry.get("y", 0)) - clearance))
-        geometry.set("width", str(float(geometry.get("width", 0)) + 2 * clearance))
-        geometry.set("height", str(float(geometry.get("height", 0)) + 2 * clearance))
-    warnings: list[str] = []
-    for diagram in expanded.findall("diagram"):
-        _, page_warnings = module.check_page(diagram)
-        warnings.extend(page_warnings)
-    edges = {
-        item.get("id"): {item.get("source"), item.get("target")}
-        for item in root.findall(".//mxCell[@edge='1']")
-    }
-    filtered = []
-    pattern = re.compile(r"edge '([^']+)' routes through vertex '([^']+)'")
-    for warning in warnings:
-        match = pattern.search(warning)
-        if match and any(
-            match.group(2).startswith(f"{endpoint}-")
-            for endpoint in edges.get(match.group(1), set())
-            if endpoint
-        ):
-            continue
-        filtered.append(warning)
-    return filtered
+from qa.visual import analyze_visual_metrics
 
 
 def _gap(a, b) -> tuple[float, float]:
@@ -103,6 +64,7 @@ def validate_geometry(path: str) -> list[Diagnostic]:
                         "Q5",
                         "page-margin",
                         "Top-level node violates minimum page margin",
+                        severity="warning",
                         subject=item["id"],
                     )
                 )
@@ -134,7 +96,10 @@ def validate_geometry(path: str) -> list[Diagnostic]:
             ):
                 diagnostics.append(
                     Diagnostic(
-                        "Q5", "node-gap", f"Nodes too close: {first['id']} and {second['id']}"
+                        "Q5",
+                        "node-gap",
+                        f"Nodes too close: {first['id']} and {second['id']}",
+                        severity="warning",
                     )
                 )
     boundary = next((item for item in boxes if item["id"] == "system-boundary"), None)
@@ -147,6 +112,7 @@ def validate_geometry(path: str) -> list[Diagnostic]:
                         "Q5",
                         "actor-boundary-gap",
                         "Actor is too close to the system boundary",
+                        severity="warning",
                         subject=actor["id"],
                     )
                 )
@@ -165,23 +131,123 @@ def validate_geometry(path: str) -> list[Diagnostic]:
                     severity="warning",
                 )
             )
-    route_warnings = _routing_warnings(root, connector_clearance)
-    crossings = sum(" cross" in item for item in route_warnings)
-    through = [item for item in route_warnings if "routes through" in item]
+    metrics = analyze_visual_metrics(path)
+    crossings = metrics["routing"]["crossings"]
+    route_through = metrics["routing"]["routeThroughNodes"]
+    clearance_violations = metrics["routing"]["clearanceViolations"]
     if crossings > maximum_crossings:
         diagnostics.append(
             Diagnostic(
                 "Q5",
                 "edge-crossings",
                 f"Edge crossings {crossings} exceed maximum {maximum_crossings}",
+                severity="warning",
             )
         )
-    for warning in through:
+    for violation in route_through:
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                "connector-through-node",
+                "Connector routes through an unrelated node",
+                subject=f"{violation['edge']} -> {violation['node']}",
+            )
+        )
+    route_through_pairs = {(item["edge"], item["node"]) for item in route_through}
+    for violation in clearance_violations:
+        if (violation["edge"], violation["node"]) in route_through_pairs:
+            continue
         diagnostics.append(
             Diagnostic(
                 "Q5",
                 "connector-clearance",
-                f"Connector violates {connector_clearance:g}px node clearance: {warning}",
+                f"Connector violates {connector_clearance:g}px node clearance",
+                severity="warning",
+                subject=f"{violation['edge']} -> {violation['node']}",
+            )
+        )
+    routing = metrics["routing"]
+    edge_length = routing["edgeLength"]
+    bends = routing["bends"]
+    warning_checks = (
+        (
+            edge_length["average"] > float(quality["maximum_average_edge_length"]),
+            "average-edge-length",
+            f"Average edge length {edge_length['average']:.1f}px exceeds the visual target",
+        ),
+        (
+            edge_length["maximum"] > float(quality["maximum_edge_length"]),
+            "maximum-edge-length",
+            f"Maximum edge length {edge_length['maximum']:.1f}px exceeds the visual target",
+        ),
+        (
+            bends["averagePerEdge"] > float(quality["maximum_average_bends"]),
+            "average-edge-bends",
+            f"Average bends per routed edge {bends['averagePerEdge']:.2f} exceeds the visual target",
+        ),
+        (
+            bends["maximumPerEdge"] > int(quality["maximum_bends_per_edge"]),
+            "maximum-edge-bends",
+            f"Maximum bends on one edge {bends['maximumPerEdge']} exceeds the visual target",
+        ),
+    )
+    for failed, code, message in warning_checks:
+        if failed:
+            diagnostics.append(Diagnostic("Q5", code, message, severity="warning"))
+    internal_occupancy = metrics["occupancy"]["internalNodeAreaRatio"]
+    internal_target = quality["internal_occupancy_target"]
+    if internal_occupancy is not None and not (
+        float(internal_target["min"]) <= internal_occupancy <= float(internal_target["max"])
+    ):
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                "internal-occupancy",
+                f"Internal boundary occupancy {internal_occupancy:.2f} is outside target",
+                severity="warning",
+            )
+        )
+    imbalance = metrics["zoneBalance"]["imbalance"]
+    if imbalance is not None and imbalance > float(quality["maximum_zone_imbalance"]):
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                "zone-imbalance",
+                f"Zone occupancy imbalance {imbalance:.2f} exceeds the visual target",
+                severity="warning",
+            )
+        )
+    actor_average = metrics["actorAssociationProximity"]["averageRouteLength"]
+    if actor_average is not None and actor_average > float(
+        quality["maximum_actor_association_average_length"]
+    ):
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                "actor-association-distance",
+                f"Average actor association length {actor_average:.1f}px exceeds the visual target",
+                severity="warning",
+            )
+        )
+    for warning in metrics["labelAndSizeWarnings"]:
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                warning["code"],
+                warning["message"],
+                severity="warning",
+                subject=warning.get("subject"),
+            )
+        )
+    if metrics["congestion"]["maximumSegmentsPerCell"] > int(
+        quality["maximum_corridor_segments"]
+    ):
+        diagnostics.append(
+            Diagnostic(
+                "Q5",
+                "routing-congestion",
+                f"Maximum corridor density is {metrics['congestion']['maximumSegmentsPerCell']} segments",
+                severity="warning",
             )
         )
     return diagnostics

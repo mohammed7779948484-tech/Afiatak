@@ -3,10 +3,12 @@ from __future__ import annotations
 import shutil
 import subprocess
 import sys
+import os
+from xml.etree import ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
-from engine.core.io import ROOT
+from engine.core.io import ROOT, load_yaml
 
 
 @dataclass(frozen=True)
@@ -19,6 +21,9 @@ def find_drawio() -> Tool | None:
     candidates = [
         shutil.which("drawio"),
         shutil.which("draw.io"),
+        str(Path(os.environ["LOCALAPPDATA"]) / "Programs" / "draw.io" / "draw.io.exe")
+        if os.environ.get("LOCALAPPDATA")
+        else None,
         r"C:\Program Files\draw.io\draw.io.exe",
     ]
     for candidate in filter(None, candidates):
@@ -53,7 +58,15 @@ def export_drawio(source: Path, output: Path, *, preview: bool = False) -> Path:
     elif extension in {"png", "svg", "pdf"}:
         command.append("-e")
         if extension == "png":
-            command.extend(["-s", "2"])
+            export_tokens = load_yaml(ROOT / "design" / "geometry.yaml")["export"]
+            scale = int(export_tokens["png_scale"])
+            model = ET.parse(source).getroot().find(".//mxGraphModel")
+            if model is not None:
+                largest = max(float(model.get("pageWidth", 0)), float(model.get("pageHeight", 0)))
+                maximum = float(export_tokens["maximum_raster_dimension"])
+                while scale > 1 and largest * scale > maximum:
+                    scale -= 1
+            command.extend(["-s", str(scale)])
     command.extend(["-o", str(output), str(source)])
     result = subprocess.run(command, capture_output=True, text=True, timeout=120, check=False)
     if result.returncode or not output.exists():

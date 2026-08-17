@@ -2,15 +2,17 @@ from __future__ import annotations
 
 import json
 import shutil
+import struct
 from pathlib import Path
 
 import yaml
 
 from engine.core.io import ROOT, load_view, load_yaml, sha256_file
-from engine.export import assign_edge_ports, export_drawio, find_drawio
+from engine.export import export_drawio, find_drawio
 from engine.manifests import create_manifest, write_manifest
 from engine.renderers import get_renderer
 from qa.pipeline import validate_artifact, validate_inputs
+from qa.visual import analyze_visual_metrics
 
 
 def model_path_for(view_path: Path, model_value: str) -> Path:
@@ -28,7 +30,6 @@ def render(view_path: Path, output: Path | None = None) -> Path:
     output = output or ROOT / "build" / "drawio" / f"{view.id}.drawio"
     output.parent.mkdir(parents=True, exist_ok=True)
     get_renderer(view.diagram_type).render(model, view).write(str(output))
-    assign_edge_ports(output)
     artifact_errors = [item for item in validate_artifact(output) if item.severity == "error"]
     if artifact_errors:
         raise ValueError("\n".join(map(str, artifact_errors)))
@@ -42,32 +43,85 @@ def qa(view_path: Path) -> tuple[Path, list[str]]:
     diagnostics = [str(item) for item in artifact_diagnostics]
     preview = ROOT / "build" / "preview" / f"{drawio.stem}.png"
     tool = find_drawio()
-    q6: dict[str, str | bool | None]
+    metrics = analyze_visual_metrics(drawio)
+    review = view.visual_review or {}
+    q6: dict
+    preview_record: dict
     if tool:
         export_drawio(drawio, preview, preview=True)
         preview_hash = sha256_file(preview)
-        review = view.visual_review or {}
-        approved = review.get("status") == "approved" and review.get("previewHash") == preview_hash
+        with preview.open("rb") as stream:
+            header = stream.read(24)
+        pixel_size = None
+        if header.startswith(b"\x89PNG\r\n\x1a\n") and len(header) == 24:
+            width, height = struct.unpack(">II", header[16:24])
+            pixel_size = {"width": width, "height": height}
+        hash_matches = review.get("previewHash") == preview_hash
+        exporter_matches = review.get("exporterVersion") in {None, tool.version}
+        human_approved = review.get("status") == "approved" and exporter_matches
+        approved = human_approved and hash_matches
+        preview_record = {
+            "path": str(preview.relative_to(ROOT)),
+            "sha256": preview_hash,
+            "pixelSize": pixel_size,
+        }
         q6 = {
             "applicable": True,
             "status": "pass" if approved else "awaiting_review",
-            "preview": str(preview.relative_to(ROOT)),
-            "previewHash": preview_hash,
+            "preview": preview_record["path"],
+            "previewHash": preview_record["sha256"],
+            "previewSize": preview_record["pixelSize"],
+            "humanReview": {
+                "status": (
+                    "approved_current_preview"
+                    if approved
+                    else "approved_stale_preview"
+                    if human_approved
+                    else "not_recorded"
+                ),
+                "declaredStatus": review.get("status"),
+                "reviewer": review.get("reviewer"),
+                "reviewedAt": review.get("reviewedAt"),
+                "notes": review.get("notes"),
+                "approvedPreviewHash": review.get("previewHash"),
+                "hashMatchesCurrentPreview": hash_matches,
+                "approvedExporterVersion": review.get("exporterVersion"),
+                "currentExporterVersion": tool.version,
+                "exporterVersionMatches": exporter_matches,
+            },
+            "hashPurpose": "Identifies the reviewed preview; it does not constitute visual review.",
         }
     else:
+        preview_record = {"path": None, "sha256": None, "pixelSize": None}
         q6 = {
             "applicable": False,
             "status": "unavailable",
             "reason": "draw.io desktop CLI unavailable",
             "preview": None,
+            "previewHash": None,
+            "previewSize": None,
+            "humanReview": {
+                "status": "not_verifiable_without_preview",
+                "declaredStatus": review.get("status"),
+                "reviewer": review.get("reviewer"),
+                "reviewedAt": review.get("reviewedAt"),
+                "notes": review.get("notes"),
+                "approvedPreviewHash": review.get("previewHash"),
+                "hashMatchesCurrentPreview": None,
+            },
+            "hashPurpose": "No preview hash is available; visual QA is not claimed.",
         }
     gates = {
         "Q4": "pass"
         if not any(item.gate == "Q4" and item.severity == "error" for item in artifact_diagnostics)
         else "fail",
-        "Q5": "pass"
-        if not any(item.gate == "Q5" and item.severity == "error" for item in artifact_diagnostics)
-        else "fail",
+        "Q5": (
+            "fail"
+            if any(item.gate == "Q5" and item.severity == "error" for item in artifact_diagnostics)
+            else "pass_with_warnings"
+            if any(item.gate == "Q5" and item.severity == "warning" for item in artifact_diagnostics)
+            else "pass"
+        ),
         "Q6": q6,
     }
     report = ROOT / "build" / "qa" / f"{drawio.stem}.json"
@@ -78,6 +132,13 @@ def qa(view_path: Path) -> tuple[Path, list[str]]:
                 "artifact": str(drawio.relative_to(ROOT)),
                 "diagnostics": diagnostics,
                 "gates": gates,
+                "visualReview": {
+                    "schemaVersion": 1,
+                    "preview": preview_record,
+                    "diagramCanvas": metrics["canvas"],
+                    "metrics": metrics,
+                    "humanReview": q6["humanReview"],
+                },
             },
             indent=2,
         )
@@ -123,8 +184,10 @@ def build(view_path: Path) -> list[Path]:
     if any(" ERROR " in item for item in diagnostics):
         raise ValueError("QA contains blocking errors")
     q6 = report_data["gates"]["Q6"]
-    if q6["applicable"] and q6["status"] != "pass":
-        raise ValueError("Q6 requires an approved visualReview matching the current previewHash")
+    if not q6["applicable"] or q6["status"] != "pass":
+        raise ValueError(
+            "Q6 requires an actual rendered preview and approved visualReview matching its hash"
+        )
     final = ROOT / "build" / "final"
     final.mkdir(parents=True, exist_ok=True)
     final_drawio = final / drawio.name

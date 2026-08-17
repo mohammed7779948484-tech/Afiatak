@@ -2,3 +2,45 @@ diagram_type: use_case
 orientation: LR
 actor_position: outside_boundary
 composition: curated-editorial
+planner:
+  strategy: neighborhood-bands
+  page: use_case_overview
+  boundary: use_case_overview
+  actor_placement:
+    human: outside-left-and-right
+    external_service: nearest-interaction
+  neighborhoods:
+    - {id: access, order: 1, role: functional_access}
+    - {id: booking, order: 2, role: functional_patient}
+    - {id: facility, order: 3, role: functional_facility}
+    - {id: reception, order: 4, role: functional_reception}
+    - {id: doctor, order: 5, role: functional_doctor}
+    - {id: platform, order: 6, role: functional_platform}
+visual_roles:
+  nodes:
+    boundary: boundary
+    access: functional_access
+    booking: functional_patient
+    facility: functional_facility
+    reception: functional_reception
+    doctor: functional_doctor
+    administration: functional_platform
+    helper: helper
+    shared: shared
+    actor: actor
+    external_service: external_service
+    region: region
+  text:
+    page_title: page_title
+    boundary_title: boundary_title
+    section: section
+    use_case: use_case
+    actor: actor
+    stereotype: stereotype
+    condition: condition
+    minimum: minimum
+  edges:
+    association: association
+    external_association: external_association
+    include: include
+    extend: extend

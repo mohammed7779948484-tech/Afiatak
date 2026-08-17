@@ -1,12 +1,24 @@
-version: 1
+version: 2
 grid: 10
 page:
   landscape: {width: 1600, height: 1000, margin: 60}
   report_landscape: {width: 1400, height: 900, margin: 50}
+  use_case_overview: {width: 4480, height: 2520, margin: 40}
+export:
+  png_scale: 2
+  maximum_raster_dimension: 8000
 spacing: {xs: 10, sm: 20, md: 40, lg: 80, xl: 120}
+boundary:
+  title_band_height: 50
+  internal_margin: 60
+  actor_clearance: 120
+  use_case_clearance: 40
+  use_case_overview: {left_margin: 440, right_margin: 440, top_margin: 300, bottom_margin: 200}
 shapes:
   actor: {width: 90, height: 130}
+  actor_overview: {width: 220, height: 190}
   use_case: {width: 220, height: 70}
+  use_case_overview: {width: 400, height: 130}
   node: {width: 180, height: 70}
   class: {width: 260, height: 180}
   state: {width: 180, height: 60}
@@ -15,6 +27,22 @@ quality:
   minimum_node_gap: 30
   minimum_actor_boundary_gap: 40
   minimum_connector_clearance: 10
+  minimum_edge_label_clearance: 16
+  minimum_actor_label_clearance: 20
   minimum_page_margin: 40
   maximum_edge_crossings: 8
   occupancy_target: {min: 0.25, max: 0.85}
+  internal_occupancy_target: {min: 0.12, max: 0.35}
+  maximum_average_edge_length: 1800
+  maximum_edge_length: 4000
+  maximum_average_bends: 3
+  maximum_bends_per_edge: 7
+  maximum_zone_imbalance: 0.8
+  maximum_actor_association_average_length: 2200
+  maximum_corridor_segments: 30
+use_case:
+  neighborhood_gap: 90
+  row_gap: 100
+  column_gap: 80
+  actor_gap: 120
+  routing_corridor: 80

@@ -1,3 +1,6 @@
 # Visual QA
 
-Q6 uses the draw.io export adapter to generate a clean, width-capped preview without embedded XML. Human or vision review records approval separately from semantic and structural gates.
+Q5 calculates deterministic XML geometry and routing metrics. Q6 adds the clean,
+width-capped preview identity and records human review evidence separately. A
+matching preview hash proves which image was reviewed; it is not itself a visual
+review.

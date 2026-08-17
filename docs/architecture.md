@@ -16,9 +16,9 @@ authoritative sources
 
 ## Boundaries
 
-Semantic records define what exists and why. Views select IDs and presentation options. Layout assigns geometry. Renderers translate UML meaning into mxGraph cells. The low-level `engine/drawio/` layer owns XML mechanics only.
+Semantic records define what exists and why. Views select IDs and high-level presentation intent. Type-specific composition planners assign geometry, routing assigns ports and obstacle-aware connector paths, and renderers translate UML meaning into mxGraph cells. The low-level `engine/drawio/` layer owns XML mechanics and deterministic route realization only.
 
-Each visual family has a renderer module. Shared behavior lives in `BaseRenderer`; use-case layout is specialized so actors remain outside a true system-boundary container. The generated document uses stable semantic cell IDs, explicit layers, native editable shapes, expanded edge geometry, and uncompressed XML.
+Each visual family has a renderer module. Shared behavior lives in `BaseRenderer`; complex use-case layout uses a curated editorial planner so actors remain on semantic perimeter rails around a true system-boundary container. The generated document uses stable semantic cell IDs, explicit layers, native editable shapes, distributed ports, expanded edge geometry, and uncompressed XML.
 
 Graphviz is optional and reserved for large class/package/component graphs. The repository-local skill remains immutable and is wrapped for structural lint, edge-port assignment, export repair, and browser fallback rather than forked.
 
