@@ -49,7 +49,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:40:00+00:00'
   notes: Log In is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'b1f0764c909bce44adba8ec4d07bee48bab08d3b2c78cd814e5d341c44bf51d8'
+  previewHash: '814ead505c1bcf5ed143eb7309c4042fc33928acadafc8eec249db094a1ba75c'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Log In

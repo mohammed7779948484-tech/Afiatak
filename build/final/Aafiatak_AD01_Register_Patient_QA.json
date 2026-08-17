@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad01-register-patient.png",
-      "previewHash": "3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e",
+      "previewHash": "65f296142cde101321252b6b2285d97dcdd1203fb2c7b16259fd119f2a61bb0e",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:20:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad01-register-patient.png",
-    "previewHash": "3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e",
+    "previewHash": "65f296142cde101321252b6b2285d97dcdd1203fb2c7b16259fd119f2a61bb0e",
     "status": "awaiting-user-approval"
   }
 }

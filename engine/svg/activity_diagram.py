@@ -138,8 +138,11 @@ def render_activity_diagram_svg(model: SemanticModel, view: ViewSpec, output: Pa
       .label-bg { fill:#FFFFFF; opacity:.98; } .guard-text { font-family:Arial,sans-serif; font-size:52px; font-weight:700; fill:#102A43; }
       .note-box { fill:#FFFDF5; stroke:#8C7A48; stroke-width:3; } .note-fold { fill:none; stroke:#8C7A48; stroke-width:3; } .note-text { font-family:Arial,sans-serif; font-size:44px; font-style:italic; fill:#5D5435; }
     '''
-    marker = ET.SubElement(defs, tag('marker'), {'id': 'activity-arrow', 'markerWidth': '16', 'markerHeight': '14', 'refX': '14', 'refY': '7', 'orient': 'auto', 'markerUnits': 'strokeWidth'})
-    ET.SubElement(marker, tag('path'), {'d': 'M 0 0 L 15 7 L 0 14 Z', 'fill': '#102A43'})
+    marker = ET.SubElement(defs, tag('marker'), {
+        'id': 'activity-arrow', 'viewBox': '0 0 16 14', 'markerWidth': '48', 'markerHeight': '42',
+        'refX': '16', 'refY': '7', 'orient': 'auto', 'markerUnits': 'userSpaceOnUse',
+    })
+    ET.SubElement(marker, tag('path'), {'d': 'M 1 1 L 16 7 L 1 13 Z', 'fill': '#102A43'})
 
     ET.SubElement(root, tag('rect'), {'x': '0', 'y': '0', 'width': str(layout.width), 'height': str(layout.height), 'class': 'page'})
     ET.SubElement(root, tag('rect'), {'x': '55', 'y': '55', 'width': str(layout.width - 110), 'height': str(layout.height - 110), 'rx': '14', 'class': 'page-border'})

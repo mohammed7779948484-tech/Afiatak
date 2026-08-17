@@ -58,7 +58,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Record No-show is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '448bc5e92b47889c22a56b9cf9f3074e12124ffb86b36e8067fdca2f0e743675'
+  previewHash: '62744265706fa0e8b19f92fb4536df933dfa5eae97f0937b3c6701b16466b275'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Record No-show

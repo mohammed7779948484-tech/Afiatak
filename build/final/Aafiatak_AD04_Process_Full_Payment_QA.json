@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad04-process-full-payment.png",
-      "previewHash": "a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313",
+      "previewHash": "d5dae97c14ecdeab41878f60394d3d307761098abcbc846320289ac1529b9e4e",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad04-process-full-payment.png",
-    "previewHash": "a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313",
+    "previewHash": "d5dae97c14ecdeab41878f60394d3d307761098abcbc846320289ac1529b9e4e",
     "status": "awaiting-user-approval"
   }
 }

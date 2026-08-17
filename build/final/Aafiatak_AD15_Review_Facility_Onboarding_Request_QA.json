@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad15-review-facility-onboarding-request.png",
-      "previewHash": "6aaf43643b8b3cb7c2a029a8011169c317cc24cd840d44dd94ab34c3a5df6c87",
+      "previewHash": "485d4d310b456286efee053e165270683e4b9093df5bdda4e634b15faa3b3ef8",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad15-review-facility-onboarding-request.png",
-    "previewHash": "6aaf43643b8b3cb7c2a029a8011169c317cc24cd840d44dd94ab34c3a5df6c87",
+    "previewHash": "485d4d310b456286efee053e165270683e4b9093df5bdda4e634b15faa3b3ef8",
     "status": "awaiting-user-approval"
   }
 }

@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad06-cancel-appointment.png",
-      "previewHash": "bfc0e7eed07d573bed787fff9d25f7b5fbf463e02ef97405ef3e5ec8fe8094e3",
+      "previewHash": "b21ad09e6c10aecafec24fe2afa565a252a4b751a742eab9ef9c92c87a73eba6",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad06-cancel-appointment.png",
-    "previewHash": "bfc0e7eed07d573bed787fff9d25f7b5fbf463e02ef97405ef3e5ec8fe8094e3",
+    "previewHash": "b21ad09e6c10aecafec24fe2afa565a252a4b751a742eab9ef9c92c87a73eba6",
     "status": "awaiting-user-approval"
   }
 }

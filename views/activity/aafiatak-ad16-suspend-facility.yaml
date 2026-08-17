@@ -50,7 +50,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Suspend Facility is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '993d00b45349a011315fdf2d72bfd6a4d26143f92ad9eb92bb65a82bcf4dbf1b'
+  previewHash: '27375e4c55efb76f4c9effe1edf46335cdd04a6ea04b4b517e43c757f748e793'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Suspend Facility

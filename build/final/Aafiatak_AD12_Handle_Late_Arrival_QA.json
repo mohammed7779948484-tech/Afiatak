@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad12-handle-late-arrival.png",
-      "previewHash": "7fea2d9bc4ba41f54931c56c9df719a97d4a7df7ad32a53facff1bf8b8b4a070",
+      "previewHash": "19065590e2b186f04e1b4cad010071510545d9cb2aebfcede24e938f6c95ba07",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad12-handle-late-arrival.png",
-    "previewHash": "7fea2d9bc4ba41f54931c56c9df719a97d4a7df7ad32a53facff1bf8b8b4a070",
+    "previewHash": "19065590e2b186f04e1b4cad010071510545d9cb2aebfcede24e938f6c95ba07",
     "status": "awaiting-user-approval"
   }
 }

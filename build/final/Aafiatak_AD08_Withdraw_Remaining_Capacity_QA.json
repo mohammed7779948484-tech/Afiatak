@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad08-withdraw-remaining-capacity.png",
-      "previewHash": "4f0214afa34c18ac265535f7fa3358b5ac5b61a53d6ac13ede1f20f8bbe34395",
+      "previewHash": "81850878810ce6ae588f73db142b2fcdfe2346ba75eee0e9ef7d2be236672e57",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad08-withdraw-remaining-capacity.png",
-    "previewHash": "4f0214afa34c18ac265535f7fa3358b5ac5b61a53d6ac13ede1f20f8bbe34395",
+    "previewHash": "81850878810ce6ae588f73db142b2fcdfe2346ba75eee0e9ef7d2be236672e57",
     "status": "awaiting-user-approval"
   }
 }

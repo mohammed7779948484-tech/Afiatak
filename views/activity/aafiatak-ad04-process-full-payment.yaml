@@ -69,7 +69,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Process Full Payment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313'
+  previewHash: 'd5dae97c14ecdeab41878f60394d3d307761098abcbc846320289ac1529b9e4e'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Process Full Payment

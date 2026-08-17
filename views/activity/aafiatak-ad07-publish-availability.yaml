@@ -45,7 +45,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Publish Availability is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'a1f6beae25d0eda7a7b5b1d4d90b5493c64b3fd5c274fe09381907d644eaf5ee'
+  previewHash: 'b730af70f3990a705494e9948079a41196be7c6ca05f732f5ed134ba2c127299'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Publish Availability

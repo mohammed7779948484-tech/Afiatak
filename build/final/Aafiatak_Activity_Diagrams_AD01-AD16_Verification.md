@@ -33,3 +33,7 @@ All 16 Activity Diagrams passed these checks. The suite remains **awaiting user 
 ## Status
 
 **Final status: `awaiting-user-approval`.**
+
+## Arrowhead Endpoint Correction
+
+The Activity SVG renderer was corrected after a magnified visual review of all 19 AD-16 control-flow endpoints. The prior marker was stroke-width-scaled and visually oversized at node borders. The corrected marker uses a fixed user-space viewBox, a smaller 48×42 geometry, and `refX=16`, which anchors the arrow tip exactly to each authored terminal path coordinate. All 16 Activity Diagrams were regenerated, their preview hashes refreshed, and their semantic and cross-suite audits passed again (16/16). The AD-16 final vector PDF was opened after re-export and visually confirms the corrected arrowhead treatment in the deliverable.

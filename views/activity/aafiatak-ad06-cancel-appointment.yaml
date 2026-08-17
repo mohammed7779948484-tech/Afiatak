@@ -64,7 +64,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Cancel Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'bfc0e7eed07d573bed787fff9d25f7b5fbf463e02ef97405ef3e5ec8fe8094e3'
+  previewHash: 'b21ad09e6c10aecafec24fe2afa565a252a4b751a742eab9ef9c92c87a73eba6'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Cancel Appointment

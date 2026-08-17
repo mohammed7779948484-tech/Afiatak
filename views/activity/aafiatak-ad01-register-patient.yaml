@@ -51,7 +51,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:20:00+00:00'
   notes: Register Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e'
+  previewHash: '65f296142cde101321252b6b2285d97dcdd1203fb2c7b16259fd119f2a61bb0e'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Register Patient

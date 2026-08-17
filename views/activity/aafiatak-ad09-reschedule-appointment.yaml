@@ -50,7 +50,7 @@ visualReview:
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Reschedule Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering
     QA.
-  previewHash: 'fdbef7a7eb28719fe93bd9022938f844d61d28cb9cbb1336e9ed421ccf69bddf'
+  previewHash: 'eacd09337e9e11cc9ef473a73e3e3f927ce5fe4351c934acc2904bb646a7e462'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Reschedule Appointment

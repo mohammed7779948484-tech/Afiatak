@@ -52,7 +52,7 @@ visualReview:
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Register Patient Check-in is awaiting user visual approval after semantic, notation, editable-source, and rendering
     QA.
-  previewHash: 'a251a6268633c996d549200336febb5f2488a849422bb1bc0eb519938eed9d27'
+  previewHash: '4e90517032d4c05767c9eafb63487ab90f77710e90a5fcf94dff791ba657507d'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Register Patient Check-in

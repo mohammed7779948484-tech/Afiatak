@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-ad14-call-next-patient.png",
-      "previewHash": "9f1e97a42e19577c03024c171cb31aaa0044ea8926eac337f062bcee5379b5c5",
+      "previewHash": "376ea0cb97bcc39c25b7a1dec9ab636894d1d221831c1c91c8b07cbe0a038657",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-17T12:45:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-ad14-call-next-patient.png",
-    "previewHash": "9f1e97a42e19577c03024c171cb31aaa0044ea8926eac337f062bcee5379b5c5",
+    "previewHash": "376ea0cb97bcc39c25b7a1dec9ab636894d1d221831c1c91c8b07cbe0a038657",
     "status": "awaiting-user-approval"
   }
 }
