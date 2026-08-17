@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad02-log-in.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad02-log-in.png",
+      "previewHash": "b1f0764c909bce44adba8ec4d07bee48bab08d3b2c78cd814e5d341c44bf51d8",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:40:00+00:00",
+      "notes": "Log In is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad02-log-in.png",
+    "previewHash": "b1f0764c909bce44adba8ec4d07bee48bab08d3b2c78cd814e5d341c44bf51d8",
+    "status": "awaiting-user-approval"
+  }
+}

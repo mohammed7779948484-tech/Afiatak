@@ -1,0 +1,263 @@
+{
+  "id": "AD-05",
+  "title": "Activity Diagram — Subscribe to Availability Alert",
+  "use_case": "Subscribe to Availability Alert",
+  "package": "Patient Package",
+  "spec_file": "Aafiatak_AD05_Subscribe_Availability_Alert_FINAL_VERIFIED_v2.md",
+  "sha256": "406c9945e37c9a5f83e202d4124192745e37bfd39b42deeb332de56bbff5293a",
+  "preconditions": [
+    "1. Patient is authenticated.",
+    "2. Relevant service/doctor/date/release context is selected.",
+    "3. Suitable capacity is currently unavailable or protected by another ACTIVE hold."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Patient chooses Notify Me When Available"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Revalidate current Aafiatak bookability"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Capacity now bookable?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Direct Patient to normal booking; create no hidden reservation"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Create AvailabilityAlertSubscription for Patient/context"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Confirm subscription as interest only — no hold / queue / priority"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Wait for approved capacity-return event, successful Patient booking, or session end"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Which source-supported event occurs?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Expire corresponding subscription after successful Patient booking"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Expire subscription when session ends"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Detect zero-to-positive bookable capacity from approved Aafiatak event"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Notify eligible subscriptions through Notification Service"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Patient competes through normal booking; first valid ReservationHold wins"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Patient successfully books?"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Keep subscription lifecycle subject to duplicate-notification suppression until booking/session end"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin subscription"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Revalidate availability"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Check race with returning capacity"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[Yes]",
+      "meaning": "Normal booking opportunity; no alert reservation"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Subscription not required"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[No]",
+      "meaning": "Create subscription"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Confirm non-reserving semantics"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Wait for lifecycle event"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Classify event"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Patient books successfully]",
+      "meaning": "Expire subscription"
+    },
+    {
+      "from": "A07",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Ends"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Session ends]",
+      "meaning": "Expire subscription"
+    },
+    {
+      "from": "A08",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Ends"
+    },
+    {
+      "from": "D02",
+      "to": "A09",
+      "guard": "[Approved capacity returns]",
+      "meaning": "Eligible alert event"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Send in-app/system alert"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "No priority; normal race"
+    },
+    {
+      "from": "A11",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Booking outcome"
+    },
+    {
+      "from": "D03",
+      "to": "A07",
+      "guard": "[Booked]",
+      "meaning": "Expire after booking"
+    },
+    {
+      "from": "D03",
+      "to": "A12",
+      "guard": "[Not booked]",
+      "meaning": "Subscription remains governed by lifecycle/duplicate-suppression rules"
+    },
+    {
+      "from": "A12",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Return to waiting lifecycle"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Subscription expires on session end or successful relevant booking.",
+    "After an alert, normal ReservationHold competition applies.",
+    "General alert notifications use Notification Service/system channel, not WhatsApp."
+  ],
+  "explicitly_forbidden": [
+    "Reservation/priority semantics for alert.",
+    "Automatic capacity import from internal facility schedule.",
+    "Queue position created by alert.",
+    "WhatsApp general alert delivery."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

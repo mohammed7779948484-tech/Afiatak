@@ -1,0 +1,82 @@
+id: aafiatak-ad13-manage-operational-exceptions
+diagramType: activity
+title: Activity Diagram — Manage Operational Exceptions
+model: ../../model/catalog/activities/aafiatak-ad13-manage-operational-exceptions.yaml
+include:
+- activity.ad13.initial
+- activity.ad13.a01
+- activity.ad13.a02
+- activity.ad13.d01
+- activity.ad13.a03
+- activity.ad13.a04
+- activity.ad13.a05
+- activity.ad13.a06
+- activity.ad13.d02
+- activity.ad13.a07
+- activity.ad13.a08
+- activity.ad13.d03
+- activity.ad13.a09
+- activity.ad13.a10
+- activity.ad13.a11
+- activity.ad13.a12
+- activity.ad13.a17
+- activity.ad13.d04
+- activity.ad13.a13
+- activity.ad13.a14
+- activity.ad13.d05
+- activity.ad13.a15
+- activity.ad13.a16
+- activity.ad13.mend
+- activity.ad13.final
+relations:
+- relation.ad13.f01
+- relation.ad13.f02
+- relation.ad13.f03
+- relation.ad13.f04
+- relation.ad13.f05
+- relation.ad13.f06
+- relation.ad13.f07
+- relation.ad13.f08
+- relation.ad13.f09
+- relation.ad13.f10
+- relation.ad13.f11
+- relation.ad13.f12
+- relation.ad13.f13
+- relation.ad13.f14
+- relation.ad13.f15
+- relation.ad13.f16
+- relation.ad13.f17
+- relation.ad13.f18
+- relation.ad13.f19
+- relation.ad13.f20
+- relation.ad13.f21
+- relation.ad13.f22
+- relation.ad13.f23
+- relation.ad13.f24
+- relation.ad13.f25
+- relation.ad13.f26
+- relation.ad13.f27
+- relation.ad13.f28
+- relation.ad13.f29
+- relation.ad13.f30
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Manage Operational Exceptions is awaiting user visual approval after semantic, notation, editable-source, and rendering
+    QA.
+  previewHash: '3416c38b6530d5ed5264ea6bb26f2446cfa22fe65245308237228291ca6b1e64'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Manage Operational Exceptions
+  expectedActionCount: 17
+  expectedDecisionCount: 5
+  expectedMergeCount: 1
+  expectedControlFlowCount: 30
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

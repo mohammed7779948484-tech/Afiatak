@@ -1,0 +1,19 @@
+AD-13 corrected visual review — 2026-08-17
+
+Preview source: build/preview/aafiatak-ad13-manage-operational-exceptions.png, 8192×7058, generated after applying a browser-safe physical viewport while preserving the 13000×11200 SVG viewBox.
+
+Tile 001 (top-left) is readable. It confirms: the Initial node; OPEN OperationalException creation; the SESSION_CANCELLED decision; non-bookable/release-holds action; preservation of confirmed appointments; selection of one unresolved appointment; the three approved resolution branches; and the start of the financial decision. Text fits in nodes and the principal control flows are visible.
+
+Tile 002 (top-right) contains intentional whitespace and the rightward long routing lane. It shows part of the escalation action and its downward control flow; no missing central node or clipped rendered content was observed. The full canvas uses this lane to route escalation and closure-loop edges without crossing the main decision area.
+
+The original blank-preview issue has been resolved by decoupling SVG viewBox dimensions from browser-safe PNG viewport dimensions. Continue ordered inspection with tiles 003–006 before locking AD-13.
+
+Tile 003 (middle-left) is readable. It confirms the three approved resolution paths, the paid/no-electronic-payment refund split, recording of a completed outcome, the unresolved-appointment decision, notification, and closure-request sequence. The loop back to selecting another unresolved appointment is visually distinguishable.
+
+Tile 004 (middle-right) consists primarily of the intentionally reserved routing lane. It contains the rightward/downward escalation routing and the [No] closure-loop route. There are no hidden action or decision nodes in this area; the whitespace prevents these long return paths from crossing the main operational flow.
+
+Tile 005 (bottom-left) is readable. It confirms the completed-outcome record, the unresolved-set loop decision, notification, closure request, strict completion/outcome closure gate, rejection action, close action, Merge, and Activity Final.
+
+Tile 006 (bottom-right) contains the intentional outer routing lane for the rejected-closure return path. It is fully within the canvas and contains no clipped nodes. The [No] guarded return runs through this lane back to unresolved Appointment handling, preserving the strict closure rule.
+
+All six corrected-preview tiles were reviewed in row-major order. The regenerated AD-13 preview is visually coherent and ready for editable-source export and semantic audit.

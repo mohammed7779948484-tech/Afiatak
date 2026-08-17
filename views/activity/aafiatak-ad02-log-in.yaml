@@ -1,0 +1,61 @@
+id: aafiatak-ad02-log-in
+diagramType: activity
+title: Activity Diagram — Log In
+model: ../../model/catalog/activities/aafiatak-ad02-log-in.yaml
+include:
+  - activity.ad02.initial
+  - activity.ad02.a01
+  - activity.ad02.a02
+  - activity.ad02.a03
+  - activity.ad02.d01
+  - activity.ad02.a04
+  - activity.ad02.a05
+  - activity.ad02.a06
+  - activity.ad02.d02
+  - activity.ad02.a07
+  - activity.ad02.a08
+  - activity.ad02.d03
+  - activity.ad02.a09
+  - activity.ad02.a10
+  - activity.ad02.a11
+  - activity.ad02.mend
+  - activity.ad02.note-retry
+  - activity.ad02.final
+relations:
+  - relation.ad02.f01
+  - relation.ad02.f02
+  - relation.ad02.f03
+  - relation.ad02.f04
+  - relation.ad02.f05
+  - relation.ad02.f06
+  - relation.ad02.f07
+  - relation.ad02.f08
+  - relation.ad02.f09
+  - relation.ad02.f10
+  - relation.ad02.f11
+  - relation.ad02.f12
+  - relation.ad02.f13
+  - relation.ad02.f14
+  - relation.ad02.f15
+  - relation.ad02.f16
+  - relation.ad02.f17
+  - relation.ad02.f18
+  - relation.ad02.f19
+layoutProfile: lecturer-style-activity-portrait
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:40:00+00:00'
+  notes: Log In is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'b1f0764c909bce44adba8ec4d07bee48bab08d3b2c78cd814e5d341c44bf51d8'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Log In
+  expectedActionCount: 11
+  expectedDecisionCount: 3
+  expectedMergeCount: 1
+  expectedControlFlowCount: 19
+  approvedNoteCount: 1
+  prohibitedNodeNames: [Password, Forgot Password, SMS OTP]

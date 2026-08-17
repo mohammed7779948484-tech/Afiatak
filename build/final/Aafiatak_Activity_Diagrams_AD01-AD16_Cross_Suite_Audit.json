@@ -1,0 +1,201 @@
+{
+  "suite": "Aafiatak Activity Diagrams AD-01 through AD-16",
+  "diagramCount": 16,
+  "passed": 16,
+  "failed": 0,
+  "statusExpectation": "awaiting-user-approval",
+  "results": [
+    {
+      "id": "aafiatak-ad01-register-patient",
+      "result": "pass",
+      "counts": {
+        "actions": 12,
+        "decisions": 3,
+        "merges": 1,
+        "controlFlows": 20
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad02-log-in",
+      "result": "pass",
+      "counts": {
+        "actions": 11,
+        "decisions": 3,
+        "merges": 1,
+        "controlFlows": 19
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad03-book-appointment",
+      "result": "pass",
+      "counts": {
+        "actions": 17,
+        "decisions": 6,
+        "merges": 1,
+        "controlFlows": 31
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad04-process-full-payment",
+      "result": "pass",
+      "counts": {
+        "actions": 15,
+        "decisions": 6,
+        "merges": 1,
+        "controlFlows": 29
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad05-subscribe-to-availability-alert",
+      "result": "pass",
+      "counts": {
+        "actions": 12,
+        "decisions": 3,
+        "merges": 1,
+        "controlFlows": 21
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad06-cancel-appointment",
+      "result": "pass",
+      "counts": {
+        "actions": 15,
+        "decisions": 5,
+        "merges": 1,
+        "controlFlows": 27
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad07-publish-availability",
+      "result": "pass",
+      "counts": {
+        "actions": 10,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 16
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad08-withdraw-remaining-capacity",
+      "result": "pass",
+      "counts": {
+        "actions": 10,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 16
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad09-reschedule-appointment",
+      "result": "pass",
+      "counts": {
+        "actions": 12,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 18
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad10-register-patient-check-in",
+      "result": "pass",
+      "counts": {
+        "actions": 11,
+        "decisions": 3,
+        "merges": 1,
+        "controlFlows": 19
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad11-record-no-show",
+      "result": "pass",
+      "counts": {
+        "actions": 12,
+        "decisions": 5,
+        "merges": 1,
+        "controlFlows": 24
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad12-handle-late-arrival",
+      "result": "pass",
+      "counts": {
+        "actions": 11,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 19
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad13-manage-operational-exceptions",
+      "result": "pass",
+      "counts": {
+        "actions": 17,
+        "decisions": 5,
+        "merges": 1,
+        "controlFlows": 30
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad14-call-next-patient",
+      "result": "pass",
+      "counts": {
+        "actions": 11,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 17
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad15-review-facility-onboarding-request",
+      "result": "pass",
+      "counts": {
+        "actions": 9,
+        "decisions": 2,
+        "merges": 1,
+        "controlFlows": 15
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    },
+    {
+      "id": "aafiatak-ad16-suspend-facility",
+      "result": "pass",
+      "counts": {
+        "actions": 11,
+        "decisions": 3,
+        "merges": 1,
+        "controlFlows": 19
+      },
+      "status": "awaiting-user-approval",
+      "errors": []
+    }
+  ]
+}

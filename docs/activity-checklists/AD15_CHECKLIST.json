@@ -1,0 +1,205 @@
+{
+  "id": "AD-15",
+  "title": "Activity Diagram — Review Facility Onboarding Request",
+  "use_case": "Review Facility Onboarding Request",
+  "package": "Platform Administrator Package",
+  "spec_file": "Aafiatak_AD15_Review_Facility_Onboarding_FINAL_VERIFIED_v2.md",
+  "sha256": "1ac72df4f6f8b310025d48288864d31e0f71ba1e84dd0ebf222faed3d10ec1bd",
+  "preconditions": [
+    "1. Platform Administrator is authenticated/authorized.",
+    "2. A facility onboarding request exists in protected platform intake/review."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Platform Administrator opens pending onboarding request"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Display submitted onboarding information, current review status and prior history"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Platform Administrator evaluates available information"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Information sufficient for responsible review assessment?"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Record Request Additional Information action and preserve review history"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Keep onboarding unresolved pending additional information"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Platform Administrator records review assessment"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Assessment outcome?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Make separate Approve Facility use case available as next permitted action"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Make separate Reject Facility use case available as next permitted action"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Preserve documented review result / history and complete review step"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin review"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Load review context/history"
+    },
+    {
+      "from": "A02",
+      "to": "A03",
+      "guard": "—",
+      "meaning": "Evaluate"
+    },
+    {
+      "from": "A03",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Sufficiency decision"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[Insufficient]",
+      "meaning": "Request-more-information path"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Remain unresolved"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End current review cycle"
+    },
+    {
+      "from": "D01",
+      "to": "A06",
+      "guard": "[Sufficient]",
+      "meaning": "Record assessment"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Decision path"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Supports approval]",
+      "meaning": "Next use case is separate Approve Facility"
+    },
+    {
+      "from": "A07",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Preserve review result"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Supports rejection]",
+      "meaning": "Next use case is separate Reject Facility"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Preserve review result"
+    },
+    {
+      "from": "A09",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Review complete"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Platform administration is a protected internal workflow.",
+    "Review result determines a permitted next action; approval/rejection remain separate Use Cases."
+  ],
+  "explicitly_forbidden": [
+    "Public FacilityApplicant Actor/portal.",
+    "Automatic activation/provisioning inside Review.",
+    "Silent approval or rejection when information is insufficient.",
+    "Overwriting prior review history without traceability."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

@@ -1,0 +1,81 @@
+id: aafiatak-ad04-process-full-payment
+diagramType: activity
+title: Activity Diagram — Process Full Payment
+model: ../../model/catalog/activities/aafiatak-ad04-process-full-payment.yaml
+include:
+- activity.ad04.initial
+- activity.ad04.a01
+- activity.ad04.a02
+- activity.ad04.a03
+- activity.ad04.a04
+- activity.ad04.d01
+- activity.ad04.a05
+- activity.ad04.d02
+- activity.ad04.a06
+- activity.ad04.d03
+- activity.ad04.a07
+- activity.ad04.a08
+- activity.ad04.a09
+- activity.ad04.d04
+- activity.ad04.a10
+- activity.ad04.d05
+- activity.ad04.a11
+- activity.ad04.d06
+- activity.ad04.a12
+- activity.ad04.a13
+- activity.ad04.a14
+- activity.ad04.a15
+- activity.ad04.mend
+- activity.ad04.note-idempotency
+- activity.ad04.note-receipt
+- activity.ad04.final
+relations:
+- relation.ad04.f01
+- relation.ad04.f02
+- relation.ad04.f03
+- relation.ad04.f04
+- relation.ad04.f05
+- relation.ad04.f06
+- relation.ad04.f07
+- relation.ad04.f08
+- relation.ad04.f09
+- relation.ad04.f10
+- relation.ad04.f11
+- relation.ad04.f12
+- relation.ad04.f13
+- relation.ad04.f14
+- relation.ad04.f15
+- relation.ad04.f16
+- relation.ad04.f17
+- relation.ad04.f18
+- relation.ad04.f19
+- relation.ad04.f20
+- relation.ad04.f21
+- relation.ad04.f22
+- relation.ad04.f23
+- relation.ad04.f24
+- relation.ad04.f25
+- relation.ad04.f26
+- relation.ad04.f27
+- relation.ad04.f28
+- relation.ad04.f29
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Process Full Payment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Process Full Payment
+  expectedActionCount: 15
+  expectedDecisionCount: 6
+  expectedMergeCount: 1
+  expectedControlFlowCount: 29
+  approvedNoteCount: 2
+  prohibitedNodeNames: []

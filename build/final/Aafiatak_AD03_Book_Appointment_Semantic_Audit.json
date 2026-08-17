@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-03",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD03_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad03-book-appointment.yaml",
+  "view": "views/activity/aafiatak-ad03-book-appointment.yaml"
+}

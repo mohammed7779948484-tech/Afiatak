@@ -1,0 +1,64 @@
+id: aafiatak-ad10-register-patient-check-in
+diagramType: activity
+title: Activity Diagram — Register Patient Check-in
+model: ../../model/catalog/activities/aafiatak-ad10-register-patient-check-in.yaml
+include:
+- activity.ad10.initial
+- activity.ad10.a01
+- activity.ad10.a02
+- activity.ad10.d01
+- activity.ad10.a03
+- activity.ad10.d02
+- activity.ad10.a04
+- activity.ad10.d03
+- activity.ad10.a05
+- activity.ad10.a06
+- activity.ad10.a07
+- activity.ad10.a08
+- activity.ad10.a09
+- activity.ad10.a10
+- activity.ad10.a11
+- activity.ad10.mend
+- activity.ad10.note-correction
+- activity.ad10.final
+relations:
+- relation.ad10.f01
+- relation.ad10.f02
+- relation.ad10.f03
+- relation.ad10.f04
+- relation.ad10.f05
+- relation.ad10.f06
+- relation.ad10.f07
+- relation.ad10.f08
+- relation.ad10.f09
+- relation.ad10.f10
+- relation.ad10.f11
+- relation.ad10.f12
+- relation.ad10.f13
+- relation.ad10.f14
+- relation.ad10.f15
+- relation.ad10.f16
+- relation.ad10.f17
+- relation.ad10.f18
+- relation.ad10.f19
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Register Patient Check-in is awaiting user visual approval after semantic, notation, editable-source, and rendering
+    QA.
+  previewHash: 'a251a6268633c996d549200336febb5f2488a849422bb1bc0eb519938eed9d27'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Register Patient Check-in
+  expectedActionCount: 11
+  expectedDecisionCount: 3
+  expectedMergeCount: 1
+  expectedControlFlowCount: 19
+  approvedNoteCount: 1
+  prohibitedNodeNames: []

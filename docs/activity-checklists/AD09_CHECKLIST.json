@@ -1,0 +1,240 @@
+{
+  "id": "AD-09",
+  "title": "Activity Diagram — Reschedule Appointment",
+  "use_case": "Reschedule Appointment",
+  "package": "Booking & Reception Staff Package",
+  "spec_file": "Aafiatak_AD09_Reschedule_Appointment_FINAL_VERIFIED_v2.md",
+  "sha256": "f351f96afe6dddcc663c14782d4f459807f6f3237d1a429f78a4f96e131d565b",
+  "preconditions": [
+    "1. Staff is authenticated/authorized.",
+    "2. Appointment is CONFIRMED.",
+    "3. Patient and facility communicated and agreed to the change.",
+    "4. Candidate destination must belong to the same ServiceOffering and preserve saved terms."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Staff selects CONFIRMED Appointment and chooses Reschedule Appointment"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Display current booking snapshot / history and permitted destination context"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Staff selects agreed new day / group / session"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Validate Appointment state, same ServiceOffering, same saved terms and destination bookability"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Appointment still CONFIRMED and destination uses same ServiceOffering / terms?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Reject in-place reschedule; use saved cancellation + normal new-booking path for different terms"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Staff confirms proposed move and records reason"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Atomically secure valid destination capacity first"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Destination acquisition succeeded?"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Abort move and preserve original Appointment / old capacity"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Update scheduling/group details while Appointment remains CONFIRMED"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Release old capacity only after destination is secured"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Record previous/new scheduling data, actor, reason and history"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Show successfully rescheduled CONFIRMED Appointment and unchanged financial snapshot"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin reschedule"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Review saved context"
+    },
+    {
+      "from": "A02",
+      "to": "A03",
+      "guard": "—",
+      "meaning": "Select agreed destination"
+    },
+    {
+      "from": "A03",
+      "to": "A04",
+      "guard": "—",
+      "meaning": "Validate destination"
+    },
+    {
+      "from": "A04",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Terms/state decision"
+    },
+    {
+      "from": "D01",
+      "to": "A05",
+      "guard": "[No]",
+      "meaning": "No mixed-term in-place reschedule"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End rejected in-place path"
+    },
+    {
+      "from": "D01",
+      "to": "A06",
+      "guard": "[Yes]",
+      "meaning": "Confirm move"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Secure destination first"
+    },
+    {
+      "from": "A07",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Atomic acquisition result"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Failed / concurrent winner]",
+      "meaning": "Old seat remains"
+    },
+    {
+      "from": "A08",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Safe failure"
+    },
+    {
+      "from": "D02",
+      "to": "A09",
+      "guard": "[Succeeded]",
+      "meaning": "Commit scheduling update"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Release old only now"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Audit history"
+    },
+    {
+      "from": "A11",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Show success"
+    },
+    {
+      "from": "A12",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Financial snapshot remains unchanged."
+  ],
+  "explicitly_forbidden": [
+    "Release old seat before new seat is secured.",
+    "Top-up/partial refund/mixed financial lifecycle.",
+    "Automatic late reassignment.",
+    "Patient self-reschedule.",
+    "RESCHEDULED status."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

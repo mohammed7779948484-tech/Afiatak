@@ -1,0 +1,326 @@
+{
+  "id": "AD-06",
+  "title": "Activity Diagram — Cancel Appointment",
+  "use_case": "Cancel Appointment",
+  "package": "Patient Package",
+  "spec_file": "Aafiatak_AD06_Cancel_Appointment_FINAL_VERIFIED_v2.md",
+  "sha256": "ed7b288f5091e4af4907de0304bbd8cf41583c88ac94fc40bba9f2788c03ea66",
+  "preconditions": [
+    "1. Patient is authenticated and owns the Appointment.",
+    "2. Appointment is CONFIRMED.",
+    "3. Patient has not checked in.",
+    "4. Assigned ArrivalGroup window has not started."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Patient opens Appointment and chooses Cancel Appointment"
+    },
+    {
+      "id": "D00",
+      "type": "Decision",
+      "label": "Appointment already terminally cancelled?"
+    },
+    {
+      "id": "A00",
+      "type": "Action",
+      "label": "Return existing cancellation/refund result; create no duplicate cancellation or refund"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Load saved cancellation/refund policy, payment state and ArrivalGroup timing"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Revalidate ownership, CONFIRMED state, check-in and group-start conditions"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Patient self-cancellation still eligible?"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Deny self-cancellation and preserve arrival / late / no-show handling"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Calculate and display expected refund result from saved booking snapshot"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Patient confirms cancellation"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Record CANCELLED_BY_PATIENT and preserve Appointment history"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Return consumed unit to the same ArrivalGroup; expose it as bookable only when release/group/time rules permit"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Aafiatak electronic amount was collected?"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Create no electronic refund"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Saved policy says full refund is due?"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Refund due is zero"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Initiate full collected-amount refund"
+    },
+    {
+      "id": "D04",
+      "type": "Decision",
+      "label": "Refund completion immediate?"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Keep independent REFUND_PENDING / review status; cancellation remains final"
+    },
+    {
+      "id": "A13",
+      "type": "Action",
+      "label": "Record completed full refund"
+    },
+    {
+      "id": "A14",
+      "type": "Action",
+      "label": "Display cancelled Appointment and independent payment/refund status"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin cancellation"
+    },
+    {
+      "from": "A01",
+      "to": "D00",
+      "guard": "—",
+      "meaning": "Check duplicate/terminal cancellation boundary"
+    },
+    {
+      "from": "D00",
+      "to": "A00",
+      "guard": "[Yes]",
+      "meaning": "Preserve existing terminal cancellation/result"
+    },
+    {
+      "from": "A00",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "No duplicate cancellation/refund"
+    },
+    {
+      "from": "D00",
+      "to": "A02",
+      "guard": "[No]",
+      "meaning": "Continue cancellation review"
+    },
+    {
+      "from": "A02",
+      "to": "A03",
+      "guard": "—",
+      "meaning": "Eligibility revalidation"
+    },
+    {
+      "from": "A03",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Decision"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[No]",
+      "meaning": "Self-cancellation denied"
+    },
+    {
+      "from": "A04",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End denial branch"
+    },
+    {
+      "from": "D01",
+      "to": "A05",
+      "guard": "[Yes]",
+      "meaning": "Show consequence before commit"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Patient confirms"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Cancel Appointment"
+    },
+    {
+      "from": "A07",
+      "to": "A08",
+      "guard": "—",
+      "meaning": "Same-group capacity consequence"
+    },
+    {
+      "from": "A08",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Evaluate financial branch"
+    },
+    {
+      "from": "D02",
+      "to": "A09",
+      "guard": "[No — PAY_AT_FACILITY / no collected electronic amount]",
+      "meaning": "No Aafiatak refund"
+    },
+    {
+      "from": "A09",
+      "to": "A14",
+      "guard": "—",
+      "meaning": "Show result"
+    },
+    {
+      "from": "D02",
+      "to": "D03",
+      "guard": "[Yes]",
+      "meaning": "Apply saved policy"
+    },
+    {
+      "from": "D03",
+      "to": "A10",
+      "guard": "[Zero refund]",
+      "meaning": "No refund created"
+    },
+    {
+      "from": "A10",
+      "to": "A14",
+      "guard": "—",
+      "meaning": "Show result"
+    },
+    {
+      "from": "D03",
+      "to": "A11",
+      "guard": "[Full refund]",
+      "meaning": "Full amount only"
+    },
+    {
+      "from": "A11",
+      "to": "D04",
+      "guard": "—",
+      "meaning": "Refund status"
+    },
+    {
+      "from": "D04",
+      "to": "A12",
+      "guard": "[Pending / delayed]",
+      "meaning": "Cancellation remains final"
+    },
+    {
+      "from": "A12",
+      "to": "A14",
+      "guard": "—",
+      "meaning": "Show independent states"
+    },
+    {
+      "from": "D04",
+      "to": "A13",
+      "guard": "[Completed]",
+      "meaning": "Record refunded"
+    },
+    {
+      "from": "A13",
+      "to": "A14",
+      "guard": "—",
+      "meaning": "Show result"
+    },
+    {
+      "from": "A14",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Refund is exactly full collected amount or zero.",
+    "PAY_AT_FACILITY has no Aafiatak electronic refund.",
+    "No partial refund.",
+    "Appointment state and PaymentIntent state remain independent."
+  ],
+  "explicitly_forbidden": [
+    "Partial refund percentages.",
+    "Cancellation after check-in through Patient self-service.",
+    "Moving returned seat to another group.",
+    "Reversing cancellation because refund is delayed."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

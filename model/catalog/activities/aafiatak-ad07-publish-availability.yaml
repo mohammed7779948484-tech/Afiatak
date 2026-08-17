@@ -1,0 +1,355 @@
+modelId: aafiatak-ad07-publish-availability
+version: '1.0'
+elements:
+- id: activity.ad07.initial
+  name: Initial
+  type: initial
+  description: Publish Availability Activity initial
+  tags:
+  - ad07
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad07.a01
+  name: Facility Administrator selects AvailabilityRelease for publication
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a02
+  name: Display configured session, ArrivalGroups, capacities and governing terms
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.d01
+  name: Release lifecycle is DRAFT?
+  type: decision
+  description: Publish Availability Activity decision
+  tags:
+  - ad07
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a03
+  name: Reject invalid / duplicate publication and return current lifecycle state
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a04
+  name: Validate required references, group windows/sequence, capacity sum and governing terms
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.d02
+  name: Publication configuration valid?
+  type: decision
+  description: Publish Availability Activity decision
+  tags:
+  - ad07
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a05
+  name: Reject publication and keep release editable in DRAFT
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a06
+  name: Facility Administrator confirms Publish Availability
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a07
+  name: Transition AvailabilityRelease from DRAFT to PUBLISHED
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a08
+  name: Freeze amount / currency / booking / cancellation / no-show terms for this release
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a09
+  name: Fix published capacity as non-increasing upper bound and record audit data
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.a10
+  name: Confirm publication; new holds depend on PUBLISHED release + OPEN/time-eligible ArrivalGroup
+  type: action
+  description: Publish Availability Activity action
+  tags:
+  - ad07
+  - activity
+  - action
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+- id: activity.ad07.mend
+  name: End-path merge
+  type: merge
+  description: Publish Availability Activity merge
+  tags:
+  - ad07
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad07.final
+  name: Final
+  type: final
+  description: Publish Availability Activity final
+  tags:
+  - ad07
+  - activity
+  - final
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad07.f01
+  type: control_flow
+  source: activity.ad07.initial
+  target: activity.ad07.a01
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f02
+  type: control_flow
+  source: activity.ad07.a01
+  target: activity.ad07.a02
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f03
+  type: control_flow
+  source: activity.ad07.a02
+  target: activity.ad07.d01
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f04
+  type: control_flow
+  source: activity.ad07.d01
+  target: activity.ad07.a03
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad07.f05
+  type: control_flow
+  source: activity.ad07.a03
+  target: activity.ad07.mend
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f06
+  type: control_flow
+  source: activity.ad07.d01
+  target: activity.ad07.a04
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad07.f07
+  type: control_flow
+  source: activity.ad07.a04
+  target: activity.ad07.d02
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f08
+  type: control_flow
+  source: activity.ad07.d02
+  target: activity.ad07.a05
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Invalid / group-capacity mismatch / missing terms]'
+  name: '[Invalid / group-capacity mismatch / missing terms]'
+- id: relation.ad07.f09
+  type: control_flow
+  source: activity.ad07.a05
+  target: activity.ad07.mend
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f10
+  type: control_flow
+  source: activity.ad07.d02
+  target: activity.ad07.a06
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Valid]'
+  name: '[Valid]'
+- id: relation.ad07.f11
+  type: control_flow
+  source: activity.ad07.a06
+  target: activity.ad07.a07
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f12
+  type: control_flow
+  source: activity.ad07.a07
+  target: activity.ad07.a08
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f13
+  type: control_flow
+  source: activity.ad07.a08
+  target: activity.ad07.a09
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f14
+  type: control_flow
+  source: activity.ad07.a09
+  target: activity.ad07.a10
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f15
+  type: control_flow
+  source: activity.ad07.a10
+  target: activity.ad07.mend
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad07.f16
+  type: control_flow
+  source: activity.ad07.mend
+  target: activity.ad07.final
+  sourceRefs:
+  - source: ad07-publish-availability-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

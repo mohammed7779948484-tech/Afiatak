@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-13",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD13_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad13-manage-operational-exceptions.yaml",
+  "view": "views/activity/aafiatak-ad13-manage-operational-exceptions.yaml"
+}

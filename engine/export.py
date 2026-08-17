@@ -24,9 +24,17 @@ def find_edge() -> str | None:
 
 def _svg_size(source: Path) -> tuple[int, int]:
     root = ET.parse(source).getroot()
+    width_value, height_value = root.get("width"), root.get("height")
+    if width_value and height_value:
+        try:
+            width, height = int(float(width_value.rstrip("px"))), int(float(height_value.rstrip("px")))
+        except ValueError:
+            width = height = 0
+        if width > 0 and height > 0:
+            return width, height
     view_box = root.get("viewBox", "").split()
     if len(view_box) != 4:
-        raise RuntimeError("SVG viewBox is required for PNG rasterization")
+        raise RuntimeError("SVG viewBox or numeric width/height are required for PNG rasterization")
     width, height = int(float(view_box[2])), int(float(view_box[3]))
     if width <= 0 or height <= 0:
         raise RuntimeError("SVG dimensions must be positive")

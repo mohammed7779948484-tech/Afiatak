@@ -1,0 +1,59 @@
+id: aafiatak-ad14-call-next-patient
+diagramType: activity
+title: Activity Diagram — Call Next Patient
+model: ../../model/catalog/activities/aafiatak-ad14-call-next-patient.yaml
+include:
+- activity.ad14.initial
+- activity.ad14.a01
+- activity.ad14.a02
+- activity.ad14.d01
+- activity.ad14.a03
+- activity.ad14.a04
+- activity.ad14.a05
+- activity.ad14.a06
+- activity.ad14.d02
+- activity.ad14.a07
+- activity.ad14.a08
+- activity.ad14.a09
+- activity.ad14.a10
+- activity.ad14.a11
+- activity.ad14.mend
+- activity.ad14.final
+relations:
+- relation.ad14.f01
+- relation.ad14.f02
+- relation.ad14.f03
+- relation.ad14.f04
+- relation.ad14.f05
+- relation.ad14.f06
+- relation.ad14.f07
+- relation.ad14.f08
+- relation.ad14.f09
+- relation.ad14.f10
+- relation.ad14.f11
+- relation.ad14.f12
+- relation.ad14.f13
+- relation.ad14.f14
+- relation.ad14.f15
+- relation.ad14.f16
+- relation.ad14.f17
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Call Next Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '9f1e97a42e19577c03024c171cb31aaa0044ea8926eac337f062bcee5379b5c5'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Call Next Patient
+  expectedActionCount: 11
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 17
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

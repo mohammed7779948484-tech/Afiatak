@@ -1,0 +1,258 @@
+{
+  "id": "AD-01",
+  "title": "Activity Diagram — Register Patient",
+  "use_case": "Register Patient",
+  "package": "Visitor Package",
+  "spec_file": "Aafiatak_AD01_Register_Patient_FINAL_VERIFIED_v2.md",
+  "sha256": "6e957f4c0761a588c2f120c2794d624d7f6953c60e9e21f7609a996824c28e33",
+  "preconditions": [
+    "1. Visitor is not authenticated as a Patient.",
+    "2. A phone number can be normalized and verified.",
+    "3. Public Patient self-registration is available."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Visitor chooses Register Patient and provides phone number"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Normalize phone number and check global identity uniqueness"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Existing identity?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Reject duplicate registration and direct to existing-account login path"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Request short-lived single-use WhatsApp OTP"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "WhatsApp authentication channel available?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Keep registration incomplete; no fallback authentication"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Visitor receives and submits OTP"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Verify OTP expiry, single-use, rate-limit and brute-force controls"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "OTP valid and permitted?"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Reject verification; create no Patient account"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Visitor provides approved basic Patient profile data and confirms registration"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Validate non-clinical registration data"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Create User + Patient exactly once for verified phone identity"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Establish approved Patient account context without password"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin registration"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Normalize and check identity"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Evaluate uniqueness"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[Yes — existing identity]",
+      "meaning": "No duplicate identity"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Alternative/failure ends"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[No — identity available]",
+      "meaning": "Continue verification"
+    },
+    {
+      "from": "A04",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Evaluate official WhatsApp channel"
+    },
+    {
+      "from": "D02",
+      "to": "A05",
+      "guard": "[Unavailable]",
+      "meaning": "No SMS/password fallback"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Incomplete registration ends"
+    },
+    {
+      "from": "D02",
+      "to": "A06",
+      "guard": "[Available]",
+      "meaning": "Continue OTP exchange"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Verify OTP"
+    },
+    {
+      "from": "A07",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Evaluate OTP result/security limits"
+    },
+    {
+      "from": "D03",
+      "to": "A08",
+      "guard": "[Invalid / expired / reused / rate-limited]",
+      "meaning": "No verified account"
+    },
+    {
+      "from": "A08",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Failed verification ends"
+    },
+    {
+      "from": "D03",
+      "to": "A09",
+      "guard": "[Valid]",
+      "meaning": "Continue profile creation"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Validate allowed profile data"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Idempotent identity/profile creation"
+    },
+    {
+      "from": "A11",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Establish Patient context"
+    },
+    {
+      "from": "A12",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success path ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "One normalized verified phone identifies one User.",
+    "Create Patient profile only after successful phone verification.",
+    "No clinical data in registration.",
+    "OTP exact lifetime is not fixed in this diagram."
+  ],
+  "explicitly_forbidden": [
+    "Patient as the starting actor label instead of Visitor.",
+    "Creating an UNVERIFIED Patient before OTP success.",
+    "Password, Forgot Password, SMS authentication.",
+    "Actual OTP/secret values in labels."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

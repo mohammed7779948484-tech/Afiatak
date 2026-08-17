@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-05",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD05_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad05-subscribe-to-availability-alert.yaml",
+  "view": "views/activity/aafiatak-ad05-subscribe-to-availability-alert.yaml"
+}

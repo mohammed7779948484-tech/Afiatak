@@ -1,0 +1,504 @@
+modelId: aafiatak-ad11-record-no-show
+version: '1.0'
+elements:
+- id: activity.ad11.initial
+  name: Initial
+  type: initial
+  description: Record No-show Activity initial
+  tags:
+  - ad11
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad11.a01
+  name: Staff selects overdue Appointment / visit and chooses Record No-show
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a02
+  name: Validate ArrivalGroup time, check-in state and existing terminal outcome
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.d01
+  name: ArrivalGroup window ended?
+  type: decision
+  description: Record No-show Activity decision
+  tags:
+  - ad11
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a03
+  name: Reject premature NO_SHOW
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.d02
+  name: Valid check-in exists?
+  type: decision
+  description: Record No-show Activity decision
+  tags:
+  - ad11
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a04
+  name: Reject NO_SHOW; use actual checked-in Visit path
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.d03
+  name: Terminal outcome already recorded?
+  type: decision
+  description: Record No-show Activity decision
+  tags:
+  - ad11
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a05
+  name: Return existing terminal outcome; do not reopen or duplicate
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a06
+  name: Staff confirms no-show decision
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a07
+  name: Create/use permitted VisitInstance context and record terminal NO_SHOW
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a08
+  name: Record actor, timestamp and audit information
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.d04
+  name: Booking has collected electronic payment?
+  type: decision
+  description: Record No-show Activity decision
+  tags:
+  - ad11
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a09
+  name: Create no Aafiatak electronic refund
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.d05
+  name: Saved no-show financial policy?
+  type: decision
+  description: Record No-show Activity decision
+  tags:
+  - ad11
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a10
+  name: Apply NO_SHOW_NON_REFUNDABLE — refund due = zero
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a11
+  name: Initiate full collected-amount refund under NO_SHOW_FULL_REFUND
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.a12
+  name: Display terminal Visit outcome and independent payment/refund state
+  type: action
+  description: Record No-show Activity action
+  tags:
+  - ad11
+  - activity
+  - action
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+- id: activity.ad11.mend
+  name: End-path merge
+  type: merge
+  description: Record No-show Activity merge
+  tags:
+  - ad11
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad11.final
+  name: Final
+  type: final
+  description: Record No-show Activity final
+  tags:
+  - ad11
+  - activity
+  - final
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad11.f01
+  type: control_flow
+  source: activity.ad11.initial
+  target: activity.ad11.a01
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f02
+  type: control_flow
+  source: activity.ad11.a01
+  target: activity.ad11.a02
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f03
+  type: control_flow
+  source: activity.ad11.a02
+  target: activity.ad11.d01
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f04
+  type: control_flow
+  source: activity.ad11.d01
+  target: activity.ad11.a03
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad11.f05
+  type: control_flow
+  source: activity.ad11.a03
+  target: activity.ad11.mend
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f06
+  type: control_flow
+  source: activity.ad11.d01
+  target: activity.ad11.d02
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad11.f07
+  type: control_flow
+  source: activity.ad11.d02
+  target: activity.ad11.a04
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad11.f08
+  type: control_flow
+  source: activity.ad11.a04
+  target: activity.ad11.mend
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f09
+  type: control_flow
+  source: activity.ad11.d02
+  target: activity.ad11.d03
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad11.f10
+  type: control_flow
+  source: activity.ad11.d03
+  target: activity.ad11.a05
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad11.f11
+  type: control_flow
+  source: activity.ad11.a05
+  target: activity.ad11.mend
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f12
+  type: control_flow
+  source: activity.ad11.d03
+  target: activity.ad11.a06
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad11.f13
+  type: control_flow
+  source: activity.ad11.a06
+  target: activity.ad11.a07
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f14
+  type: control_flow
+  source: activity.ad11.a07
+  target: activity.ad11.a08
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f15
+  type: control_flow
+  source: activity.ad11.a08
+  target: activity.ad11.d04
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f16
+  type: control_flow
+  source: activity.ad11.d04
+  target: activity.ad11.a09
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No / PAY_AT_FACILITY]'
+  name: '[No / PAY_AT_FACILITY]'
+- id: relation.ad11.f17
+  type: control_flow
+  source: activity.ad11.a09
+  target: activity.ad11.a12
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f18
+  type: control_flow
+  source: activity.ad11.d04
+  target: activity.ad11.d05
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad11.f19
+  type: control_flow
+  source: activity.ad11.d05
+  target: activity.ad11.a10
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[NO_SHOW_NON_REFUNDABLE]'
+  name: '[NO_SHOW_NON_REFUNDABLE]'
+- id: relation.ad11.f20
+  type: control_flow
+  source: activity.ad11.a10
+  target: activity.ad11.a12
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f21
+  type: control_flow
+  source: activity.ad11.d05
+  target: activity.ad11.a11
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[NO_SHOW_FULL_REFUND]'
+  name: '[NO_SHOW_FULL_REFUND]'
+- id: relation.ad11.f22
+  type: control_flow
+  source: activity.ad11.a11
+  target: activity.ad11.a12
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f23
+  type: control_flow
+  source: activity.ad11.a12
+  target: activity.ad11.mend
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad11.f24
+  type: control_flow
+  source: activity.ad11.mend
+  target: activity.ad11.final
+  sourceRefs:
+  - source: ad11-record-no-show-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

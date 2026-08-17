@@ -1,0 +1,354 @@
+{
+  "id": "AD-13",
+  "title": "Activity Diagram — Manage Operational Exceptions",
+  "use_case": "Manage Operational Exceptions",
+  "package": "Facility Administrator + Booking & Reception Staff",
+  "spec_file": "Aafiatak_AD13_Manage_Operational_Exceptions_FINAL_VERIFIED_v2.md",
+  "sha256": "8d6b6737664b154e7709c71f3108b8dcdbec7f8f0b732ccaeff909631044d7c1",
+  "preconditions": [
+    "1. Authorized facility actor is authenticated.",
+    "2. Supported unplanned event occurs after publication/during daily operation.",
+    "3. Event can be classified in approved exception scope and affected context can be identified."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Facility actor records operational event and doctor/session/release context"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Create OPEN OperationalException with approved type and link affected context"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Exception type = SESSION_CANCELLED?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Make affected session/release non-bookable and release active ReservationHolds"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Preserve all confirmed Appointments and identify affected unresolved set"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Present affected Appointments and relevant hold/capacity state"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Select one unresolved affected Appointment"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Approved resolution path?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Offer / secure suitable equivalent alternative after Patient communication using reschedule invariants"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Cancel Appointment from facility side and preserve history"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Electronic amount collected?"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Initiate full collected-amount refund"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Record facility-cancellation outcome with no electronic refund"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Create documented support escalation for later Platform review"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Record completed resolution action / outcome for affected Appointment"
+    },
+    {
+      "id": "A17",
+      "type": "Action",
+      "label": "Keep OperationalException OPEN pending escalated resolution; do not close"
+    },
+    {
+      "id": "D04",
+      "type": "Decision",
+      "label": "More affected Appointments unresolved?"
+    },
+    {
+      "id": "A13",
+      "type": "Action",
+      "label": "Notify affected Patients through Notification Service when required"
+    },
+    {
+      "id": "A14",
+      "type": "Action",
+      "label": "Facility actor requests Close Operational Exception"
+    },
+    {
+      "id": "D05",
+      "type": "Decision",
+      "label": "Every affected Appointment has a completed documented action/outcome?"
+    },
+    {
+      "id": "A15",
+      "type": "Action",
+      "label": "Reject closure and identify remaining resolution requirement"
+    },
+    {
+      "id": "A16",
+      "type": "Action",
+      "label": "Close OperationalException and preserve audit trail"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin exception"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Open exception"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Special session-cancel handling"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[Yes]",
+      "meaning": "Session becomes non-bookable; release active holds"
+    },
+    {
+      "from": "A03",
+      "to": "A04",
+      "guard": "—",
+      "meaning": "Confirmed Appointments preserved"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[No]",
+      "meaning": "Identify affected set"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Review impact"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Process affected Appointments one-by-one"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Choose approved resolution"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Equivalent alternative]",
+      "meaning": "Same-service/same-terms safe path"
+    },
+    {
+      "from": "A07",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Record completed outcome"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Facility cancellation]",
+      "meaning": "Cancel by facility"
+    },
+    {
+      "from": "A08",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Refund decision"
+    },
+    {
+      "from": "D03",
+      "to": "A09",
+      "guard": "[Paid]",
+      "meaning": "Full refund only"
+    },
+    {
+      "from": "A09",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Record completed outcome"
+    },
+    {
+      "from": "D03",
+      "to": "A10",
+      "guard": "[No electronic payment]",
+      "meaning": "No electronic refund"
+    },
+    {
+      "from": "A10",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Record completed outcome"
+    },
+    {
+      "from": "D02",
+      "to": "A11",
+      "guard": "[Escalation]",
+      "meaning": "Document support escalation"
+    },
+    {
+      "from": "A11",
+      "to": "A17",
+      "guard": "—",
+      "meaning": "Escalation is not a completed resolution"
+    },
+    {
+      "from": "A17",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End current activity with exception still OPEN"
+    },
+    {
+      "from": "A12",
+      "to": "D04",
+      "guard": "—",
+      "meaning": "Check remaining unresolved set"
+    },
+    {
+      "from": "D04",
+      "to": "A06",
+      "guard": "[Yes]",
+      "meaning": "Loop to next affected Appointment"
+    },
+    {
+      "from": "D04",
+      "to": "A13",
+      "guard": "[No]",
+      "meaning": "All completed outcomes documented; notify if required"
+    },
+    {
+      "from": "A13",
+      "to": "A14",
+      "guard": "—",
+      "meaning": "Request closure"
+    },
+    {
+      "from": "A14",
+      "to": "D05",
+      "guard": "—",
+      "meaning": "Strict closure gate"
+    },
+    {
+      "from": "D05",
+      "to": "A15",
+      "guard": "[No]",
+      "meaning": "Cannot close"
+    },
+    {
+      "from": "A15",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Return to unresolved Appointment handling"
+    },
+    {
+      "from": "D05",
+      "to": "A16",
+      "guard": "[Yes]",
+      "meaning": "Close and audit"
+    },
+    {
+      "from": "A16",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Closed-success path ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Doctor does not record delay/absence through Doctor interface; facility staff records the OperationalException.",
+    "Platform Administrator appears only in later escalation review, not daily operational handling.",
+    "Facility-responsible paid cancellation starts full refund."
+  ],
+  "explicitly_forbidden": [
+    "Silent deletion of affected Appointments/history.",
+    "Reverse import of internal capacity.",
+    "Partial refund.",
+    "Doctor as exception-recording actor.",
+    "Platform Administrator running daily facility resolution.",
+    "Closing with unresolved affected Appointment."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

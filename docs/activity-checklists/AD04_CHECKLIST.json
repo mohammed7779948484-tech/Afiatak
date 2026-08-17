@@ -1,0 +1,344 @@
+{
+  "id": "AD-04",
+  "title": "Activity Diagram — Process Full Payment",
+  "use_case": "Process Full Payment",
+  "package": "Patient Package",
+  "spec_file": "Aafiatak_AD04_Process_Full_Payment_FINAL_VERIFIED_v2.md",
+  "sha256": "89fbfac2a150495aba87c73b523cd7e4316ac6f0d3736718c211bcb331025adf",
+  "preconditions": [
+    "1. Booking policy is FULL_PAYMENT_REQUIRED.",
+    "2. An ACTIVE ReservationHold exists.",
+    "3. Amount/currency are the booking-attempt snapshot values.",
+    "4. No other non-terminal PaymentIntent is active for the same hold."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Create or safely reuse the one permitted PaymentIntent"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Patient completes approved Payment Gateway interaction"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Treat client/browser return as non-authoritative"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Verify result through trusted webhook or trusted gateway query"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Trusted payment result available?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Keep payment unresolved / UNDER_REVIEW as applicable"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Trusted payment outcome?"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Record FAILED or EXPIRED payment result"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Patient requests another attempt while hold remains valid?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Start new idempotent attempt only after terminal failure/expiry"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Persist trusted SUCCEEDED financial result"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Revalidate ReservationHold and release/group/time eligibility"
+    },
+    {
+      "id": "D04",
+      "type": "Decision",
+      "label": "Original booking target still eligible?"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Attempt safe equivalent recovery under equivalent snapshotted terms"
+    },
+    {
+      "id": "D05",
+      "type": "Decision",
+      "label": "Equivalent recovery completed safely?"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Create / complete confirmed booking under equivalent valid capacity"
+    },
+    {
+      "id": "D06",
+      "type": "Decision",
+      "label": "Full refund can be initiated as approved recovery?"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Initiate full refund"
+    },
+    {
+      "id": "A13",
+      "type": "Action",
+      "label": "Keep payment case UNDER_REVIEW for documented support path"
+    },
+    {
+      "id": "A14",
+      "type": "Action",
+      "label": "Atomically consume hold and create CONFIRMED Appointment"
+    },
+    {
+      "id": "A15",
+      "type": "Action",
+      "label": "Show independent payment result, receipt/reference and booking result"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Prepare idempotent payment attempt"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Gateway interaction"
+    },
+    {
+      "from": "A02",
+      "to": "A03",
+      "guard": "—",
+      "meaning": "Client returns"
+    },
+    {
+      "from": "A03",
+      "to": "A04",
+      "guard": "—",
+      "meaning": "Trusted verification required"
+    },
+    {
+      "from": "A04",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Check trusted result availability"
+    },
+    {
+      "from": "D01",
+      "to": "A05",
+      "guard": "[Not yet]",
+      "meaning": "Unresolved case"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Current activity instance ends in review/unresolved state"
+    },
+    {
+      "from": "D01",
+      "to": "D02",
+      "guard": "[Available]",
+      "meaning": "Classify trusted outcome"
+    },
+    {
+      "from": "D02",
+      "to": "A06",
+      "guard": "[FAILED / EXPIRED]",
+      "meaning": "Record terminal failed attempt"
+    },
+    {
+      "from": "A06",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Optional retry rule"
+    },
+    {
+      "from": "D03",
+      "to": "A07",
+      "guard": "[Yes — hold still valid]",
+      "meaning": "New attempt allowed under idempotent rules"
+    },
+    {
+      "from": "A07",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Loop to gateway interaction"
+    },
+    {
+      "from": "D03",
+      "to": "MEND",
+      "guard": "[No]",
+      "meaning": "No confirmed booking from failed payment"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[SUCCEEDED]",
+      "meaning": "Persist financial truth"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Booking eligibility revalidation"
+    },
+    {
+      "from": "A09",
+      "to": "D04",
+      "guard": "—",
+      "meaning": "Check target"
+    },
+    {
+      "from": "D04",
+      "to": "A14",
+      "guard": "[Eligible]",
+      "meaning": "Normal successful confirmation"
+    },
+    {
+      "from": "A14",
+      "to": "A15",
+      "guard": "—",
+      "meaning": "Display result"
+    },
+    {
+      "from": "A15",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success ends"
+    },
+    {
+      "from": "D04",
+      "to": "A10",
+      "guard": "[Ineligible / appointment creation failed]",
+      "meaning": "Critical recovery"
+    },
+    {
+      "from": "A10",
+      "to": "D05",
+      "guard": "—",
+      "meaning": "Evaluate equivalent recovery"
+    },
+    {
+      "from": "D05",
+      "to": "A11",
+      "guard": "[Yes]",
+      "meaning": "Complete safe equivalent booking"
+    },
+    {
+      "from": "A11",
+      "to": "A15",
+      "guard": "—",
+      "meaning": "Show recovered success"
+    },
+    {
+      "from": "D05",
+      "to": "D06",
+      "guard": "[No]",
+      "meaning": "Choose approved financial recovery"
+    },
+    {
+      "from": "D06",
+      "to": "A12",
+      "guard": "[Refund path available]",
+      "meaning": "Full refund only"
+    },
+    {
+      "from": "A12",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Refund path ends/pends independently"
+    },
+    {
+      "from": "D06",
+      "to": "A13",
+      "guard": "[Cannot resolve immediately]",
+      "meaning": "Documented UNDER_REVIEW path"
+    },
+    {
+      "from": "A13",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Review path ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "At most one non-terminal PaymentIntent per ReservationHold.",
+    "No PaymentIntent for PAY_AT_FACILITY.",
+    "Refund is full amount or zero.",
+    "Ordinary facility users cannot force a financial state."
+  ],
+  "explicitly_forbidden": [
+    "Client return -> SUCCEEDED directly.",
+    "Partial payment/refund.",
+    "Cashier/accounting lifecycle.",
+    "Multiple gateways.",
+    "Arbitrary Reception payment override."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

@@ -1,0 +1,66 @@
+id: aafiatak-ad05-subscribe-to-availability-alert
+diagramType: activity
+title: Activity Diagram — Subscribe to Availability Alert
+model: ../../model/catalog/activities/aafiatak-ad05-subscribe-to-availability-alert.yaml
+include:
+- activity.ad05.initial
+- activity.ad05.a01
+- activity.ad05.a02
+- activity.ad05.d01
+- activity.ad05.a03
+- activity.ad05.a04
+- activity.ad05.a05
+- activity.ad05.a06
+- activity.ad05.d02
+- activity.ad05.a07
+- activity.ad05.a08
+- activity.ad05.a09
+- activity.ad05.a10
+- activity.ad05.a11
+- activity.ad05.d03
+- activity.ad05.a12
+- activity.ad05.mend
+- activity.ad05.final
+relations:
+- relation.ad05.f01
+- relation.ad05.f02
+- relation.ad05.f03
+- relation.ad05.f04
+- relation.ad05.f05
+- relation.ad05.f06
+- relation.ad05.f07
+- relation.ad05.f08
+- relation.ad05.f09
+- relation.ad05.f10
+- relation.ad05.f11
+- relation.ad05.f12
+- relation.ad05.f13
+- relation.ad05.f14
+- relation.ad05.f15
+- relation.ad05.f16
+- relation.ad05.f17
+- relation.ad05.f18
+- relation.ad05.f19
+- relation.ad05.f20
+- relation.ad05.f21
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Subscribe to Availability Alert is awaiting user visual approval after semantic, notation, editable-source, and rendering
+    QA.
+  previewHash: 'c84a719a959bf678973fe517d528003044eebea5ec1be954a7cb15f83e6ebc04'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Subscribe to Availability Alert
+  expectedActionCount: 12
+  expectedDecisionCount: 3
+  expectedMergeCount: 1
+  expectedControlFlowCount: 21
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

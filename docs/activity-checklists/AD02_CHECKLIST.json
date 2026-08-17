@@ -1,0 +1,246 @@
+{
+  "id": "AD-02",
+  "title": "Activity Diagram — Log In",
+  "use_case": "Log In",
+  "package": "Shared Authentication",
+  "spec_file": "Aafiatak_AD02_Log_In_FINAL_VERIFIED_v2.md",
+  "sha256": "8450894b77c2eb9520f2b6540ed0efa415375212017a321a7ac3b19e15fc27f4",
+  "preconditions": [
+    "1. A verified normalized phone identity exists.",
+    "2. Requested privileged role/profile is approved/provisioned when applicable.",
+    "3. Relevant account/facility/platform access has not been revoked."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Actor provides verified phone number and requests Log In"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Normalize phone and locate existing identity / requested role context"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Request short-lived single-use WhatsApp OTP"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "WhatsApp authentication channel available?"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Keep login incomplete; provide no SMS/password fallback"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Actor submits OTP"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Verify OTP expiry, single-use, rate-limit and brute-force controls"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "OTP valid and permitted?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Deny authentication; create no session"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Revalidate account / role / facility access"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Requested role context enabled and authorized?"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Deny privileged access and issue no usable privileged session"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Create revocable authenticated session/token"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Expose only functions permitted to the approved role"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin login"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Resolve identity/role context"
+    },
+    {
+      "from": "A02",
+      "to": "A03",
+      "guard": "—",
+      "meaning": "Request OTP"
+    },
+    {
+      "from": "A03",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Check official channel"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[Unavailable]",
+      "meaning": "Login remains incomplete"
+    },
+    {
+      "from": "A04",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End unavailable-provider branch"
+    },
+    {
+      "from": "D01",
+      "to": "A05",
+      "guard": "[Available]",
+      "meaning": "Submit OTP"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Verify OTP"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Evaluate verification"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Invalid / expired / reused / rate-limited]",
+      "meaning": "No session"
+    },
+    {
+      "from": "A07",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End failed-auth branch"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Valid]",
+      "meaning": "Check authorization after OTP"
+    },
+    {
+      "from": "A08",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Evaluate role/account status"
+    },
+    {
+      "from": "D03",
+      "to": "A09",
+      "guard": "[Disabled / revoked / unauthorized]",
+      "meaning": "Deny role context"
+    },
+    {
+      "from": "A09",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End access-denied branch"
+    },
+    {
+      "from": "D03",
+      "to": "A10",
+      "guard": "[Enabled and authorized]",
+      "meaning": "Create session"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Apply role functions"
+    },
+    {
+      "from": "A11",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success path ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "All human accounts use passwordless official WhatsApp OTP.",
+    "Role-specific privileges remain separated.",
+    "Successful authentication creates a revocable session/token."
+  ],
+  "explicitly_forbidden": [
+    "Password login/Forgot Password.",
+    "SMS OTP.",
+    "Public self-assignment of Facility/Doctor/Platform roles.",
+    "Session creation before role/access revalidation."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

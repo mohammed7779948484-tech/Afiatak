@@ -1,0 +1,621 @@
+modelId: aafiatak-ad04-process-full-payment
+version: '1.0'
+elements:
+- id: activity.ad04.initial
+  name: Initial
+  type: initial
+  description: Process Full Payment Activity initial
+  tags:
+  - ad04
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad04.a01
+  name: Create or safely reuse the one permitted PaymentIntent
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a02
+  name: Patient completes approved Payment Gateway interaction
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a03
+  name: Treat client/browser return as non-authoritative
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a04
+  name: Verify result through trusted webhook or trusted gateway query
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d01
+  name: Trusted payment result available?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a05
+  name: Keep payment unresolved / UNDER_REVIEW as applicable
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d02
+  name: Trusted payment outcome?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a06
+  name: Record FAILED or EXPIRED payment result
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d03
+  name: Patient requests another attempt while hold remains valid?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a07
+  name: Start new idempotent attempt only after terminal failure/expiry
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a08
+  name: Persist trusted SUCCEEDED financial result
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a09
+  name: Revalidate ReservationHold and release/group/time eligibility
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d04
+  name: Original booking target still eligible?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a10
+  name: Attempt safe equivalent recovery under equivalent snapshotted terms
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d05
+  name: Equivalent recovery completed safely?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a11
+  name: Create / complete confirmed booking under equivalent valid capacity
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.d06
+  name: Full refund can be initiated as approved recovery?
+  type: decision
+  description: Process Full Payment Activity decision
+  tags:
+  - ad04
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a12
+  name: Initiate full refund
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a13
+  name: Keep payment case UNDER_REVIEW for documented support path
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a14
+  name: Atomically consume hold and create CONFIRMED Appointment
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.a15
+  name: Show independent payment result, receipt/reference and booking result
+  type: action
+  description: Process Full Payment Activity action
+  tags:
+  - ad04
+  - activity
+  - action
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+- id: activity.ad04.mend
+  name: End-path merge
+  type: merge
+  description: Process Full Payment Activity merge
+  tags:
+  - ad04
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad04.final
+  name: Final
+  type: final
+  description: Process Full Payment Activity final
+  tags:
+  - ad04
+  - activity
+  - final
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad04.note-idempotency
+  name: Duplicate or delayed gateway events are processed idempotently; no duplicate charge, booking, refund, or transition.
+  type: note
+  description: Compact trusted-event idempotency note
+  tags: [ad04, activity, note]
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '9'
+- id: activity.ad04.note-receipt
+  name: Customer receipt is evidence for verification or escalation only; ordinary facility users cannot overwrite PaymentIntent truth.
+  type: note
+  description: Compact UNDER_REVIEW evidence boundary note
+  tags: [ad04, activity, note]
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '9'
+relations:
+- id: relation.ad04.f01
+  type: control_flow
+  source: activity.ad04.initial
+  target: activity.ad04.a01
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f02
+  type: control_flow
+  source: activity.ad04.a01
+  target: activity.ad04.a02
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f03
+  type: control_flow
+  source: activity.ad04.a02
+  target: activity.ad04.a03
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f04
+  type: control_flow
+  source: activity.ad04.a03
+  target: activity.ad04.a04
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f05
+  type: control_flow
+  source: activity.ad04.a04
+  target: activity.ad04.d01
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f06
+  type: control_flow
+  source: activity.ad04.d01
+  target: activity.ad04.a05
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Not yet]'
+  name: '[Not yet]'
+- id: relation.ad04.f07
+  type: control_flow
+  source: activity.ad04.a05
+  target: activity.ad04.mend
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f08
+  type: control_flow
+  source: activity.ad04.d01
+  target: activity.ad04.d02
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Available]'
+  name: '[Available]'
+- id: relation.ad04.f09
+  type: control_flow
+  source: activity.ad04.d02
+  target: activity.ad04.a06
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[FAILED / EXPIRED]'
+  name: '[FAILED / EXPIRED]'
+- id: relation.ad04.f10
+  type: control_flow
+  source: activity.ad04.a06
+  target: activity.ad04.d03
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f11
+  type: control_flow
+  source: activity.ad04.d03
+  target: activity.ad04.a07
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes — hold still valid]'
+  name: '[Yes — hold still valid]'
+- id: relation.ad04.f12
+  type: control_flow
+  source: activity.ad04.a07
+  target: activity.ad04.a02
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f13
+  type: control_flow
+  source: activity.ad04.d03
+  target: activity.ad04.mend
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad04.f14
+  type: control_flow
+  source: activity.ad04.d02
+  target: activity.ad04.a08
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[SUCCEEDED]'
+  name: '[SUCCEEDED]'
+- id: relation.ad04.f15
+  type: control_flow
+  source: activity.ad04.a08
+  target: activity.ad04.a09
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f16
+  type: control_flow
+  source: activity.ad04.a09
+  target: activity.ad04.d04
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f17
+  type: control_flow
+  source: activity.ad04.d04
+  target: activity.ad04.a14
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Eligible]'
+  name: '[Eligible]'
+- id: relation.ad04.f18
+  type: control_flow
+  source: activity.ad04.a14
+  target: activity.ad04.a15
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f19
+  type: control_flow
+  source: activity.ad04.a15
+  target: activity.ad04.mend
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f20
+  type: control_flow
+  source: activity.ad04.d04
+  target: activity.ad04.a10
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Ineligible / appointment creation failed]'
+  name: '[Ineligible / appointment creation failed]'
+- id: relation.ad04.f21
+  type: control_flow
+  source: activity.ad04.a10
+  target: activity.ad04.d05
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f22
+  type: control_flow
+  source: activity.ad04.d05
+  target: activity.ad04.a11
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad04.f23
+  type: control_flow
+  source: activity.ad04.a11
+  target: activity.ad04.a15
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f24
+  type: control_flow
+  source: activity.ad04.d05
+  target: activity.ad04.d06
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad04.f25
+  type: control_flow
+  source: activity.ad04.d06
+  target: activity.ad04.a12
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Refund path available]'
+  name: '[Refund path available]'
+- id: relation.ad04.f26
+  type: control_flow
+  source: activity.ad04.a12
+  target: activity.ad04.mend
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f27
+  type: control_flow
+  source: activity.ad04.d06
+  target: activity.ad04.a13
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Cannot resolve immediately]'
+  name: '[Cannot resolve immediately]'
+- id: relation.ad04.f28
+  type: control_flow
+  source: activity.ad04.a13
+  target: activity.ad04.mend
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad04.f29
+  type: control_flow
+  source: activity.ad04.mend
+  target: activity.ad04.final
+  sourceRefs:
+  - source: ad04-process-full-payment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

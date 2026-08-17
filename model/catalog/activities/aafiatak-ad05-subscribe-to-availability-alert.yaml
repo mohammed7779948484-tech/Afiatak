@@ -1,0 +1,446 @@
+modelId: aafiatak-ad05-subscribe-to-availability-alert
+version: '1.0'
+elements:
+- id: activity.ad05.initial
+  name: Initial
+  type: initial
+  description: Subscribe to Availability Alert Activity initial
+  tags:
+  - ad05
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad05.a01
+  name: Patient chooses Notify Me When Available
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a02
+  name: Revalidate current Aafiatak bookability
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.d01
+  name: Capacity now bookable?
+  type: decision
+  description: Subscribe to Availability Alert Activity decision
+  tags:
+  - ad05
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a03
+  name: Direct Patient to normal booking; create no hidden reservation
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a04
+  name: Create AvailabilityAlertSubscription for Patient/context
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a05
+  name: Confirm subscription as interest only — no hold / queue / priority
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a06
+  name: Wait for approved capacity-return event, successful Patient booking, or session end
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.d02
+  name: Which source-supported event occurs?
+  type: decision
+  description: Subscribe to Availability Alert Activity decision
+  tags:
+  - ad05
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a07
+  name: Expire corresponding subscription after successful Patient booking
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a08
+  name: Expire subscription when session ends
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a09
+  name: Detect zero-to-positive bookable capacity from approved Aafiatak event
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a10
+  name: Notify eligible subscriptions through Notification Service
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a11
+  name: Patient competes through normal booking; first valid ReservationHold wins
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.d03
+  name: Patient successfully books?
+  type: decision
+  description: Subscribe to Availability Alert Activity decision
+  tags:
+  - ad05
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.a12
+  name: Keep subscription lifecycle subject to duplicate-notification suppression until booking/session end
+  type: action
+  description: Subscribe to Availability Alert Activity action
+  tags:
+  - ad05
+  - activity
+  - action
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+- id: activity.ad05.mend
+  name: End-path merge
+  type: merge
+  description: Subscribe to Availability Alert Activity merge
+  tags:
+  - ad05
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad05.final
+  name: Final
+  type: final
+  description: Subscribe to Availability Alert Activity final
+  tags:
+  - ad05
+  - activity
+  - final
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad05.f01
+  type: control_flow
+  source: activity.ad05.initial
+  target: activity.ad05.a01
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f02
+  type: control_flow
+  source: activity.ad05.a01
+  target: activity.ad05.a02
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f03
+  type: control_flow
+  source: activity.ad05.a02
+  target: activity.ad05.d01
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f04
+  type: control_flow
+  source: activity.ad05.d01
+  target: activity.ad05.a03
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad05.f05
+  type: control_flow
+  source: activity.ad05.a03
+  target: activity.ad05.mend
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f06
+  type: control_flow
+  source: activity.ad05.d01
+  target: activity.ad05.a04
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad05.f07
+  type: control_flow
+  source: activity.ad05.a04
+  target: activity.ad05.a05
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f08
+  type: control_flow
+  source: activity.ad05.a05
+  target: activity.ad05.a06
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f09
+  type: control_flow
+  source: activity.ad05.a06
+  target: activity.ad05.d02
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f10
+  type: control_flow
+  source: activity.ad05.d02
+  target: activity.ad05.a07
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Patient books successfully]'
+  name: '[Patient books successfully]'
+- id: relation.ad05.f11
+  type: control_flow
+  source: activity.ad05.a07
+  target: activity.ad05.mend
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f12
+  type: control_flow
+  source: activity.ad05.d02
+  target: activity.ad05.a08
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Session ends]'
+  name: '[Session ends]'
+- id: relation.ad05.f13
+  type: control_flow
+  source: activity.ad05.a08
+  target: activity.ad05.mend
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f14
+  type: control_flow
+  source: activity.ad05.d02
+  target: activity.ad05.a09
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Approved capacity returns]'
+  name: '[Approved capacity returns]'
+- id: relation.ad05.f15
+  type: control_flow
+  source: activity.ad05.a09
+  target: activity.ad05.a10
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f16
+  type: control_flow
+  source: activity.ad05.a10
+  target: activity.ad05.a11
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f17
+  type: control_flow
+  source: activity.ad05.a11
+  target: activity.ad05.d03
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f18
+  type: control_flow
+  source: activity.ad05.d03
+  target: activity.ad05.a07
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Booked]'
+  name: '[Booked]'
+- id: relation.ad05.f19
+  type: control_flow
+  source: activity.ad05.d03
+  target: activity.ad05.a12
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Not booked]'
+  name: '[Not booked]'
+- id: relation.ad05.f20
+  type: control_flow
+  source: activity.ad05.a12
+  target: activity.ad05.a06
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad05.f21
+  type: control_flow
+  source: activity.ad05.mend
+  target: activity.ad05.final
+  sourceRefs:
+  - source: ad05-subscribe-availability-alert-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

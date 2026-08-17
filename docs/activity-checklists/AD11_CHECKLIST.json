@@ -1,0 +1,295 @@
+{
+  "id": "AD-11",
+  "title": "Activity Diagram — Record No-show",
+  "use_case": "Record No-show",
+  "package": "Booking & Reception Staff Package",
+  "spec_file": "Aafiatak_AD11_Record_No_Show_FINAL_VERIFIED_v2.md",
+  "sha256": "3ab9b5868eae3e0713f4080158fcb9bf36088aaa52a70c35e3be2fd168f867ad",
+  "preconditions": [
+    "1. Staff is authenticated/authorized.",
+    "2. Appointment is relevant to the service-day context.",
+    "3. Assigned ArrivalGroup window should have ended.",
+    "4. A valid check-in must not exist.",
+    "5. No terminal VisitInstance outcome may already exist."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Staff selects overdue Appointment / visit and chooses Record No-show"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Validate ArrivalGroup time, check-in state and existing terminal outcome"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "ArrivalGroup window ended?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Reject premature NO_SHOW"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Valid check-in exists?"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Reject NO_SHOW; use actual checked-in Visit path"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Terminal outcome already recorded?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Return existing terminal outcome; do not reopen or duplicate"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Staff confirms no-show decision"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Create/use permitted VisitInstance context and record terminal NO_SHOW"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Record actor, timestamp and audit information"
+    },
+    {
+      "id": "D04",
+      "type": "Decision",
+      "label": "Booking has collected electronic payment?"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Create no Aafiatak electronic refund"
+    },
+    {
+      "id": "D05",
+      "type": "Decision",
+      "label": "Saved no-show financial policy?"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Apply NO_SHOW_NON_REFUNDABLE — refund due = zero"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Initiate full collected-amount refund under NO_SHOW_FULL_REFUND"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Display terminal Visit outcome and independent payment/refund state"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin no-show"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Validate conditions"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Time decision"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[No]",
+      "meaning": "Too early"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End rejected"
+    },
+    {
+      "from": "D01",
+      "to": "D02",
+      "guard": "[Yes]",
+      "meaning": "Check arrival"
+    },
+    {
+      "from": "D02",
+      "to": "A04",
+      "guard": "[Yes]",
+      "meaning": "Patient did arrive"
+    },
+    {
+      "from": "A04",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End rejected"
+    },
+    {
+      "from": "D02",
+      "to": "D03",
+      "guard": "[No]",
+      "meaning": "Check terminality"
+    },
+    {
+      "from": "D03",
+      "to": "A05",
+      "guard": "[Yes]",
+      "meaning": "No duplicate/reopen"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End existing-result branch"
+    },
+    {
+      "from": "D03",
+      "to": "A06",
+      "guard": "[No]",
+      "meaning": "Record no-show"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Terminal visit outcome"
+    },
+    {
+      "from": "A07",
+      "to": "A08",
+      "guard": "—",
+      "meaning": "Audit"
+    },
+    {
+      "from": "A08",
+      "to": "D04",
+      "guard": "—",
+      "meaning": "Financial branch"
+    },
+    {
+      "from": "D04",
+      "to": "A09",
+      "guard": "[No / PAY_AT_FACILITY]",
+      "meaning": "No electronic refund"
+    },
+    {
+      "from": "A09",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Show result"
+    },
+    {
+      "from": "D04",
+      "to": "D05",
+      "guard": "[Yes]",
+      "meaning": "Use saved policy"
+    },
+    {
+      "from": "D05",
+      "to": "A10",
+      "guard": "[NO_SHOW_NON_REFUNDABLE]",
+      "meaning": "Zero refund"
+    },
+    {
+      "from": "A10",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Show result"
+    },
+    {
+      "from": "D05",
+      "to": "A11",
+      "guard": "[NO_SHOW_FULL_REFUND]",
+      "meaning": "Full refund lifecycle"
+    },
+    {
+      "from": "A11",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Show result/pending status"
+    },
+    {
+      "from": "A12",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Facility staff, not Doctor, records NO_SHOW.",
+    "Appointment state remains separate; NO_SHOW belongs to VisitInstance.",
+    "Refund status remains independent."
+  ],
+  "explicitly_forbidden": [
+    "Premature NO_SHOW.",
+    "NO_SHOW when valid check-in exists.",
+    "Doctor recording NO_SHOW.",
+    "Appointment status = NO_SHOW.",
+    "Partial no-show refund.",
+    "NO_SHOW -> CHECKED_IN reopening."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

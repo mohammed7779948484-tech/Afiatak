@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-10",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD10_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad10-register-patient-check-in.yaml",
+  "view": "views/activity/aafiatak-ad10-register-patient-check-in.yaml"
+}

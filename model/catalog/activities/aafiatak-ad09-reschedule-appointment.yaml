@@ -1,0 +1,399 @@
+modelId: aafiatak-ad09-reschedule-appointment
+version: '1.0'
+elements:
+- id: activity.ad09.initial
+  name: Initial
+  type: initial
+  description: Reschedule Appointment Activity initial
+  tags:
+  - ad09
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad09.a01
+  name: Staff selects CONFIRMED Appointment and chooses Reschedule Appointment
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a02
+  name: Display current booking snapshot / history and permitted destination context
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a03
+  name: Staff selects agreed new day / group / session
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a04
+  name: Validate Appointment state, same ServiceOffering, same saved terms and destination bookability
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.d01
+  name: Appointment still CONFIRMED and destination uses same ServiceOffering / terms?
+  type: decision
+  description: Reschedule Appointment Activity decision
+  tags:
+  - ad09
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a05
+  name: Reject in-place reschedule; use saved cancellation + normal new-booking path for different terms
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a06
+  name: Staff confirms proposed move and records reason
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a07
+  name: Atomically secure valid destination capacity first
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.d02
+  name: Destination acquisition succeeded?
+  type: decision
+  description: Reschedule Appointment Activity decision
+  tags:
+  - ad09
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a08
+  name: Abort move and preserve original Appointment / old capacity
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a09
+  name: Update scheduling/group details while Appointment remains CONFIRMED
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a10
+  name: Release old capacity only after destination is secured
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a11
+  name: Record previous/new scheduling data, actor, reason and history
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.a12
+  name: Show successfully rescheduled CONFIRMED Appointment and unchanged financial snapshot
+  type: action
+  description: Reschedule Appointment Activity action
+  tags:
+  - ad09
+  - activity
+  - action
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad09.mend
+  name: End-path merge
+  type: merge
+  description: Reschedule Appointment Activity merge
+  tags:
+  - ad09
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad09.final
+  name: Final
+  type: final
+  description: Reschedule Appointment Activity final
+  tags:
+  - ad09
+  - activity
+  - final
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad09.f01
+  type: control_flow
+  source: activity.ad09.initial
+  target: activity.ad09.a01
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f02
+  type: control_flow
+  source: activity.ad09.a01
+  target: activity.ad09.a02
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f03
+  type: control_flow
+  source: activity.ad09.a02
+  target: activity.ad09.a03
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f04
+  type: control_flow
+  source: activity.ad09.a03
+  target: activity.ad09.a04
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f05
+  type: control_flow
+  source: activity.ad09.a04
+  target: activity.ad09.d01
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f06
+  type: control_flow
+  source: activity.ad09.d01
+  target: activity.ad09.a05
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad09.f07
+  type: control_flow
+  source: activity.ad09.a05
+  target: activity.ad09.mend
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f08
+  type: control_flow
+  source: activity.ad09.d01
+  target: activity.ad09.a06
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad09.f09
+  type: control_flow
+  source: activity.ad09.a06
+  target: activity.ad09.a07
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f10
+  type: control_flow
+  source: activity.ad09.a07
+  target: activity.ad09.d02
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f11
+  type: control_flow
+  source: activity.ad09.d02
+  target: activity.ad09.a08
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Failed / concurrent winner]'
+  name: '[Failed / concurrent winner]'
+- id: relation.ad09.f12
+  type: control_flow
+  source: activity.ad09.a08
+  target: activity.ad09.mend
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f13
+  type: control_flow
+  source: activity.ad09.d02
+  target: activity.ad09.a09
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Succeeded]'
+  name: '[Succeeded]'
+- id: relation.ad09.f14
+  type: control_flow
+  source: activity.ad09.a09
+  target: activity.ad09.a10
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f15
+  type: control_flow
+  source: activity.ad09.a10
+  target: activity.ad09.a11
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f16
+  type: control_flow
+  source: activity.ad09.a11
+  target: activity.ad09.a12
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f17
+  type: control_flow
+  source: activity.ad09.a12
+  target: activity.ad09.mend
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad09.f18
+  type: control_flow
+  source: activity.ad09.mend
+  target: activity.ad09.final
+  sourceRefs:
+  - source: ad09-reschedule-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

@@ -149,3 +149,99 @@ sources:
     sha256: d09df01ba5551522570f30e85d58d56e25734509b7777b7a575b47104acd7a94
     immutable: true
     authority_precedence: 5
+  - name: ad01-register-patient-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD01_Register_Patient_FINAL_VERIFIED_v2.md
+    role: final_ad01_activity_execution
+    sha256: 6e957f4c0761a588c2f120c2794d624d7f6953c60e9e21f7609a996824c28e33
+    immutable: true
+    authority_precedence: 5
+  - name: ad02-log-in-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD02_Log_In_FINAL_VERIFIED_v2.md
+    role: final_ad02_activity_execution
+    sha256: 8450894b77c2eb9520f2b6540ed0efa415375212017a321a7ac3b19e15fc27f4
+    immutable: true
+    authority_precedence: 5
+  - name: ad03-book-appointment-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD03_Book_Appointment_FINAL_VERIFIED_v2.md
+    role: final_ad03_activity_execution
+    sha256: b64bb9519b5e28792d34bdcc25439448f4b34892ac0d5f1ccc2ef99eb3f5af47
+    immutable: true
+    authority_precedence: 5
+  - name: ad04-process-full-payment-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD04_Process_Full_Payment_FINAL_VERIFIED_v2.md
+    role: final_ad04_activity_execution
+    sha256: 89fbfac2a150495aba87c73b523cd7e4316ac6f0d3736718c211bcb331025adf
+    immutable: true
+    authority_precedence: 5
+  - name: ad05-subscribe-availability-alert-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD05_Subscribe_Availability_Alert_FINAL_VERIFIED_v2.md
+    role: final_ad05_activity_execution
+    sha256: 406c9945e37c9a5f83e202d4124192745e37bfd39b42deeb332de56bbff5293a
+    immutable: true
+    authority_precedence: 5
+  - name: ad06-cancel-appointment-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD06_Cancel_Appointment_FINAL_VERIFIED_v2.md
+    role: final_ad06_activity_execution
+    sha256: ed7b288f5091e4af4907de0304bbd8cf41583c88ac94fc40bba9f2788c03ea66
+    immutable: true
+    authority_precedence: 5
+  - name: ad07-publish-availability-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD07_Publish_Availability_FINAL_VERIFIED_v2.md
+    role: final_ad07_activity_execution
+    sha256: 36ddce2a8eb44540dce8c01c6ec68019f028546ae86264aa9188c840bc917acb
+    immutable: true
+    authority_precedence: 5
+  - name: ad08-withdraw-remaining-capacity-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD08_Withdraw_Remaining_Capacity_FINAL_VERIFIED_v2.md
+    role: final_ad08_activity_execution
+    sha256: 94397afa130946339a8d3c0b386c7027e0e0f4a311feaa6ccb0837e30c11d84a
+    immutable: true
+    authority_precedence: 5
+  - name: ad09-reschedule-appointment-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD09_Reschedule_Appointment_FINAL_VERIFIED_v2.md
+    role: final_ad09_activity_execution
+    sha256: f351f96afe6dddcc663c14782d4f459807f6f3237d1a429f78a4f96e131d565b
+    immutable: true
+    authority_precedence: 5
+  - name: ad10-register-patient-checkin-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD10_Register_Patient_Checkin_FINAL_VERIFIED_v2.md
+    role: final_ad10_activity_execution
+    sha256: 1edc547eacd357807237acdaf35f6479d699220a5b93f9f65e4ba188085ebca7
+    immutable: true
+    authority_precedence: 5
+  - name: ad11-record-no-show-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD11_Record_No_Show_FINAL_VERIFIED_v2.md
+    role: final_ad11_activity_execution
+    sha256: 3ab9b5868eae3e0713f4080158fcb9bf36088aaa52a70c35e3be2fd168f867ad
+    immutable: true
+    authority_precedence: 5
+  - name: ad12-handle-late-arrival-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD12_Handle_Late_Arrival_FINAL_VERIFIED_v2.md
+    role: final_ad12_activity_execution
+    sha256: a525addaf809d2f8164e4451373da9ccda20d6e8e5a410b2b64ce10180cb5318
+    immutable: true
+    authority_precedence: 5
+  - name: ad13-manage-operational-exceptions-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD13_Manage_Operational_Exceptions_FINAL_VERIFIED_v2.md
+    role: final_ad13_activity_execution
+    sha256: 8d6b6737664b154e7709c71f3108b8dcdbec7f8f0b732ccaeff909631044d7c1
+    immutable: true
+    authority_precedence: 5
+  - name: ad14-call-next-patient-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD14_Call_Next_Patient_FINAL_VERIFIED_v2.md
+    role: final_ad14_activity_execution
+    sha256: a7a6858af8f81b9021237e78db232a36e717a33e773ece23abb8479f1c537b17
+    immutable: true
+    authority_precedence: 5
+  - name: ad15-review-facility-onboarding-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD15_Review_Facility_Onboarding_FINAL_VERIFIED_v2.md
+    role: final_ad15_activity_execution
+    sha256: 1ac72df4f6f8b310025d48288864d31e0f71ba1e84dd0ebf222faed3d10ec1bd
+    immutable: true
+    authority_precedence: 5
+  - name: ad16-suspend-facility-reviewed-spec
+    path: docs/activity-specs/Aafiatak_AD16_Suspend_Facility_FINAL_VERIFIED_v2.md
+    role: final_ad16_activity_execution
+    sha256: 370423b6b59539f17a7539818271daf798a521afd0f883be986d9297190e321b
+    immutable: true
+    authority_precedence: 5

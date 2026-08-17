@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-07",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD07_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad07-publish-availability.yaml",
+  "view": "views/activity/aafiatak-ad07-publish-availability.yaml"
+}

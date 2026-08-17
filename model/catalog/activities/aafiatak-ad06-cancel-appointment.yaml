@@ -1,0 +1,570 @@
+modelId: aafiatak-ad06-cancel-appointment
+version: '1.0'
+elements:
+- id: activity.ad06.initial
+  name: Initial
+  type: initial
+  description: Cancel Appointment Activity initial
+  tags:
+  - ad06
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad06.a01
+  name: Patient opens Appointment and chooses Cancel Appointment
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.d00
+  name: Appointment already terminally cancelled?
+  type: decision
+  description: Cancel Appointment Activity decision
+  tags:
+  - ad06
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a00
+  name: Return existing cancellation/refund result; create no duplicate cancellation or refund
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a02
+  name: Load saved cancellation/refund policy, payment state and ArrivalGroup timing
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a03
+  name: Revalidate ownership, CONFIRMED state, check-in and group-start conditions
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.d01
+  name: Patient self-cancellation still eligible?
+  type: decision
+  description: Cancel Appointment Activity decision
+  tags:
+  - ad06
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a04
+  name: Deny self-cancellation and preserve arrival / late / no-show handling
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a05
+  name: Calculate and display expected refund result from saved booking snapshot
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a06
+  name: Patient confirms cancellation
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a07
+  name: Record CANCELLED_BY_PATIENT and preserve Appointment history
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a08
+  name: Return consumed unit to the same ArrivalGroup; expose it as bookable only when release/group/time rules permit
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.d02
+  name: Aafiatak electronic amount was collected?
+  type: decision
+  description: Cancel Appointment Activity decision
+  tags:
+  - ad06
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a09
+  name: Create no electronic refund
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.d03
+  name: Saved policy says full refund is due?
+  type: decision
+  description: Cancel Appointment Activity decision
+  tags:
+  - ad06
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a10
+  name: Refund due is zero
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a11
+  name: Initiate full collected-amount refund
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.d04
+  name: Refund completion immediate?
+  type: decision
+  description: Cancel Appointment Activity decision
+  tags:
+  - ad06
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a12
+  name: Keep independent REFUND_PENDING / review status; cancellation remains final
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a13
+  name: Record completed full refund
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.a14
+  name: Display cancelled Appointment and independent payment/refund status
+  type: action
+  description: Cancel Appointment Activity action
+  tags:
+  - ad06
+  - activity
+  - action
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad06.mend
+  name: End-path merge
+  type: merge
+  description: Cancel Appointment Activity merge
+  tags:
+  - ad06
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad06.final
+  name: Final
+  type: final
+  description: Cancel Appointment Activity final
+  tags:
+  - ad06
+  - activity
+  - final
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad06.f01
+  type: control_flow
+  source: activity.ad06.initial
+  target: activity.ad06.a01
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f02
+  type: control_flow
+  source: activity.ad06.a01
+  target: activity.ad06.d00
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f03
+  type: control_flow
+  source: activity.ad06.d00
+  target: activity.ad06.a00
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad06.f04
+  type: control_flow
+  source: activity.ad06.a00
+  target: activity.ad06.mend
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f05
+  type: control_flow
+  source: activity.ad06.d00
+  target: activity.ad06.a02
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad06.f06
+  type: control_flow
+  source: activity.ad06.a02
+  target: activity.ad06.a03
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f07
+  type: control_flow
+  source: activity.ad06.a03
+  target: activity.ad06.d01
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f08
+  type: control_flow
+  source: activity.ad06.d01
+  target: activity.ad06.a04
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad06.f09
+  type: control_flow
+  source: activity.ad06.a04
+  target: activity.ad06.mend
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f10
+  type: control_flow
+  source: activity.ad06.d01
+  target: activity.ad06.a05
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad06.f11
+  type: control_flow
+  source: activity.ad06.a05
+  target: activity.ad06.a06
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f12
+  type: control_flow
+  source: activity.ad06.a06
+  target: activity.ad06.a07
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f13
+  type: control_flow
+  source: activity.ad06.a07
+  target: activity.ad06.a08
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f14
+  type: control_flow
+  source: activity.ad06.a08
+  target: activity.ad06.d02
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f15
+  type: control_flow
+  source: activity.ad06.d02
+  target: activity.ad06.a09
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No — PAY_AT_FACILITY / no collected electronic amount]'
+  name: '[No — PAY_AT_FACILITY / no collected electronic amount]'
+- id: relation.ad06.f16
+  type: control_flow
+  source: activity.ad06.a09
+  target: activity.ad06.a14
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f17
+  type: control_flow
+  source: activity.ad06.d02
+  target: activity.ad06.d03
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad06.f18
+  type: control_flow
+  source: activity.ad06.d03
+  target: activity.ad06.a10
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Zero refund]'
+  name: '[Zero refund]'
+- id: relation.ad06.f19
+  type: control_flow
+  source: activity.ad06.a10
+  target: activity.ad06.a14
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f20
+  type: control_flow
+  source: activity.ad06.d03
+  target: activity.ad06.a11
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Full refund]'
+  name: '[Full refund]'
+- id: relation.ad06.f21
+  type: control_flow
+  source: activity.ad06.a11
+  target: activity.ad06.d04
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f22
+  type: control_flow
+  source: activity.ad06.d04
+  target: activity.ad06.a12
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Pending / delayed]'
+  name: '[Pending / delayed]'
+- id: relation.ad06.f23
+  type: control_flow
+  source: activity.ad06.a12
+  target: activity.ad06.a14
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f24
+  type: control_flow
+  source: activity.ad06.d04
+  target: activity.ad06.a13
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Completed]'
+  name: '[Completed]'
+- id: relation.ad06.f25
+  type: control_flow
+  source: activity.ad06.a13
+  target: activity.ad06.a14
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f26
+  type: control_flow
+  source: activity.ad06.a14
+  target: activity.ad06.mend
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad06.f27
+  type: control_flow
+  source: activity.ad06.mend
+  target: activity.ad06.final
+  sourceRefs:
+  - source: ad06-cancel-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

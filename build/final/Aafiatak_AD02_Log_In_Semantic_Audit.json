@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-02",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD02_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad02-log-in.yaml",
+  "view": "views/activity/aafiatak-ad02-log-in.yaml"
+}

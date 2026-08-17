@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad05-subscribe-to-availability-alert.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad05-subscribe-to-availability-alert.png",
+      "previewHash": "c84a719a959bf678973fe517d528003044eebea5ec1be954a7cb15f83e6ebc04",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Subscribe to Availability Alert is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad05-subscribe-to-availability-alert.png",
+    "previewHash": "c84a719a959bf678973fe517d528003044eebea5ec1be954a7cb15f83e6ebc04",
+    "status": "awaiting-user-approval"
+  }
+}

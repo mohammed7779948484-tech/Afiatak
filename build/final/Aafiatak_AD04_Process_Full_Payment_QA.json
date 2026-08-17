@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad04-process-full-payment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad04-process-full-payment.png",
+      "previewHash": "a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Process Full Payment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad04-process-full-payment.png",
+    "previewHash": "a5e05aafb4c7e635e93d5c3460d922534e56fde403349573450536cf99ff0313",
+    "status": "awaiting-user-approval"
+  }
+}

@@ -1,0 +1,57 @@
+id: aafiatak-ad07-publish-availability
+diagramType: activity
+title: Activity Diagram — Publish Availability
+model: ../../model/catalog/activities/aafiatak-ad07-publish-availability.yaml
+include:
+- activity.ad07.initial
+- activity.ad07.a01
+- activity.ad07.a02
+- activity.ad07.d01
+- activity.ad07.a03
+- activity.ad07.a04
+- activity.ad07.d02
+- activity.ad07.a05
+- activity.ad07.a06
+- activity.ad07.a07
+- activity.ad07.a08
+- activity.ad07.a09
+- activity.ad07.a10
+- activity.ad07.mend
+- activity.ad07.final
+relations:
+- relation.ad07.f01
+- relation.ad07.f02
+- relation.ad07.f03
+- relation.ad07.f04
+- relation.ad07.f05
+- relation.ad07.f06
+- relation.ad07.f07
+- relation.ad07.f08
+- relation.ad07.f09
+- relation.ad07.f10
+- relation.ad07.f11
+- relation.ad07.f12
+- relation.ad07.f13
+- relation.ad07.f14
+- relation.ad07.f15
+- relation.ad07.f16
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Publish Availability is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'a1f6beae25d0eda7a7b5b1d4d90b5493c64b3fd5c274fe09381907d644eaf5ee'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Publish Availability
+  expectedActionCount: 10
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 16
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

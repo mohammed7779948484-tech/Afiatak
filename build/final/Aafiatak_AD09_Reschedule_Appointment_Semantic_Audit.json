@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-09",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD09_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad09-reschedule-appointment.yaml",
+  "view": "views/activity/aafiatak-ad09-reschedule-appointment.yaml"
+}

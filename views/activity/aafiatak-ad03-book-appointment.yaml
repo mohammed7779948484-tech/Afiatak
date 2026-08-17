@@ -1,0 +1,84 @@
+id: aafiatak-ad03-book-appointment
+diagramType: activity
+title: Activity Diagram — Book Appointment
+model: ../../model/catalog/activities/aafiatak-ad03-book-appointment.yaml
+include:
+- activity.ad03.initial
+- activity.ad03.a01
+- activity.ad03.d00
+- activity.ad03.a00
+- activity.ad03.a02
+- activity.ad03.d01
+- activity.ad03.a03
+- activity.ad03.a04
+- activity.ad03.a05
+- activity.ad03.a06
+- activity.ad03.d02
+- activity.ad03.a07
+- activity.ad03.d03
+- activity.ad03.a08
+- activity.ad03.a09
+- activity.ad03.d04
+- activity.ad03.a10
+- activity.ad03.a11
+- activity.ad03.a12
+- activity.ad03.a13
+- activity.ad03.d05
+- activity.ad03.a14
+- activity.ad03.a15
+- activity.ad03.a16
+- activity.ad03.mend
+- activity.ad03.note-idempotency
+- activity.ad03.final
+relations:
+- relation.ad03.f01
+- relation.ad03.f02
+- relation.ad03.f03
+- relation.ad03.f04
+- relation.ad03.f05
+- relation.ad03.f06
+- relation.ad03.f07
+- relation.ad03.f08
+- relation.ad03.f09
+- relation.ad03.f10
+- relation.ad03.f11
+- relation.ad03.f12
+- relation.ad03.f13
+- relation.ad03.f14
+- relation.ad03.f15
+- relation.ad03.f16
+- relation.ad03.f17
+- relation.ad03.f18
+- relation.ad03.f19
+- relation.ad03.f20
+- relation.ad03.f21
+- relation.ad03.f22
+- relation.ad03.f23
+- relation.ad03.f24
+- relation.ad03.f25
+- relation.ad03.f26
+- relation.ad03.f27
+- relation.ad03.f28
+- relation.ad03.f29
+- relation.ad03.f30
+- relation.ad03.f31
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Book Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '69d266673041d3eeca57f04a1d16a1137ffffc5c3d7da4bb0709a97bebddbbe9'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Book Appointment
+  expectedActionCount: 17
+  expectedDecisionCount: 6
+  expectedMergeCount: 1
+  expectedControlFlowCount: 31
+  approvedNoteCount: 1
+  prohibitedNodeNames: []

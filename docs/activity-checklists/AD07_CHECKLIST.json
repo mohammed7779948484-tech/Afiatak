@@ -1,0 +1,218 @@
+{
+  "id": "AD-07",
+  "title": "Activity Diagram — Publish Availability",
+  "use_case": "Publish Availability",
+  "package": "Facility Administrator Package",
+  "spec_file": "Aafiatak_AD07_Publish_Availability_FINAL_VERIFIED_v2.md",
+  "sha256": "36ddce2a8eb44540dce8c01c6ec68019f028546ae86264aa9188c840bc917acb",
+  "preconditions": [
+    "1. Facility Administrator is authenticated/authorized.",
+    "2. Target AvailabilityRelease exists.",
+    "3. Required branch/doctor/service/date/reception-period and ArrivalGroups are prepared.",
+    "4. Governing commercial/booking terms are defined."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Facility Administrator selects AvailabilityRelease for publication"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Display configured session, ArrivalGroups, capacities and governing terms"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Release lifecycle is DRAFT?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Reject invalid / duplicate publication and return current lifecycle state"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Validate required references, group windows/sequence, capacity sum and governing terms"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Publication configuration valid?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Reject publication and keep release editable in DRAFT"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Facility Administrator confirms Publish Availability"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Transition AvailabilityRelease from DRAFT to PUBLISHED"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Freeze amount / currency / booking / cancellation / no-show terms for this release"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Fix published capacity as non-increasing upper bound and record audit data"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Confirm publication; new holds depend on PUBLISHED release + OPEN/time-eligible ArrivalGroup"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin publish"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Review current configuration"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Check lifecycle"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[No]",
+      "meaning": "Only DRAFT -> PUBLISHED allowed"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "No publication"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[Yes]",
+      "meaning": "Validate complete draft"
+    },
+    {
+      "from": "A04",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Configuration decision"
+    },
+    {
+      "from": "D02",
+      "to": "A05",
+      "guard": "[Invalid / group-capacity mismatch / missing terms]",
+      "meaning": "Remain DRAFT"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End validation failure"
+    },
+    {
+      "from": "D02",
+      "to": "A06",
+      "guard": "[Valid]",
+      "meaning": "Proceed to confirmation"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Lifecycle transition"
+    },
+    {
+      "from": "A07",
+      "to": "A08",
+      "guard": "—",
+      "meaning": "Freeze governing terms"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Fix capacity upper bound and audit"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Show success"
+    },
+    {
+      "from": "A10",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Allowed publication transition is DRAFT -> PUBLISHED.",
+    "Published capacity cannot increase afterward."
+  ],
+  "explicitly_forbidden": [
+    "PUBLISHED -> PUBLISHED duplicate publish as new release.",
+    "Any +1 capacity action after publication.",
+    "Editing frozen published terms in place.",
+    "Automatic patient booking from a DRAFT release."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

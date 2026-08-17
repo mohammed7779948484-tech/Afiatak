@@ -1,0 +1,247 @@
+{
+  "id": "AD-16",
+  "title": "Activity Diagram — Suspend Facility",
+  "use_case": "Suspend Facility",
+  "package": "Platform Administrator Package",
+  "spec_file": "Aafiatak_AD16_Suspend_Facility_FINAL_VERIFIED_v2.md",
+  "sha256": "370423b6b59539f17a7539818271daf798a521afd0f883be986d9297190e321b",
+  "preconditions": [
+    "1. Platform Administrator is authenticated/authorized.",
+    "2. Target facility account exists and is eligible for suspension.",
+    "3. A suspension reason/decision has been established through approved platform process."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Platform Administrator selects facility and chooses Suspend Facility"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Display current platform status and operational impact"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Facility already suspended?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Return current suspended status without duplicate destructive effects"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Platform Administrator confirms suspension decision"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Mark facility suspended for new Aafiatak activity"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Block new ReservationHolds / bookings and new availability publication"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "ACTIVE ReservationHolds exist?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Release active temporary holds according to suspension rule and preserve audit/capacity history"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Preserve all existing CONFIRMED Appointments and historical records"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Any existing CONFIRMED Appointments require documented operational resolution?"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Require documented facility operational resolution through proper workflow; do not delete commitments"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Record platform suspension audit trail"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Confirm suspension without taking over daily facility booking / queue handling"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin suspension"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Show impact"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Idempotent current-state check"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[Yes]",
+      "meaning": "No duplicate effects"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End repeated request"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[No]",
+      "meaning": "Confirm suspension"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Suspend facility"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Block new activity"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Check active holds"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Yes]",
+      "meaning": "Release holds"
+    },
+    {
+      "from": "A07",
+      "to": "A08",
+      "guard": "—",
+      "meaning": "Preserve confirmed commitments"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[No]",
+      "meaning": "Continue preservation"
+    },
+    {
+      "from": "A08",
+      "to": "D03",
+      "guard": "—",
+      "meaning": "Check operational commitments"
+    },
+    {
+      "from": "D03",
+      "to": "A09",
+      "guard": "[Yes]",
+      "meaning": "Require facility resolution"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Audit"
+    },
+    {
+      "from": "D03",
+      "to": "A10",
+      "guard": "[No]",
+      "meaning": "Audit"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Confirm platform action"
+    },
+    {
+      "from": "A11",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Suspended facility cannot accept new holds/bookings or publish new availability.",
+    "Existing confirmed commitments/history remain auditable.",
+    "Platform audit trail is preserved."
+  ],
+  "explicitly_forbidden": [
+    "Hard-delete confirmed Appointments/history.",
+    "Platform Administrator daily queue operation.",
+    "Platform Administrator directly resolving every facility Appointment.",
+    "Leaving active holds stuck under suspension.",
+    "Duplicate suspension side effects."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

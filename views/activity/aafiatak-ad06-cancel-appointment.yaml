@@ -1,0 +1,76 @@
+id: aafiatak-ad06-cancel-appointment
+diagramType: activity
+title: Activity Diagram — Cancel Appointment
+model: ../../model/catalog/activities/aafiatak-ad06-cancel-appointment.yaml
+include:
+- activity.ad06.initial
+- activity.ad06.a01
+- activity.ad06.d00
+- activity.ad06.a00
+- activity.ad06.a02
+- activity.ad06.a03
+- activity.ad06.d01
+- activity.ad06.a04
+- activity.ad06.a05
+- activity.ad06.a06
+- activity.ad06.a07
+- activity.ad06.a08
+- activity.ad06.d02
+- activity.ad06.a09
+- activity.ad06.d03
+- activity.ad06.a10
+- activity.ad06.a11
+- activity.ad06.d04
+- activity.ad06.a12
+- activity.ad06.a13
+- activity.ad06.a14
+- activity.ad06.mend
+- activity.ad06.final
+relations:
+- relation.ad06.f01
+- relation.ad06.f02
+- relation.ad06.f03
+- relation.ad06.f04
+- relation.ad06.f05
+- relation.ad06.f06
+- relation.ad06.f07
+- relation.ad06.f08
+- relation.ad06.f09
+- relation.ad06.f10
+- relation.ad06.f11
+- relation.ad06.f12
+- relation.ad06.f13
+- relation.ad06.f14
+- relation.ad06.f15
+- relation.ad06.f16
+- relation.ad06.f17
+- relation.ad06.f18
+- relation.ad06.f19
+- relation.ad06.f20
+- relation.ad06.f21
+- relation.ad06.f22
+- relation.ad06.f23
+- relation.ad06.f24
+- relation.ad06.f25
+- relation.ad06.f26
+- relation.ad06.f27
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Cancel Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'bfc0e7eed07d573bed787fff9d25f7b5fbf463e02ef97405ef3e5ec8fe8094e3'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Cancel Appointment
+  expectedActionCount: 15
+  expectedDecisionCount: 5
+  expectedMergeCount: 1
+  expectedControlFlowCount: 27
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

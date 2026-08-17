@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-16",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD16_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad16-suspend-facility.yaml",
+  "view": "views/activity/aafiatak-ad16-suspend-facility.yaml"
+}

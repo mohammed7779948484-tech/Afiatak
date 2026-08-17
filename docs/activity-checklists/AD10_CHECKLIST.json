@@ -1,0 +1,248 @@
+{
+  "id": "AD-10",
+  "title": "Activity Diagram — Register Patient Check-in",
+  "use_case": "Register Patient Check-in",
+  "package": "Booking & Reception Staff Package",
+  "spec_file": "Aafiatak_AD10_Register_Patient_Checkin_FINAL_VERIFIED_v2.md",
+  "sha256": "1edc547eacd357807237acdaf35f6479d699220a5b93f9f65e4ba188085ebca7",
+  "preconditions": [
+    "1. Staff is authenticated/authorized.",
+    "2. Intended Appointment can be identified by booking number, phone, QR, or verification code.",
+    "3. Appointment is CONFIRMED and not cancelled.",
+    "4. Normal check-in applies only in the valid normal arrival context; late arrivals use AD-12."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Staff searches/scans Appointment identifier"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Retrieve intended Appointment and validate facility/state/arrival context"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Correct intended Appointment and state = CONFIRMED?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Reject check-in; create no valid Visit/Queue arrival state"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Arrival eligible for normal check-in?"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Route to Handle Late Arrival activity; do not auto-transfer group"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Valid check-in already exists from retry?"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Return existing VisitInstance / QueueEntry state idempotently"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Staff confirms Patient arrival"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Create VisitInstance if needed and set CHECKED_IN"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Record actual arrival time and original ArrivalGroup"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Create / activate one QueueEntry inside original ArrivalGroup"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Apply normal queue ordering by check-in time; earlier confirmed_at only as tie-breaker"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Show check-in confirmation and approximate own-group position/number ahead"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin staff check-in"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Resolve booking"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Context/state decision"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[No]",
+      "meaning": "Wrong/cancelled context"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Rejected"
+    },
+    {
+      "from": "D01",
+      "to": "D02",
+      "guard": "[Yes]",
+      "meaning": "Evaluate arrival timing"
+    },
+    {
+      "from": "D02",
+      "to": "A04",
+      "guard": "[Late / outside normal context]",
+      "meaning": "Use late-arrival workflow"
+    },
+    {
+      "from": "A04",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Normal check-in ends"
+    },
+    {
+      "from": "D02",
+      "to": "D03",
+      "guard": "[Normal arrival]",
+      "meaning": "Check duplicate retry"
+    },
+    {
+      "from": "D03",
+      "to": "A05",
+      "guard": "[Existing valid check-in]",
+      "meaning": "Idempotent return"
+    },
+    {
+      "from": "A05",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "No duplicate"
+    },
+    {
+      "from": "D03",
+      "to": "A06",
+      "guard": "[No existing check-in]",
+      "meaning": "Register arrival"
+    },
+    {
+      "from": "A06",
+      "to": "A07",
+      "guard": "—",
+      "meaning": "Visit state"
+    },
+    {
+      "from": "A07",
+      "to": "A08",
+      "guard": "—",
+      "meaning": "Arrival data"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Queue entry"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Ordering"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Patient-facing confirmation"
+    },
+    {
+      "from": "A11",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Appointment remains CONFIRMED; check-in is represented in VisitInstance.",
+    "Queue position is approximate and only within Patient own group.",
+    "Full payment grants no queue priority."
+  ],
+  "explicitly_forbidden": [
+    "Patient self-check-in.",
+    "Appointment state = CHECKED_IN.",
+    "Automatic late transfer.",
+    "Payment-based queue priority.",
+    "Exposure of other Patients private data."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

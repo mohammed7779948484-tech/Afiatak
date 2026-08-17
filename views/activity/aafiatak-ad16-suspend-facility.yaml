@@ -1,0 +1,62 @@
+id: aafiatak-ad16-suspend-facility
+diagramType: activity
+title: Activity Diagram — Suspend Facility
+model: ../../model/catalog/activities/aafiatak-ad16-suspend-facility.yaml
+include:
+- activity.ad16.initial
+- activity.ad16.a01
+- activity.ad16.a02
+- activity.ad16.d01
+- activity.ad16.a03
+- activity.ad16.a04
+- activity.ad16.a05
+- activity.ad16.a06
+- activity.ad16.d02
+- activity.ad16.a07
+- activity.ad16.a08
+- activity.ad16.d03
+- activity.ad16.a09
+- activity.ad16.a10
+- activity.ad16.a11
+- activity.ad16.mend
+- activity.ad16.final
+relations:
+- relation.ad16.f01
+- relation.ad16.f02
+- relation.ad16.f03
+- relation.ad16.f04
+- relation.ad16.f05
+- relation.ad16.f06
+- relation.ad16.f07
+- relation.ad16.f08
+- relation.ad16.f09
+- relation.ad16.f10
+- relation.ad16.f11
+- relation.ad16.f12
+- relation.ad16.f13
+- relation.ad16.f14
+- relation.ad16.f15
+- relation.ad16.f16
+- relation.ad16.f17
+- relation.ad16.f18
+- relation.ad16.f19
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Suspend Facility is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '993d00b45349a011315fdf2d72bfd6a4d26143f92ad9eb92bb65a82bcf4dbf1b'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Suspend Facility
+  expectedActionCount: 11
+  expectedDecisionCount: 3
+  expectedMergeCount: 1
+  expectedControlFlowCount: 19
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

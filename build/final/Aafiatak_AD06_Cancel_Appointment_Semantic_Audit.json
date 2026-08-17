@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-06",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD06_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad06-cancel-appointment.yaml",
+  "view": "views/activity/aafiatak-ad06-cancel-appointment.yaml"
+}

@@ -1,0 +1,377 @@
+modelId: aafiatak-ad14-call-next-patient
+version: '1.0'
+elements:
+- id: activity.ad14.initial
+  name: Initial
+  type: initial
+  description: Call Next Patient Activity initial
+  tags:
+  - ad14
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad14.a01
+  name: Doctor reviews assigned Aafiatak waiting list
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a02
+  name: System applies approved queue ordering / manual late handling context
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.d01
+  name: Callable relevant Patient exists?
+  type: decision
+  description: Call Next Patient Activity decision
+  tags:
+  - ad14
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a03
+  name: Perform no call action; refresh current waiting state
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a04
+  name: Doctor identifies / selects next relevant Patient
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a05
+  name: Doctor chooses Call Next Patient
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a06
+  name: Revalidate selected QueueEntry callable state
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.d02
+  name: Selected QueueEntry still callable?
+  type: decision
+  description: Call Next Patient Activity decision
+  tags:
+  - ad14
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a07
+  name: Reject stale call and refresh waiting state
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a08
+  name: Doctor confirms call
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a09
+  name: Record queue call and set QueueEntry = CALLED where applicable
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a10
+  name: Call / notify Patient to proceed
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.a11
+  name: Leave VisitInstance state unchanged by Doctor
+  type: action
+  description: Call Next Patient Activity action
+  tags:
+  - ad14
+  - activity
+  - action
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+- id: activity.ad14.mend
+  name: End-path merge
+  type: merge
+  description: Call Next Patient Activity merge
+  tags:
+  - ad14
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad14.final
+  name: Final
+  type: final
+  description: Call Next Patient Activity final
+  tags:
+  - ad14
+  - activity
+  - final
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad14.f01
+  type: control_flow
+  source: activity.ad14.initial
+  target: activity.ad14.a01
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f02
+  type: control_flow
+  source: activity.ad14.a01
+  target: activity.ad14.a02
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f03
+  type: control_flow
+  source: activity.ad14.a02
+  target: activity.ad14.d01
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f04
+  type: control_flow
+  source: activity.ad14.d01
+  target: activity.ad14.a03
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad14.f05
+  type: control_flow
+  source: activity.ad14.a03
+  target: activity.ad14.mend
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f06
+  type: control_flow
+  source: activity.ad14.d01
+  target: activity.ad14.a04
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad14.f07
+  type: control_flow
+  source: activity.ad14.a04
+  target: activity.ad14.a05
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f08
+  type: control_flow
+  source: activity.ad14.a05
+  target: activity.ad14.a06
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f09
+  type: control_flow
+  source: activity.ad14.a06
+  target: activity.ad14.d02
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f10
+  type: control_flow
+  source: activity.ad14.d02
+  target: activity.ad14.a07
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad14.f11
+  type: control_flow
+  source: activity.ad14.a07
+  target: activity.ad14.a01
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f12
+  type: control_flow
+  source: activity.ad14.d02
+  target: activity.ad14.a08
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad14.f13
+  type: control_flow
+  source: activity.ad14.a08
+  target: activity.ad14.a09
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f14
+  type: control_flow
+  source: activity.ad14.a09
+  target: activity.ad14.a10
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f15
+  type: control_flow
+  source: activity.ad14.a10
+  target: activity.ad14.a11
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f16
+  type: control_flow
+  source: activity.ad14.a11
+  target: activity.ad14.mend
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad14.f17
+  type: control_flow
+  source: activity.ad14.mend
+  target: activity.ad14.final
+  sourceRefs:
+  - source: ad14-call-next-patient-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

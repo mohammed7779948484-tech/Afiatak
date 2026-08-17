@@ -1,0 +1,228 @@
+{
+  "id": "AD-14",
+  "title": "Activity Diagram — Call Next Patient",
+  "use_case": "Call Next Patient",
+  "package": "Doctor Package",
+  "spec_file": "Aafiatak_AD14_Call_Next_Patient_FINAL_VERIFIED_v2.md",
+  "sha256": "a7a6858af8f81b9021237e78db232a36e717a33e773ece23abb8479f1c537b17",
+  "preconditions": [
+    "1. Doctor is authenticated through approved account linked to Doctor profile.",
+    "2. Doctor sees only assigned Aafiatak waiting context.",
+    "3. A callable QueueEntry may exist, or an accepted-late Patient may be manually selected."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Doctor reviews assigned Aafiatak waiting list"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "System applies approved queue ordering / manual late handling context"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Callable relevant Patient exists?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Perform no call action; refresh current waiting state"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Doctor identifies / selects next relevant Patient"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Doctor chooses Call Next Patient"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Revalidate selected QueueEntry callable state"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Selected QueueEntry still callable?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Reject stale call and refresh waiting state"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Doctor confirms call"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Record queue call and set QueueEntry = CALLED where applicable"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Call / notify Patient to proceed"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Leave VisitInstance state unchanged by Doctor"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin call-next"
+    },
+    {
+      "from": "A01",
+      "to": "A02",
+      "guard": "—",
+      "meaning": "Prepare waiting context"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Availability decision"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[No]",
+      "meaning": "Nothing callable"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End no-call path"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[Yes]",
+      "meaning": "Select next/manual accepted-late Patient"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Choose call"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Revalidate"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Stale-state decision"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[No]",
+      "meaning": "Reject stale selection"
+    },
+    {
+      "from": "A07",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Refresh and reconsider waiting list"
+    },
+    {
+      "from": "D02",
+      "to": "A08",
+      "guard": "[Yes]",
+      "meaning": "Confirm"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "QueueEntry call transition"
+    },
+    {
+      "from": "A09",
+      "to": "A10",
+      "guard": "—",
+      "meaning": "Patient called"
+    },
+    {
+      "from": "A10",
+      "to": "A11",
+      "guard": "—",
+      "meaning": "Enforce Doctor boundary"
+    },
+    {
+      "from": "A11",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Success ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Full payment grants no queue priority.",
+    "Doctor cannot reorder the facility complete internal queue."
+  ],
+  "explicitly_forbidden": [
+    "Doctor setting VisitInstance IN_SERVICE/COMPLETED/NOT_COMPLETED/NO_SHOW.",
+    "Payment-based priority.",
+    "Automatic numeric priority for accepted late Patient.",
+    "Calling a stale REMOVED/DONE QueueEntry."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

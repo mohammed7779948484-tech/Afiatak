@@ -1,0 +1,412 @@
+modelId: aafiatak-ad16-suspend-facility
+version: '1.0'
+elements:
+- id: activity.ad16.initial
+  name: Initial
+  type: initial
+  description: Suspend Facility Activity initial
+  tags:
+  - ad16
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad16.a01
+  name: Platform Administrator selects facility and chooses Suspend Facility
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a02
+  name: Display current platform status and operational impact
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.d01
+  name: Facility already suspended?
+  type: decision
+  description: Suspend Facility Activity decision
+  tags:
+  - ad16
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a03
+  name: Return current suspended status without duplicate destructive effects
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a04
+  name: Platform Administrator confirms suspension decision
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a05
+  name: Mark facility suspended for new Aafiatak activity
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a06
+  name: Block new ReservationHolds / bookings and new availability publication
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.d02
+  name: ACTIVE ReservationHolds exist?
+  type: decision
+  description: Suspend Facility Activity decision
+  tags:
+  - ad16
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a07
+  name: Release active temporary holds according to suspension rule and preserve audit/capacity history
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a08
+  name: Preserve all existing CONFIRMED Appointments and historical records
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.d03
+  name: Any existing CONFIRMED Appointments require documented operational resolution?
+  type: decision
+  description: Suspend Facility Activity decision
+  tags:
+  - ad16
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a09
+  name: Require documented facility operational resolution through proper workflow; do not delete commitments
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a10
+  name: Record platform suspension audit trail
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.a11
+  name: Confirm suspension without taking over daily facility booking / queue handling
+  type: action
+  description: Suspend Facility Activity action
+  tags:
+  - ad16
+  - activity
+  - action
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+- id: activity.ad16.mend
+  name: End-path merge
+  type: merge
+  description: Suspend Facility Activity merge
+  tags:
+  - ad16
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad16.final
+  name: Final
+  type: final
+  description: Suspend Facility Activity final
+  tags:
+  - ad16
+  - activity
+  - final
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad16.f01
+  type: control_flow
+  source: activity.ad16.initial
+  target: activity.ad16.a01
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f02
+  type: control_flow
+  source: activity.ad16.a01
+  target: activity.ad16.a02
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f03
+  type: control_flow
+  source: activity.ad16.a02
+  target: activity.ad16.d01
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f04
+  type: control_flow
+  source: activity.ad16.d01
+  target: activity.ad16.a03
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad16.f05
+  type: control_flow
+  source: activity.ad16.a03
+  target: activity.ad16.mend
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f06
+  type: control_flow
+  source: activity.ad16.d01
+  target: activity.ad16.a04
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad16.f07
+  type: control_flow
+  source: activity.ad16.a04
+  target: activity.ad16.a05
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f08
+  type: control_flow
+  source: activity.ad16.a05
+  target: activity.ad16.a06
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f09
+  type: control_flow
+  source: activity.ad16.a06
+  target: activity.ad16.d02
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f10
+  type: control_flow
+  source: activity.ad16.d02
+  target: activity.ad16.a07
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad16.f11
+  type: control_flow
+  source: activity.ad16.a07
+  target: activity.ad16.a08
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f12
+  type: control_flow
+  source: activity.ad16.d02
+  target: activity.ad16.a08
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad16.f13
+  type: control_flow
+  source: activity.ad16.a08
+  target: activity.ad16.d03
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f14
+  type: control_flow
+  source: activity.ad16.d03
+  target: activity.ad16.a09
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad16.f15
+  type: control_flow
+  source: activity.ad16.a09
+  target: activity.ad16.a10
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f16
+  type: control_flow
+  source: activity.ad16.d03
+  target: activity.ad16.a10
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad16.f17
+  type: control_flow
+  source: activity.ad16.a10
+  target: activity.ad16.a11
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f18
+  type: control_flow
+  source: activity.ad16.a11
+  target: activity.ad16.mend
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad16.f19
+  type: control_flow
+  source: activity.ad16.mend
+  target: activity.ad16.final
+  sourceRefs:
+  - source: ad16-suspend-facility-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

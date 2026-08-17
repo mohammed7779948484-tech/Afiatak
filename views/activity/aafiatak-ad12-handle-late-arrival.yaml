@@ -1,0 +1,61 @@
+id: aafiatak-ad12-handle-late-arrival
+diagramType: activity
+title: Activity Diagram — Handle Late Arrival
+model: ../../model/catalog/activities/aafiatak-ad12-handle-late-arrival.yaml
+include:
+- activity.ad12.initial
+- activity.ad12.a01
+- activity.ad12.d01
+- activity.ad12.a02
+- activity.ad12.a03
+- activity.ad12.d02
+- activity.ad12.a04
+- activity.ad12.a05
+- activity.ad12.a06
+- activity.ad12.a07
+- activity.ad12.a08
+- activity.ad12.a09
+- activity.ad12.a10
+- activity.ad12.a11
+- activity.ad12.mend
+- activity.ad12.final
+relations:
+- relation.ad12.f01
+- relation.ad12.f02
+- relation.ad12.f03
+- relation.ad12.f04
+- relation.ad12.f05
+- relation.ad12.f06
+- relation.ad12.f07
+- relation.ad12.f08
+- relation.ad12.f09
+- relation.ad12.f10
+- relation.ad12.f11
+- relation.ad12.f12
+- relation.ad12.f13
+- relation.ad12.f14
+- relation.ad12.f15
+- relation.ad12.f16
+- relation.ad12.f17
+- relation.ad12.f18
+- relation.ad12.f19
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Handle Late Arrival is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '7fea2d9bc4ba41f54931c56c9df719a97d4a7df7ad32a53facff1bf8b8b4a070'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Handle Late Arrival
+  expectedActionCount: 11
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 19
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

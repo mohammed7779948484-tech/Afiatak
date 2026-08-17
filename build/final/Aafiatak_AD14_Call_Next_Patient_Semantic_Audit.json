@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-14",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD14_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad14-call-next-patient.yaml",
+  "view": "views/activity/aafiatak-ad14-call-next-patient.yaml"
+}

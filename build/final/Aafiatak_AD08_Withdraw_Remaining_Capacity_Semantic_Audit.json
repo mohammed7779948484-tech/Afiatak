@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-08",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD08_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad08-withdraw-remaining-capacity.yaml",
+  "view": "views/activity/aafiatak-ad08-withdraw-remaining-capacity.yaml"
+}

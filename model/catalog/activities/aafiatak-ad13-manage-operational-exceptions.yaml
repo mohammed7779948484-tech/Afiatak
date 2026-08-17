@@ -1,0 +1,626 @@
+modelId: aafiatak-ad13-manage-operational-exceptions
+version: '1.0'
+elements:
+- id: activity.ad13.initial
+  name: Initial
+  type: initial
+  description: Manage Operational Exceptions Activity initial
+  tags:
+  - ad13
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad13.a01
+  name: Facility actor records operational event and doctor/session/release context
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a02
+  name: Create OPEN OperationalException with approved type and link affected context
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.d01
+  name: Exception type = SESSION_CANCELLED?
+  type: decision
+  description: Manage Operational Exceptions Activity decision
+  tags:
+  - ad13
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a03
+  name: Make affected session/release non-bookable and release active ReservationHolds
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a04
+  name: Preserve all confirmed Appointments and identify affected unresolved set
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a05
+  name: Present affected Appointments and relevant hold/capacity state
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a06
+  name: Select one unresolved affected Appointment
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.d02
+  name: Approved resolution path?
+  type: decision
+  description: Manage Operational Exceptions Activity decision
+  tags:
+  - ad13
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a07
+  name: Offer / secure suitable equivalent alternative after Patient communication using reschedule invariants
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a08
+  name: Cancel Appointment from facility side and preserve history
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.d03
+  name: Electronic amount collected?
+  type: decision
+  description: Manage Operational Exceptions Activity decision
+  tags:
+  - ad13
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a09
+  name: Initiate full collected-amount refund
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a10
+  name: Record facility-cancellation outcome with no electronic refund
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a11
+  name: Create documented support escalation for later Platform review
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a12
+  name: Record completed resolution action / outcome for affected Appointment
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a17
+  name: Keep OperationalException OPEN pending escalated resolution; do not close
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.d04
+  name: More affected Appointments unresolved?
+  type: decision
+  description: Manage Operational Exceptions Activity decision
+  tags:
+  - ad13
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a13
+  name: Notify affected Patients through Notification Service when required
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a14
+  name: Facility actor requests Close Operational Exception
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.d05
+  name: Every affected Appointment has a completed documented action/outcome?
+  type: decision
+  description: Manage Operational Exceptions Activity decision
+  tags:
+  - ad13
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a15
+  name: Reject closure and identify remaining resolution requirement
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.a16
+  name: Close OperationalException and preserve audit trail
+  type: action
+  description: Manage Operational Exceptions Activity action
+  tags:
+  - ad13
+  - activity
+  - action
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+- id: activity.ad13.mend
+  name: End-path merge
+  type: merge
+  description: Manage Operational Exceptions Activity merge
+  tags:
+  - ad13
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad13.final
+  name: Final
+  type: final
+  description: Manage Operational Exceptions Activity final
+  tags:
+  - ad13
+  - activity
+  - final
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad13.f01
+  type: control_flow
+  source: activity.ad13.initial
+  target: activity.ad13.a01
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f02
+  type: control_flow
+  source: activity.ad13.a01
+  target: activity.ad13.a02
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f03
+  type: control_flow
+  source: activity.ad13.a02
+  target: activity.ad13.d01
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f04
+  type: control_flow
+  source: activity.ad13.d01
+  target: activity.ad13.a03
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad13.f05
+  type: control_flow
+  source: activity.ad13.a03
+  target: activity.ad13.a04
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f06
+  type: control_flow
+  source: activity.ad13.d01
+  target: activity.ad13.a04
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad13.f07
+  type: control_flow
+  source: activity.ad13.a04
+  target: activity.ad13.a05
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f08
+  type: control_flow
+  source: activity.ad13.a05
+  target: activity.ad13.a06
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f09
+  type: control_flow
+  source: activity.ad13.a06
+  target: activity.ad13.d02
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f10
+  type: control_flow
+  source: activity.ad13.d02
+  target: activity.ad13.a07
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Equivalent alternative]'
+  name: '[Equivalent alternative]'
+- id: relation.ad13.f11
+  type: control_flow
+  source: activity.ad13.a07
+  target: activity.ad13.a12
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f12
+  type: control_flow
+  source: activity.ad13.d02
+  target: activity.ad13.a08
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Facility cancellation]'
+  name: '[Facility cancellation]'
+- id: relation.ad13.f13
+  type: control_flow
+  source: activity.ad13.a08
+  target: activity.ad13.d03
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f14
+  type: control_flow
+  source: activity.ad13.d03
+  target: activity.ad13.a09
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Paid]'
+  name: '[Paid]'
+- id: relation.ad13.f15
+  type: control_flow
+  source: activity.ad13.a09
+  target: activity.ad13.a12
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f16
+  type: control_flow
+  source: activity.ad13.d03
+  target: activity.ad13.a10
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No electronic payment]'
+  name: '[No electronic payment]'
+- id: relation.ad13.f17
+  type: control_flow
+  source: activity.ad13.a10
+  target: activity.ad13.a12
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f18
+  type: control_flow
+  source: activity.ad13.d02
+  target: activity.ad13.a11
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Escalation]'
+  name: '[Escalation]'
+- id: relation.ad13.f19
+  type: control_flow
+  source: activity.ad13.a11
+  target: activity.ad13.a17
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f20
+  type: control_flow
+  source: activity.ad13.a17
+  target: activity.ad13.mend
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f21
+  type: control_flow
+  source: activity.ad13.a12
+  target: activity.ad13.d04
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f22
+  type: control_flow
+  source: activity.ad13.d04
+  target: activity.ad13.a06
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad13.f23
+  type: control_flow
+  source: activity.ad13.d04
+  target: activity.ad13.a13
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad13.f24
+  type: control_flow
+  source: activity.ad13.a13
+  target: activity.ad13.a14
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f25
+  type: control_flow
+  source: activity.ad13.a14
+  target: activity.ad13.d05
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f26
+  type: control_flow
+  source: activity.ad13.d05
+  target: activity.ad13.a15
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad13.f27
+  type: control_flow
+  source: activity.ad13.a15
+  target: activity.ad13.a06
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f28
+  type: control_flow
+  source: activity.ad13.d05
+  target: activity.ad13.a16
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad13.f29
+  type: control_flow
+  source: activity.ad13.a16
+  target: activity.ad13.mend
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.f30
+  type: control_flow
+  source: activity.ad13.mend
+  target: activity.ad13.final
+  sourceRefs:
+  - source: ad13-manage-operational-exceptions-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

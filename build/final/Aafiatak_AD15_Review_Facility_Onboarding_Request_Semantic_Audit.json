@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-15",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD15_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad15-review-facility-onboarding-request.yaml",
+  "view": "views/activity/aafiatak-ad15-review-facility-onboarding-request.yaml"
+}

@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-04",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD04_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad04-process-full-payment.yaml",
+  "view": "views/activity/aafiatak-ad04-process-full-payment.yaml"
+}

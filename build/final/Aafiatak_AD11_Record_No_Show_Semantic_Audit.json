@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-11",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD11_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad11-record-no-show.yaml",
+  "view": "views/activity/aafiatak-ad11-record-no-show.yaml"
+}

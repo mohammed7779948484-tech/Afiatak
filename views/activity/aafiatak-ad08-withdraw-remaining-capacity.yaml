@@ -1,0 +1,58 @@
+id: aafiatak-ad08-withdraw-remaining-capacity
+diagramType: activity
+title: Activity Diagram — Withdraw Remaining Capacity
+model: ../../model/catalog/activities/aafiatak-ad08-withdraw-remaining-capacity.yaml
+include:
+- activity.ad08.initial
+- activity.ad08.a01
+- activity.ad08.a02
+- activity.ad08.a03
+- activity.ad08.d00
+- activity.ad08.a00
+- activity.ad08.a04
+- activity.ad08.d01
+- activity.ad08.a05
+- activity.ad08.a06
+- activity.ad08.a07
+- activity.ad08.a08
+- activity.ad08.a09
+- activity.ad08.mend
+- activity.ad08.final
+relations:
+- relation.ad08.f01
+- relation.ad08.f02
+- relation.ad08.f03
+- relation.ad08.f04
+- relation.ad08.f05
+- relation.ad08.f06
+- relation.ad08.f07
+- relation.ad08.f08
+- relation.ad08.f09
+- relation.ad08.f10
+- relation.ad08.f11
+- relation.ad08.f12
+- relation.ad08.f13
+- relation.ad08.f14
+- relation.ad08.f15
+- relation.ad08.f16
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Withdraw Remaining Capacity is awaiting user visual approval after semantic, notation, editable-source, and rendering
+    QA.
+  previewHash: '4f0214afa34c18ac265535f7fa3358b5ac5b61a53d6ac13ede1f20f8bbe34395'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Withdraw Remaining Capacity
+  expectedActionCount: 10
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 16
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

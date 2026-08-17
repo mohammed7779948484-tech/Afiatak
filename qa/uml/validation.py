@@ -32,7 +32,7 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
         "use_case": {"actor", "use_case"},
         "class": {"class", "note"},
         "object": {"object"},
-        "activity": {"initial", "final", "action", "decision", "fork", "join"},
+        "activity": {"initial", "final", "action", "decision", "merge", "fork", "join", "note"},
         "sequence": {"participant", "actor", "object", "component"},
         "communication": {"participant", "actor", "object", "component"},
         "state": {"initial", "final", "state"},
@@ -278,12 +278,12 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
                             subject=item,
                         )
                     )
-                if item_type == "join" and incoming_count[item] < 2:
+                if item_type in {"join", "merge"} and incoming_count[item] < 2:
                     diagnostics.append(
                         Diagnostic(
                             "Q3",
-                            "activity-join-degree",
-                            "Join requires at least two incoming flows",
+                            "activity-merge-degree" if item_type == "merge" else "activity-join-degree",
+                            "Merge requires at least two incoming flows" if item_type == "merge" else "Join requires at least two incoming flows",
                             subject=item,
                         )
                     )
@@ -296,6 +296,8 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
                         reachable.add(relation.target)
                         changed = True
             for item in set(view.include) - reachable:
+                if elements[item].type == "note":
+                    continue
                 diagnostics.append(
                     Diagnostic(
                         "Q3",

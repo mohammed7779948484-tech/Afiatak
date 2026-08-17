@@ -1,0 +1,62 @@
+id: aafiatak-ad09-reschedule-appointment
+diagramType: activity
+title: Activity Diagram — Reschedule Appointment
+model: ../../model/catalog/activities/aafiatak-ad09-reschedule-appointment.yaml
+include:
+- activity.ad09.initial
+- activity.ad09.a01
+- activity.ad09.a02
+- activity.ad09.a03
+- activity.ad09.a04
+- activity.ad09.d01
+- activity.ad09.a05
+- activity.ad09.a06
+- activity.ad09.a07
+- activity.ad09.d02
+- activity.ad09.a08
+- activity.ad09.a09
+- activity.ad09.a10
+- activity.ad09.a11
+- activity.ad09.a12
+- activity.ad09.mend
+- activity.ad09.final
+relations:
+- relation.ad09.f01
+- relation.ad09.f02
+- relation.ad09.f03
+- relation.ad09.f04
+- relation.ad09.f05
+- relation.ad09.f06
+- relation.ad09.f07
+- relation.ad09.f08
+- relation.ad09.f09
+- relation.ad09.f10
+- relation.ad09.f11
+- relation.ad09.f12
+- relation.ad09.f13
+- relation.ad09.f14
+- relation.ad09.f15
+- relation.ad09.f16
+- relation.ad09.f17
+- relation.ad09.f18
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Reschedule Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering
+    QA.
+  previewHash: 'fdbef7a7eb28719fe93bd9022938f844d61d28cb9cbb1336e9ed421ccf69bddf'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Reschedule Appointment
+  expectedActionCount: 12
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 18
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

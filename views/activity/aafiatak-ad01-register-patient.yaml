@@ -1,0 +1,63 @@
+id: aafiatak-ad01-register-patient
+diagramType: activity
+title: Activity Diagram — Register Patient
+model: ../../model/catalog/activities/aafiatak-ad01-register-patient.yaml
+include:
+  - activity.ad01.initial
+  - activity.ad01.a01
+  - activity.ad01.a02
+  - activity.ad01.d01
+  - activity.ad01.a03
+  - activity.ad01.a04
+  - activity.ad01.d02
+  - activity.ad01.a05
+  - activity.ad01.a06
+  - activity.ad01.a07
+  - activity.ad01.d03
+  - activity.ad01.a08
+  - activity.ad01.a09
+  - activity.ad01.a10
+  - activity.ad01.a11
+  - activity.ad01.a12
+  - activity.ad01.mend
+  - activity.ad01.note-idempotency
+  - activity.ad01.final
+relations:
+  - relation.ad01.f01
+  - relation.ad01.f02
+  - relation.ad01.f03
+  - relation.ad01.f04
+  - relation.ad01.f05
+  - relation.ad01.f06
+  - relation.ad01.f07
+  - relation.ad01.f08
+  - relation.ad01.f09
+  - relation.ad01.f10
+  - relation.ad01.f11
+  - relation.ad01.f12
+  - relation.ad01.f13
+  - relation.ad01.f14
+  - relation.ad01.f15
+  - relation.ad01.f16
+  - relation.ad01.f17
+  - relation.ad01.f18
+  - relation.ad01.f19
+  - relation.ad01.f20
+layoutProfile: lecturer-style-activity-portrait
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:20:00+00:00'
+  notes: Register Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Register Patient
+  expectedActionCount: 12
+  expectedDecisionCount: 3
+  expectedMergeCount: 1
+  expectedControlFlowCount: 20
+  approvedNoteCount: 1
+  prohibitedNodeNames: [UNVERIFIED Patient, Password, Forgot Password, SMS authentication]

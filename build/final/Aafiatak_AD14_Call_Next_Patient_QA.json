@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad14-call-next-patient.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad14-call-next-patient.png",
+      "previewHash": "9f1e97a42e19577c03024c171cb31aaa0044ea8926eac337f062bcee5379b5c5",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Call Next Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad14-call-next-patient.png",
+    "previewHash": "9f1e97a42e19577c03024c171cb31aaa0044ea8926eac337f062bcee5379b5c5",
+    "status": "awaiting-user-approval"
+  }
+}

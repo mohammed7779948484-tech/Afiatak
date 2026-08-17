@@ -1,0 +1,657 @@
+modelId: aafiatak-ad03-book-appointment
+version: '1.0'
+elements:
+- id: activity.ad03.initial
+  name: Initial
+  type: initial
+  description: Book Appointment Activity initial
+  tags:
+  - ad03
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad03.a01
+  name: Patient selects service / doctor context and day
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d00
+  name: Conflicting overlapping ACTIVE ReservationHold or CONFIRMED Appointment exists?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a00
+  name: Reject conflicting new booking attempt; preserve existing booking/hold
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a02
+  name: Find earliest currently bookable ArrivalGroup
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d01
+  name: Currently bookable ArrivalGroup available?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a03
+  name: Offer Notify Me When Available; create no hold
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a04
+  name: Display arrival window and governing snapshotted terms
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a05
+  name: Patient confirms intent to proceed
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a06
+  name: Atomically acquire one ACTIVE ReservationHold and start countdown
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d02
+  name: Hold acquisition succeeded?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a07
+  name: Report capacity full / temporarily held; create no Appointment
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d03
+  name: Governing booking policy?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a08
+  name: Patient completes final booking information and accepts payment due at facility
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a09
+  name: Revalidate hold, release, group and time eligibility
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d04
+  name: Hold / target still eligible?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a10
+  name: Expire or release hold; create no Appointment
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a11
+  name: Atomically consume hold and create one CONFIRMED Appointment
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a12
+  name: Display booking confirmation and payment due at facility
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a13
+  name: Run Process Full Payment activity for full snapshotted amount
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.d05
+  name: Trusted full-payment result supports confirmation while target remains eligible?
+  type: decision
+  description: Book Appointment Activity decision
+  tags:
+  - ad03
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a14
+  name: Do not create conflicting Appointment; follow payment recovery/refund/UNDER_REVIEW rules
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a15
+  name: Atomically consume hold and create one CONFIRMED Appointment with booking snapshot
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.a16
+  name: Display confirmed Appointment and paid payment state separately
+  type: action
+  description: Book Appointment Activity action
+  tags:
+  - ad03
+  - activity
+  - action
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+- id: activity.ad03.mend
+  name: End-path merge
+  type: merge
+  description: Book Appointment Activity merge
+  tags:
+  - ad03
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad03.final
+  name: Final
+  type: final
+  description: Book Appointment Activity final
+  tags:
+  - ad03
+  - activity
+  - final
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad03.note-idempotency
+  name: Retry returns the existing capacity / Appointment result; no duplicate hold or Appointment.
+  type: note
+  description: Compact source-supported idempotency note near atomic confirmation
+  tags: [ad03, activity, note]
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '9'
+relations:
+- id: relation.ad03.f01
+  type: control_flow
+  source: activity.ad03.initial
+  target: activity.ad03.a01
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f02
+  type: control_flow
+  source: activity.ad03.a01
+  target: activity.ad03.d00
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f03
+  type: control_flow
+  source: activity.ad03.d00
+  target: activity.ad03.a00
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad03.f04
+  type: control_flow
+  source: activity.ad03.a00
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f05
+  type: control_flow
+  source: activity.ad03.d00
+  target: activity.ad03.a02
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad03.f06
+  type: control_flow
+  source: activity.ad03.a02
+  target: activity.ad03.d01
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f07
+  type: control_flow
+  source: activity.ad03.d01
+  target: activity.ad03.a03
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad03.f08
+  type: control_flow
+  source: activity.ad03.a03
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f09
+  type: control_flow
+  source: activity.ad03.d01
+  target: activity.ad03.a04
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad03.f10
+  type: control_flow
+  source: activity.ad03.a04
+  target: activity.ad03.a05
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f11
+  type: control_flow
+  source: activity.ad03.a05
+  target: activity.ad03.a06
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f12
+  type: control_flow
+  source: activity.ad03.a06
+  target: activity.ad03.d02
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f13
+  type: control_flow
+  source: activity.ad03.d02
+  target: activity.ad03.a07
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Failed / concurrent winner]'
+  name: '[Failed / concurrent winner]'
+- id: relation.ad03.f14
+  type: control_flow
+  source: activity.ad03.a07
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f15
+  type: control_flow
+  source: activity.ad03.d02
+  target: activity.ad03.d03
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Succeeded]'
+  name: '[Succeeded]'
+- id: relation.ad03.f16
+  type: control_flow
+  source: activity.ad03.d03
+  target: activity.ad03.a08
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[PAY_AT_FACILITY]'
+  name: '[PAY_AT_FACILITY]'
+- id: relation.ad03.f17
+  type: control_flow
+  source: activity.ad03.a08
+  target: activity.ad03.a09
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f18
+  type: control_flow
+  source: activity.ad03.a09
+  target: activity.ad03.d04
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f19
+  type: control_flow
+  source: activity.ad03.d04
+  target: activity.ad03.a10
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Invalid / expired / started / cancelled]'
+  name: '[Invalid / expired / started / cancelled]'
+- id: relation.ad03.f20
+  type: control_flow
+  source: activity.ad03.a10
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f21
+  type: control_flow
+  source: activity.ad03.d04
+  target: activity.ad03.a11
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Valid]'
+  name: '[Valid]'
+- id: relation.ad03.f22
+  type: control_flow
+  source: activity.ad03.a11
+  target: activity.ad03.a12
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f23
+  type: control_flow
+  source: activity.ad03.a12
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f24
+  type: control_flow
+  source: activity.ad03.d03
+  target: activity.ad03.a13
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[FULL_PAYMENT_REQUIRED]'
+  name: '[FULL_PAYMENT_REQUIRED]'
+- id: relation.ad03.f25
+  type: control_flow
+  source: activity.ad03.a13
+  target: activity.ad03.d05
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f26
+  type: control_flow
+  source: activity.ad03.d05
+  target: activity.ad03.a14
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad03.f27
+  type: control_flow
+  source: activity.ad03.a14
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f28
+  type: control_flow
+  source: activity.ad03.d05
+  target: activity.ad03.a15
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad03.f29
+  type: control_flow
+  source: activity.ad03.a15
+  target: activity.ad03.a16
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f30
+  type: control_flow
+  source: activity.ad03.a16
+  target: activity.ad03.mend
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad03.f31
+  type: control_flow
+  source: activity.ad03.mend
+  target: activity.ad03.final
+  sourceRefs:
+  - source: ad03-book-appointment-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

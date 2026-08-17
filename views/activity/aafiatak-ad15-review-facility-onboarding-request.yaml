@@ -1,0 +1,56 @@
+id: aafiatak-ad15-review-facility-onboarding-request
+diagramType: activity
+title: Activity Diagram — Review Facility Onboarding Request
+model: ../../model/catalog/activities/aafiatak-ad15-review-facility-onboarding-request.yaml
+include:
+- activity.ad15.initial
+- activity.ad15.a01
+- activity.ad15.a02
+- activity.ad15.a03
+- activity.ad15.d01
+- activity.ad15.a04
+- activity.ad15.a05
+- activity.ad15.a06
+- activity.ad15.d02
+- activity.ad15.a07
+- activity.ad15.a08
+- activity.ad15.a09
+- activity.ad15.mend
+- activity.ad15.final
+relations:
+- relation.ad15.f01
+- relation.ad15.f02
+- relation.ad15.f03
+- relation.ad15.f04
+- relation.ad15.f05
+- relation.ad15.f06
+- relation.ad15.f07
+- relation.ad15.f08
+- relation.ad15.f09
+- relation.ad15.f10
+- relation.ad15.f11
+- relation.ad15.f12
+- relation.ad15.f13
+- relation.ad15.f14
+- relation.ad15.f15
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Review Facility Onboarding Request is awaiting user visual approval after semantic, notation, editable-source, and
+    rendering QA.
+  previewHash: '6aaf43643b8b3cb7c2a029a8011169c317cc24cd840d44dd94ab34c3a5df6c87'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Review Facility Onboarding Request
+  expectedActionCount: 9
+  expectedDecisionCount: 2
+  expectedMergeCount: 1
+  expectedControlFlowCount: 15
+  approvedNoteCount: 0
+  prohibitedNodeNames: []

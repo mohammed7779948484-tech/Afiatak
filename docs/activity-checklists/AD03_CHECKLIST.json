@@ -1,0 +1,367 @@
+{
+  "id": "AD-03",
+  "title": "Activity Diagram — Book Appointment",
+  "use_case": "Book Appointment",
+  "package": "Patient Package",
+  "spec_file": "Aafiatak_AD03_Book_Appointment_FINAL_VERIFIED_v2.md",
+  "sha256": "b64bb9519b5e28792d34bdcc25439448f4b34892ac0d5f1ccc2ef99eb3f5af47",
+  "preconditions": [
+    "1. Patient is authenticated.",
+    "2. Selected ServiceOffering and facility/branch context are valid/active.",
+    "3. A published AvailabilityRelease exists for the selected service/day.",
+    "4. Patient has no prohibited overlapping active hold/confirmed Appointment."
+  ],
+  "nodes": [
+    {
+      "id": "I",
+      "type": "Initial Node",
+      "label": "Start"
+    },
+    {
+      "id": "A01",
+      "type": "Action",
+      "label": "Patient selects service / doctor context and day"
+    },
+    {
+      "id": "D00",
+      "type": "Decision",
+      "label": "Conflicting overlapping ACTIVE ReservationHold or CONFIRMED Appointment exists?"
+    },
+    {
+      "id": "A00",
+      "type": "Action",
+      "label": "Reject conflicting new booking attempt; preserve existing booking/hold"
+    },
+    {
+      "id": "A02",
+      "type": "Action",
+      "label": "Find earliest currently bookable ArrivalGroup"
+    },
+    {
+      "id": "D01",
+      "type": "Decision",
+      "label": "Currently bookable ArrivalGroup available?"
+    },
+    {
+      "id": "A03",
+      "type": "Action",
+      "label": "Offer Notify Me When Available; create no hold"
+    },
+    {
+      "id": "A04",
+      "type": "Action",
+      "label": "Display arrival window and governing snapshotted terms"
+    },
+    {
+      "id": "A05",
+      "type": "Action",
+      "label": "Patient confirms intent to proceed"
+    },
+    {
+      "id": "A06",
+      "type": "Action",
+      "label": "Atomically acquire one ACTIVE ReservationHold and start countdown"
+    },
+    {
+      "id": "D02",
+      "type": "Decision",
+      "label": "Hold acquisition succeeded?"
+    },
+    {
+      "id": "A07",
+      "type": "Action",
+      "label": "Report capacity full / temporarily held; create no Appointment"
+    },
+    {
+      "id": "D03",
+      "type": "Decision",
+      "label": "Governing booking policy?"
+    },
+    {
+      "id": "A08",
+      "type": "Action",
+      "label": "Patient completes final booking information and accepts payment due at facility"
+    },
+    {
+      "id": "A09",
+      "type": "Action",
+      "label": "Revalidate hold, release, group and time eligibility"
+    },
+    {
+      "id": "D04",
+      "type": "Decision",
+      "label": "Hold / target still eligible?"
+    },
+    {
+      "id": "A10",
+      "type": "Action",
+      "label": "Expire or release hold; create no Appointment"
+    },
+    {
+      "id": "A11",
+      "type": "Action",
+      "label": "Atomically consume hold and create one CONFIRMED Appointment"
+    },
+    {
+      "id": "A12",
+      "type": "Action",
+      "label": "Display booking confirmation and payment due at facility"
+    },
+    {
+      "id": "A13",
+      "type": "Action",
+      "label": "Run Process Full Payment activity for full snapshotted amount"
+    },
+    {
+      "id": "D05",
+      "type": "Decision",
+      "label": "Trusted full-payment result supports confirmation while target remains eligible?"
+    },
+    {
+      "id": "A14",
+      "type": "Action",
+      "label": "Do not create conflicting Appointment; follow payment recovery/refund/UNDER_REVIEW rules"
+    },
+    {
+      "id": "A15",
+      "type": "Action",
+      "label": "Atomically consume hold and create one CONFIRMED Appointment with booking snapshot"
+    },
+    {
+      "id": "A16",
+      "type": "Action",
+      "label": "Display confirmed Appointment and paid payment state separately"
+    },
+    {
+      "id": "MEND",
+      "type": "Merge",
+      "label": "End-path merge"
+    },
+    {
+      "id": "F",
+      "type": "Final Node",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I",
+      "to": "A01",
+      "guard": "—",
+      "meaning": "Begin booking"
+    },
+    {
+      "from": "A01",
+      "to": "D00",
+      "guard": "—",
+      "meaning": "Check overlap boundary"
+    },
+    {
+      "from": "D00",
+      "to": "A00",
+      "guard": "[Yes]",
+      "meaning": "UCM overlapping-booking failure boundary"
+    },
+    {
+      "from": "A00",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "No conflicting booking created"
+    },
+    {
+      "from": "D00",
+      "to": "A02",
+      "guard": "[No]",
+      "meaning": "Continue capacity allocation"
+    },
+    {
+      "from": "A02",
+      "to": "D01",
+      "guard": "—",
+      "meaning": "Evaluate availability"
+    },
+    {
+      "from": "D01",
+      "to": "A03",
+      "guard": "[No]",
+      "meaning": "No capacity path"
+    },
+    {
+      "from": "A03",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "No booking created"
+    },
+    {
+      "from": "D01",
+      "to": "A04",
+      "guard": "[Yes]",
+      "meaning": "Show proposed group/terms"
+    },
+    {
+      "from": "A04",
+      "to": "A05",
+      "guard": "—",
+      "meaning": "Patient reviews/accepts"
+    },
+    {
+      "from": "A05",
+      "to": "A06",
+      "guard": "—",
+      "meaning": "Atomic last-seat protection"
+    },
+    {
+      "from": "A06",
+      "to": "D02",
+      "guard": "—",
+      "meaning": "Check hold acquisition"
+    },
+    {
+      "from": "D02",
+      "to": "A07",
+      "guard": "[Failed / concurrent winner]",
+      "meaning": "No double booking"
+    },
+    {
+      "from": "A07",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End concurrency failure"
+    },
+    {
+      "from": "D02",
+      "to": "D03",
+      "guard": "[Succeeded]",
+      "meaning": "Branch by authoritative policy"
+    },
+    {
+      "from": "D03",
+      "to": "A08",
+      "guard": "[PAY_AT_FACILITY]",
+      "meaning": "No PaymentIntent path"
+    },
+    {
+      "from": "A08",
+      "to": "A09",
+      "guard": "—",
+      "meaning": "Final revalidation"
+    },
+    {
+      "from": "A09",
+      "to": "D04",
+      "guard": "—",
+      "meaning": "Eligibility decision"
+    },
+    {
+      "from": "D04",
+      "to": "A10",
+      "guard": "[Invalid / expired / started / cancelled]",
+      "meaning": "No Appointment"
+    },
+    {
+      "from": "A10",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "End invalid-target path"
+    },
+    {
+      "from": "D04",
+      "to": "A11",
+      "guard": "[Valid]",
+      "meaning": "Confirm pay-at-facility booking"
+    },
+    {
+      "from": "A11",
+      "to": "A12",
+      "guard": "—",
+      "meaning": "Show success"
+    },
+    {
+      "from": "A12",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Pay-at-facility success ends"
+    },
+    {
+      "from": "D03",
+      "to": "A13",
+      "guard": "[FULL_PAYMENT_REQUIRED]",
+      "meaning": "Invoke payment workflow"
+    },
+    {
+      "from": "A13",
+      "to": "D05",
+      "guard": "—",
+      "meaning": "Evaluate trusted payment/booking result"
+    },
+    {
+      "from": "D05",
+      "to": "A14",
+      "guard": "[No]",
+      "meaning": "Critical-payment handling; no conflicting Appointment"
+    },
+    {
+      "from": "A14",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Payment recovery branch ends/continues outside booking"
+    },
+    {
+      "from": "D05",
+      "to": "A15",
+      "guard": "[Yes]",
+      "meaning": "Atomic confirmation"
+    },
+    {
+      "from": "A15",
+      "to": "A16",
+      "guard": "—",
+      "meaning": "Show success"
+    },
+    {
+      "from": "A16",
+      "to": "MEND",
+      "guard": "—",
+      "meaning": "Full-payment success ends"
+    },
+    {
+      "from": "MEND",
+      "to": "F",
+      "guard": "—",
+      "meaning": "Activity final"
+    }
+  ],
+  "binding_business_rules": [
+    "Patient does not choose arbitrary ArrivalGroup; system uses earliest currently bookable group.",
+    "One booking action protects/consumes one capacity unit.",
+    "PAY_AT_FACILITY creates no PaymentIntent.",
+    "FULL_PAYMENT_REQUIRED confirms only from trusted payment success while booking target remains valid.",
+    "Arrival window is not an exact doctor-entry time."
+  ],
+  "explicitly_forbidden": [
+    "Deposit/partial payment.",
+    "Manual facility approval/pending approval.",
+    "Arbitrary group selection.",
+    "Duplicate Appointment or hold on retry.",
+    "Exact unresolved ReservationHold default duration."
+  ],
+  "qa_gates": [
+    "1. Verify the exact Use Case title and scope.",
+    "2. Verify the Initial Node exists and has no incoming flow.",
+    "3. Verify the Activity Final exists and has no outgoing flow.",
+    "4. Verify every Action is source-supported and verb-led.",
+    "5. Verify every Decision has meaningful guarded outgoing flows.",
+    "6. Verify every Merge is used only to reunite alternatives, not as decoration.",
+    "7. Verify Fork/Join is absent unless true parallelism is explicitly required.",
+    "8. Verify all arrows are Control Flows unless an Object Flow is explicitly specified.",
+    "9. Verify no Association/Generalization/Aggregation/Use-Case relationship appears.",
+    "10. Verify no Sequence lifeline/message notation appears.",
+    "11. Verify actor permissions and product boundaries.",
+    "12. Verify independent lifecycle states are not collapsed into one generic status.",
+    "13. Verify all rendered branch guards are mutually understandable and not contradictory.",
+    "14. Render SVG/PNG/PDF; open every actual output and inspect it visually.",
+    "15. Compare the render against this MD item-by-item and correct semantic, notation, routing, and readability issues.",
+    "16. Final status must be `awaiting-user-approval`."
+  ],
+  "lock_status": "awaiting-user-approval"
+}

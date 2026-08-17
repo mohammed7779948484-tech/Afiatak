@@ -1,0 +1,8 @@
+{
+  "diagram": "AD-12",
+  "result": "pass",
+  "errors": [],
+  "checklist": "docs/activity-checklists/AD12_CHECKLIST.json",
+  "model": "model/catalog/activities/aafiatak-ad12-handle-late-arrival.yaml",
+  "view": "views/activity/aafiatak-ad12-handle-late-arrival.yaml"
+}

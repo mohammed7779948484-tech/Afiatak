@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad16-suspend-facility.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad16-suspend-facility.png",
+      "previewHash": "993d00b45349a011315fdf2d72bfd6a4d26143f92ad9eb92bb65a82bcf4dbf1b",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Suspend Facility is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad16-suspend-facility.png",
+    "previewHash": "993d00b45349a011315fdf2d72bfd6a4d26143f92ad9eb92bb65a82bcf4dbf1b",
+    "status": "awaiting-user-approval"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad01-register-patient.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad01-register-patient.png",
+      "previewHash": "3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:20:00+00:00",
+      "notes": "Register Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad01-register-patient.png",
+    "previewHash": "3e054991f1730678f9141135e6563cf6e78b2d8372840f02164ea988c3e4bc6e",
+    "status": "awaiting-user-approval"
+  }
+}

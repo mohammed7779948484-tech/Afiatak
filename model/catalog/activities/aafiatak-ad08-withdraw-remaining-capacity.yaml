@@ -1,0 +1,355 @@
+modelId: aafiatak-ad08-withdraw-remaining-capacity
+version: '1.0'
+elements:
+- id: activity.ad08.initial
+  name: Initial
+  type: initial
+  description: Withdraw Remaining Capacity Activity initial
+  tags:
+  - ad08
+  - activity
+  - initial
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+- id: activity.ad08.a01
+  name: Actor opens target release/group capacity
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a02
+  name: Display published, held, confirmed, withdrawn and remaining capacity
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a03
+  name: Actor selects capacity action, quantity and approved source/reason
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.d00
+  name: Requested action is an approved one-way CapacityWithdrawal?
+  type: decision
+  description: Withdraw Remaining Capacity Activity decision
+  tags:
+  - ad08
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a00
+  name: Reject restore / +1 / published-capacity increase request
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a04
+  name: Atomically revalidate current valid remaining capacity
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.d01
+  name: Requested quantity is positive and <= valid remaining capacity?
+  type: decision
+  description: Withdraw Remaining Capacity Activity decision
+  tags:
+  - ad08
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a05
+  name: Reject stale/invalid quantity; protect held and confirmed units
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a06
+  name: Create irreversible CapacityWithdrawal
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a07
+  name: Reduce Aafiatak remaining capacity without moving held/confirmed units
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a08
+  name: Record release/group, quantity, source/reason, actor and timestamp
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.a09
+  name: Display updated capacity
+  type: action
+  description: Withdraw Remaining Capacity Activity action
+  tags:
+  - ad08
+  - activity
+  - action
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+- id: activity.ad08.mend
+  name: End-path merge
+  type: merge
+  description: Withdraw Remaining Capacity Activity merge
+  tags:
+  - ad08
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad08.final
+  name: Final
+  type: final
+  description: Withdraw Remaining Capacity Activity final
+  tags:
+  - ad08
+  - activity
+  - final
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+relations:
+- id: relation.ad08.f01
+  type: control_flow
+  source: activity.ad08.initial
+  target: activity.ad08.a01
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f02
+  type: control_flow
+  source: activity.ad08.a01
+  target: activity.ad08.a02
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f03
+  type: control_flow
+  source: activity.ad08.a02
+  target: activity.ad08.a03
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f04
+  type: control_flow
+  source: activity.ad08.a03
+  target: activity.ad08.d00
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f05
+  type: control_flow
+  source: activity.ad08.d00
+  target: activity.ad08.a00
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Restore / +1 / increase]'
+  name: '[Restore / +1 / increase]'
+- id: relation.ad08.f06
+  type: control_flow
+  source: activity.ad08.a00
+  target: activity.ad08.mend
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f07
+  type: control_flow
+  source: activity.ad08.d00
+  target: activity.ad08.a04
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Approved withdrawal]'
+  name: '[Approved withdrawal]'
+- id: relation.ad08.f08
+  type: control_flow
+  source: activity.ad08.a04
+  target: activity.ad08.d01
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f09
+  type: control_flow
+  source: activity.ad08.d01
+  target: activity.ad08.a05
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[No]'
+  name: '[No]'
+- id: relation.ad08.f10
+  type: control_flow
+  source: activity.ad08.a05
+  target: activity.ad08.mend
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f11
+  type: control_flow
+  source: activity.ad08.d01
+  target: activity.ad08.a06
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    guard: '[Yes]'
+  name: '[Yes]'
+- id: relation.ad08.f12
+  type: control_flow
+  source: activity.ad08.a06
+  target: activity.ad08.a07
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f13
+  type: control_flow
+  source: activity.ad08.a07
+  target: activity.ad08.a08
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f14
+  type: control_flow
+  source: activity.ad08.a08
+  target: activity.ad08.a09
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f15
+  type: control_flow
+  source: activity.ad08.a09
+  target: activity.ad08.mend
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false
+- id: relation.ad08.f16
+  type: control_flow
+  source: activity.ad08.mend
+  target: activity.ad08.final
+  sourceRefs:
+  - source: ad08-withdraw-remaining-capacity-reviewed-spec
+    section: '8'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata:
+    visibleLabel: false

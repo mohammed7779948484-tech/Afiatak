@@ -1,0 +1,70 @@
+id: aafiatak-ad11-record-no-show
+diagramType: activity
+title: Activity Diagram — Record No-show
+model: ../../model/catalog/activities/aafiatak-ad11-record-no-show.yaml
+include:
+- activity.ad11.initial
+- activity.ad11.a01
+- activity.ad11.a02
+- activity.ad11.d01
+- activity.ad11.a03
+- activity.ad11.d02
+- activity.ad11.a04
+- activity.ad11.d03
+- activity.ad11.a05
+- activity.ad11.a06
+- activity.ad11.a07
+- activity.ad11.a08
+- activity.ad11.d04
+- activity.ad11.a09
+- activity.ad11.d05
+- activity.ad11.a10
+- activity.ad11.a11
+- activity.ad11.a12
+- activity.ad11.mend
+- activity.ad11.final
+relations:
+- relation.ad11.f01
+- relation.ad11.f02
+- relation.ad11.f03
+- relation.ad11.f04
+- relation.ad11.f05
+- relation.ad11.f06
+- relation.ad11.f07
+- relation.ad11.f08
+- relation.ad11.f09
+- relation.ad11.f10
+- relation.ad11.f11
+- relation.ad11.f12
+- relation.ad11.f13
+- relation.ad11.f14
+- relation.ad11.f15
+- relation.ad11.f16
+- relation.ad11.f17
+- relation.ad11.f18
+- relation.ad11.f19
+- relation.ad11.f20
+- relation.ad11.f21
+- relation.ad11.f22
+- relation.ad11.f23
+- relation.ad11.f24
+layoutProfile: lecturer-style-activity-portrait
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:45:00+00:00'
+  notes: Record No-show is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '448bc5e92b47889c22a56b9cf9f3074e12124ffb86b36e8067fdca2f0e743675'
+options:
+  masterSheet: A3 portrait equivalent
+  useCase: Record No-show
+  expectedActionCount: 12
+  expectedDecisionCount: 5
+  expectedMergeCount: 1
+  expectedControlFlowCount: 24
+  approvedNoteCount: 0
+  prohibitedNodeNames: []
