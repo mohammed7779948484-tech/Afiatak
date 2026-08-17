@@ -1,13 +1,4 @@
 version: 1
 types:
-  use_case: {renderer: engine.renderers.use_case, dependencies: [actor-use-case-model]}
+  use_case: {renderer: engine.svg.use_case, dependencies: [actor-use-case-model]}
   use_case_modeling: {renderer: markdown, dependencies: [actor-use-case-model]}
-  activity: {renderer: engine.renderers.activity, dependencies: [use-case-models]}
-  sequence: {renderer: engine.renderers.sequence, dependencies: [use-case-models, scenarios]}
-  communication: {renderer: engine.renderers.communication, dependencies: [use-case-models, scenarios]}
-  state: {renderer: engine.renderers.state, dependencies: [domain-model]}
-  class: {renderer: engine.renderers.class_diagram, dependencies: [domain-model]}
-  package: {renderer: engine.renderers.package, dependencies: [actor-use-case-model, domain-model]}
-  object: {renderer: engine.renderers.object_diagram, dependencies: [domain-model]}
-  component: {renderer: engine.renderers.component, dependencies: [technical-boundaries]}
-  deployment: {renderer: engine.renderers.deployment, dependencies: [technical-boundaries, component]}

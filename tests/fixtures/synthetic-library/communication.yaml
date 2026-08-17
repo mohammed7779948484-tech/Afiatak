@@ -1,7 +1,0 @@
-id: synthetic-library-communication
-title: "TEST DATA - Borrow Communication"
-diagramType: communication
-model: model.yaml
-include: [component.member_app, component.loan_service, component.catalog_db]
-relations: [relation.message.request, relation.message.lookup, relation.message.result]
-approval: draft

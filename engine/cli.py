@@ -4,14 +4,13 @@ import argparse
 import json
 import os
 import platform
-import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 from engine import __version__
 from engine.core.io import ROOT, load_model, load_view, load_yaml
-from engine.export import browser_edit_url, export_drawio, find_drawio
+from engine.export import export_svg_png, find_edge
 from engine.manifests import stale_reasons
 from engine.pipeline import build, model_path_for, qa, render
 from engine.use_case_modeling import render_markdown
@@ -69,13 +68,13 @@ def command_render(args) -> int:
 
 
 def command_preview(args) -> int:
-    drawio = render(Path(args.view).resolve())
+    svg = render(Path(args.view).resolve())
     output = (
         Path(args.output).resolve()
         if args.output
-        else ROOT / "build" / "preview" / f"{drawio.stem}.png"
+        else ROOT / "build" / "preview" / f"{svg.stem}.png"
     )
-    print(export_drawio(drawio, output, preview=True))
+    print(export_svg_png(svg, output))
     return 0
 
 
@@ -83,10 +82,7 @@ def command_qa(args) -> int:
     report, diagnostics = qa(Path(args.view).resolve())
     print(report)
     report_data = json.loads(report.read_text(encoding="utf-8"))
-    q6 = report_data["gates"]["Q6"]
-    blocked = any(" ERROR " in item for item in diagnostics) or (
-        q6["applicable"] and q6["status"] != "pass"
-    )
+    blocked = report_data["gates"]["Q4"] == "fail" or report_data["gates"]["Q5"] == "fail"
     return 1 if blocked else 0
 
 
@@ -101,16 +97,14 @@ def command_doctor(args) -> int:
         "engine": __version__,
         "python": platform.python_version(),
         "python_ok": sys.version_info >= (3, 11),
-        "drawio": vars(find_drawio()) if find_drawio() else None,
-        "graphviz_dot": shutil.which("dot"),
-        "skill_validator": (ROOT / ".agents/skills/drawio/scripts/validate.py").is_file(),
+        "svg_rasterizer": find_edge(),
         "source_files": not bool(validate_sources()),
         "root_writable": os.access(ROOT, os.W_OK),
     }
     print(json.dumps(checks, indent=2))
     required = (
         checks["python_ok"]
-        and checks["skill_validator"]
+        and bool(checks["svg_rasterizer"])
         and checks["source_files"]
         and checks["root_writable"]
     )
@@ -128,11 +122,6 @@ def command_stale(args) -> int:
     reasons = stale_reasons(manifest)
     print("STALE: " + "; ".join(reasons) if reasons else "CURRENT")
     return 1 if reasons else 0
-
-
-def command_browser_url(args) -> int:
-    print(browser_edit_url(Path(args.drawio).resolve()))
-    return 0
 
 
 def command_use_case_model(args) -> int:
@@ -179,9 +168,6 @@ def parser() -> argparse.ArgumentParser:
     stale = commands.add_parser("stale")
     stale.add_argument("manifest")
     stale.set_defaults(func=command_stale)
-    url = commands.add_parser("browser-url")
-    url.add_argument("drawio")
-    url.set_defaults(func=command_browser_url)
     use_case_model = commands.add_parser("render-use-case-model")
     use_case_model.add_argument("source")
     use_case_model.add_argument("-o", "--output")

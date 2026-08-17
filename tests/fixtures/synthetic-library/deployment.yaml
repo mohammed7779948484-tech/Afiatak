@@ -1,7 +1,0 @@
-id: synthetic-library-deployment
-title: "TEST DATA - Deployment"
-diagramType: deployment
-model: model.yaml
-include: [node.tablet, node.server]
-relations: [relation.node.network]
-approval: draft

@@ -4,11 +4,11 @@ gates:
   Q1: {name: Schema Validation, blocking: true}
   Q2: {name: Traceability Validation, blocking: true}
   Q3: {name: UML Semantic Validation, blocking: true}
-  Q4: {name: Draw.io Structural Validation, blocking: true}
-  Q5: {name: Geometry and Routing Validation, blocking: true}
-  Q6: {name: Rendered Visual QA, blocking: true, conditional_on_export_tool: true}
-  Q7: {name: Approval and Release Readiness, blocking: true}
+  Q4: {name: SVG Structural Validation, blocking: true}
+  Q5: {name: UML Bounds and Connector Validation, blocking: true}
+  Q6: {name: Rendered Visual Review State, blocking_for_approved_status: true}
+  Q7: {name: Artifact Readiness, blocking_for_approved_status: true}
 release:
   target: build/final
-  require_all_applicable_gates: true
-  require_approval: true
+  require_structural_gates: true
+  visual_status_until_user_accepts: awaiting-user-approval

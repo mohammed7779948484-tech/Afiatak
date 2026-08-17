@@ -1,14 +1,14 @@
 # Aafiatak Diagram Engineering System
 
-This repository is a compiler-style UML modeling toolchain for Aafiatak. It turns traceable semantic YAML and view specifications into deterministic, editable draw.io XML, validates the result through Q0-Q7, and releases approved artifacts with manifests.
+This repository turns traceable Aafiatak semantic YAML and a diagram view into a deterministic, human-composed SVG and a local PNG preview.
 
-It is not the Aafiatak application, a drawing-only folder, or a replacement for the authoritative product specification. `.drawio` files are generated editable artifacts, not business truth.
+It is not the Aafiatak application or a replacement for the authoritative product specification. Composition coordinates are presentation data, not business truth.
 
 ## Authority
 
 1. `Aafiatak_Project_Specification_EN.md`: product scope and rules.
 2. The UML PDF registered in `registry/sources.yaml`: lecturer/course constraints.
-3. `.agents/skills/drawio/`: draw.io mechanics and vendored tooling.
+3. `docs/use_case.md`: approved complete Use Case operation inventory.
 4. General UML knowledge: non-conflicting technical gaps only.
 
 See `docs/source-authority.md` and `governance/authority.yaml`.
@@ -43,7 +43,7 @@ python -m engine.cli doctor
 python -m engine.cli list-diagram-types
 ```
 
-`build` requires `approval: approved`, passes all applicable gates, and writes `.drawio` plus a hash manifest to `build/final/`. Preview/image export is conditional on the native draw.io desktop CLI; XML rendering and structural QA remain available without it.
+`build` writes a clean SVG, PNG, and hash manifest to `build/final/`. SVG is primary; PNG is rasterized locally from that SVG. Visual status remains `awaiting-user-approval` until accepted by the user.
 
 ## Repository Map
 
@@ -51,10 +51,10 @@ python -m engine.cli list-diagram-types
 - `registry/`: protected sources, supported diagram types, released artifacts.
 - `model/`: future canonical semantic truth and structured use-case models.
 - `views/`: diagram selections referencing semantic IDs.
-- `design/`: centralized palette, typography, geometry, routing, and profiles.
-- `engine/`: schemas, layout, draw.io XML, renderers, export, manifests, CLI.
-- `qa/`: traceability, UML, structural, geometry, and visual-review gates.
-- `tests/fixtures/`: explicitly synthetic test data only.
+- `design/use_case_theme.yaml`: the small active visual theme.
+- `engine/compositions/`: explicit diagram artboards and connector paths.
+- `engine/svg/`: the small direct-SVG renderer.
+- `qa/`: traceability, UML, and objective SVG structural checks.
 - `build/`: generated work; only approved `build/final/` output is trackable.
 
 See `docs/adding-a-diagram.md` before creating the first real view.

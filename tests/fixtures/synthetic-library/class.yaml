@@ -1,7 +1,0 @@
-id: synthetic-library-class
-title: "TEST DATA - Classes"
-diagramType: class
-model: model.yaml
-include: [class.item, class.book, class.loan]
-relations: [relation.book.item, relation.loan.book]
-approval: draft

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "aafiatak-diagram-engine"
 version = "0.1.0"
-description = "Traceable UML-to-draw.io modeling compiler"
+description = "Traceable Aafiatak UML-to-SVG workspace"
 requires-python = ">=3.11"
 dependencies = ["PyYAML>=6.0,<7", "jsonschema>=4.23,<5"]
 

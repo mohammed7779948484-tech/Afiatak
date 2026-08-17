@@ -1,6 +1,6 @@
 # Aafiatak Diagram Engineering Map
 
-This repository compiles traceable semantic UML models and view specifications into editable draw.io artifacts. It does not treat `.drawio` coordinates or styling as product truth.
+This repository compiles traceable semantic UML models and view specifications into local SVG and PNG artifacts. Composition coordinates are presentation truth only; they never define product behavior.
 
 ## Authority
 
@@ -16,15 +16,15 @@ Never invent an Aafiatak requirement. Record genuine ambiguity in `governance/de
 - Protected inputs: paths marked immutable in `registry/sources.yaml`; do not edit them.
 - Semantic truth: `model/catalog/`, `model/scenarios/`, `model/use-case-models/`.
 - Diagram selections: `views/<diagram-type>/`.
-- Visual rules: `design/` and `design/profiles/`.
+- Visual rules: the small theme under `design/` and explicit compositions under `engine/compositions/`.
 - Compiler: `engine/`; QA rules: `qa/`; generated work: `build/`.
-- Use the repository-local draw.io skill for all draw.io generation/export work.
+- Use the repository-local draw.io skill only when an optional `.drawio` artifact is requested.
 
 ## Commands
 
 - Install: `python -m pip install -e ".[dev]"`
 - Validate: `python -m engine.cli validate`
-- Render: `python -m engine.cli render <view.yaml>`
+- Render SVG: `python -m engine.cli render <view.yaml>`
 - QA: `python -m engine.cli qa <view.yaml>`
 - Build/release: `python -m engine.cli build <view.yaml>`
 - Tests: `python -m pytest`
@@ -32,18 +32,18 @@ Never invent an Aafiatak requirement. Record genuine ambiguity in `governance/de
 
 ## Done
 
-A diagram is done only when source integrity, schema, traceability, UML semantics, draw.io structure, geometry, preview review, and release gates pass. Generated `.drawio` may be manually refined, but changes must be represented back in semantic/view/layout sources before they become permanent truth.
+A diagram is done only when source integrity, schema, traceability, UML semantics, SVG structure, geometry, and actual preview review pass. Visual status remains `awaiting-user-approval` until the user accepts the artifact.
 
 ## Visual Diagram Engineering Rules
 
 - Semantic correctness and visual quality are separate requirements; structural QA passing does not imply visual quality.
-- `design/` is the single visual source of truth. Renderers must not contain arbitrary diagram-specific colors, font sizes, or geometry values.
-- Views select semantics and express high-level presentation intent; they must not become collections of manually authored edge waypoints.
-- Layout engines own node placement, routing engines own connector paths, and type-specific composition planners may be used when generic layout is insufficient.
+- `design/use_case_theme.yaml` is the active reusable visual theme for the Main Use Case Diagram.
+- Views select semantics. `engine/compositions/` may intentionally contain exact artboard coordinates and simple connector paths.
+- Prefer explicit composition over automatic layout or routing for publication-quality academic diagrams.
 - Generated diagrams must be visually inspected from an actual PNG or SVG render.
 - Manual refinement is allowed only when represented back in canonical layout or design configuration.
 - No web app, frontend, backend, server, database, diagrams.net plugin, hosted platform, or unrelated product is required.
-- The system remains a small local diagram-generation workspace producing editable `.drawio`, SVG, and PNG artifacts.
+- The system remains a small local diagram-generation workspace producing SVG and PNG artifacts; `.drawio` is secondary and optional.
 
 ## Main Use Case Diagram Execution
 
@@ -54,13 +54,13 @@ A diagram is done only when source integrity, schema, traceability, UML semantic
 - Never use any previous Aafiatak Use Case image or old diagram.
 - Never invent actors, use cases, permissions, relationships, or product behavior.
 - All Actors, including external-system actors, must be outside the System Boundary. All Use Cases must be inside it.
-- Follow the exact Main Use Cases, actor associations, `<<include>>`, and `<<extend>>` relationships defined in `docs/use case.md` (`docs/use_case.md`).
+- Preserve the complete operation inventory in `docs/use_case.md` and the canonical semantic model. The evidence-based overview/detail allocation is recorded in `governance/decisions/0004-main-use-case-overview-scope.md`.
 - `<<include>>`: base use case to mandatory included use case. `<<extend>>`: extending/conditional use case to base use case.
 - Do not use arrows to represent chronological order.
 - Do not introduce Classes, Attributes, Database entities, Components, or deferred features.
 - Every visible label must be English. Every Use Case name must begin with a verb.
-- Do not redesign or re-bootstrap the existing diagram-engineering system.
+- Do not add generic layout, routing, scoring, or visual-QA machinery.
 - Do not create test files, fixtures, regression cases, synthetic diagrams, test datasets, or test infrastructure.
 - Do not run full test suites, regression suites, coverage work, or unrelated validation.
-- Use only the smallest existing structural validation needed to ensure the `.drawio` is valid and editable.
+- Use only small structural validation needed to ensure the SVG is valid and UML bounds are correct.
 - Prioritize fast, correct, visually professional execution today.

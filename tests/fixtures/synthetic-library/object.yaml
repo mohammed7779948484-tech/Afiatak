@@ -1,7 +1,0 @@
-id: synthetic-library-object
-title: "TEST DATA - Objects"
-diagramType: object
-model: model.yaml
-include: [object.book_copy_1, object.loan_1]
-relations: [relation.object.loan_book]
-approval: draft

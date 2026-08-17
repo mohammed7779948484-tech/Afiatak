@@ -1,7 +1,0 @@
-id: synthetic-library-component
-title: "TEST DATA - Components"
-diagramType: component
-model: model.yaml
-include: [component.member_app, component.loan_service, component.catalog_db]
-relations: [relation.component.app_service, relation.component.service_db]
-approval: draft

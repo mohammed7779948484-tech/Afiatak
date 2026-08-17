@@ -1,12 +1,10 @@
 # Quality Model
 
-- Q0 Source Integrity: immutable paths and SHA-256 values match.
-- Q1 Schema Validation: YAML records and views conform to explicit JSON Schemas; IDs are unique and namespaced.
-- Q2 Traceability: elements and relations have source references; derived UML relations have rationale.
-- Q3 UML Semantics: type-specific endpoint, direction, ordering, multiplicity, state/activity, and package rules pass.
-- Q4 Draw.io Structure: XML parses; roots, IDs, containment, edges, and geometry are valid; the vendored validator passes.
-- Q5 Geometry/Routing: structural checks plus centralized warnings for crossings, route length, bends, congestion, occupancy, balance, actor proximity, labels, and size consistency.
-- Q6 Rendered Visual QA: a clean width-capped preview is actually inspected; the preview hash and exporter version identify the reviewed image but are not themselves visual approval. Release fails closed when no rendered review is available.
-- Q7 Release: the view is approved and every applicable blocking gate passes.
-
-Q6 is reported as unavailable rather than faked when draw.io is missing. Q7 may release editable XML in that environment only when the configured gate marks export-dependent visual QA conditional; image deliverables remain absent and explicitly reported.
+- Q0: protected source hashes match.
+- Q1: model and view schemas, IDs, and references are valid.
+- Q2: semantic elements and relationships remain traceable.
+- Q3: UML element types and relationship endpoints/directions are valid.
+- Q4: SVG/XML parses and represents every selected semantic element and relation exactly once.
+- Q5: actors are outside the boundary, use cases are inside, semantic nodes do not overlap, and connectors do not run through unrelated semantic nodes.
+- Q6: records `generated`, `internally-reviewed`, `awaiting-user-approval`, or `approved`. A hash identifies the inspected artifact but never certifies beauty.
+- Q7: release remains `awaiting-user-approval` until the user explicitly accepts the visual result.

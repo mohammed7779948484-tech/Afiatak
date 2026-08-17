@@ -1,25 +1,14 @@
-# Compiler Architecture
-
-The repository follows one directional pipeline:
+# Rendering Architecture
 
 ```text
 authoritative sources
-  -> authority and governance
   -> canonical semantic model
-  -> diagram view selection
-  -> deterministic/type-specific layout
-  -> type-specific UML renderer
-  -> native uncompressed draw.io XML
-  -> Q0-Q6 validation and review
-  -> Q7 approved release + manifest
+  -> Main Overview view
+  -> explicit Aafiatak composition
+  -> direct SVG
+  -> local PNG
 ```
 
-## Boundaries
+The semantic model defines what exists. The view selects the overview subset. `engine/compositions/aafiatak_main_use_case.py` is an intentional artboard containing presentation coordinates and simple connector paths. `engine/svg/use_case.py` translates that artboard into lightweight, self-contained SVG.
 
-Semantic records define what exists and why. Views select IDs and high-level presentation intent. Type-specific composition planners assign geometry, routing assigns ports and obstacle-aware connector paths, and renderers translate UML meaning into mxGraph cells. The low-level `engine/drawio/` layer owns XML mechanics and deterministic route realization only.
-
-Each visual family has a renderer module. Shared behavior lives in `BaseRenderer`; complex use-case layout uses a curated editorial planner so actors remain on semantic perimeter rails around a true system-boundary container. The generated document uses stable semantic cell IDs, explicit layers, native editable shapes, distributed ports, expanded edge geometry, and uncompressed XML.
-
-Graphviz is optional and reserved for large class/package/component graphs. The repository-local skill remains immutable and is wrapped for structural lint, edge-port assignment, export repair, and browser fallback rather than forked.
-
-Manifests record source, model, design, renderer, QA, and output hashes. `stale` compares those against current inputs.
+The Main Use Case path does not use the legacy draw.io renderer, use-case grid planner, path-search router, or visual scoring metrics. Those use-case-specific components were retired. `.drawio` is optional and is not produced by the current build.

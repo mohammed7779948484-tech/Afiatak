@@ -88,7 +88,7 @@ class ViewSpec:
     include: tuple[str, ...]
     relations: tuple[str, ...]
     layout_profile: str
-    output_targets: tuple[str, ...] = ("drawio",)
+    output_targets: tuple[str, ...] = ("svg", "png")
     approval: str = "draft"
     visual_review: dict[str, Any] | None = None
     options: dict[str, Any] = field(default_factory=dict)
@@ -103,7 +103,7 @@ class ViewSpec:
             include=tuple(value.get("include", [])),
             relations=tuple(value.get("relations", [])),
             layout_profile=value.get("layoutProfile", value["diagramType"]),
-            output_targets=tuple(value.get("outputTargets", ["drawio"])),
+            output_targets=tuple(value.get("outputTargets", ["svg", "png"])),
             approval=value.get("approval", "draft"),
             visual_review=value.get("visualReview"),
             options=dict(value.get("options", {})),

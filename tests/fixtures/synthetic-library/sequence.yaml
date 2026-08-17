@@ -1,7 +1,0 @@
-id: synthetic-library-sequence
-title: "TEST DATA - Borrow Sequence"
-diagramType: sequence
-model: model.yaml
-include: [component.member_app, component.loan_service, component.catalog_db]
-relations: [relation.message.request, relation.message.lookup, relation.message.result]
-approval: draft

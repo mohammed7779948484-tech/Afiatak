@@ -1,5 +1,0 @@
-version: 2
-design_system: aafiatak-academic-technical
-imports: [palette.yaml, typography.yaml, geometry.yaml, appearance.yaml, routing.yaml]
-principles: [high-contrast, restrained-color, grayscale-legibility, no-gradients, no-default-shadows, editable-native-shapes]
-layers: ["01 Background", "02 Containers", "03 Nodes", "04 Relationships", "05 Labels", "06 Notes", "99 QA Guides"]

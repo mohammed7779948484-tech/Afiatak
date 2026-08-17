@@ -1,9 +1,5 @@
 # Design System
 
-`design/palette.yaml`, `typography.yaml`, `geometry.yaml`, `appearance.yaml`, and `routing.yaml` are canonical visual tokens. Per-type files under `design/profiles/` select composition behavior, semantic visual roles, orientation, and notation emphasis.
+`design/use_case_theme.yaml` is the active visual source of truth for the Main Use Case Diagram. It contains only the canvas, meaningful colors, typography roles, and principal stroke widths.
 
-`DesignSystem` compiles tokens into semantic node, text, and relationship styles. Renderer code chooses presentation roles and structural UML shapes but does not carry arbitrary colors, font sizes, strokes, opacity, or layout geometry. The baseline is restrained, high-contrast, print-friendly, and mostly grayscale-legible: no default gradients, shadows, remote fonts, or decorative effects.
-
-The layer convention is `01 Background`, `02 Containers`, `03 Nodes`, `04 Relationships`, `05 Labels`, `06 Notes`, and `99 QA Guides`. QA guides are omitted from approved output unless explicitly needed and hidden.
-
-CSS is reserved for future HTML QA reports. Native draw.io shapes are styled through mxGraph properties, not browser CSS.
+Exact node and path positions belong to the composition artboard, not the theme or semantic model. The SVG uses local system fonts, no gradients, no shadows, no remote resources, and no editor metadata.

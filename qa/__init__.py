@@ -1,1 +1,1 @@
-"""Quality gates for semantic, UML, draw.io, and geometry validation."""
+"""Quality gates for source, semantic, UML, and SVG validation."""

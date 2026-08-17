@@ -1,0 +1,30 @@
+canvas: {width: 1920, height: 1080, background: "#FAFAF8"}
+colors:
+  ink: "#243142"
+  muted: "#64748B"
+  boundary: "#334E68"
+  association: "#8191A3"
+  dependency: "#315F85"
+  access: "#E8F1F8"
+  patient: "#F8EBCF"
+  facility: "#E6F1E8"
+  operations: "#F5E8DF"
+  doctor: "#E8EFF2"
+  platform: "#ECEAF4"
+  shared: "#EDF1F4"
+  helper: "#F3F5F6"
+  field: "#F4F3EF"
+typography:
+  family: "Arial, Helvetica, sans-serif"
+  page_title: 28
+  boundary_title: 18
+  section: 14
+  use_case: 15
+  actor: 14
+  stereotype: 13
+  condition: 11
+geometry:
+  boundary_stroke: 2
+  use_case_stroke: 1.5
+  association_stroke: 1.25
+  dependency_stroke: 1.6

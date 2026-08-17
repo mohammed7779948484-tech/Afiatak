@@ -7,9 +7,12 @@ precedence:
     source: lecturer-uml-rules
     governs: [course-notation, required-diagram-families, submission-structure]
   - rank: 3
-    source: local-drawio-skill
-    governs: [drawio-xml, layout, routing, validation, export]
+    source: aafiatak-main-use-case-execution
+    governs: [approved-use-case-inventory, actor-package-detail, use-case-modeling]
   - rank: 4
+    source: local-drawio-skill
+    governs: [optional-drawio-authoring-and-export]
+  - rank: 5
     source: general-engineering-knowledge
     governs: [non-conflicting-modeling-mechanics]
 conflict_policy: Higher-ranked authority wins. Open product decisions must remain unresolved.

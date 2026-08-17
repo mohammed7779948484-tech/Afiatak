@@ -1,9 +1,0 @@
-id: synthetic-library-use-case
-title: "TEST DATA - Example Library Use Cases"
-diagramType: use_case
-model: model.yaml
-include: [actor.member, actor.librarian, uc.borrow_item, uc.authenticate, uc.renew_item]
-relations: [relation.member.borrow, relation.librarian.borrow, relation.borrow.authenticate, relation.renew.borrow]
-layoutProfile: use_case
-approval: draft
-options: {systemName: Example Library System}

@@ -58,8 +58,7 @@ def create_manifest(
     qa: dict[str, Any],
     model_path: Path | None = None,
     view_path: Path | None = None,
-    requested_targets: tuple[str, ...] = ("drawio",),
-    exporter_version: str | None = None,
+    requested_targets: tuple[str, ...] = ("svg", "png"),
 ) -> dict[str, Any]:
     sources = {
         item["name"]: item for item in load_yaml(ROOT / "registry" / "sources.yaml")["sources"]
@@ -70,9 +69,6 @@ def create_manifest(
         "semanticModelHash": canonical_hash(model_data),
         "projectSpecHash": sources["aafiatak-product-specification"]["sha256"],
         "lecturerRulesHash": sources["lecturer-uml-rules"]["sha256"],
-        "drawioSkillHash": sources["local-drawio-skill"]["tree_sha256"],
-        "drawioSkillVersion": sources["local-drawio-skill"].get("version"),
-        "drawioExporterVersion": exporter_version,
         "designSystemHash": design_hash(),
         "governanceHash": governance_hash(),
         "compilerHash": compiler_hash(),
@@ -108,7 +104,6 @@ def stale_reasons(manifest: dict[str, Any]) -> list[str]:
     checks = (
         ("projectSpecHash", sources["aafiatak-product-specification"], "product specification"),
         ("lecturerRulesHash", sources["lecturer-uml-rules"], "lecturer rules"),
-        ("drawioSkillHash", sources["local-drawio-skill"], "draw.io skill"),
         ("designSystemHash", design_hash(), "design system"),
         ("governanceHash", governance_hash(), "governance"),
         ("compilerHash", compiler_hash(), "compiler code"),
