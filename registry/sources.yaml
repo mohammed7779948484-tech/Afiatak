@@ -12,6 +12,12 @@ sources:
     sha256: 0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73
     immutable: true
     authority_precedence: 2
+  - name: aafiatak-main-use-case-execution
+    path: docs/use_case.md
+    role: approved_diagram_execution
+    sha256: 7512841fdd946c1e54bf9f4a1c686e1bfd686c66c9127c715f5966fb32b2e591
+    immutable: true
+    authority_precedence: 3
   - name: local-drawio-skill
     path: .agents/skills/drawio/SKILL.md
     tree_path: .agents/skills/drawio
@@ -19,5 +25,5 @@ sources:
     role: drawio_tooling_practices
     sha256: b5b6f5cb2f53b9ea9c9d33f6b6e14b2d45c1f6d14ed54d6f0991e20b32711600
     immutable: true
-    authority_precedence: 3
+    authority_precedence: 4
     version: 2.1.0

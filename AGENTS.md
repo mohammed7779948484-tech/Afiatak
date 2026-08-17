@@ -33,3 +33,23 @@ Never invent an Aafiatak requirement. Record genuine ambiguity in `governance/de
 ## Done
 
 A diagram is done only when source integrity, schema, traceability, UML semantics, draw.io structure, geometry, preview review, and release gates pass. Generated `.drawio` may be manually refined, but changes must be represented back in semantic/view/layout sources before they become permanent truth.
+
+## Main Use Case Diagram Execution
+
+- `docs/use case.md` (stored at `docs/use_case.md`) is the approved execution specification for the Main Use Case Diagram.
+- The authoritative Aafiatak MVP/project specification at the repository root is the mandatory product-truth reference.
+- The lecturer's UML document at the repository root is the mandatory academic/UML-rule reference.
+- The local draw.io skill under `.agents/skills/` governs diagrams.net authoring, rendering, routing, and structural mechanics.
+- Never use any previous Aafiatak Use Case image or old diagram.
+- Never invent actors, use cases, permissions, relationships, or product behavior.
+- All Actors, including external-system actors, must be outside the System Boundary. All Use Cases must be inside it.
+- Follow the exact Main Use Cases, actor associations, `<<include>>`, and `<<extend>>` relationships defined in `docs/use case.md` (`docs/use_case.md`).
+- `<<include>>`: base use case to mandatory included use case. `<<extend>>`: extending/conditional use case to base use case.
+- Do not use arrows to represent chronological order.
+- Do not introduce Classes, Attributes, Database entities, Components, or deferred features.
+- Every visible label must be English. Every Use Case name must begin with a verb.
+- Do not redesign or re-bootstrap the existing diagram-engineering system.
+- Do not create test files, fixtures, regression cases, synthetic diagrams, test datasets, or test infrastructure.
+- Do not run full test suites, regression suites, coverage work, or unrelated validation.
+- Use only the smallest existing structural validation needed to ensure the `.drawio` is valid and editable.
+- Prioritize fast, correct, visually professional execution today.

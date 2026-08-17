@@ -1,0 +1,238 @@
+id: aafiatak-main-use-case
+title: Aafiatak Main Use Case Diagram
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-main-use-case.yaml
+layoutProfile: aafiatak_main_use_case
+outputTargets: [drawio, png, svg]
+approval: draft
+include:
+  - actor.visitor
+  - actor.patient
+  - actor.facility-administrator
+  - actor.booking-reception-staff
+  - actor.doctor
+  - actor.platform-administrator
+  - actor.payment-gateway
+  - actor.notification-service
+  - actor.map-service
+  - actor.whatsapp-auth-provider
+  - uc.muc-01
+  - uc.muc-02
+  - uc.muc-03
+  - uc.muc-04
+  - uc.muc-05
+  - uc.muc-06
+  - uc.muc-07
+  - uc.muc-08
+  - uc.muc-09
+  - uc.muc-10
+  - uc.muc-11
+  - uc.muc-12
+  - uc.muc-13
+  - uc.muc-14
+  - uc.muc-15
+  - uc.muc-16
+  - uc.muc-17
+  - uc.muc-18
+  - uc.muc-19
+  - uc.muc-20
+  - uc.muc-21
+  - uc.muc-22
+  - uc.muc-23
+  - uc.muc-24
+  - uc.muc-25
+  - uc.muc-26
+  - uc.muc-27
+  - uc.muc-28
+  - uc.muc-29
+  - uc.muc-30
+relations:
+  - relation.visitor-muc-01
+  - relation.visitor-muc-02
+  - relation.visitor-muc-03
+  - relation.visitor-muc-04
+  - relation.patient-muc-01
+  - relation.patient-muc-02
+  - relation.patient-muc-04
+  - relation.patient-muc-06
+  - relation.patient-muc-09
+  - relation.patient-muc-11
+  - relation.patient-muc-12
+  - relation.patient-muc-13
+  - relation.patient-muc-14
+  - relation.facility-admin-muc-04
+  - relation.facility-admin-muc-14
+  - relation.facility-admin-muc-15
+  - relation.facility-admin-muc-16
+  - relation.facility-admin-muc-17
+  - relation.facility-admin-muc-18
+  - relation.facility-admin-muc-19
+  - relation.facility-admin-muc-21
+  - relation.reception-muc-04
+  - relation.reception-muc-14
+  - relation.reception-muc-18
+  - relation.reception-muc-19
+  - relation.reception-muc-20
+  - relation.reception-muc-21
+  - relation.reception-muc-22
+  - relation.reception-muc-23
+  - relation.reception-muc-24
+  - relation.reception-muc-26
+  - relation.doctor-muc-04
+  - relation.doctor-muc-25
+  - relation.doctor-muc-26
+  - relation.platform-admin-muc-04
+  - relation.platform-admin-muc-27
+  - relation.platform-admin-muc-28
+  - relation.platform-admin-muc-29
+  - relation.platform-admin-muc-30
+  - relation.payment-gateway-muc-09
+  - relation.payment-gateway-muc-10
+  - relation.notification-service-muc-14
+  - relation.map-service-muc-02
+  - relation.whatsapp-provider-muc-05
+  - relation.inc-01
+  - relation.inc-02
+  - relation.inc-03
+  - relation.inc-04
+  - relation.inc-05
+  - relation.ext-01
+  - relation.ext-02
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  layout:
+    background: "#FBFAF7"
+    canvas: [3840, 2160]
+    title: [420, 10, 3000, 70]
+    boundary: [420, 300, 3000, 1720]
+    headings:
+      - [Access & Discovery, "#4C78A8", 80, 70, 500, 50]
+      - [Patient Booking & Payments, "#A97832", 1130, 70, 700, 50]
+      - [Facility & Reception Operations, "#7D614F", 80, 860, 800, 50]
+      - [Doctor & Platform Administration, "#6E6A8F", 2090, 860, 760, 50]
+    actors:
+      actor.visitor: [50, 420, 200, 180]
+      actor.patient: [50, 730, 200, 180]
+      actor.facility-administrator: [40, 1250, 220, 190]
+      actor.booking-reception-staff: [30, 1640, 240, 200]
+      actor.doctor: [3590, 1230, 200, 180]
+      actor.platform-administrator: [3560, 1640, 240, 200]
+      actor.payment-gateway: [3580, 400, 220, 190]
+      actor.notification-service: [3560, 760, 240, 190]
+      actor.map-service: [850, 90, 200, 170]
+      actor.whatsapp-auth-provider: [1400, 90, 240, 180]
+    useCases:
+      uc.muc-01: [80, 160, 400, 130]
+      uc.muc-02: [560, 160, 400, 130]
+      uc.muc-03: [80, 400, 400, 130]
+      uc.muc-04: [560, 400, 400, 130]
+      uc.muc-05: [560, 620, 400, 130]
+      uc.muc-11: [1130, 160, 400, 130]
+      uc.muc-07: [1610, 160, 400, 130]
+      uc.muc-06: [2090, 160, 400, 130]
+      uc.muc-09: [2570, 160, 400, 130]
+      uc.muc-08: [2090, 390, 400, 130]
+      uc.muc-10: [2570, 390, 400, 130]
+      uc.muc-12: [1130, 590, 400, 130]
+      uc.muc-13: [1610, 590, 400, 130]
+      uc.muc-14: [2090, 590, 400, 130]
+      uc.muc-15: [80, 960, 400, 130]
+      uc.muc-16: [560, 960, 400, 130]
+      uc.muc-18: [1040, 960, 400, 130]
+      uc.muc-19: [1520, 960, 400, 130]
+      uc.muc-17: [80, 1190, 400, 130]
+      uc.muc-21: [560, 1190, 400, 130]
+      uc.muc-20: [1040, 1190, 400, 130]
+      uc.muc-22: [1520, 1190, 400, 130]
+      uc.muc-23: [1040, 1420, 400, 130]
+      uc.muc-24: [1520, 1420, 400, 130]
+      uc.muc-25: [2090, 960, 400, 130]
+      uc.muc-26: [2570, 960, 400, 130]
+      uc.muc-27: [2090, 1190, 400, 130]
+      uc.muc-28: [2570, 1190, 400, 130]
+      uc.muc-29: [2090, 1420, 400, 130]
+      uc.muc-30: [2570, 1420, 400, 130]
+    familyStyles:
+      access: {fillColor: "#DCEAF7", strokeColor: "#4C78A8"}
+      booking: {fillColor: "#F5E7C6", strokeColor: "#A97832"}
+      facility: {fillColor: "#DDEBDD", strokeColor: "#5D8668"}
+      reception: {fillColor: "#F0E1D6", strokeColor: "#9A6B4F"}
+      administration: {fillColor: "#E4E3EE", strokeColor: "#6E6A8F"}
+    caseRoles:
+      uc.muc-06: booking
+      uc.muc-07: booking
+      uc.muc-08: booking
+      uc.muc-09: booking
+      uc.muc-10: booking
+      uc.muc-11: booking
+      uc.muc-12: booking
+      uc.muc-13: booking
+      uc.muc-14: booking
+      uc.muc-15: facility
+      uc.muc-16: facility
+      uc.muc-17: facility
+      uc.muc-18: reception
+      uc.muc-19: reception
+      uc.muc-20: reception
+      uc.muc-21: reception
+      uc.muc-22: reception
+      uc.muc-23: reception
+      uc.muc-24: reception
+      uc.muc-25: administration
+      uc.muc-26: administration
+      uc.muc-27: administration
+      uc.muc-28: administration
+      uc.muc-29: administration
+      uc.muc-30: administration
+    routes:
+      relation.visitor-muc-01: [[330, 510], [330, 525], [700, 525]]
+      relation.visitor-muc-02: [[330, 510], [330, 430], [1180, 430]]
+      relation.visitor-muc-03: [[330, 510], [330, 765], [700, 765]]
+      relation.visitor-muc-04: [[330, 510], [330, 650], [1180, 650]]
+      relation.patient-muc-01: [[350, 820], [350, 610], [700, 610]]
+      relation.patient-muc-02: [[350, 820], [350, 625], [1180, 625]]
+      relation.patient-muc-04: [[350, 820], [350, 640], [1180, 640]]
+      relation.patient-muc-06: [[350, 820], [350, 620], [2710, 620]]
+      relation.patient-muc-09: [[350, 820], [350, 635], [3190, 635]]
+      relation.patient-muc-11: [[350, 820], [350, 605], [1750, 605]]
+      relation.patient-muc-12: [[350, 820], [350, 1080], [1750, 1080]]
+      relation.patient-muc-13: [[350, 820], [350, 1095], [2230, 1095]]
+      relation.patient-muc-14: [[350, 820], [350, 1110], [2710, 1110]]
+      relation.facility-admin-muc-04: [[370, 1345], [370, 660], [1180, 660]]
+      relation.facility-admin-muc-14: [[370, 1345], [370, 1130], [2710, 1130]]
+      relation.facility-admin-muc-15: [[370, 1345], [370, 1325], [700, 1325]]
+      relation.facility-admin-muc-16: [[370, 1345], [370, 1220], [1180, 1220]]
+      relation.facility-admin-muc-17: [[370, 1345], [370, 1555], [700, 1555]]
+      relation.facility-admin-muc-18: [[370, 1345], [370, 1210], [1660, 1210]]
+      relation.facility-admin-muc-19: [[370, 1345], [370, 1230], [2140, 1230]]
+      relation.facility-admin-muc-21: [[370, 1345], [370, 1450], [1180, 1450]]
+      relation.reception-muc-04: [[390, 1740], [390, 675], [1180, 675]]
+      relation.reception-muc-14: [[390, 1740], [390, 1140], [2710, 1140]]
+      relation.reception-muc-18: [[390, 1740], [390, 1240], [1660, 1240]]
+      relation.reception-muc-19: [[390, 1740], [390, 1250], [2140, 1250]]
+      relation.reception-muc-20: [[390, 1740], [390, 1460], [1660, 1460]]
+      relation.reception-muc-21: [[390, 1740], [390, 1470], [1180, 1470]]
+      relation.reception-muc-22: [[390, 1740], [390, 1440], [2140, 1440]]
+      relation.reception-muc-23: [[390, 1740], [390, 1690], [1660, 1690]]
+      relation.reception-muc-24: [[390, 1740], [390, 1670], [2140, 1670]]
+      relation.reception-muc-26: [[390, 1740], [390, 1210], [3190, 1210]]
+      relation.doctor-muc-04: [[3490, 1320], [3490, 650], [1180, 650]]
+      relation.doctor-muc-25: [[3490, 1320], [3490, 1210], [2710, 1210]]
+      relation.doctor-muc-26: [[3490, 1320], [3490, 1325], [3190, 1325]]
+      relation.platform-admin-muc-04: [[3510, 1740], [3510, 630], [1180, 630]]
+      relation.platform-admin-muc-27: [[3510, 1740], [3510, 1450], [2710, 1450]]
+      relation.platform-admin-muc-28: [[3510, 1740], [3510, 1555], [3190, 1555]]
+      relation.platform-admin-muc-29: [[3510, 1740], [3510, 1680], [2710, 1680]]
+      relation.platform-admin-muc-30: [[3510, 1740], [3510, 1785], [3190, 1785]]
+      relation.payment-gateway-muc-09: [[3490, 495], [3490, 525], [3190, 525]]
+      relation.payment-gateway-muc-10: [[3490, 495], [3490, 755], [3190, 755]]
+      relation.notification-service-muc-14: [[3490, 855], [3490, 955], [2710, 955]]
+      relation.map-service-muc-02: [[950, 260], [1180, 260]]
+      relation.whatsapp-provider-muc-05: [[1520, 270], [1440, 270], [1440, 985]]
+      relation.inc-01: [[900, 765], [900, 985]]
+      relation.inc-02: [[1180, 875]]
+      relation.inc-03: [[2470, 525]]
+      relation.inc-04: [[2710, 640]]
+      relation.inc-05: [[3190, 640]]
+      relation.ext-01: [[3190, 420], [2710, 420]]
+      relation.ext-02: [[1750, 650], [2230, 650]]

@@ -1,0 +1,152 @@
+modelId: aafiatak.main-use-case
+version: "1.0"
+elements:
+  - id: actor.visitor
+    name: Visitor
+    type: actor
+    description: Unauthenticated public user.
+    sourceRefs: &actor_refs
+      - {source: aafiatak-main-use-case-execution, section: "5", line_start: 228, line_end: 265}
+      - {source: aafiatak-product-specification, section: "9", line_start: 386, line_end: 404}
+  - {id: actor.patient, name: Patient, type: actor, description: Registered patient using Aafiatak., sourceRefs: *actor_refs}
+  - {id: actor.facility-administrator, name: Facility Administrator, type: actor, description: Highest-privilege facility account user., sourceRefs: *actor_refs}
+  - {id: actor.booking-reception-staff, name: "Booking & Reception Staff", type: actor, description: Facility operational staff within approved permissions., sourceRefs: *actor_refs}
+  - {id: actor.doctor, name: Doctor, type: actor, description: Limited read-and-call facility role., sourceRefs: *actor_refs}
+  - {id: actor.platform-administrator, name: Platform Administrator, type: actor, description: Aafiatak platform administration role., sourceRefs: *actor_refs}
+  - {id: actor.payment-gateway, name: Payment Gateway, type: actor, description: External full-payment verification and refund provider., sourceRefs: *actor_refs}
+  - {id: actor.notification-service, name: Notification Service, type: actor, description: External approved system-notification delivery service., sourceRefs: *actor_refs}
+  - {id: actor.map-service, name: Map Service, type: actor, description: External map and location service., sourceRefs: *actor_refs}
+  - {id: actor.whatsapp-auth-provider, name: WhatsApp Authentication Provider, type: actor, description: Official provider used only for WhatsApp OTP authentication., sourceRefs: *actor_refs}
+
+  - id: uc.muc-01
+    name: Discover Medical Services
+    type: use_case
+    description: Discover facilities, services, doctors, specialties, and preliminary availability.
+    tags: [access-patient]
+    sourceRefs: &main_refs
+      - {source: aafiatak-main-use-case-execution, section: "7", line_start: 298, line_end: 509}
+      - {source: aafiatak-product-specification, section: "8-10", line_start: 291, line_end: 593}
+  - {id: uc.muc-02, name: View Facility Location, type: use_case, description: View the facility map location., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-03, name: Register Patient, type: use_case, description: Register a patient after phone verification., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-04, name: Log In, type: use_case, description: Authenticate a human account through passwordless WhatsApp OTP., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-05, name: Verify WhatsApp OTP, type: use_case, description: Verify the short-lived WhatsApp authentication code., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-06, name: Book Appointment, type: use_case, description: Book under the configured full-payment or pay-at-facility policy., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-07, name: Check Bookable Availability, type: use_case, description: Validate currently bookable digital capacity., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-08, name: Create Reservation Hold, type: use_case, description: Atomically protect one capacity unit temporarily., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-09, name: Process Full Payment, type: use_case, description: Process the configured full electronic payment., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-10, name: Verify Payment Result, type: use_case, description: Verify the gateway result through a trusted source., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-11, name: Subscribe to Availability Alert, type: use_case, description: Subscribe without reservation or priority when capacity is unavailable., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-12, name: Manage Patient Appointments, type: use_case, description: Manage the patient's appointment overview., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-13, name: "Track Visit & Queue", type: use_case, description: Track the patient's own visit and approximate queue status., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-14, name: Deliver Notifications, type: use_case, description: Deliver approved application and system notifications., tags: [access-patient], sourceRefs: *main_refs}
+  - {id: uc.muc-15, name: Manage Facility Configuration, type: use_case, description: Manage approved facility and booking configuration., tags: [facility-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-16, name: "Manage Schedules & Availability", type: use_case, description: Manage schedules and bounded Aafiatak availability., tags: [facility-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-17, name: Manage Facility Staff Accounts, type: use_case, description: Provision and manage approved facility roles., tags: [facility-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-18, name: Review Daily Operations, type: use_case, description: Review current Aafiatak facility operations., tags: [facility-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-19, name: Manage Operational Exceptions, type: use_case, description: Record and resolve approved operational exceptions., tags: [facility-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-20, name: Manage Facility Appointments, type: use_case, description: "Search, review, cancel, and validly reschedule appointments.", tags: [reception-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-21, name: Manage Capacity, type: use_case, description: "View, withdraw, freeze, or close capacity within approved limits.", tags: [facility-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-22, name: "Manage Patient Arrival & Queue", type: use_case, description: Register arrival and operate the lightweight Aafiatak queue., tags: [reception-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-23, name: Record Visit Outcomes, type: use_case, description: Record operational visit progress and outcomes., tags: [reception-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-24, name: Handle Late Arrival, type: use_case, description: Record and manually resolve late arrival., tags: [reception-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-25, name: "View Assigned Appointments & Queue", type: use_case, description: View the doctor's own appointments and waiting patients., tags: [doctor-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-26, name: Call Next Patient, type: use_case, description: Call the next relevant waiting patient., tags: [doctor-operations], sourceRefs: *main_refs}
+  - {id: uc.muc-27, name: Manage Facility Onboarding, type: use_case, description: Review and manage facility onboarding and activation., tags: [platform-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-28, name: "Manage Platform Reference & Staff Data", type: use_case, description: Manage public reference lists and controlled platform staff., tags: [platform-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-29, name: "Handle Support & Escalations", type: use_case, description: Handle documented support and escalated cases., tags: [platform-administration], sourceRefs: *main_refs}
+  - {id: uc.muc-30, name: Review Audit Logs, type: use_case, description: Review required audit evidence., tags: [platform-administration], sourceRefs: *main_refs}
+
+relations:
+  - id: relation.visitor-muc-01
+    type: association
+    source: actor.visitor
+    target: uc.muc-01
+    sourceRefs: &association_refs
+      - {source: aafiatak-main-use-case-execution, section: "8", line_start: 512, line_end: 529}
+      - {source: aafiatak-product-specification, section: "10", line_start: 408, line_end: 593}
+  - {id: relation.visitor-muc-02, type: association, source: actor.visitor, target: uc.muc-02, sourceRefs: *association_refs}
+  - {id: relation.visitor-muc-03, type: association, source: actor.visitor, target: uc.muc-03, sourceRefs: *association_refs}
+  - {id: relation.visitor-muc-04, type: association, source: actor.visitor, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-01, type: association, source: actor.patient, target: uc.muc-01, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-02, type: association, source: actor.patient, target: uc.muc-02, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-04, type: association, source: actor.patient, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-06, type: association, source: actor.patient, target: uc.muc-06, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-09, type: association, source: actor.patient, target: uc.muc-09, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-11, type: association, source: actor.patient, target: uc.muc-11, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-12, type: association, source: actor.patient, target: uc.muc-12, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-13, type: association, source: actor.patient, target: uc.muc-13, sourceRefs: *association_refs}
+  - {id: relation.patient-muc-14, type: association, source: actor.patient, target: uc.muc-14, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-04, type: association, source: actor.facility-administrator, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-14, type: association, source: actor.facility-administrator, target: uc.muc-14, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-15, type: association, source: actor.facility-administrator, target: uc.muc-15, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-16, type: association, source: actor.facility-administrator, target: uc.muc-16, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-17, type: association, source: actor.facility-administrator, target: uc.muc-17, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-18, type: association, source: actor.facility-administrator, target: uc.muc-18, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-19, type: association, source: actor.facility-administrator, target: uc.muc-19, sourceRefs: *association_refs}
+  - {id: relation.facility-admin-muc-21, type: association, source: actor.facility-administrator, target: uc.muc-21, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-04, type: association, source: actor.booking-reception-staff, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-14, type: association, source: actor.booking-reception-staff, target: uc.muc-14, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-18, type: association, source: actor.booking-reception-staff, target: uc.muc-18, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-19, type: association, source: actor.booking-reception-staff, target: uc.muc-19, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-20, type: association, source: actor.booking-reception-staff, target: uc.muc-20, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-21, type: association, source: actor.booking-reception-staff, target: uc.muc-21, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-22, type: association, source: actor.booking-reception-staff, target: uc.muc-22, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-23, type: association, source: actor.booking-reception-staff, target: uc.muc-23, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-24, type: association, source: actor.booking-reception-staff, target: uc.muc-24, sourceRefs: *association_refs}
+  - {id: relation.reception-muc-26, type: association, source: actor.booking-reception-staff, target: uc.muc-26, sourceRefs: *association_refs}
+  - {id: relation.doctor-muc-04, type: association, source: actor.doctor, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.doctor-muc-25, type: association, source: actor.doctor, target: uc.muc-25, sourceRefs: *association_refs}
+  - {id: relation.doctor-muc-26, type: association, source: actor.doctor, target: uc.muc-26, sourceRefs: *association_refs}
+  - {id: relation.platform-admin-muc-04, type: association, source: actor.platform-administrator, target: uc.muc-04, sourceRefs: *association_refs}
+  - {id: relation.platform-admin-muc-27, type: association, source: actor.platform-administrator, target: uc.muc-27, sourceRefs: *association_refs}
+  - {id: relation.platform-admin-muc-28, type: association, source: actor.platform-administrator, target: uc.muc-28, sourceRefs: *association_refs}
+  - {id: relation.platform-admin-muc-29, type: association, source: actor.platform-administrator, target: uc.muc-29, sourceRefs: *association_refs}
+  - {id: relation.platform-admin-muc-30, type: association, source: actor.platform-administrator, target: uc.muc-30, sourceRefs: *association_refs}
+  - {id: relation.payment-gateway-muc-09, type: association, source: actor.payment-gateway, target: uc.muc-09, sourceRefs: *association_refs}
+  - {id: relation.payment-gateway-muc-10, type: association, source: actor.payment-gateway, target: uc.muc-10, sourceRefs: *association_refs}
+  - {id: relation.notification-service-muc-14, type: association, source: actor.notification-service, target: uc.muc-14, sourceRefs: *association_refs}
+  - {id: relation.map-service-muc-02, type: association, source: actor.map-service, target: uc.muc-02, sourceRefs: *association_refs}
+  - {id: relation.whatsapp-provider-muc-05, type: association, source: actor.whatsapp-auth-provider, target: uc.muc-05, sourceRefs: *association_refs}
+
+  - id: relation.inc-01
+    type: include
+    source: uc.muc-03
+    target: uc.muc-05
+    rationale: Phone verification is mandatory for patient self-registration.
+    sourceRefs: &auth_relation_refs
+      - {source: aafiatak-main-use-case-execution, section: "9", line_start: 537, line_end: 587}
+      - {source: aafiatak-product-specification, section: "8.4", line_start: 350, line_end: 382}
+  - {id: relation.inc-02, type: include, source: uc.muc-04, target: uc.muc-05, rationale: Human-account authentication requires WhatsApp OTP verification., sourceRefs: *auth_relation_refs}
+  - id: relation.inc-03
+    type: include
+    source: uc.muc-06
+    target: uc.muc-07
+    rationale: Every booking attempt requires currently bookable capacity.
+    sourceRefs: &booking_relation_refs
+      - {source: aafiatak-main-use-case-execution, section: "9", line_start: 559, line_end: 617}
+      - {source: aafiatak-product-specification, section: "13-16", line_start: 800, line_end: 1028}
+  - {id: relation.inc-04, type: include, source: uc.muc-06, target: uc.muc-08, rationale: Every booking attempt creates an atomic ReservationHold., sourceRefs: *booking_relation_refs}
+  - id: relation.inc-05
+    type: include
+    source: uc.muc-09
+    target: uc.muc-10
+    rationale: Trusted gateway verification is mandatory for payment success.
+    sourceRefs:
+      - {source: aafiatak-main-use-case-execution, section: "9", line_start: 579, line_end: 587}
+      - {source: aafiatak-product-specification, section: "18", line_start: 1122, line_end: 1199}
+  - id: relation.ext-01
+    type: extend
+    source: uc.muc-09
+    target: uc.muc-06
+    rationale: Full electronic payment applies only to FULL_PAYMENT_REQUIRED bookings.
+    metadata: {condition: "[Booking policy = FULL_PAYMENT_REQUIRED]"}
+    sourceRefs: *booking_relation_refs
+  - id: relation.ext-02
+    type: extend
+    source: uc.muc-11
+    target: uc.muc-07
+    rationale: Availability alerts are offered only when no bookable capacity exists.
+    metadata: {condition: "[No bookable capacity available]"}
+    sourceRefs:
+      - {source: aafiatak-main-use-case-execution, section: "9", line_start: 605, line_end: 617}
+      - {source: aafiatak-product-specification, section: "15", line_start: 941, line_end: 970}
