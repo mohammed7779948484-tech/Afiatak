@@ -58,7 +58,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Record No-show is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '62744265706fa0e8b19f92fb4536df933dfa5eae97f0937b3c6701b16466b275'
+  previewHash: 'ad0623ab2c2f4b66b1af2b111c2070e63c82258b463a4718d51bd1947e7284e2'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Record No-show
@@ -68,3 +68,4 @@ options:
   expectedControlFlowCount: 24
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD11_Record_No_Show_FINAL_LECTURER_PAGE11_v3.md

@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad07-publish-availability",
+  "result": "pass",
+  "counts": {
+    "actions": 10,
+    "decisions": 2,
+    "merges": 1,
+    "controlFlows": 16,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

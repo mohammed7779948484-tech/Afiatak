@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad14-call-next-patient",
+  "result": "pass",
+  "counts": {
+    "actions": 11,
+    "decisions": 2,
+    "merges": 1,
+    "controlFlows": 17,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad08-withdraw-remaining-capacity.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad08-withdraw-remaining-capacity.png",
+      "previewHash": "1101c073801fec7b74e0b922db34b140048788ce380edaf4a885a3d6aad6fa5c",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Withdraw Remaining Capacity is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad08-withdraw-remaining-capacity.png",
+    "previewHash": "1101c073801fec7b74e0b922db34b140048788ce380edaf4a885a3d6aad6fa5c",
+    "status": "awaiting-user-approval"
+  }
+}

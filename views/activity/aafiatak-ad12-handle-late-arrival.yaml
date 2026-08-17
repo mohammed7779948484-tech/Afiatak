@@ -49,7 +49,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Handle Late Arrival is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '19065590e2b186f04e1b4cad010071510545d9cb2aebfcede24e938f6c95ba07'
+  previewHash: 'bceaf5e1a6691d0bc5b32da7a83d6f6f32b135e872f0a8a93cdeb7ffea3bb0a2'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Handle Late Arrival
@@ -59,3 +59,4 @@ options:
   expectedControlFlowCount: 19
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD12_Handle_Late_Arrival_FINAL_LECTURER_PAGE11_v3.md

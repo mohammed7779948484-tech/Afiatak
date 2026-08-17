@@ -1,8 +1,8 @@
 modelId: aafiatak-ad07-publish-availability
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad07.initial
-  name: Initial
+  name: Start
   type: initial
   description: Publish Availability Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad07.a01
   name: Facility Administrator selects AvailabilityRelease for publication
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Select AvailabilityRelease
 - id: activity.ad07.a02
   name: Display configured session, ArrivalGroups, capacities and governing terms
   type: action
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Review groups / capacity / terms
 - id: activity.ad07.d01
   name: Release lifecycle is DRAFT?
   type: decision
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Release is DRAFT?
 - id: activity.ad07.a03
   name: Reject invalid / duplicate publication and return current lifecycle state
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Reject invalid/duplicate publication
 - id: activity.ad07.a04
   name: Validate required references, group windows/sequence, capacity sum and governing terms
   type: action
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Validate publication configuration
 - id: activity.ad07.d02
   name: Publication configuration valid?
   type: decision
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Configuration valid?
 - id: activity.ad07.a05
   name: Reject publication and keep release editable in DRAFT
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Reject and keep DRAFT
 - id: activity.ad07.a06
   name: Facility Administrator confirms Publish Availability
   type: action
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Confirm publication
 - id: activity.ad07.a07
   name: Transition AvailabilityRelease from DRAFT to PUBLISHED
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Set DRAFT → PUBLISHED
 - id: activity.ad07.a08
   name: Freeze amount / currency / booking / cancellation / no-show terms for this release
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Freeze published terms
 - id: activity.ad07.a09
   name: Fix published capacity as non-increasing upper bound and record audit data
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Fix non-increasing capacity & audit
 - id: activity.ad07.a10
   name: Confirm publication; new holds depend on PUBLISHED release + OPEN/time-eligible ArrivalGroup
   type: action
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad07-publish-availability-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Confirm publication
 - id: activity.ad07.mend
   name: End-path merge
   type: merge
@@ -160,7 +185,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad07.final
-  name: Final
+  name: End
   type: final
   description: Publish Availability Activity final
   tags:
@@ -172,16 +197,15 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 relations:
 - id: relation.ad07.f01
   type: control_flow
   source: activity.ad07.initial
   target: activity.ad07.a01
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f02
@@ -189,10 +213,8 @@ relations:
   source: activity.ad07.a01
   target: activity.ad07.a02
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f03
@@ -200,10 +222,8 @@ relations:
   source: activity.ad07.a02
   target: activity.ad07.d01
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f04
@@ -211,11 +231,10 @@ relations:
   source: activity.ad07.d01
   target: activity.ad07.a03
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad07.f05
@@ -223,10 +242,8 @@ relations:
   source: activity.ad07.a03
   target: activity.ad07.mend
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f06
@@ -234,11 +251,10 @@ relations:
   source: activity.ad07.d01
   target: activity.ad07.a04
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad07.f07
@@ -246,10 +262,8 @@ relations:
   source: activity.ad07.a04
   target: activity.ad07.d02
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f08
@@ -257,11 +271,10 @@ relations:
   source: activity.ad07.d02
   target: activity.ad07.a05
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Invalid / group-capacity mismatch / missing terms]'
   name: '[Invalid / group-capacity mismatch / missing terms]'
 - id: relation.ad07.f09
@@ -269,10 +282,8 @@ relations:
   source: activity.ad07.a05
   target: activity.ad07.mend
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f10
@@ -280,11 +291,10 @@ relations:
   source: activity.ad07.d02
   target: activity.ad07.a06
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Valid]'
   name: '[Valid]'
 - id: relation.ad07.f11
@@ -292,10 +302,8 @@ relations:
   source: activity.ad07.a06
   target: activity.ad07.a07
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f12
@@ -303,10 +311,8 @@ relations:
   source: activity.ad07.a07
   target: activity.ad07.a08
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f13
@@ -314,10 +320,8 @@ relations:
   source: activity.ad07.a08
   target: activity.ad07.a09
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f14
@@ -325,10 +329,8 @@ relations:
   source: activity.ad07.a09
   target: activity.ad07.a10
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f15
@@ -336,10 +338,8 @@ relations:
   source: activity.ad07.a10
   target: activity.ad07.mend
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad07.f16
@@ -347,9 +347,7 @@ relations:
   source: activity.ad07.mend
   target: activity.ad07.final
   sourceRefs:
-  - source: ad07-publish-availability-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false

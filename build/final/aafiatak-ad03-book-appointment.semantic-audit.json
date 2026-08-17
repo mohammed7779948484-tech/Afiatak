@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad03-book-appointment",
+  "result": "pass",
+  "counts": {
+    "actions": 17,
+    "decisions": 6,
+    "merges": 1,
+    "controlFlows": 31,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

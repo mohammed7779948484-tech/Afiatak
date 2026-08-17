@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad06-cancel-appointment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad06-cancel-appointment.png",
+      "previewHash": "890aea0e7d03c15d42566ac46aca3ac6a168bc6b3ad1b0ac8f6d1cbafd690783",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Cancel Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad06-cancel-appointment.png",
+    "previewHash": "890aea0e7d03c15d42566ac46aca3ac6a168bc6b3ad1b0ac8f6d1cbafd690783",
+    "status": "awaiting-user-approval"
+  }
+}

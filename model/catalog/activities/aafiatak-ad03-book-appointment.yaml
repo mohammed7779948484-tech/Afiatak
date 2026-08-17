@@ -1,8 +1,8 @@
 modelId: aafiatak-ad03-book-appointment
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad03.initial
-  name: Initial
+  name: Start
   type: initial
   description: Book Appointment Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad03.a01
   name: Patient selects service / doctor context and day
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Select service / doctor / day
 - id: activity.ad03.d00
   name: Conflicting overlapping ACTIVE ReservationHold or CONFIRMED Appointment exists?
   type: decision
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Overlapping booking or hold?
 - id: activity.ad03.a00
   name: Reject conflicting new booking attempt; preserve existing booking/hold
   type: action
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Reject conflicting booking
 - id: activity.ad03.a02
   name: Find earliest currently bookable ArrivalGroup
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Find earliest bookable ArrivalGroup
 - id: activity.ad03.d01
   name: Currently bookable ArrivalGroup available?
   type: decision
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Bookable group available?
 - id: activity.ad03.a03
   name: Offer Notify Me When Available; create no hold
   type: action
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Offer Notify Me; no hold
 - id: activity.ad03.a04
   name: Display arrival window and governing snapshotted terms
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show arrival window & saved terms
 - id: activity.ad03.a05
   name: Patient confirms intent to proceed
   type: action
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Confirm booking intent
 - id: activity.ad03.a06
   name: Atomically acquire one ACTIVE ReservationHold and start countdown
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Acquire ACTIVE ReservationHold
 - id: activity.ad03.d02
   name: Hold acquisition succeeded?
   type: decision
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Hold acquired?
 - id: activity.ad03.a07
   name: Report capacity full / temporarily held; create no Appointment
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Report capacity unavailable
 - id: activity.ad03.d03
   name: Governing booking policy?
   type: decision
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Booking policy?
 - id: activity.ad03.a08
   name: Patient completes final booking information and accepts payment due at facility
   type: action
@@ -157,6 +182,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Complete pay-at-facility booking
 - id: activity.ad03.a09
   name: Revalidate hold, release, group and time eligibility
   type: action
@@ -168,6 +195,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Revalidate hold / group / time
 - id: activity.ad03.d04
   name: Hold / target still eligible?
   type: decision
@@ -179,6 +208,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Target still eligible?
 - id: activity.ad03.a10
   name: Expire or release hold; create no Appointment
   type: action
@@ -190,6 +221,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Release/expire hold; no Appointment
 - id: activity.ad03.a11
   name: Atomically consume hold and create one CONFIRMED Appointment
   type: action
@@ -201,6 +234,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Consume hold + create CONFIRMED Appointment
 - id: activity.ad03.a12
   name: Display booking confirmation and payment due at facility
   type: action
@@ -212,6 +247,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show confirmation — due at facility
 - id: activity.ad03.a13
   name: Run Process Full Payment activity for full snapshotted amount
   type: action
@@ -223,6 +260,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Process full payment
 - id: activity.ad03.d05
   name: Trusted full-payment result supports confirmation while target remains eligible?
   type: decision
@@ -234,6 +273,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Trusted payment permits confirmation?
 - id: activity.ad03.a14
   name: Do not create conflicting Appointment; follow payment recovery/refund/UNDER_REVIEW rules
   type: action
@@ -245,6 +286,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Run payment recovery / refund / review
 - id: activity.ad03.a15
   name: Atomically consume hold and create one CONFIRMED Appointment with booking snapshot
   type: action
@@ -256,6 +299,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Consume hold + create CONFIRMED Appointment
 - id: activity.ad03.a16
   name: Display confirmed Appointment and paid payment state separately
   type: action
@@ -267,6 +312,8 @@ elements:
   sourceRefs:
   - source: ad03-book-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show confirmed paid booking
 - id: activity.ad03.mend
   name: End-path merge
   type: merge
@@ -281,7 +328,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad03.final
-  name: Final
+  name: End
   type: final
   description: Book Appointment Activity final
   tags:
@@ -293,24 +340,15 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
-- id: activity.ad03.note-idempotency
-  name: Retry returns the existing capacity / Appointment result; no duplicate hold or Appointment.
-  type: note
-  description: Compact source-supported idempotency note near atomic confirmation
-  tags: [ad03, activity, note]
-  sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '9'
+  metadata: {}
 relations:
 - id: relation.ad03.f01
   type: control_flow
   source: activity.ad03.initial
   target: activity.ad03.a01
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f02
@@ -318,10 +356,8 @@ relations:
   source: activity.ad03.a01
   target: activity.ad03.d00
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f03
@@ -329,11 +365,10 @@ relations:
   source: activity.ad03.d00
   target: activity.ad03.a00
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad03.f04
@@ -341,10 +376,8 @@ relations:
   source: activity.ad03.a00
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f05
@@ -352,11 +385,10 @@ relations:
   source: activity.ad03.d00
   target: activity.ad03.a02
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad03.f06
@@ -364,10 +396,8 @@ relations:
   source: activity.ad03.a02
   target: activity.ad03.d01
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f07
@@ -375,11 +405,10 @@ relations:
   source: activity.ad03.d01
   target: activity.ad03.a03
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad03.f08
@@ -387,10 +416,8 @@ relations:
   source: activity.ad03.a03
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f09
@@ -398,11 +425,10 @@ relations:
   source: activity.ad03.d01
   target: activity.ad03.a04
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad03.f10
@@ -410,10 +436,8 @@ relations:
   source: activity.ad03.a04
   target: activity.ad03.a05
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f11
@@ -421,10 +445,8 @@ relations:
   source: activity.ad03.a05
   target: activity.ad03.a06
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f12
@@ -432,10 +454,8 @@ relations:
   source: activity.ad03.a06
   target: activity.ad03.d02
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f13
@@ -443,11 +463,10 @@ relations:
   source: activity.ad03.d02
   target: activity.ad03.a07
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Failed / concurrent winner]'
   name: '[Failed / concurrent winner]'
 - id: relation.ad03.f14
@@ -455,10 +474,8 @@ relations:
   source: activity.ad03.a07
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f15
@@ -466,11 +483,10 @@ relations:
   source: activity.ad03.d02
   target: activity.ad03.d03
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Succeeded]'
   name: '[Succeeded]'
 - id: relation.ad03.f16
@@ -478,11 +494,10 @@ relations:
   source: activity.ad03.d03
   target: activity.ad03.a08
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[PAY_AT_FACILITY]'
   name: '[PAY_AT_FACILITY]'
 - id: relation.ad03.f17
@@ -490,10 +505,8 @@ relations:
   source: activity.ad03.a08
   target: activity.ad03.a09
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f18
@@ -501,10 +514,8 @@ relations:
   source: activity.ad03.a09
   target: activity.ad03.d04
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f19
@@ -512,11 +523,10 @@ relations:
   source: activity.ad03.d04
   target: activity.ad03.a10
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Invalid / expired / started / cancelled]'
   name: '[Invalid / expired / started / cancelled]'
 - id: relation.ad03.f20
@@ -524,10 +534,8 @@ relations:
   source: activity.ad03.a10
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f21
@@ -535,11 +543,10 @@ relations:
   source: activity.ad03.d04
   target: activity.ad03.a11
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Valid]'
   name: '[Valid]'
 - id: relation.ad03.f22
@@ -547,10 +554,8 @@ relations:
   source: activity.ad03.a11
   target: activity.ad03.a12
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f23
@@ -558,10 +563,8 @@ relations:
   source: activity.ad03.a12
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f24
@@ -569,11 +572,10 @@ relations:
   source: activity.ad03.d03
   target: activity.ad03.a13
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[FULL_PAYMENT_REQUIRED]'
   name: '[FULL_PAYMENT_REQUIRED]'
 - id: relation.ad03.f25
@@ -581,10 +583,8 @@ relations:
   source: activity.ad03.a13
   target: activity.ad03.d05
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f26
@@ -592,11 +592,10 @@ relations:
   source: activity.ad03.d05
   target: activity.ad03.a14
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad03.f27
@@ -604,10 +603,8 @@ relations:
   source: activity.ad03.a14
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f28
@@ -615,11 +612,10 @@ relations:
   source: activity.ad03.d05
   target: activity.ad03.a15
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad03.f29
@@ -627,10 +623,8 @@ relations:
   source: activity.ad03.a15
   target: activity.ad03.a16
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f30
@@ -638,10 +632,8 @@ relations:
   source: activity.ad03.a16
   target: activity.ad03.mend
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad03.f31
@@ -649,9 +641,7 @@ relations:
   source: activity.ad03.mend
   target: activity.ad03.final
   sourceRefs:
-  - source: ad03-book-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false

@@ -45,7 +45,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Publish Availability is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'b730af70f3990a705494e9948079a41196be7c6ca05f732f5ed134ba2c127299'
+  previewHash: '4ca2cc6b0f01a4d827b52bf2ce63e177890f086ce3dc4a0bfad6ca84075929d1'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Publish Availability
@@ -55,3 +55,4 @@ options:
   expectedControlFlowCount: 16
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD07_Publish_Availability_FINAL_LECTURER_PAGE11_v3.md

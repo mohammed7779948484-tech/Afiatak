@@ -26,9 +26,9 @@ include:
 - activity.ad04.a14
 - activity.ad04.a15
 - activity.ad04.mend
-- activity.ad04.note-idempotency
-- activity.ad04.note-receipt
 - activity.ad04.final
+- activity.ad04.o01
+- activity.ad04.note-receipt
 relations:
 - relation.ad04.f01
 - relation.ad04.f02
@@ -58,7 +58,8 @@ relations:
 - relation.ad04.f26
 - relation.ad04.f27
 - relation.ad04.f28
-- relation.ad04.f29
+- relation.ad04.object29
+- relation.ad04.object30
 layoutProfile: lecturer-style-activity-portrait
 outputTargets:
 - svg
@@ -69,13 +70,14 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Process Full Payment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'd5dae97c14ecdeab41878f60394d3d307761098abcbc846320289ac1529b9e4e'
+  previewHash: '89134c24d80a33b4215b43d2373b2c87347b701d709134239d0d553bddcbebee'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Process Full Payment
   expectedActionCount: 15
   expectedDecisionCount: 6
   expectedMergeCount: 1
-  expectedControlFlowCount: 29
-  approvedNoteCount: 2
+  expectedControlFlowCount: 28
+  approvedNoteCount: 1
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD04_Process_Full_Payment_FINAL_LECTURER_PAGE11_v3.md

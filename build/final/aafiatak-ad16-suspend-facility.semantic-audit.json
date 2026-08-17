@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad16-suspend-facility",
+  "result": "pass",
+  "counts": {
+    "actions": 11,
+    "decisions": 3,
+    "merges": 1,
+    "controlFlows": 19,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

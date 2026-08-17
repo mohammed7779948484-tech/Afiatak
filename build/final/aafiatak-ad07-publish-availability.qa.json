@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad07-publish-availability.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad07-publish-availability.png",
+      "previewHash": "4ca2cc6b0f01a4d827b52bf2ce63e177890f086ce3dc4a0bfad6ca84075929d1",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Publish Availability is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad07-publish-availability.png",
+    "previewHash": "4ca2cc6b0f01a4d827b52bf2ce63e177890f086ce3dc4a0bfad6ca84075929d1",
+    "status": "awaiting-user-approval"
+  }
+}

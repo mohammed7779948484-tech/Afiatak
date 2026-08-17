@@ -19,7 +19,6 @@ include:
 - activity.ad10.a10
 - activity.ad10.a11
 - activity.ad10.mend
-- activity.ad10.note-correction
 - activity.ad10.final
 relations:
 - relation.ad10.f01
@@ -50,9 +49,8 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Register Patient Check-in is awaiting user visual approval after semantic, notation, editable-source, and rendering
-    QA.
-  previewHash: '4e90517032d4c05767c9eafb63487ab90f77710e90a5fcf94dff791ba657507d'
+  notes: Register Patient Check-in is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '58d746c9b2c831f30facd7a578d9117ec3e0cd72a26bc654a3d48893a185bb9c'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Register Patient Check-in
@@ -60,5 +58,6 @@ options:
   expectedDecisionCount: 3
   expectedMergeCount: 1
   expectedControlFlowCount: 19
-  approvedNoteCount: 1
+  approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD10_Register_Patient_Checkin_FINAL_LECTURER_PAGE11_v3.md

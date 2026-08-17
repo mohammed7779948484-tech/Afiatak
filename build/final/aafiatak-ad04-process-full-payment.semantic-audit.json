@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad04-process-full-payment",
+  "result": "pass",
+  "counts": {
+    "actions": 15,
+    "decisions": 6,
+    "merges": 1,
+    "controlFlows": 28,
+    "objectFlows": 2,
+    "objectNodes": 1
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

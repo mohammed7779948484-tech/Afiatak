@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad06-cancel-appointment",
+  "result": "pass",
+  "counts": {
+    "actions": 15,
+    "decisions": 5,
+    "merges": 1,
+    "controlFlows": 27,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

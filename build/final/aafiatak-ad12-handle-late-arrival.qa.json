@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad12-handle-late-arrival.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad12-handle-late-arrival.png",
+      "previewHash": "bceaf5e1a6691d0bc5b32da7a83d6f6f32b135e872f0a8a93cdeb7ffea3bb0a2",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Handle Late Arrival is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad12-handle-late-arrival.png",
+    "previewHash": "bceaf5e1a6691d0bc5b32da7a83d6f6f32b135e872f0a8a93cdeb7ffea3bb0a2",
+    "status": "awaiting-user-approval"
+  }
+}

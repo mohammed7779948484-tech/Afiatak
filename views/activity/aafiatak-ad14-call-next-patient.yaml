@@ -47,7 +47,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Call Next Patient is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '376ea0cb97bcc39c25b7a1dec9ab636894d1d221831c1c91c8b07cbe0a038657'
+  previewHash: 'cae6daa776ad594e6f2013bfc883f0a7e2fe554089bdfe77b1baed954ddab69f'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Call Next Patient
@@ -57,3 +57,4 @@ options:
   expectedControlFlowCount: 17
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD14_Call_Next_Patient_FINAL_LECTURER_PAGE11_v3.md

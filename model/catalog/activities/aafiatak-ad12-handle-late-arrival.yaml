@@ -1,8 +1,8 @@
 modelId: aafiatak-ad12-handle-late-arrival
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad12.initial
-  name: Initial
+  name: Start
   type: initial
   description: Handle Late Arrival Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad12.a01
   name: Staff identifies Patient arriving after assigned ArrivalGroup window
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Identify late-arriving Patient
 - id: activity.ad12.d01
   name: Terminal NO_SHOW already recorded?
   type: decision
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Terminal NO_SHOW already recorded?
 - id: activity.ad12.a02
   name: Do not reopen VisitInstance; require documented reschedule / new operational arrangement
   type: action
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Do not reopen; require new arrangement
 - id: activity.ad12.a03
   name: Staff records late arrival condition
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record late-arrival condition
 - id: activity.ad12.d02
   name: Which real operational outcome is chosen?
   type: decision
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Choose actual operational outcome
 - id: activity.ad12.a04
   name: Accept Patient manually while keeping original Appointment and ArrivalGroup
   type: action
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Accept Patient manually
 - id: activity.ad12.a05
   name: Register check-in / actual arrival and mark late accepted arrival
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record late accepted check-in
 - id: activity.ad12.a06
   name: Create/activate QueueEntry and set manualHandling flag
   type: action
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Create QueueEntry; set manualHandling
 - id: activity.ad12.a07
   name: Exclude from automatic numeric queue position; make no priority promise
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Exclude automatic numeric position
 - id: activity.ad12.a08
   name: Call Patient when operationally appropriate without consuming another group capacity
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Call Patient when appropriate
 - id: activity.ad12.a09
   name: Reschedule after Patient agreement using same-service / same-terms atomic rules
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Reschedule after agreement
 - id: activity.ad12.a10
   name: Record terminal NO_SHOW and apply saved no-show financial policy
   type: action
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record terminal NO_SHOW
 - id: activity.ad12.a11
   name: Record NOT_COMPLETED when Patient arrived but service was not completed
   type: action
@@ -157,6 +182,8 @@ elements:
   sourceRefs:
   - source: ad12-handle-late-arrival-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record NOT_COMPLETED
 - id: activity.ad12.mend
   name: End-path merge
   type: merge
@@ -171,7 +198,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad12.final
-  name: Final
+  name: End
   type: final
   description: Handle Late Arrival Activity final
   tags:
@@ -183,16 +210,15 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 relations:
 - id: relation.ad12.f01
   type: control_flow
   source: activity.ad12.initial
   target: activity.ad12.a01
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f02
@@ -200,10 +226,8 @@ relations:
   source: activity.ad12.a01
   target: activity.ad12.d01
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f03
@@ -211,11 +235,10 @@ relations:
   source: activity.ad12.d01
   target: activity.ad12.a02
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad12.f04
@@ -223,10 +246,8 @@ relations:
   source: activity.ad12.a02
   target: activity.ad12.mend
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f05
@@ -234,11 +255,10 @@ relations:
   source: activity.ad12.d01
   target: activity.ad12.a03
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad12.f06
@@ -246,10 +266,8 @@ relations:
   source: activity.ad12.a03
   target: activity.ad12.d02
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f07
@@ -257,11 +275,10 @@ relations:
   source: activity.ad12.d02
   target: activity.ad12.a04
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Accept manually]'
   name: '[Accept manually]'
 - id: relation.ad12.f08
@@ -269,10 +286,8 @@ relations:
   source: activity.ad12.a04
   target: activity.ad12.a05
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f09
@@ -280,10 +295,8 @@ relations:
   source: activity.ad12.a05
   target: activity.ad12.a06
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f10
@@ -291,10 +304,8 @@ relations:
   source: activity.ad12.a06
   target: activity.ad12.a07
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f11
@@ -302,10 +313,8 @@ relations:
   source: activity.ad12.a07
   target: activity.ad12.a08
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f12
@@ -313,10 +322,8 @@ relations:
   source: activity.ad12.a08
   target: activity.ad12.mend
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f13
@@ -324,11 +331,10 @@ relations:
   source: activity.ad12.d02
   target: activity.ad12.a09
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Reschedule]'
   name: '[Reschedule]'
 - id: relation.ad12.f14
@@ -336,10 +342,8 @@ relations:
   source: activity.ad12.a09
   target: activity.ad12.mend
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f15
@@ -347,11 +351,10 @@ relations:
   source: activity.ad12.d02
   target: activity.ad12.a10
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[NO_SHOW is actual outcome]'
   name: '[NO_SHOW is actual outcome]'
 - id: relation.ad12.f16
@@ -359,10 +362,8 @@ relations:
   source: activity.ad12.a10
   target: activity.ad12.mend
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f17
@@ -370,11 +371,10 @@ relations:
   source: activity.ad12.d02
   target: activity.ad12.a11
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[NOT_COMPLETED is actual outcome]'
   name: '[NOT_COMPLETED is actual outcome]'
 - id: relation.ad12.f18
@@ -382,10 +382,8 @@ relations:
   source: activity.ad12.a11
   target: activity.ad12.mend
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad12.f19
@@ -393,9 +391,7 @@ relations:
   source: activity.ad12.mend
   target: activity.ad12.final
   sourceRefs:
-  - source: ad12-handle-late-arrival-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false

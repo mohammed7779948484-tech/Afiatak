@@ -1,8 +1,8 @@
 modelId: aafiatak-ad15-review-facility-onboarding-request
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad15.initial
-  name: Initial
+  name: Start
   type: initial
   description: Review Facility Onboarding Request Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad15.a01
   name: Platform Administrator opens pending onboarding request
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Open onboarding request
 - id: activity.ad15.a02
   name: Display submitted onboarding information, current review status and prior history
   type: action
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Review submitted data / status / history
 - id: activity.ad15.a03
   name: Platform Administrator evaluates available information
   type: action
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Evaluate available information
 - id: activity.ad15.d01
   name: Information sufficient for responsible review assessment?
   type: decision
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Information sufficient?
 - id: activity.ad15.a04
   name: Record Request Additional Information action and preserve review history
   type: action
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Request additional information
 - id: activity.ad15.a05
   name: Keep onboarding unresolved pending additional information
   type: action
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Keep review unresolved
 - id: activity.ad15.a06
   name: Platform Administrator records review assessment
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record review assessment
 - id: activity.ad15.d02
   name: Assessment outcome?
   type: decision
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Assessment outcome?
 - id: activity.ad15.a07
   name: Make separate Approve Facility use case available as next permitted action
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Enable separate Approve Facility action
 - id: activity.ad15.a08
   name: Make separate Reject Facility use case available as next permitted action
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Enable separate Reject Facility action
 - id: activity.ad15.a09
   name: Preserve documented review result / history and complete review step
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad15-review-facility-onboarding-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Preserve review result & history
 - id: activity.ad15.mend
   name: End-path merge
   type: merge
@@ -149,7 +172,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad15.final
-  name: Final
+  name: End
   type: final
   description: Review Facility Onboarding Request Activity final
   tags:
@@ -161,16 +184,29 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
+- id: activity.ad15.o01
+  name: FacilityOnboardingRequest
+  type: object
+  description: Review Facility Onboarding Request required Object Node
+  tags:
+  - ad15
+  - activity
+  - object
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: 7B
+  metadata:
+    visibleLabel: FacilityOnboardingRequest
+    externalInput: true
 relations:
 - id: relation.ad15.f01
   type: control_flow
   source: activity.ad15.initial
   target: activity.ad15.a01
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f02
@@ -178,10 +214,8 @@ relations:
   source: activity.ad15.a01
   target: activity.ad15.a02
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f03
@@ -189,10 +223,8 @@ relations:
   source: activity.ad15.a02
   target: activity.ad15.a03
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f04
@@ -200,10 +232,8 @@ relations:
   source: activity.ad15.a03
   target: activity.ad15.d01
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f05
@@ -211,11 +241,10 @@ relations:
   source: activity.ad15.d01
   target: activity.ad15.a04
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Insufficient]'
   name: '[Insufficient]'
 - id: relation.ad15.f06
@@ -223,10 +252,8 @@ relations:
   source: activity.ad15.a04
   target: activity.ad15.a05
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f07
@@ -234,10 +261,8 @@ relations:
   source: activity.ad15.a05
   target: activity.ad15.mend
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f08
@@ -245,11 +270,10 @@ relations:
   source: activity.ad15.d01
   target: activity.ad15.a06
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Sufficient]'
   name: '[Sufficient]'
 - id: relation.ad15.f09
@@ -257,10 +281,8 @@ relations:
   source: activity.ad15.a06
   target: activity.ad15.d02
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f10
@@ -268,11 +290,10 @@ relations:
   source: activity.ad15.d02
   target: activity.ad15.a07
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Supports approval]'
   name: '[Supports approval]'
 - id: relation.ad15.f11
@@ -280,10 +301,8 @@ relations:
   source: activity.ad15.a07
   target: activity.ad15.a09
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f12
@@ -291,11 +310,10 @@ relations:
   source: activity.ad15.d02
   target: activity.ad15.a08
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Supports rejection]'
   name: '[Supports rejection]'
 - id: relation.ad15.f13
@@ -303,10 +321,8 @@ relations:
   source: activity.ad15.a08
   target: activity.ad15.a09
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f14
@@ -314,10 +330,8 @@ relations:
   source: activity.ad15.a09
   target: activity.ad15.mend
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad15.f15
@@ -325,9 +339,16 @@ relations:
   source: activity.ad15.mend
   target: activity.ad15.final
   sourceRefs:
-  - source: ad15-review-facility-onboarding-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad15.object16
+  type: object_flow
+  source: activity.ad15.o01
+  target: activity.ad15.a01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: 8A
   metadata:
     visibleLabel: false

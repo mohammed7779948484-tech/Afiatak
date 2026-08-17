@@ -33,7 +33,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["id", "type", "source", "target", "sourceRefs"],
       "properties": {
-        "id": {"type": "string"}, "type": {"enum": ["association", "include", "extend", "generalization", "aggregation", "composition", "dependency", "realization", "control_flow", "transition", "message", "return_message", "connector", "communication_path", "deployment"]}, "source": {"type": "string"},
+        "id": {"type": "string"}, "type": {"enum": ["association", "include", "extend", "generalization", "aggregation", "composition", "dependency", "realization", "control_flow", "transition", "message", "return_message", "connector", "communication_path", "deployment", "object_flow"]}, "source": {"type": "string"},
         "target": {"type": "string"}, "name": {"type": "string"}, "rationale": {"type": ["string", "null"]},
         "sourceRefs": {"type": "array", "items": {"$ref": "#/$defs/sourceRef"}}, "metadata": {"type": "object"}
       }

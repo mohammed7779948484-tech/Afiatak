@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad15-review-facility-onboarding-request.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad15-review-facility-onboarding-request.png",
+      "previewHash": "d2e1bf637abf2013b3091f01be127da7c59f502a2eacbb78375b79f615f8478f",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Review Facility Onboarding Request is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad15-review-facility-onboarding-request.png",
+    "previewHash": "d2e1bf637abf2013b3091f01be127da7c59f502a2eacbb78375b79f615f8478f",
+    "status": "awaiting-user-approval"
+  }
+}

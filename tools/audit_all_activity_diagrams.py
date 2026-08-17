@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Cross-suite structural and delivery audit for Aafiatak AD-01 through AD-16."""
+"""Cross-suite v3 audit for Aafiatak Activity Diagrams AD-01 through AD-16."""
 from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sys
-from pathlib import Path
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 VIEW_DIR = ROOT / "views" / "activity"
 FINAL_DIR = ROOT / "build" / "final"
-SVG_NS = "{http://www.w3.org/2000/svg}"
 
 EXPECTED = [
     "aafiatak-ad01-register-patient",
@@ -34,17 +34,17 @@ EXPECTED = [
     "aafiatak-ad16-suspend-facility",
 ]
 
-FINAL_BASES = {
+PDF_BASES = {
     "aafiatak-ad01-register-patient": "Aafiatak_AD01_Register_Patient",
     "aafiatak-ad02-log-in": "Aafiatak_AD02_Log_In",
     "aafiatak-ad03-book-appointment": "Aafiatak_AD03_Book_Appointment",
     "aafiatak-ad04-process-full-payment": "Aafiatak_AD04_Process_Full_Payment",
-    "aafiatak-ad05-subscribe-to-availability-alert": "Aafiatak_AD05_Subscribe_to_Availability_Alert",
+    "aafiatak-ad05-subscribe-to-availability-alert": "Aafiatak_AD05_Subscribe_Availability_Alert",
     "aafiatak-ad06-cancel-appointment": "Aafiatak_AD06_Cancel_Appointment",
     "aafiatak-ad07-publish-availability": "Aafiatak_AD07_Publish_Availability",
     "aafiatak-ad08-withdraw-remaining-capacity": "Aafiatak_AD08_Withdraw_Remaining_Capacity",
     "aafiatak-ad09-reschedule-appointment": "Aafiatak_AD09_Reschedule_Appointment",
-    "aafiatak-ad10-register-patient-check-in": "Aafiatak_AD10_Register_Patient_Check_In",
+    "aafiatak-ad10-register-patient-check-in": "Aafiatak_AD10_Register_Patient_Checkin",
     "aafiatak-ad11-record-no-show": "Aafiatak_AD11_Record_No_Show",
     "aafiatak-ad12-handle-late-arrival": "Aafiatak_AD12_Handle_Late_Arrival",
     "aafiatak-ad13-manage-operational-exceptions": "Aafiatak_AD13_Manage_Operational_Exceptions",
@@ -55,11 +55,10 @@ FINAL_BASES = {
 
 
 def load_yaml(path: Path) -> dict:
-    with path.open(encoding="utf-8") as handle:
-        return yaml.safe_load(handle)
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def normalized_sha256(path: Path) -> str:
+def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -71,92 +70,97 @@ def audit_one(view_id: str) -> dict:
 
     view = load_yaml(view_path)
     model_path = (view_path.parent / view["model"]).resolve()
+    model = load_yaml(model_path) if model_path.exists() else {"elements": [], "relations": []}
     if not model_path.exists():
         errors.append(f"missing model: {model_path}")
-        model = {"elements": [], "relations": []}
-    else:
-        model = load_yaml(model_path)
-
-    elements = model.get("elements", [])
-    relations = model.get("relations", [])
-    element_types = [item.get("type") for item in elements]
-    action_count = element_types.count("action")
-    decision_count = element_types.count("decision")
-    merge_count = element_types.count("merge")
-    control_flow_count = sum(item.get("type") == "control_flow" for item in relations)
-
+    elements, relations = model.get("elements", []), model.get("relations", [])
+    element_by_id = {node.get("id"): node for node in elements}
+    types = [node.get("type") for node in elements]
+    relation_types = [edge.get("type") for edge in relations]
     options = view.get("options", {})
-    for key, actual in [
-        ("expectedActionCount", action_count),
-        ("expectedDecisionCount", decision_count),
-        ("expectedMergeCount", merge_count),
-        ("expectedControlFlowCount", control_flow_count),
-    ]:
-        expected = options.get(key)
-        if expected != actual:
-            errors.append(f"{key}={expected!r}, model={actual}")
 
-    if set(view.get("include", [])) != {item.get("id") for item in elements}:
+    counts = {
+        "actions": types.count("action"),
+        "decisions": types.count("decision"),
+        "merges": types.count("merge"),
+        "controlFlows": relation_types.count("control_flow"),
+        "objectFlows": relation_types.count("object_flow"),
+        "objectNodes": types.count("object"),
+    }
+    expected_counts = {
+        "expectedActionCount": counts["actions"],
+        "expectedDecisionCount": counts["decisions"],
+        "expectedMergeCount": counts["merges"],
+        "expectedControlFlowCount": counts["controlFlows"],
+    }
+    for key, actual in expected_counts.items():
+        if options.get(key) != actual:
+            errors.append(f"{key}={options.get(key)!r}, model={actual}")
+
+    if set(view.get("include", [])) != set(element_by_id):
         errors.append("view include set does not match model element set")
-    if set(view.get("relations", [])) != {item.get("id") for item in relations}:
+    if set(view.get("relations", [])) != {edge.get("id") for edge in relations}:
         errors.append("view relation set does not match model relation set")
-    if any(item.get("type") != "control_flow" for item in relations):
-        errors.append("non-control-flow relation found")
-    forbidden_model_types = {"fork", "join", "object_flow", "association", "generalization", "aggregation"}
-    if forbidden_model_types.intersection(element_types) or forbidden_model_types.intersection(item.get("type") for item in relations):
-        errors.append("forbidden Activity notation found in semantic model")
+    if {"fork", "join", "association", "generalization", "aggregation"}.intersection(types + relation_types):
+        errors.append("forbidden UML notation exists")
+    for edge in relations:
+        if edge.get("type") == "object_flow":
+            source_kind = element_by_id.get(edge.get("source"), {}).get("type")
+            target_kind = element_by_id.get(edge.get("target"), {}).get("type")
+            if "object" not in {source_kind, target_kind}:
+                errors.append(f"object flow {edge.get('id')} is not connected to an Object Node")
+        elif edge.get("type") != "control_flow":
+            errors.append(f"unsupported relation type: {edge.get('type')}")
 
     review = view.get("visualReview", {})
+    recorded_hash = review.get("previewHash", "")
     if review.get("status") != "awaiting-user-approval":
         errors.append("visual review status is not awaiting-user-approval")
-    preview_hash = review.get("previewHash", "")
-    if len(preview_hash) != 64 or set(preview_hash) == {"0"}:
-        errors.append("visual review previewHash is absent or placeholder")
+    if not re.fullmatch(r"[0-9a-f]{64}", recorded_hash or ""):
+        errors.append("visual review previewHash is absent or invalid")
+    if not str(options.get("v3Spec", "")).endswith("_LECTURER_PAGE11_v3.md"):
+        errors.append("View does not identify its governing v3 lecturer-page-11 specification")
 
     work_svg = ROOT / "build" / "work" / f"{view_id}.svg"
+    preview = ROOT / "build" / "preview" / f"{view_id}.png"
     if not work_svg.exists():
         errors.append(f"missing rendered SVG: {work_svg}")
     else:
+        svg_text = work_svg.read_text(encoding="utf-8")
         root = ET.parse(work_svg).getroot()
         kinds = [node.attrib.get("data-kind", "") for node in root.iter()]
         if "initial" not in kinds or "final" not in kinds:
             errors.append("SVG lacks initial or final node")
-        if any(kind in {"fork", "join", "object-flow", "association", "generalization", "aggregation"} for kind in kinds):
-            errors.append("SVG contains forbidden Activity notation")
-        control_flows = kinds.count("control-flow")
-        if control_flows != control_flow_count:
-            errors.append(f"SVG control-flow count={control_flows}, model={control_flow_count}")
-
-    base = FINAL_BASES[view_id]
-    required = [
-        FINAL_DIR / f"{base}.svg",
-        FINAL_DIR / f"{base}.png",
-        FINAL_DIR / f"{base}.drawio",
-        FINAL_DIR / f"{base}.pdf",
-        FINAL_DIR / f"{base}_QA.json",
-        FINAL_DIR / f"{base}_Semantic_Audit.json",
-    ]
-    missing_delivery = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
-    if missing_delivery:
-        errors.append("missing final artifacts: " + ", ".join(missing_delivery))
-
-    preview = ROOT / "build" / "preview" / f"{view_id}.png"
-    if preview.exists() and preview_hash and set(preview_hash) != {"0"}:
-        actual_hash = normalized_sha256(preview)
-        if actual_hash != preview_hash:
-            errors.append("recorded previewHash does not match current preview")
-    else:
+        if kinds.count("control-flow") != counts["controlFlows"]:
+            errors.append("SVG control-flow count disagrees with model")
+        if kinds.count("object-flow") != counts["objectFlows"]:
+            errors.append("SVG object-flow count disagrees with model")
+        if 'class="process-frame"' not in svg_text:
+            errors.append("SVG lacks lecturer-style Activity/Process frame")
+        if "#0B3A" in svg_text or "#FFD" in svg_text or "gradient" in svg_text:
+            errors.append("SVG contains prohibited legacy decorative theme")
+        if "#111111" not in svg_text or "#F6F6F6" not in svg_text:
+            errors.append("SVG does not contain expected monochrome lecturer style")
+    if not preview.exists():
         errors.append(f"missing preview: {preview}")
+    elif recorded_hash != sha256(preview):
+        errors.append("recorded previewHash does not match current preview")
 
+    base = PDF_BASES[view_id]
+    required = [
+        FINAL_DIR / f"{view_id}.svg",
+        FINAL_DIR / f"{view_id}.png",
+        FINAL_DIR / f"{view_id}.drawio",
+        FINAL_DIR / f"{view_id}.qa.json",
+        FINAL_DIR / f"{base}.pdf",
+    ]
+    missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
+    if missing:
+        errors.append("missing final artifacts: " + ", ".join(missing))
     return {
         "id": view_id,
         "result": "pass" if not errors else "fail",
-        "counts": {
-            "actions": action_count,
-            "decisions": decision_count,
-            "merges": merge_count,
-            "controlFlows": control_flow_count,
-        },
+        "counts": counts,
         "status": review.get("status"),
         "errors": errors,
     }
@@ -164,20 +168,24 @@ def audit_one(view_id: str) -> dict:
 
 def main() -> int:
     results = [audit_one(view_id) for view_id in EXPECTED]
-    failures = [entry for entry in results if entry["result"] != "pass"]
+    failed = [entry for entry in results if entry["result"] != "pass"]
     payload = {
-        "suite": "Aafiatak Activity Diagrams AD-01 through AD-16",
+        "suite": "Aafiatak Activity Diagrams AD-01 through AD-16 — v3 Lecturer Page-11 Redesign",
         "diagramCount": len(results),
-        "passed": len(results) - len(failures),
-        "failed": len(failures),
+        "passed": len(results) - len(failed),
+        "failed": len(failed),
         "statusExpectation": "awaiting-user-approval",
+        "lecturerStyle": "rounded Activity/Process frame; monochrome technical UML notation",
         "results": results,
     }
-    output = ROOT / "build" / "final" / "Aafiatak_Activity_Diagrams_AD01-AD16_Cross_Suite_Audit.json"
-    output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    FINAL_DIR.mkdir(parents=True, exist_ok=True)
+    suite_out = FINAL_DIR / "Aafiatak_Activity_Diagrams_AD01-AD16_Cross_Suite_Audit.json"
+    suite_out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    for entry in results:
+        (FINAL_DIR / f"{entry['id']}.semantic-audit.json").write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, indent=2))
-    print(f"\nReport: {output.relative_to(ROOT)}")
-    return 1 if failures else 0
+    print(f"Report: {suite_out.relative_to(ROOT)}")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

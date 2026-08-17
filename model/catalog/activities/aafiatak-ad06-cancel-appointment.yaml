@@ -1,8 +1,8 @@
 modelId: aafiatak-ad06-cancel-appointment
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad06.initial
-  name: Initial
+  name: Start
   type: initial
   description: Cancel Appointment Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad06.a01
   name: Patient opens Appointment and chooses Cancel Appointment
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Choose Cancel Appointment
 - id: activity.ad06.d00
   name: Appointment already terminally cancelled?
   type: decision
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Already cancelled?
 - id: activity.ad06.a00
   name: Return existing cancellation/refund result; create no duplicate cancellation or refund
   type: action
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Return existing cancellation result
 - id: activity.ad06.a02
   name: Load saved cancellation/refund policy, payment state and ArrivalGroup timing
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Load saved policy / payment / timing
 - id: activity.ad06.a03
   name: Revalidate ownership, CONFIRMED state, check-in and group-start conditions
   type: action
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Revalidate cancellation eligibility
 - id: activity.ad06.d01
   name: Patient self-cancellation still eligible?
   type: decision
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Self-cancellation eligible?
 - id: activity.ad06.a04
   name: Deny self-cancellation and preserve arrival / late / no-show handling
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Deny self-cancellation
 - id: activity.ad06.a05
   name: Calculate and display expected refund result from saved booking snapshot
   type: action
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show expected refund result
 - id: activity.ad06.a06
   name: Patient confirms cancellation
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Confirm cancellation
 - id: activity.ad06.a07
   name: Record CANCELLED_BY_PATIENT and preserve Appointment history
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record CANCELLED_BY_PATIENT
 - id: activity.ad06.a08
   name: Return consumed unit to the same ArrivalGroup; expose it as bookable only when release/group/time rules permit
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Return seat to same ArrivalGroup
 - id: activity.ad06.d02
   name: Aafiatak electronic amount was collected?
   type: decision
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Electronic amount collected?
 - id: activity.ad06.a09
   name: Create no electronic refund
   type: action
@@ -157,6 +182,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: No electronic refund
 - id: activity.ad06.d03
   name: Saved policy says full refund is due?
   type: decision
@@ -168,6 +195,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Full refund due?
 - id: activity.ad06.a10
   name: Refund due is zero
   type: action
@@ -179,6 +208,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Refund due = zero
 - id: activity.ad06.a11
   name: Initiate full collected-amount refund
   type: action
@@ -190,6 +221,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Initiate full refund
 - id: activity.ad06.d04
   name: Refund completion immediate?
   type: decision
@@ -201,6 +234,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Refund completed now?
 - id: activity.ad06.a12
   name: Keep independent REFUND_PENDING / review status; cancellation remains final
   type: action
@@ -212,6 +247,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Keep REFUND_PENDING / review
 - id: activity.ad06.a13
   name: Record completed full refund
   type: action
@@ -223,6 +260,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record full refund
 - id: activity.ad06.a14
   name: Display cancelled Appointment and independent payment/refund status
   type: action
@@ -234,6 +273,8 @@ elements:
   sourceRefs:
   - source: ad06-cancel-appointment-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show cancellation & refund status
 - id: activity.ad06.mend
   name: End-path merge
   type: merge
@@ -248,7 +289,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad06.final
-  name: Final
+  name: End
   type: final
   description: Cancel Appointment Activity final
   tags:
@@ -260,16 +301,15 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 relations:
 - id: relation.ad06.f01
   type: control_flow
   source: activity.ad06.initial
   target: activity.ad06.a01
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f02
@@ -277,10 +317,8 @@ relations:
   source: activity.ad06.a01
   target: activity.ad06.d00
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f03
@@ -288,11 +326,10 @@ relations:
   source: activity.ad06.d00
   target: activity.ad06.a00
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad06.f04
@@ -300,10 +337,8 @@ relations:
   source: activity.ad06.a00
   target: activity.ad06.mend
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f05
@@ -311,11 +346,10 @@ relations:
   source: activity.ad06.d00
   target: activity.ad06.a02
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad06.f06
@@ -323,10 +357,8 @@ relations:
   source: activity.ad06.a02
   target: activity.ad06.a03
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f07
@@ -334,10 +366,8 @@ relations:
   source: activity.ad06.a03
   target: activity.ad06.d01
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f08
@@ -345,11 +375,10 @@ relations:
   source: activity.ad06.d01
   target: activity.ad06.a04
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad06.f09
@@ -357,10 +386,8 @@ relations:
   source: activity.ad06.a04
   target: activity.ad06.mend
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f10
@@ -368,11 +395,10 @@ relations:
   source: activity.ad06.d01
   target: activity.ad06.a05
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad06.f11
@@ -380,10 +406,8 @@ relations:
   source: activity.ad06.a05
   target: activity.ad06.a06
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f12
@@ -391,10 +415,8 @@ relations:
   source: activity.ad06.a06
   target: activity.ad06.a07
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f13
@@ -402,10 +424,8 @@ relations:
   source: activity.ad06.a07
   target: activity.ad06.a08
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f14
@@ -413,10 +433,8 @@ relations:
   source: activity.ad06.a08
   target: activity.ad06.d02
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f15
@@ -424,11 +442,10 @@ relations:
   source: activity.ad06.d02
   target: activity.ad06.a09
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No — PAY_AT_FACILITY / no collected electronic amount]'
   name: '[No — PAY_AT_FACILITY / no collected electronic amount]'
 - id: relation.ad06.f16
@@ -436,10 +453,8 @@ relations:
   source: activity.ad06.a09
   target: activity.ad06.a14
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f17
@@ -447,11 +462,10 @@ relations:
   source: activity.ad06.d02
   target: activity.ad06.d03
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad06.f18
@@ -459,11 +473,10 @@ relations:
   source: activity.ad06.d03
   target: activity.ad06.a10
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Zero refund]'
   name: '[Zero refund]'
 - id: relation.ad06.f19
@@ -471,10 +484,8 @@ relations:
   source: activity.ad06.a10
   target: activity.ad06.a14
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f20
@@ -482,11 +493,10 @@ relations:
   source: activity.ad06.d03
   target: activity.ad06.a11
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Full refund]'
   name: '[Full refund]'
 - id: relation.ad06.f21
@@ -494,10 +504,8 @@ relations:
   source: activity.ad06.a11
   target: activity.ad06.d04
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f22
@@ -505,11 +513,10 @@ relations:
   source: activity.ad06.d04
   target: activity.ad06.a12
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Pending / delayed]'
   name: '[Pending / delayed]'
 - id: relation.ad06.f23
@@ -517,10 +524,8 @@ relations:
   source: activity.ad06.a12
   target: activity.ad06.a14
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f24
@@ -528,11 +533,10 @@ relations:
   source: activity.ad06.d04
   target: activity.ad06.a13
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Completed]'
   name: '[Completed]'
 - id: relation.ad06.f25
@@ -540,10 +544,8 @@ relations:
   source: activity.ad06.a13
   target: activity.ad06.a14
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f26
@@ -551,10 +553,8 @@ relations:
   source: activity.ad06.a14
   target: activity.ad06.mend
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad06.f27
@@ -562,9 +562,7 @@ relations:
   source: activity.ad06.mend
   target: activity.ad06.final
   sourceRefs:
-  - source: ad06-cancel-appointment-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false

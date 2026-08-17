@@ -1,43 +1,432 @@
 modelId: aafiatak-ad01-register-patient
-version: '1.0'
+version: '3.0'
 elements:
-  - {id: activity.ad01.initial, name: Initial, type: initial, description: Activity entry pseudostate, tags: [ad01, activity, pseudostate], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}, {source: aafiatak-product-specification, section: '9'}]}
-  - {id: activity.ad01.a01, name: Visitor chooses Register Patient and provides phone number, type: action, description: Registration initiation action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a02, name: Normalize phone number and check global identity uniqueness, type: action, description: Normalization and uniqueness action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.d01, name: 'Existing identity?', type: decision, description: Existing identity decision, tags: [ad01, activity, decision], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a03, name: Reject duplicate registration and direct to existing-account login path, type: action, description: Duplicate identity outcome action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a04, name: Request short-lived single-use WhatsApp OTP, type: action, description: Official OTP request action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.d02, name: 'WhatsApp authentication channel available?', type: decision, description: Authentication channel decision, tags: [ad01, activity, decision], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a05, name: Keep registration incomplete; no fallback authentication, type: action, description: Unavailable-channel outcome action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a06, name: Visitor receives and submits OTP, type: action, description: OTP submission action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a07, name: 'Verify OTP expiry, single-use, rate-limit and brute-force controls', type: action, description: OTP verification action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.d03, name: 'OTP valid and permitted?', type: decision, description: OTP result and security decision, tags: [ad01, activity, decision], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a08, name: Reject verification; create no Patient account, type: action, description: Invalid OTP outcome action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a09, name: Visitor provides approved basic Patient profile data and confirms registration, type: action, description: Basic profile confirmation action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a10, name: Validate non-clinical registration data, type: action, description: Non-clinical profile validation action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a11, name: Create User + Patient exactly once for verified phone identity, type: action, description: Idempotent verified identity/profile creation action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.a12, name: Establish approved Patient account context without password, type: action, description: Passwordless account context action, tags: [ad01, activity, action], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}]}
-  - {id: activity.ad01.mend, name: End-path merge, type: merge, description: Merge of all terminal registration paths, tags: [ad01, activity, merge], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}], metadata: {visibleLabel: false}}
-  - {id: activity.ad01.note-idempotency, name: Weak-connectivity retry returns the existing successful identity/profile result; no duplicate User or Patient., type: note, description: Compact source-supported idempotency note near account creation, tags: [ad01, activity, note], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '9'}]}
-  - {id: activity.ad01.final, name: Final, type: final, description: Activity final pseudostate, tags: [ad01, activity, pseudostate], sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '7'}, {source: aafiatak-product-specification, section: '9'}]}
+- id: activity.ad01.initial
+  name: Start
+  type: initial
+  description: Activity entry pseudostate
+  tags:
+  - ad01
+  - activity
+  - pseudostate
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata: {}
+- id: activity.ad01.a01
+  name: Visitor chooses Register Patient and provides phone number
+  type: action
+  description: Registration initiation action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Enter phone and choose Register
+- id: activity.ad01.a02
+  name: Normalize phone number and check global identity uniqueness
+  type: action
+  description: Normalization and uniqueness action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Normalize phone & check identity
+- id: activity.ad01.d01
+  name: Existing identity?
+  type: decision
+  description: Existing identity decision
+  tags:
+  - ad01
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Existing identity?
+- id: activity.ad01.a03
+  name: Reject duplicate registration and direct to existing-account login path
+  type: action
+  description: Duplicate identity outcome action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Reject duplicate registration
+- id: activity.ad01.a04
+  name: Request short-lived single-use WhatsApp OTP
+  type: action
+  description: Official OTP request action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Request WhatsApp OTP
+- id: activity.ad01.d02
+  name: WhatsApp authentication channel available?
+  type: decision
+  description: Authentication channel decision
+  tags:
+  - ad01
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: WhatsApp channel available?
+- id: activity.ad01.a05
+  name: Keep registration incomplete; no fallback authentication
+  type: action
+  description: Unavailable-channel outcome action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Keep registration incomplete
+- id: activity.ad01.a06
+  name: Visitor receives and submits OTP
+  type: action
+  description: OTP submission action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Submit OTP
+- id: activity.ad01.a07
+  name: Verify OTP expiry, single-use, rate-limit and brute-force controls
+  type: action
+  description: OTP verification action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Verify OTP & security limits
+- id: activity.ad01.d03
+  name: OTP valid and permitted?
+  type: decision
+  description: OTP result and security decision
+  tags:
+  - ad01
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: OTP valid?
+- id: activity.ad01.a08
+  name: Reject verification; create no Patient account
+  type: action
+  description: Invalid OTP outcome action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Reject verification
+- id: activity.ad01.a09
+  name: Visitor provides approved basic Patient profile data and confirms registration
+  type: action
+  description: Basic profile confirmation action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Enter basic Patient profile
+- id: activity.ad01.a10
+  name: Validate non-clinical registration data
+  type: action
+  description: Non-clinical profile validation action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Validate profile data
+- id: activity.ad01.a11
+  name: Create User + Patient exactly once for verified phone identity
+  type: action
+  description: Idempotent verified identity/profile creation action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Create User + Patient once
+- id: activity.ad01.a12
+  name: Establish approved Patient account context without password
+  type: action
+  description: Passwordless account context action
+  tags:
+  - ad01
+  - activity
+  - action
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Establish Patient account context
+- id: activity.ad01.mend
+  name: End-path merge
+  type: merge
+  description: Merge of all terminal registration paths
+  tags:
+  - ad01
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad01.final
+  name: End
+  type: final
+  description: Activity final pseudostate
+  tags:
+  - ad01
+  - activity
+  - pseudostate
+  sourceRefs:
+  - source: ad01-register-patient-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata: {}
 relations:
-  - {id: relation.ad01.f01, type: control_flow, source: activity.ad01.initial, target: activity.ad01.a01, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f02, type: control_flow, source: activity.ad01.a01, target: activity.ad01.a02, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f03, type: control_flow, source: activity.ad01.a02, target: activity.ad01.d01, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f04, type: control_flow, source: activity.ad01.d01, target: activity.ad01.a03, name: '[Yes — existing identity]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Yes — existing identity]'}}
-  - {id: relation.ad01.f05, type: control_flow, source: activity.ad01.a03, target: activity.ad01.mend, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f06, type: control_flow, source: activity.ad01.d01, target: activity.ad01.a04, name: '[No — identity available]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[No — identity available]'}}
-  - {id: relation.ad01.f07, type: control_flow, source: activity.ad01.a04, target: activity.ad01.d02, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f08, type: control_flow, source: activity.ad01.d02, target: activity.ad01.a05, name: '[Unavailable]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Unavailable]'}}
-  - {id: relation.ad01.f09, type: control_flow, source: activity.ad01.a05, target: activity.ad01.mend, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f10, type: control_flow, source: activity.ad01.d02, target: activity.ad01.a06, name: '[Available]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Available]'}}
-  - {id: relation.ad01.f11, type: control_flow, source: activity.ad01.a06, target: activity.ad01.a07, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f12, type: control_flow, source: activity.ad01.a07, target: activity.ad01.d03, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f13, type: control_flow, source: activity.ad01.d03, target: activity.ad01.a08, name: '[Invalid / expired / reused / rate-limited]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Invalid / expired / reused / rate-limited]'}}
-  - {id: relation.ad01.f14, type: control_flow, source: activity.ad01.a08, target: activity.ad01.mend, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f15, type: control_flow, source: activity.ad01.d03, target: activity.ad01.a09, name: '[Valid]', sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Valid]'}}
-  - {id: relation.ad01.f16, type: control_flow, source: activity.ad01.a09, target: activity.ad01.a10, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f17, type: control_flow, source: activity.ad01.a10, target: activity.ad01.a11, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f18, type: control_flow, source: activity.ad01.a11, target: activity.ad01.a12, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f19, type: control_flow, source: activity.ad01.a12, target: activity.ad01.mend, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad01.f20, type: control_flow, source: activity.ad01.mend, target: activity.ad01.final, sourceRefs: [{source: ad01-register-patient-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
+- id: relation.ad01.f01
+  type: control_flow
+  source: activity.ad01.initial
+  target: activity.ad01.a01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f02
+  type: control_flow
+  source: activity.ad01.a01
+  target: activity.ad01.a02
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f03
+  type: control_flow
+  source: activity.ad01.a02
+  target: activity.ad01.d01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f04
+  type: control_flow
+  source: activity.ad01.d01
+  target: activity.ad01.a03
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Yes — existing identity]'
+  name: '[Yes — existing identity]'
+- id: relation.ad01.f05
+  type: control_flow
+  source: activity.ad01.a03
+  target: activity.ad01.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f06
+  type: control_flow
+  source: activity.ad01.d01
+  target: activity.ad01.a04
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[No — identity available]'
+  name: '[No — identity available]'
+- id: relation.ad01.f07
+  type: control_flow
+  source: activity.ad01.a04
+  target: activity.ad01.d02
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f08
+  type: control_flow
+  source: activity.ad01.d02
+  target: activity.ad01.a05
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Unavailable]'
+  name: '[Unavailable]'
+- id: relation.ad01.f09
+  type: control_flow
+  source: activity.ad01.a05
+  target: activity.ad01.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f10
+  type: control_flow
+  source: activity.ad01.d02
+  target: activity.ad01.a06
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Available]'
+  name: '[Available]'
+- id: relation.ad01.f11
+  type: control_flow
+  source: activity.ad01.a06
+  target: activity.ad01.a07
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f12
+  type: control_flow
+  source: activity.ad01.a07
+  target: activity.ad01.d03
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f13
+  type: control_flow
+  source: activity.ad01.d03
+  target: activity.ad01.a08
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Invalid / expired / reused / rate-limited]'
+  name: '[Invalid / expired / reused / rate-limited]'
+- id: relation.ad01.f14
+  type: control_flow
+  source: activity.ad01.a08
+  target: activity.ad01.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f15
+  type: control_flow
+  source: activity.ad01.d03
+  target: activity.ad01.a09
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Valid]'
+  name: '[Valid]'
+- id: relation.ad01.f16
+  type: control_flow
+  source: activity.ad01.a09
+  target: activity.ad01.a10
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f17
+  type: control_flow
+  source: activity.ad01.a10
+  target: activity.ad01.a11
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f18
+  type: control_flow
+  source: activity.ad01.a11
+  target: activity.ad01.a12
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f19
+  type: control_flow
+  source: activity.ad01.a12
+  target: activity.ad01.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad01.f20
+  type: control_flow
+  source: activity.ad01.mend
+  target: activity.ad01.final
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false

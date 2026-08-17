@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad13-manage-operational-exceptions.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad13-manage-operational-exceptions.png",
+      "previewHash": "a39fc9e5dfa5102273246b92ec8a4cf317eddd6f7299193adff3bb92608e1ac0",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Manage Operational Exceptions is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad13-manage-operational-exceptions.png",
+    "previewHash": "a39fc9e5dfa5102273246b92ec8a4cf317eddd6f7299193adff3bb92608e1ac0",
+    "status": "awaiting-user-approval"
+  }
+}

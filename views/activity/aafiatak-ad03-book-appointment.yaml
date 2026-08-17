@@ -28,7 +28,6 @@ include:
 - activity.ad03.a15
 - activity.ad03.a16
 - activity.ad03.mend
-- activity.ad03.note-idempotency
 - activity.ad03.final
 relations:
 - relation.ad03.f01
@@ -72,7 +71,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Book Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '7c8ec377e1b14c4b78f3da83336e62c05c6a7ea2a4d010fddcd4a7fd76daae58'
+  previewHash: '31cf81745eb07e889bfb617c7b4028d7ba518c265c327355c70cd3e94ef14067'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Book Appointment
@@ -80,5 +79,6 @@ options:
   expectedDecisionCount: 6
   expectedMergeCount: 1
   expectedControlFlowCount: 31
-  approvedNoteCount: 1
+  approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD03_Book_Appointment_FINAL_LECTURER_PAGE11_v3.md

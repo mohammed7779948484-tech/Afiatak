@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad11-record-no-show.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad11-record-no-show.png",
+      "previewHash": "ad0623ab2c2f4b66b1af2b111c2070e63c82258b463a4718d51bd1947e7284e2",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Record No-show is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad11-record-no-show.png",
+    "previewHash": "ad0623ab2c2f4b66b1af2b111c2070e63c82258b463a4718d51bd1947e7284e2",
+    "status": "awaiting-user-approval"
+  }
+}

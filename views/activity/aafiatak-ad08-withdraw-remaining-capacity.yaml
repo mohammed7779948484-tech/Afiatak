@@ -44,9 +44,8 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Withdraw Remaining Capacity is awaiting user visual approval after semantic, notation, editable-source, and rendering
-    QA.
-  previewHash: '81850878810ce6ae588f73db142b2fcdfe2346ba75eee0e9ef7d2be236672e57'
+  notes: Withdraw Remaining Capacity is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '1101c073801fec7b74e0b922db34b140048788ce380edaf4a885a3d6aad6fa5c'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Withdraw Remaining Capacity
@@ -56,3 +55,4 @@ options:
   expectedControlFlowCount: 16
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD08_Withdraw_Remaining_Capacity_FINAL_LECTURER_PAGE11_v3.md

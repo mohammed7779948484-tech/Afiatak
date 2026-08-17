@@ -64,7 +64,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
   notes: Cancel Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: 'b21ad09e6c10aecafec24fe2afa565a252a4b751a742eab9ef9c92c87a73eba6'
+  previewHash: '890aea0e7d03c15d42566ac46aca3ac6a168bc6b3ad1b0ac8f6d1cbafd690783'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Cancel Appointment
@@ -74,3 +74,4 @@ options:
   expectedControlFlowCount: 27
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD06_Cancel_Appointment_FINAL_LECTURER_PAGE11_v3.md

@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad10-register-patient-check-in.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad10-register-patient-check-in.png",
+      "previewHash": "58d746c9b2c831f30facd7a578d9117ec3e0cd72a26bc654a3d48893a185bb9c",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Register Patient Check-in is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad10-register-patient-check-in.png",
+    "previewHash": "58d746c9b2c831f30facd7a578d9117ec3e0cd72a26bc654a3d48893a185bb9c",
+    "status": "awaiting-user-approval"
+  }
+}

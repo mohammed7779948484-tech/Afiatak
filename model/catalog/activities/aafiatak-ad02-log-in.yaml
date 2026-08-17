@@ -1,41 +1,410 @@
 modelId: aafiatak-ad02-log-in
-version: '1.0'
+version: '3.0'
 elements:
-  - {id: activity.ad02.initial, name: 'Initial', type: initial, description: 'Activity entry pseudostate', tags: [ad02, activity, pseudostate], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}, {source: aafiatak-product-specification, section: '9'}]}
-  - {id: activity.ad02.a01, name: 'Actor provides verified phone number and requests Log In', type: action, description: 'Login initiation action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a02, name: 'Normalize phone and locate existing identity / requested role context', type: action, description: 'Resolve identity and role context action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a03, name: 'Request short-lived single-use WhatsApp OTP', type: action, description: 'Official OTP request action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.d01, name: 'WhatsApp authentication channel available?', type: decision, description: 'Authentication channel decision', tags: [ad02, activity, decision], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a04, name: 'Keep login incomplete; provide no SMS/password fallback', type: action, description: 'Unavailable channel outcome action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a05, name: 'Actor submits OTP', type: action, description: 'OTP submission action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a06, name: 'Verify OTP expiry, single-use, rate-limit and brute-force controls', type: action, description: 'OTP verification action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.d02, name: 'OTP valid and permitted?', type: decision, description: 'OTP result decision', tags: [ad02, activity, decision], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a07, name: 'Deny authentication; create no session', type: action, description: 'Invalid OTP outcome action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a08, name: 'Revalidate account / role / facility access', type: action, description: 'Post-OTP authorization validation action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.d03, name: 'Requested role context enabled and authorized?', type: decision, description: 'Role authorization decision', tags: [ad02, activity, decision], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a09, name: 'Deny privileged access and issue no usable privileged session', type: action, description: 'Access denied outcome action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a10, name: 'Create revocable authenticated session/token', type: action, description: 'Session creation action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.a11, name: 'Expose only functions permitted to the approved role', type: action, description: 'Role-limited functionality action', tags: [ad02, activity, action], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}]}
-  - {id: activity.ad02.mend, name: 'End-path merge', type: merge, description: 'Merge of all terminal login paths', tags: [ad02, activity, merge], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}], metadata: {visibleLabel: false}}
-  - {id: activity.ad02.note-retry, name: 'Connectivity retry reuses the verified identity/role context; it creates no duplicate User identity or role assignment.', type: note, description: 'Compact source-supported retry and idempotency note', tags: [ad02, activity, note], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '9'}]}
-  - {id: activity.ad02.final, name: 'Final', type: final, description: 'Activity final pseudostate', tags: [ad02, activity, pseudostate], sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '7'}, {source: aafiatak-product-specification, section: '9'}]}
+- id: activity.ad02.initial
+  name: Start
+  type: initial
+  description: Activity entry pseudostate
+  tags:
+  - ad02
+  - activity
+  - pseudostate
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata: {}
+- id: activity.ad02.a01
+  name: Actor provides verified phone number and requests Log In
+  type: action
+  description: Login initiation action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Enter phone and request Log In
+- id: activity.ad02.a02
+  name: Normalize phone and locate existing identity / requested role context
+  type: action
+  description: Resolve identity and role context action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Resolve identity & role context
+- id: activity.ad02.a03
+  name: Request short-lived single-use WhatsApp OTP
+  type: action
+  description: Official OTP request action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Request WhatsApp OTP
+- id: activity.ad02.d01
+  name: WhatsApp authentication channel available?
+  type: decision
+  description: Authentication channel decision
+  tags:
+  - ad02
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: WhatsApp channel available?
+- id: activity.ad02.a04
+  name: Keep login incomplete; provide no SMS/password fallback
+  type: action
+  description: Unavailable channel outcome action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Keep login incomplete
+- id: activity.ad02.a05
+  name: Actor submits OTP
+  type: action
+  description: OTP submission action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Submit OTP
+- id: activity.ad02.a06
+  name: Verify OTP expiry, single-use, rate-limit and brute-force controls
+  type: action
+  description: OTP verification action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Verify OTP & security limits
+- id: activity.ad02.d02
+  name: OTP valid and permitted?
+  type: decision
+  description: OTP result decision
+  tags:
+  - ad02
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: OTP valid?
+- id: activity.ad02.a07
+  name: Deny authentication; create no session
+  type: action
+  description: Invalid OTP outcome action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Deny authentication
+- id: activity.ad02.a08
+  name: Revalidate account / role / facility access
+  type: action
+  description: Post-OTP authorization validation action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Revalidate account / role / facility
+- id: activity.ad02.d03
+  name: Requested role context enabled and authorized?
+  type: decision
+  description: Role authorization decision
+  tags:
+  - ad02
+  - activity
+  - decision
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Role context authorized?
+- id: activity.ad02.a09
+  name: Deny privileged access and issue no usable privileged session
+  type: action
+  description: Access denied outcome action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Deny privileged access
+- id: activity.ad02.a10
+  name: Create revocable authenticated session/token
+  type: action
+  description: Session creation action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Create revocable session/token
+- id: activity.ad02.a11
+  name: Expose only functions permitted to the approved role
+  type: action
+  description: Role-limited functionality action
+  tags:
+  - ad02
+  - activity
+  - action
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: Expose permitted role functions
+- id: activity.ad02.mend
+  name: End-path merge
+  type: merge
+  description: Merge of all terminal login paths
+  tags:
+  - ad02
+  - activity
+  - merge
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  metadata:
+    visibleLabel: false
+- id: activity.ad02.final
+  name: End
+  type: final
+  description: Activity final pseudostate
+  tags:
+  - ad02
+  - activity
+  - pseudostate
+  sourceRefs:
+  - source: ad02-log-in-reviewed-spec
+    section: '7'
+  - source: aafiatak-product-specification
+    section: '9'
+  metadata: {}
 relations:
-  - {id: relation.ad02.f01, type: control_flow, source: activity.ad02.initial, target: activity.ad02.a01, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f02, type: control_flow, source: activity.ad02.a01, target: activity.ad02.a02, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f03, type: control_flow, source: activity.ad02.a02, target: activity.ad02.a03, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f04, type: control_flow, source: activity.ad02.a03, target: activity.ad02.d01, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f05, type: control_flow, source: activity.ad02.d01, target: activity.ad02.a04, name: '[Unavailable]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Unavailable]'}}
-  - {id: relation.ad02.f06, type: control_flow, source: activity.ad02.a04, target: activity.ad02.mend, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f07, type: control_flow, source: activity.ad02.d01, target: activity.ad02.a05, name: '[Available]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Available]'}}
-  - {id: relation.ad02.f08, type: control_flow, source: activity.ad02.a05, target: activity.ad02.a06, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f09, type: control_flow, source: activity.ad02.a06, target: activity.ad02.d02, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f10, type: control_flow, source: activity.ad02.d02, target: activity.ad02.a07, name: '[Invalid / expired / reused / rate-limited]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Invalid / expired / reused / rate-limited]'}}
-  - {id: relation.ad02.f11, type: control_flow, source: activity.ad02.a07, target: activity.ad02.mend, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f12, type: control_flow, source: activity.ad02.d02, target: activity.ad02.a08, name: '[Valid]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Valid]'}}
-  - {id: relation.ad02.f13, type: control_flow, source: activity.ad02.a08, target: activity.ad02.d03, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f14, type: control_flow, source: activity.ad02.d03, target: activity.ad02.a09, name: '[Disabled / revoked / unauthorized]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Disabled / revoked / unauthorized]'}}
-  - {id: relation.ad02.f15, type: control_flow, source: activity.ad02.a09, target: activity.ad02.mend, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f16, type: control_flow, source: activity.ad02.d03, target: activity.ad02.a10, name: '[Enabled and authorized]', sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {guard: '[Enabled and authorized]'}}
-  - {id: relation.ad02.f17, type: control_flow, source: activity.ad02.a10, target: activity.ad02.a11, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f18, type: control_flow, source: activity.ad02.a11, target: activity.ad02.mend, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
-  - {id: relation.ad02.f19, type: control_flow, source: activity.ad02.mend, target: activity.ad02.final, sourceRefs: [{source: ad02-log-in-reviewed-spec, section: '8'}, {source: aafiatak-product-specification, section: '9'}], metadata: {visibleLabel: false}}
+- id: relation.ad02.f01
+  type: control_flow
+  source: activity.ad02.initial
+  target: activity.ad02.a01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f02
+  type: control_flow
+  source: activity.ad02.a01
+  target: activity.ad02.a02
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f03
+  type: control_flow
+  source: activity.ad02.a02
+  target: activity.ad02.a03
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f04
+  type: control_flow
+  source: activity.ad02.a03
+  target: activity.ad02.d01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f05
+  type: control_flow
+  source: activity.ad02.d01
+  target: activity.ad02.a04
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Unavailable]'
+  name: '[Unavailable]'
+- id: relation.ad02.f06
+  type: control_flow
+  source: activity.ad02.a04
+  target: activity.ad02.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f07
+  type: control_flow
+  source: activity.ad02.d01
+  target: activity.ad02.a05
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Available]'
+  name: '[Available]'
+- id: relation.ad02.f08
+  type: control_flow
+  source: activity.ad02.a05
+  target: activity.ad02.a06
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f09
+  type: control_flow
+  source: activity.ad02.a06
+  target: activity.ad02.d02
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f10
+  type: control_flow
+  source: activity.ad02.d02
+  target: activity.ad02.a07
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Invalid / expired / reused / rate-limited]'
+  name: '[Invalid / expired / reused / rate-limited]'
+- id: relation.ad02.f11
+  type: control_flow
+  source: activity.ad02.a07
+  target: activity.ad02.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f12
+  type: control_flow
+  source: activity.ad02.d02
+  target: activity.ad02.a08
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Valid]'
+  name: '[Valid]'
+- id: relation.ad02.f13
+  type: control_flow
+  source: activity.ad02.a08
+  target: activity.ad02.d03
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f14
+  type: control_flow
+  source: activity.ad02.d03
+  target: activity.ad02.a09
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Disabled / revoked / unauthorized]'
+  name: '[Disabled / revoked / unauthorized]'
+- id: relation.ad02.f15
+  type: control_flow
+  source: activity.ad02.a09
+  target: activity.ad02.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f16
+  type: control_flow
+  source: activity.ad02.d03
+  target: activity.ad02.a10
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: true
+    guard: '[Enabled and authorized]'
+  name: '[Enabled and authorized]'
+- id: relation.ad02.f17
+  type: control_flow
+  source: activity.ad02.a10
+  target: activity.ad02.a11
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f18
+  type: control_flow
+  source: activity.ad02.a11
+  target: activity.ad02.mend
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad02.f19
+  type: control_flow
+  source: activity.ad02.mend
+  target: activity.ad02.final
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: '8'
+  metadata:
+    visibleLabel: false

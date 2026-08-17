@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-ad09-reschedule-appointment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-ad09-reschedule-appointment.png",
+      "previewHash": "a77d756cf13e8ab378612a62b4bdc75982d54a19b826cab0371df776266d2822",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:45:00+00:00",
+      "notes": "Reschedule Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-ad09-reschedule-appointment.png",
+    "previewHash": "a77d756cf13e8ab378612a62b4bdc75982d54a19b826cab0371df776266d2822",
+    "status": "awaiting-user-approval"
+  }
+}

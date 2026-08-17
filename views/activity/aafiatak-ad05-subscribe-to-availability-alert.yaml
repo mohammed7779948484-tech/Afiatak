@@ -52,9 +52,8 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Subscribe to Availability Alert is awaiting user visual approval after semantic, notation, editable-source, and rendering
-    QA.
-  previewHash: '65db1af3f262ba7784fff0bea704a2a67bd2c60e1ad75fe207f0ef8034e35267'
+  notes: Subscribe to Availability Alert is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: '4aea48cf6e0fbfecd90456ad8a60bef4a1ffb8fe8901fa6c1752aaa999c57dba'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Subscribe to Availability Alert
@@ -64,3 +63,4 @@ options:
   expectedControlFlowCount: 21
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD05_Subscribe_Availability_Alert_FINAL_LECTURER_PAGE11_v3.md

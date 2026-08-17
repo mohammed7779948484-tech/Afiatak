@@ -1,8 +1,8 @@
 modelId: aafiatak-ad13-manage-operational-exceptions
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad13.initial
-  name: Initial
+  name: Start
   type: initial
   description: Manage Operational Exceptions Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad13.a01
   name: Facility actor records operational event and doctor/session/release context
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record operational event
 - id: activity.ad13.a02
   name: Create OPEN OperationalException with approved type and link affected context
   type: action
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Create OPEN OperationalException
 - id: activity.ad13.d01
   name: Exception type = SESSION_CANCELLED?
   type: decision
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: SESSION_CANCELLED?
 - id: activity.ad13.a03
   name: Make affected session/release non-bookable and release active ReservationHolds
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Make session non-bookable; release holds
 - id: activity.ad13.a04
   name: Preserve all confirmed Appointments and identify affected unresolved set
   type: action
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Preserve Appointments; identify affected set
 - id: activity.ad13.a05
   name: Present affected Appointments and relevant hold/capacity state
   type: action
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Show affected Appointments
 - id: activity.ad13.a06
   name: Select one unresolved affected Appointment
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Select unresolved Appointment
 - id: activity.ad13.d02
   name: Approved resolution path?
   type: decision
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Resolution path?
 - id: activity.ad13.a07
   name: Offer / secure suitable equivalent alternative after Patient communication using reschedule invariants
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Secure equivalent alternative
 - id: activity.ad13.a08
   name: Cancel Appointment from facility side and preserve history
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Cancel by facility
 - id: activity.ad13.d03
   name: Electronic amount collected?
   type: decision
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Electronic amount collected?
 - id: activity.ad13.a09
   name: Initiate full collected-amount refund
   type: action
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Initiate full refund
 - id: activity.ad13.a10
   name: Record facility-cancellation outcome with no electronic refund
   type: action
@@ -157,6 +182,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record cancellation without refund
 - id: activity.ad13.a11
   name: Create documented support escalation for later Platform review
   type: action
@@ -168,6 +195,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Create support escalation
 - id: activity.ad13.a12
   name: Record completed resolution action / outcome for affected Appointment
   type: action
@@ -179,6 +208,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Record completed resolution outcome
 - id: activity.ad13.a17
   name: Keep OperationalException OPEN pending escalated resolution; do not close
   type: action
@@ -190,6 +221,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Keep exception OPEN for escalation
 - id: activity.ad13.d04
   name: More affected Appointments unresolved?
   type: decision
@@ -201,6 +234,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: More unresolved Appointments?
 - id: activity.ad13.a13
   name: Notify affected Patients through Notification Service when required
   type: action
@@ -212,6 +247,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Notify affected Patients
 - id: activity.ad13.a14
   name: Facility actor requests Close Operational Exception
   type: action
@@ -223,6 +260,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Request exception closure
 - id: activity.ad13.d05
   name: Every affected Appointment has a completed documented action/outcome?
   type: decision
@@ -234,6 +273,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: All outcomes completed?
 - id: activity.ad13.a15
   name: Reject closure and identify remaining resolution requirement
   type: action
@@ -245,6 +286,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Reject closure
 - id: activity.ad13.a16
   name: Close OperationalException and preserve audit trail
   type: action
@@ -256,6 +299,8 @@ elements:
   sourceRefs:
   - source: ad13-manage-operational-exceptions-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Close exception & preserve audit
 - id: activity.ad13.mend
   name: End-path merge
   type: merge
@@ -270,7 +315,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad13.final
-  name: Final
+  name: End
   type: final
   description: Manage Operational Exceptions Activity final
   tags:
@@ -282,16 +327,28 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
+- id: activity.ad13.o01
+  name: OperationalException
+  type: object
+  description: Manage Operational Exceptions required Object Node
+  tags:
+  - ad13
+  - activity
+  - object
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: 7B
+  metadata:
+    visibleLabel: OperationalException
 relations:
 - id: relation.ad13.f01
   type: control_flow
   source: activity.ad13.initial
   target: activity.ad13.a01
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad13.f02
@@ -299,328 +356,290 @@ relations:
   source: activity.ad13.a01
   target: activity.ad13.a02
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad13.f03
   type: control_flow
-  source: activity.ad13.a02
-  target: activity.ad13.d01
-  sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
-  - source: aafiatak-product-specification
-    section: '9'
-  metadata:
-    visibleLabel: false
-- id: relation.ad13.f04
-  type: control_flow
   source: activity.ad13.d01
   target: activity.ad13.a03
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
-- id: relation.ad13.f05
+- id: relation.ad13.f04
   type: control_flow
   source: activity.ad13.a03
   target: activity.ad13.a04
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f06
+- id: relation.ad13.f05
   type: control_flow
   source: activity.ad13.d01
   target: activity.ad13.a04
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
-- id: relation.ad13.f07
+- id: relation.ad13.f06
   type: control_flow
   source: activity.ad13.a04
   target: activity.ad13.a05
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f08
+- id: relation.ad13.f07
   type: control_flow
   source: activity.ad13.a05
   target: activity.ad13.a06
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f09
+- id: relation.ad13.f08
   type: control_flow
   source: activity.ad13.a06
   target: activity.ad13.d02
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f10
+- id: relation.ad13.f09
   type: control_flow
   source: activity.ad13.d02
   target: activity.ad13.a07
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Equivalent alternative]'
   name: '[Equivalent alternative]'
-- id: relation.ad13.f11
+- id: relation.ad13.f10
   type: control_flow
   source: activity.ad13.a07
   target: activity.ad13.a12
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f12
+- id: relation.ad13.f11
   type: control_flow
   source: activity.ad13.d02
   target: activity.ad13.a08
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Facility cancellation]'
   name: '[Facility cancellation]'
-- id: relation.ad13.f13
+- id: relation.ad13.f12
   type: control_flow
   source: activity.ad13.a08
   target: activity.ad13.d03
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f14
+- id: relation.ad13.f13
   type: control_flow
   source: activity.ad13.d03
   target: activity.ad13.a09
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Paid]'
   name: '[Paid]'
-- id: relation.ad13.f15
+- id: relation.ad13.f14
   type: control_flow
   source: activity.ad13.a09
   target: activity.ad13.a12
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f16
+- id: relation.ad13.f15
   type: control_flow
   source: activity.ad13.d03
   target: activity.ad13.a10
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No electronic payment]'
   name: '[No electronic payment]'
-- id: relation.ad13.f17
+- id: relation.ad13.f16
   type: control_flow
   source: activity.ad13.a10
   target: activity.ad13.a12
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f18
+- id: relation.ad13.f17
   type: control_flow
   source: activity.ad13.d02
   target: activity.ad13.a11
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Escalation]'
   name: '[Escalation]'
-- id: relation.ad13.f19
+- id: relation.ad13.f18
   type: control_flow
   source: activity.ad13.a11
   target: activity.ad13.a17
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f20
+- id: relation.ad13.f19
   type: control_flow
   source: activity.ad13.a17
   target: activity.ad13.mend
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f21
+- id: relation.ad13.f20
   type: control_flow
   source: activity.ad13.a12
   target: activity.ad13.d04
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f22
+- id: relation.ad13.f21
   type: control_flow
   source: activity.ad13.d04
   target: activity.ad13.a06
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
-- id: relation.ad13.f23
+- id: relation.ad13.f22
   type: control_flow
   source: activity.ad13.d04
   target: activity.ad13.a13
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
-- id: relation.ad13.f24
+- id: relation.ad13.f23
   type: control_flow
   source: activity.ad13.a13
   target: activity.ad13.a14
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f25
+- id: relation.ad13.f24
   type: control_flow
   source: activity.ad13.a14
   target: activity.ad13.d05
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f26
+- id: relation.ad13.f25
   type: control_flow
   source: activity.ad13.d05
   target: activity.ad13.a15
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
-- id: relation.ad13.f27
+- id: relation.ad13.f26
   type: control_flow
   source: activity.ad13.a15
   target: activity.ad13.a06
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f28
+- id: relation.ad13.f27
   type: control_flow
   source: activity.ad13.d05
   target: activity.ad13.a16
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
-- id: relation.ad13.f29
+- id: relation.ad13.f28
   type: control_flow
   source: activity.ad13.a16
   target: activity.ad13.mend
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
-- id: relation.ad13.f30
+- id: relation.ad13.f29
   type: control_flow
   source: activity.ad13.mend
   target: activity.ad13.final
   sourceRefs:
-  - source: ad13-manage-operational-exceptions-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.object30
+  type: object_flow
+  source: activity.ad13.a02
+  target: activity.ad13.o01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: 8A
+  metadata:
+    visibleLabel: false
+- id: relation.ad13.object31
+  type: object_flow
+  source: activity.ad13.o01
+  target: activity.ad13.d01
+  sourceRefs:
+  - source: aafiatak-product-specification
+    section: 8A
   metadata:
     visibleLabel: false

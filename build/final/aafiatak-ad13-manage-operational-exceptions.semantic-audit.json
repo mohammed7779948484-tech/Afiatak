@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad13-manage-operational-exceptions",
+  "result": "pass",
+  "counts": {
+    "actions": 17,
+    "decisions": 5,
+    "merges": 1,
+    "controlFlows": 29,
+    "objectFlows": 2,
+    "objectNodes": 1
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}

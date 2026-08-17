@@ -28,6 +28,7 @@ include:
 - activity.ad13.a16
 - activity.ad13.mend
 - activity.ad13.final
+- activity.ad13.o01
 relations:
 - relation.ad13.f01
 - relation.ad13.f02
@@ -58,7 +59,8 @@ relations:
 - relation.ad13.f27
 - relation.ad13.f28
 - relation.ad13.f29
-- relation.ad13.f30
+- relation.ad13.object30
+- relation.ad13.object31
 layoutProfile: lecturer-style-activity-portrait
 outputTargets:
 - svg
@@ -68,15 +70,15 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Manage Operational Exceptions is awaiting user visual approval after semantic, notation, editable-source, and rendering
-    QA.
-  previewHash: '205cfb66af18746a229e39c370262c34d9cb8bc9381064dec99b363c84d2f2d0'
+  notes: Manage Operational Exceptions is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'a39fc9e5dfa5102273246b92ec8a4cf317eddd6f7299193adff3bb92608e1ac0'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Manage Operational Exceptions
   expectedActionCount: 17
   expectedDecisionCount: 5
   expectedMergeCount: 1
-  expectedControlFlowCount: 30
+  expectedControlFlowCount: 29
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD13_Manage_Operational_Exceptions_FINAL_LECTURER_PAGE11_v3.md

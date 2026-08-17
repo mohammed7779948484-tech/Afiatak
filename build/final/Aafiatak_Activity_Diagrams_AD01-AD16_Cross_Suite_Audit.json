@@ -1,9 +1,10 @@
 {
-  "suite": "Aafiatak Activity Diagrams AD-01 through AD-16",
+  "suite": "Aafiatak Activity Diagrams AD-01 through AD-16 \u2014 v3 Lecturer Page-11 Redesign",
   "diagramCount": 16,
   "passed": 16,
   "failed": 0,
   "statusExpectation": "awaiting-user-approval",
+  "lecturerStyle": "rounded Activity/Process frame; monochrome technical UML notation",
   "results": [
     {
       "id": "aafiatak-ad01-register-patient",
@@ -12,7 +13,9 @@
         "actions": 12,
         "decisions": 3,
         "merges": 1,
-        "controlFlows": 20
+        "controlFlows": 20,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -24,7 +27,9 @@
         "actions": 11,
         "decisions": 3,
         "merges": 1,
-        "controlFlows": 19
+        "controlFlows": 19,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -36,7 +41,9 @@
         "actions": 17,
         "decisions": 6,
         "merges": 1,
-        "controlFlows": 31
+        "controlFlows": 31,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -48,7 +55,9 @@
         "actions": 15,
         "decisions": 6,
         "merges": 1,
-        "controlFlows": 29
+        "controlFlows": 28,
+        "objectFlows": 2,
+        "objectNodes": 1
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -60,7 +69,9 @@
         "actions": 12,
         "decisions": 3,
         "merges": 1,
-        "controlFlows": 21
+        "controlFlows": 21,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -72,7 +83,9 @@
         "actions": 15,
         "decisions": 5,
         "merges": 1,
-        "controlFlows": 27
+        "controlFlows": 27,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -84,7 +97,9 @@
         "actions": 10,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 16
+        "controlFlows": 16,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -96,7 +111,9 @@
         "actions": 10,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 16
+        "controlFlows": 16,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -108,7 +125,9 @@
         "actions": 12,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 18
+        "controlFlows": 18,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -120,7 +139,9 @@
         "actions": 11,
         "decisions": 3,
         "merges": 1,
-        "controlFlows": 19
+        "controlFlows": 19,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -132,7 +153,9 @@
         "actions": 12,
         "decisions": 5,
         "merges": 1,
-        "controlFlows": 24
+        "controlFlows": 24,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -144,7 +167,9 @@
         "actions": 11,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 19
+        "controlFlows": 19,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -156,7 +181,9 @@
         "actions": 17,
         "decisions": 5,
         "merges": 1,
-        "controlFlows": 30
+        "controlFlows": 29,
+        "objectFlows": 2,
+        "objectNodes": 1
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -168,7 +195,9 @@
         "actions": 11,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 17
+        "controlFlows": 17,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -180,7 +209,9 @@
         "actions": 9,
         "decisions": 2,
         "merges": 1,
-        "controlFlows": 15
+        "controlFlows": 15,
+        "objectFlows": 1,
+        "objectNodes": 1
       },
       "status": "awaiting-user-approval",
       "errors": []
@@ -192,7 +223,9 @@
         "actions": 11,
         "decisions": 3,
         "merges": 1,
-        "controlFlows": 19
+        "controlFlows": 19,
+        "objectFlows": 0,
+        "objectNodes": 0
       },
       "status": "awaiting-user-approval",
       "errors": []

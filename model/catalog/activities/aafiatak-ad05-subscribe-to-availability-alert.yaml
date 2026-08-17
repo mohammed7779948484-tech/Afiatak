@@ -1,8 +1,8 @@
 modelId: aafiatak-ad05-subscribe-to-availability-alert
-version: '1.0'
+version: '3.0'
 elements:
 - id: activity.ad05.initial
-  name: Initial
+  name: Start
   type: initial
   description: Subscribe to Availability Alert Activity initial
   tags:
@@ -14,6 +14,7 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 - id: activity.ad05.a01
   name: Patient chooses Notify Me When Available
   type: action
@@ -25,6 +26,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Choose Notify Me When Available
 - id: activity.ad05.a02
   name: Revalidate current Aafiatak bookability
   type: action
@@ -36,6 +39,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Revalidate bookability
 - id: activity.ad05.d01
   name: Capacity now bookable?
   type: decision
@@ -47,6 +52,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Capacity now bookable?
 - id: activity.ad05.a03
   name: Direct Patient to normal booking; create no hidden reservation
   type: action
@@ -58,6 +65,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Direct to normal booking
 - id: activity.ad05.a04
   name: Create AvailabilityAlertSubscription for Patient/context
   type: action
@@ -69,6 +78,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Create availability subscription
 - id: activity.ad05.a05
   name: Confirm subscription as interest only — no hold / queue / priority
   type: action
@@ -80,6 +91,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Confirm no hold / queue / priority
 - id: activity.ad05.a06
   name: Wait for approved capacity-return event, successful Patient booking, or session end
   type: action
@@ -91,6 +104,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Wait for supported event
 - id: activity.ad05.d02
   name: Which source-supported event occurs?
   type: decision
@@ -102,6 +117,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Which event occurred?
 - id: activity.ad05.a07
   name: Expire corresponding subscription after successful Patient booking
   type: action
@@ -113,6 +130,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Expire subscription after booking
 - id: activity.ad05.a08
   name: Expire subscription when session ends
   type: action
@@ -124,6 +143,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Expire subscription at session end
 - id: activity.ad05.a09
   name: Detect zero-to-positive bookable capacity from approved Aafiatak event
   type: action
@@ -135,6 +156,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Detect bookable capacity return
 - id: activity.ad05.a10
   name: Notify eligible subscriptions through Notification Service
   type: action
@@ -146,6 +169,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Send availability notification
 - id: activity.ad05.a11
   name: Patient competes through normal booking; first valid ReservationHold wins
   type: action
@@ -157,6 +182,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Compete through normal booking
 - id: activity.ad05.d03
   name: Patient successfully books?
   type: decision
@@ -168,6 +195,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Booking succeeded?
 - id: activity.ad05.a12
   name: Keep subscription lifecycle subject to duplicate-notification suppression until booking/session end
   type: action
@@ -179,6 +208,8 @@ elements:
   sourceRefs:
   - source: ad05-subscribe-availability-alert-reviewed-spec
     section: '7'
+  metadata:
+    visibleLabel: Keep subscription; suppress duplicates
 - id: activity.ad05.mend
   name: End-path merge
   type: merge
@@ -193,7 +224,7 @@ elements:
   metadata:
     visibleLabel: false
 - id: activity.ad05.final
-  name: Final
+  name: End
   type: final
   description: Subscribe to Availability Alert Activity final
   tags:
@@ -205,16 +236,15 @@ elements:
     section: '7'
   - source: aafiatak-product-specification
     section: '9'
+  metadata: {}
 relations:
 - id: relation.ad05.f01
   type: control_flow
   source: activity.ad05.initial
   target: activity.ad05.a01
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f02
@@ -222,10 +252,8 @@ relations:
   source: activity.ad05.a01
   target: activity.ad05.a02
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f03
@@ -233,10 +261,8 @@ relations:
   source: activity.ad05.a02
   target: activity.ad05.d01
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f04
@@ -244,11 +270,10 @@ relations:
   source: activity.ad05.d01
   target: activity.ad05.a03
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Yes]'
   name: '[Yes]'
 - id: relation.ad05.f05
@@ -256,10 +281,8 @@ relations:
   source: activity.ad05.a03
   target: activity.ad05.mend
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f06
@@ -267,11 +290,10 @@ relations:
   source: activity.ad05.d01
   target: activity.ad05.a04
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[No]'
   name: '[No]'
 - id: relation.ad05.f07
@@ -279,10 +301,8 @@ relations:
   source: activity.ad05.a04
   target: activity.ad05.a05
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f08
@@ -290,10 +310,8 @@ relations:
   source: activity.ad05.a05
   target: activity.ad05.a06
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f09
@@ -301,10 +319,8 @@ relations:
   source: activity.ad05.a06
   target: activity.ad05.d02
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f10
@@ -312,11 +328,10 @@ relations:
   source: activity.ad05.d02
   target: activity.ad05.a07
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Patient books successfully]'
   name: '[Patient books successfully]'
 - id: relation.ad05.f11
@@ -324,10 +339,8 @@ relations:
   source: activity.ad05.a07
   target: activity.ad05.mend
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f12
@@ -335,11 +348,10 @@ relations:
   source: activity.ad05.d02
   target: activity.ad05.a08
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Session ends]'
   name: '[Session ends]'
 - id: relation.ad05.f13
@@ -347,10 +359,8 @@ relations:
   source: activity.ad05.a08
   target: activity.ad05.mend
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f14
@@ -358,11 +368,10 @@ relations:
   source: activity.ad05.d02
   target: activity.ad05.a09
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Approved capacity returns]'
   name: '[Approved capacity returns]'
 - id: relation.ad05.f15
@@ -370,10 +379,8 @@ relations:
   source: activity.ad05.a09
   target: activity.ad05.a10
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f16
@@ -381,10 +388,8 @@ relations:
   source: activity.ad05.a10
   target: activity.ad05.a11
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f17
@@ -392,10 +397,8 @@ relations:
   source: activity.ad05.a11
   target: activity.ad05.d03
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f18
@@ -403,11 +406,10 @@ relations:
   source: activity.ad05.d03
   target: activity.ad05.a07
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Booked]'
   name: '[Booked]'
 - id: relation.ad05.f19
@@ -415,11 +417,10 @@ relations:
   source: activity.ad05.d03
   target: activity.ad05.a12
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
+    visibleLabel: true
     guard: '[Not booked]'
   name: '[Not booked]'
 - id: relation.ad05.f20
@@ -427,10 +428,8 @@ relations:
   source: activity.ad05.a12
   target: activity.ad05.a06
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false
 - id: relation.ad05.f21
@@ -438,9 +437,7 @@ relations:
   source: activity.ad05.mend
   target: activity.ad05.final
   sourceRefs:
-  - source: ad05-subscribe-availability-alert-reviewed-spec
-    section: '8'
   - source: aafiatak-product-specification
-    section: '9'
+    section: '8'
   metadata:
     visibleLabel: false

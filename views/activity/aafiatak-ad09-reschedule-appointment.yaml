@@ -48,9 +48,8 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Reschedule Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering
-    QA.
-  previewHash: 'eacd09337e9e11cc9ef473a73e3e3f927ce5fe4351c934acc2904bb646a7e462'
+  notes: Reschedule Appointment is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'a77d756cf13e8ab378612a62b4bdc75982d54a19b826cab0371df776266d2822'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Reschedule Appointment
@@ -60,3 +59,4 @@ options:
   expectedControlFlowCount: 18
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD09_Reschedule_Appointment_FINAL_LECTURER_PAGE11_v3.md

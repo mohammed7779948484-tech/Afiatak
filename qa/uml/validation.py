@@ -32,7 +32,7 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
         "use_case": {"actor", "use_case"},
         "class": {"class", "note"},
         "object": {"object"},
-        "activity": {"initial", "final", "action", "decision", "merge", "fork", "join", "note"},
+        "activity": {"initial", "final", "action", "decision", "merge", "fork", "join", "object", "note"},
         "sequence": {"participant", "actor", "object", "component"},
         "communication": {"participant", "actor", "object", "component"},
         "state": {"initial", "final", "state"},
@@ -44,7 +44,7 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
         "use_case": {"association", "include", "extend", "generalization"},
         "class": {"association", "generalization", "aggregation", "composition"},
         "object": {"association"},
-        "activity": {"control_flow"},
+        "activity": {"control_flow", "object_flow"},
         "sequence": {"message", "return_message"},
         "communication": {"message", "return_message"},
         "state": {"transition"},
@@ -225,16 +225,25 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
                 )
             )
         for relation in relations:
-            if relation.type != "control_flow":
+            if relation.type not in {"control_flow", "object_flow"}:
                 diagnostics.append(
                     Diagnostic(
                         "Q3",
                         "invalid-activity-relation",
-                        "Activity relationships must be control flows",
+                        "Activity relationships must be control or object flows",
                         subject=relation.id,
                     )
                 )
-            if elements[relation.source].type == "decision" and not relation.name:
+            if relation.type == "object_flow" and "object" not in {elements[relation.source].type, elements[relation.target].type}:
+                diagnostics.append(
+                    Diagnostic(
+                        "Q3",
+                        "invalid-object-flow",
+                        "Object flow must connect an Object Node",
+                        subject=relation.id,
+                    )
+                )
+            if relation.type == "control_flow" and elements[relation.source].type == "decision" and not relation.name:
                 diagnostics.append(
                     Diagnostic(
                         "Q3",
@@ -296,7 +305,7 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
                         reachable.add(relation.target)
                         changed = True
             for item in set(view.include) - reachable:
-                if elements[item].type == "note":
+                if elements[item].type == "note" or (elements[item].type == "object" and elements[item].metadata.get("externalInput")):
                     continue
                 diagnostics.append(
                     Diagnostic(

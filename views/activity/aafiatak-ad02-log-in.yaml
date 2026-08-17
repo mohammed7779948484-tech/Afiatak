@@ -3,53 +3,54 @@ diagramType: activity
 title: Activity Diagram — Log In
 model: ../../model/catalog/activities/aafiatak-ad02-log-in.yaml
 include:
-  - activity.ad02.initial
-  - activity.ad02.a01
-  - activity.ad02.a02
-  - activity.ad02.a03
-  - activity.ad02.d01
-  - activity.ad02.a04
-  - activity.ad02.a05
-  - activity.ad02.a06
-  - activity.ad02.d02
-  - activity.ad02.a07
-  - activity.ad02.a08
-  - activity.ad02.d03
-  - activity.ad02.a09
-  - activity.ad02.a10
-  - activity.ad02.a11
-  - activity.ad02.mend
-  - activity.ad02.note-retry
-  - activity.ad02.final
+- activity.ad02.initial
+- activity.ad02.a01
+- activity.ad02.a02
+- activity.ad02.a03
+- activity.ad02.d01
+- activity.ad02.a04
+- activity.ad02.a05
+- activity.ad02.a06
+- activity.ad02.d02
+- activity.ad02.a07
+- activity.ad02.a08
+- activity.ad02.d03
+- activity.ad02.a09
+- activity.ad02.a10
+- activity.ad02.a11
+- activity.ad02.mend
+- activity.ad02.final
 relations:
-  - relation.ad02.f01
-  - relation.ad02.f02
-  - relation.ad02.f03
-  - relation.ad02.f04
-  - relation.ad02.f05
-  - relation.ad02.f06
-  - relation.ad02.f07
-  - relation.ad02.f08
-  - relation.ad02.f09
-  - relation.ad02.f10
-  - relation.ad02.f11
-  - relation.ad02.f12
-  - relation.ad02.f13
-  - relation.ad02.f14
-  - relation.ad02.f15
-  - relation.ad02.f16
-  - relation.ad02.f17
-  - relation.ad02.f18
-  - relation.ad02.f19
+- relation.ad02.f01
+- relation.ad02.f02
+- relation.ad02.f03
+- relation.ad02.f04
+- relation.ad02.f05
+- relation.ad02.f06
+- relation.ad02.f07
+- relation.ad02.f08
+- relation.ad02.f09
+- relation.ad02.f10
+- relation.ad02.f11
+- relation.ad02.f12
+- relation.ad02.f13
+- relation.ad02.f14
+- relation.ad02.f15
+- relation.ad02.f16
+- relation.ad02.f17
+- relation.ad02.f18
+- relation.ad02.f19
 layoutProfile: lecturer-style-activity-portrait
-outputTargets: [svg, png]
+outputTargets:
+- svg
+- png
 approval: reviewed
 visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:40:00+00:00'
   notes: Log In is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
-  previewHash: '814ead505c1bcf5ed143eb7309c4042fc33928acadafc8eec249db094a1ba75c'
+  previewHash: 'eba8548b9f303a6b2175dc502a3dbc3b734b5b8f3424aefffd8f0b0425122316'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Log In
@@ -57,5 +58,9 @@ options:
   expectedDecisionCount: 3
   expectedMergeCount: 1
   expectedControlFlowCount: 19
-  approvedNoteCount: 1
-  prohibitedNodeNames: [Password, Forgot Password, SMS OTP]
+  approvedNoteCount: 0
+  prohibitedNodeNames:
+  - Password
+  - Forgot Password
+  - SMS OTP
+  v3Spec: Aafiatak_AD02_Log_In_FINAL_LECTURER_PAGE11_v3.md

@@ -17,6 +17,7 @@ include:
 - activity.ad15.a09
 - activity.ad15.mend
 - activity.ad15.final
+- activity.ad15.o01
 relations:
 - relation.ad15.f01
 - relation.ad15.f02
@@ -33,6 +34,7 @@ relations:
 - relation.ad15.f13
 - relation.ad15.f14
 - relation.ad15.f15
+- relation.ad15.object16
 layoutProfile: lecturer-style-activity-portrait
 outputTargets:
 - svg
@@ -42,9 +44,8 @@ visualReview:
   status: awaiting-user-approval
   reviewer: Manus automated QA
   reviewedAt: '2026-08-17T12:45:00+00:00'
-  notes: Review Facility Onboarding Request is awaiting user visual approval after semantic, notation, editable-source, and
-    rendering QA.
-  previewHash: '485d4d310b456286efee053e165270683e4b9093df5bdda4e634b15faa3b3ef8'
+  notes: Review Facility Onboarding Request is awaiting user visual approval after semantic, notation, editable-source, and rendering QA.
+  previewHash: 'd2e1bf637abf2013b3091f01be127da7c59f502a2eacbb78375b79f615f8478f'
 options:
   masterSheet: A3 portrait equivalent
   useCase: Review Facility Onboarding Request
@@ -54,3 +55,4 @@ options:
   expectedControlFlowCount: 15
   approvedNoteCount: 0
   prohibitedNodeNames: []
+  v3Spec: Aafiatak_AD15_Review_Facility_Onboarding_FINAL_LECTURER_PAGE11_v3.md

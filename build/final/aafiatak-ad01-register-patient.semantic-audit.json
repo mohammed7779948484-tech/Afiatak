@@ -1,0 +1,14 @@
+{
+  "id": "aafiatak-ad01-register-patient",
+  "result": "pass",
+  "counts": {
+    "actions": 12,
+    "decisions": 3,
+    "merges": 1,
+    "controlFlows": 20,
+    "objectFlows": 0,
+    "objectNodes": 0
+  },
+  "status": "awaiting-user-approval",
+  "errors": []
+}
