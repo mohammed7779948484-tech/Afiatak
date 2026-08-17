@@ -1,0 +1,57 @@
+id: aafiatak-sd04-reschedule-appointment
+diagramType: sequence
+title: Sequence Diagram — Reschedule Appointment
+model: ../../model/catalog/sequences/aafiatak-sd04-reschedule-appointment.yaml
+include:
+  - actor.sd04.booking-reception-staff
+  - object.sd04.facility-web-dashboard
+  - object.sd04.backend
+  - object.sd04.data-store
+  - object.sd04.notification-service
+  - actor.sd04.patient
+relations:
+  - message.sd04.m01
+  - message.sd04.m02
+  - message.sd04.m03
+  - message.sd04.m04
+  - message.sd04.m05
+  - message.sd04.m06
+  - message.sd04.m07
+  - message.sd04.m08
+  - message.sd04.m09
+  - message.sd04.m10
+  - message.sd04.m11
+  - message.sd04.m12
+  - message.sd04.m13
+  - message.sd04.m14
+  - message.sd04.m15
+  - message.sd04.m16
+  - message.sd04.m17
+  - message.sd04.m18
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T09:30:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 89935343bfbed9c3900e1852b55ce60204859195240282561977d008fc31c79e
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Booking & Reception Staff
+  participantCount: 6
+  mainFlowMessageCount: 18
+  visibleScope: successful same-service same-terms reschedule only
+  invisibleQaConstraints:
+    - Destination remains within the same ServiceOffering and governed terms.
+    - Appointment remains CONFIRMED; no RESCHEDULED Appointment status exists.
+    - Destination is secured before the old seat is released.
+    - Patient receives agreed arrival details through Notification Service.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - New service or changed payment policy
+    - ReservationHold
+    - Partial payment or refund

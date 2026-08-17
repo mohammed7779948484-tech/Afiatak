@@ -1,0 +1,24 @@
+id: aafiatak-doctor-package-use-case
+diagramType: use_case
+title: "Doctor Package Use Case Diagram \u2014 Aafiatak Medical Appointment Booking\
+  \ System"
+model: ../../model/catalog/use-cases/aafiatak-doctor-package-use-case.yaml
+include:
+- actor.doctor
+- uc.duc-01
+- uc.duc-02
+- uc.duc-03
+- uc.duc-04
+- uc.duc-05
+- uc.duc-06
+- uc.duc-07
+- uc.duc-08
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Doctor Package
+  sheetSubtitle: One unified Doctor Package view
+  embeddedActor: true
+  relationshipDisplay: none
+  unifiedPackage: true
+approval: draft

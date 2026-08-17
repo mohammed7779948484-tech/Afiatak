@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-visitor-package-use-case.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "generated",
+      "preview": "build/preview/aafiatak-visitor-package-use-case.png",
+      "previewHash": "1c3c21cc7554a323aae0e12185328469ef33add720944240aa93634ebdbb045f",
+      "hashMatchesRecordedPreview": false,
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": null,
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-visitor-package-use-case.png",
+    "previewHash": "1c3c21cc7554a323aae0e12185328469ef33add720944240aa93634ebdbb045f",
+    "status": "awaiting-user-approval"
+  }
+}

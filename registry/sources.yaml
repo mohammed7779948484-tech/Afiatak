@@ -18,12 +18,134 @@ sources:
     sha256: 7512841fdd946c1e54bf9f4a1c686e1bfd686c66c9127c715f5966fb32b2e591
     immutable: true
     authority_precedence: 3
+  - name: patient-package-reviewed-spec
+    path: docs/Aafiatak_Patient_Package_Use_Case_Spec_REVIEWED_v2.md
+    role: reviewed_patient_package_execution
+    sha256: d831453c9bec2cefcbf23f7eb7a6c1d55e723bf6ae2a1e6a73788b35ad4a7dc4
+    immutable: true
+    authority_precedence: 4
+  - name: visitor-package-reviewed-spec
+    path: docs/Aafiatak_Visitor_Package_Use_Case_Spec_REVIEWED_v1.md
+    role: reviewed_visitor_package_execution
+    sha256: 58db28f090b422a02f4db2906a6f5b6ea5b8b4b474c66cc829fcb2164227bdf9
+    immutable: true
+    authority_precedence: 5
   - name: local-drawio-skill
     path: .agents/skills/drawio/SKILL.md
     tree_path: .agents/skills/drawio
-    tree_sha256: adb43193626e95024aa4b69943300278305a2795bfaed3ab514ac93435d60204
+    tree_sha256: 2b4463ed225a7f2adc7d99dd4cdd0047d6c4630b3efaee060195d01ef56c9875
     role: drawio_tooling_practices
     sha256: b5b6f5cb2f53b9ea9c9d33f6b6e14b2d45c1f6d14ed54d6f0991e20b32711600
     immutable: true
-    authority_precedence: 4
+    authority_precedence: 6
     version: 2.1.0
+  - name: booking-reception-staff-reviewed-spec
+    path: docs/Aafiatak_Booking_Reception_Staff_Package_Use_Case_Spec_DEEP_REVIEWED_v1.md
+    role: reviewed_booking_reception_staff_package_execution
+    sha256: f25b51443281a8a813529ac37260d3e1d50eb07f0350612fb2d6d19aa69d6577
+    immutable: true
+    authority_precedence: 4
+  - name: facility-administrator-reviewed-spec
+    path: docs/Aafiatak_Facility_Administrator_Package_Use_Case_Spec_REVIEWED_v1.md
+    role: reviewed_facility_administrator_package_execution
+    sha256: 973d5d8c1ae7da2c615a8b9ab6e9c6c9237a8e31097624c4340604b88b342378
+    immutable: true
+    authority_precedence: 4
+  - name: doctor-package-deep-reviewed-spec
+    path: docs/Aafiatak_Doctor_Package_Use_Case_Spec_DEEP_REVIEWED_v1.md
+    role: reviewed_doctor_package_execution
+    sha256: 1facdcba7a897f95fd3b36f8aef5d04b8b492d9207d4be7528974f254d257181
+    immutable: true
+    authority_precedence: 4
+  - name: platform-administrator-package-deep-reviewed-spec
+    path: docs/Aafiatak_Platform_Administrator_Package_Use_Case_Spec_DEEP_REVIEWED_v1.md
+    role: reviewed_platform_administrator_package_execution
+    sha256: c14d696b13e77f616a8d4803948897d6ee15418a18f536e6bfa11f81d41bd846
+    immutable: true
+    authority_precedence: 4
+  - name: mvp-class-diagram-final-verified-spec
+    path: docs/Aafiatak_MVP_Class_Diagram_Spec_FINAL_VERIFIED_v2.md
+    role: final_mvp_class_diagram_execution
+    sha256: 2cface0afdc59c0539dd2267f8ac9aef99cb2541f34c9bfa389a8735b7c6472c
+    immutable: true
+    authority_precedence: 5
+  - name: sd01-final-reviewed-spec
+    path: docs/Aafiatak_SD01_Patient_Registration_OTP_FINAL_REVIEWED.md
+    role: final_sd01_sequence_execution
+    sha256: ef87861cf1cbb2217f2fbac3bfc16d762855d4d458db5db9bb0bd2cc1fa3eb0e
+    immutable: true
+    authority_precedence: 5
+  - name: sd02-final-reviewed-spec
+    path: docs/Aafiatak_SD02_Book_Appointment_FINAL_REVIEWED.md
+    role: final_sd02_sequence_execution
+    sha256: 757ff3c26183e2a1275431eb62d697ff9795a1711d972f1fa805f23bae1aa886
+    immutable: true
+    authority_precedence: 5
+  - name: sd03-final-reviewed-spec
+    path: docs/Aafiatak_SD03_Cancel_Appointment_Refund_FINAL_REVIEWED.md
+    role: final_sd03_sequence_execution
+    sha256: 4474444a44b9287c297997caf83aa95becd38549049ba68f125bd4155cbf1082
+    immutable: true
+    authority_precedence: 5
+  - name: sd04-final-reviewed-spec
+    path: docs/Aafiatak_SD04_Reschedule_Appointment_FINAL_REVIEWED.md
+    role: final_sd04_sequence_execution
+    sha256: 5c4b103eb231ed8e3caae83d6f4d10d1741fca6ba2e7359c3c36b8ffa026a107
+    immutable: true
+    authority_precedence: 5
+  - name: sd05-final-reviewed-spec
+    path: docs/Aafiatak_SD05_Checkin_Queue_Call_Next_FINAL_REVIEWED.md
+    role: final_sd05_sequence_execution
+    sha256: 03b972425d3d187b43885eefe2974d82596f17ed3dac1aa0106740665db5bec2
+    immutable: true
+    authority_precedence: 5
+  - name: sd06-final-reviewed-spec
+    path: docs/Aafiatak_SD06_Operational_Exception_FINAL_REVIEWED.md
+    role: final_sd06_sequence_execution
+    sha256: 17e15512dfe6e641c879163b28c83e1ecc58a13bc063198544c483840a947be3
+    immutable: true
+    authority_precedence: 5
+  - name: std01-availability-release-reviewed-spec
+    path: docs/Aafiatak_STD01_AvailabilityRelease_LECTURER_VERIFIED_v2.md
+    role: final_std01_state_execution
+    sha256: 9eae91d1c24dbc0f90509174bee6abfe84f37c19f5de35811846838fbf42a700
+    immutable: true
+    authority_precedence: 5
+  - name: std02-arrival-group-reviewed-spec
+    path: docs/Aafiatak_STD02_ArrivalGroup_LECTURER_VERIFIED_v2.md
+    role: final_std02_state_execution
+    sha256: ece9ab7ab320e6ff5dcf7862b95d3e6a747d821e08568b911d0499fb2733b1d1
+    immutable: true
+    authority_precedence: 5
+  - name: std03-reservation-hold-reviewed-spec
+    path: docs/Aafiatak_STD03_ReservationHold_LECTURER_VERIFIED_v2.md
+    role: final_std03_state_execution
+    sha256: e6c90fc2e3389d10347c7d35c97ff730cc714c72512297472714c496ff1fdc21
+    immutable: true
+    authority_precedence: 5
+  - name: std04-appointment-reviewed-spec
+    path: docs/Aafiatak_STD04_Appointment_LECTURER_VERIFIED_v2.md
+    role: final_std04_state_execution
+    sha256: 69be2e1fd0d77386834504aad2117193b52856a0ce06fd1b9895272fa72db7f3
+    immutable: true
+    authority_precedence: 5
+  - name: std05-payment-intent-reviewed-spec
+    path: docs/Aafiatak_STD05_PaymentIntent_LECTURER_VERIFIED_v2.md
+    role: final_std05_state_execution
+    sha256: e8d1826f7dbe642e7b0fbb8b9542e4ef525f0fa0da7104840464ed574152d2ac
+    immutable: true
+    authority_precedence: 5
+
+  - name: std06-visit-instance-reviewed-spec
+    path: docs/Aafiatak_STD06_VisitInstance_LECTURER_VERIFIED_v2.md
+    role: final_std06_state_execution
+    sha256: 45e54a86c9b813f6311d05a779cddb3e206bb84e8a8e43ac7baaa885afd472a3
+    immutable: true
+    authority_precedence: 5
+
+  - name: std07-queue-entry-reviewed-spec
+    path: docs/Aafiatak_STD07_QueueEntry_LECTURER_VERIFIED_v2.md
+    role: final_std07_state_execution
+    sha256: d09df01ba5551522570f30e85d58d56e25734509b7777b7a575b47104acd7a94
+    immutable: true
+    authority_precedence: 5

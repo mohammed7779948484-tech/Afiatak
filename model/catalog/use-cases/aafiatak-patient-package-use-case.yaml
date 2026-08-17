@@ -1,0 +1,124 @@
+modelId: aafiatak-patient-package-use-case
+version: "1.0"
+elements:
+  - id: actor.patient
+    name: Patient
+    type: actor
+    description: Primary human actor for the detailed Patient Package.
+    sourceRefs: &patient_actor_ref
+      - {source: patient-package-reviewed-spec, section: "3.4", line_start: 84, line_end: 92}
+  - id: actor.whatsapp-auth-provider
+    name: WhatsApp Authentication Provider
+    type: actor
+    description: External provider used only for WhatsApp OTP verification.
+    sourceRefs: &external_actor_ref
+      - {source: patient-package-reviewed-spec, section: "3.5", line_start: 94, line_end: 103}
+  - {id: actor.map-service, name: Map Service, type: actor, description: External map and facility-location service., sourceRefs: *external_actor_ref}
+  - {id: actor.payment-gateway, name: Payment Gateway, type: actor, description: External provider for full payment and trusted payment-result verification., sourceRefs: *external_actor_ref}
+  - {id: actor.notification-service, name: Notification Service, type: actor, description: External approved notification delivery service., sourceRefs: *external_actor_ref}
+
+  - id: uc.puc-01
+    name: Log In
+    type: use_case
+    description: Authenticate the Patient through the approved passwordless WhatsApp OTP mechanism.
+    tags: [account-discovery]
+    sourceRefs: &patient_package_ref
+      - {source: patient-package-reviewed-spec, section: "5", line_start: 125, line_end: 477}
+  - {id: uc.puc-02, name: Verify WhatsApp OTP, type: use_case, description: Perform mandatory OTP verification for passwordless Patient login., tags: [account-discovery, helper], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-03, name: Log Out, type: use_case, description: Terminate and revoke the current authenticated Patient session., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-04, name: Manage Patient Profile, type: use_case, description: View and edit approved basic Patient profile data., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-05, name: Browse Facility & Service Information, type: use_case, description: Browse approved public facility and service information., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-06, name: Search Doctors & Services, type: use_case, description: Search approved doctors and services by approved criteria., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-07, name: View Available Days & Arrival Groups, type: use_case, description: View published Aafiatak availability and arrival-group windows., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-08, name: View Facility Location, type: use_case, description: View the facility or branch location through the approved map service., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-09, name: View Service Price & Policies, type: use_case, description: View patient-facing service price and applicable booking policies., tags: [account-discovery], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-10, name: View Attendance Instructions, type: use_case, description: View approved attendance and arrival instructions., tags: [account-discovery], sourceRefs: *patient_package_ref}
+
+  - {id: uc.puc-11, name: Book Appointment, type: use_case, description: Create a confirmed appointment under the configured booking policy., tags: [booking-availability], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-12, name: Check Bookable Availability, type: use_case, description: Validate whether suitable Aafiatak capacity is currently bookable., tags: [booking-availability, helper], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-13, name: Create Reservation Hold, type: use_case, description: Atomically protect one valid capacity unit during booking completion., tags: [booking-availability, helper], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-14, name: View Reservation Hold Countdown, type: use_case, description: View the remaining completion time for the active ReservationHold., tags: [booking-availability], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-15, name: Subscribe to Availability Alert, type: use_case, description: Subscribe to an availability alert when suitable capacity is unavailable., tags: [booking-availability], sourceRefs: *patient_package_ref}
+
+  - {id: uc.puc-16, name: View Patient Appointments, type: use_case, description: View the Patient's own upcoming and previous appointments., tags: [appointment-follow-up], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-17, name: View Booking Number & Verification Code, type: use_case, description: View the booking number and QR or verification code for a confirmed appointment., tags: [appointment-follow-up], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-18, name: Reconfirm Attendance, type: use_case, description: Respond to an enabled attendance reconfirmation request., tags: [appointment-follow-up], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-19, name: Cancel Appointment, type: use_case, description: Cancel the Patient's own eligible confirmed appointment., tags: [appointment-follow-up], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-20, name: View Arrival Instructions, type: use_case, description: View assigned arrival-window instructions and guidance., tags: [appointment-follow-up], sourceRefs: *patient_package_ref}
+
+  - {id: uc.puc-21, name: Process Full Payment, type: use_case, description: Process the configured full electronic payment only when required by policy., tags: [payment], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-22, name: Verify Payment Result, type: use_case, description: Verify the electronic payment result through the trusted gateway., tags: [payment, helper], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-23, name: View Payment Status, type: use_case, description: View payment state separately from appointment state., tags: [payment], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-24, name: View Simplified Payment Receipt, type: use_case, description: View the simplified electronic-payment receipt where applicable., tags: [payment], sourceRefs: *patient_package_ref}
+
+  - {id: uc.puc-25, name: View Check-in Status, type: use_case, description: View whether facility staff has registered the Patient's arrival., tags: [visit-queue], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-26, name: View Queue Status, type: use_case, description: View the Patient's approximate queue status in the assigned Arrival Group., tags: [visit-queue], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-27, name: View Visit Outcome, type: use_case, description: View the operational visit outcome without clinical-record content., tags: [visit-queue], sourceRefs: *patient_package_ref}
+
+  - {id: uc.puc-28, name: Receive Patient Notifications, type: use_case, description: Receive approved general in-application or system notifications and reminders., tags: [notifications], sourceRefs: *patient_package_ref}
+  - {id: uc.puc-29, name: Receive Availability Alert, type: use_case, description: Receive a valid availability alert without reservation or priority., tags: [notifications], sourceRefs: *patient_package_ref}
+
+relations:
+  - id: relation.patient-puc-01
+    type: association
+    source: actor.patient
+    target: uc.puc-01
+    sourceRefs: &association_ref
+      - {source: patient-package-reviewed-spec, section: "6", line_start: 480, line_end: 541}
+      - {source: aafiatak-product-specification, section: "Patient application and booking scope", line_start: 291, line_end: 1199}
+  - {id: relation.patient-puc-03, type: association, source: actor.patient, target: uc.puc-03, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-04, type: association, source: actor.patient, target: uc.puc-04, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-05, type: association, source: actor.patient, target: uc.puc-05, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-06, type: association, source: actor.patient, target: uc.puc-06, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-07, type: association, source: actor.patient, target: uc.puc-07, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-08, type: association, source: actor.patient, target: uc.puc-08, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-09, type: association, source: actor.patient, target: uc.puc-09, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-10, type: association, source: actor.patient, target: uc.puc-10, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-11, type: association, source: actor.patient, target: uc.puc-11, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-14, type: association, source: actor.patient, target: uc.puc-14, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-15, type: association, source: actor.patient, target: uc.puc-15, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-16, type: association, source: actor.patient, target: uc.puc-16, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-17, type: association, source: actor.patient, target: uc.puc-17, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-18, type: association, source: actor.patient, target: uc.puc-18, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-19, type: association, source: actor.patient, target: uc.puc-19, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-20, type: association, source: actor.patient, target: uc.puc-20, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-21, type: association, source: actor.patient, target: uc.puc-21, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-23, type: association, source: actor.patient, target: uc.puc-23, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-24, type: association, source: actor.patient, target: uc.puc-24, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-25, type: association, source: actor.patient, target: uc.puc-25, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-26, type: association, source: actor.patient, target: uc.puc-26, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-27, type: association, source: actor.patient, target: uc.puc-27, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-28, type: association, source: actor.patient, target: uc.puc-28, sourceRefs: *association_ref}
+  - {id: relation.patient-puc-29, type: association, source: actor.patient, target: uc.puc-29, sourceRefs: *association_ref}
+  - {id: relation.whatsapp-puc-02, type: association, source: actor.whatsapp-auth-provider, target: uc.puc-02, sourceRefs: *association_ref}
+  - {id: relation.map-puc-08, type: association, source: actor.map-service, target: uc.puc-08, sourceRefs: *association_ref}
+  - {id: relation.payment-puc-21, type: association, source: actor.payment-gateway, target: uc.puc-21, sourceRefs: *association_ref}
+  - {id: relation.payment-puc-22, type: association, source: actor.payment-gateway, target: uc.puc-22, sourceRefs: *association_ref}
+  - {id: relation.notification-puc-28, type: association, source: actor.notification-service, target: uc.puc-28, sourceRefs: *association_ref}
+  - {id: relation.notification-puc-29, type: association, source: actor.notification-service, target: uc.puc-29, sourceRefs: *association_ref}
+
+  - id: relation.pinc-01
+    type: include
+    source: uc.puc-01
+    target: uc.puc-02
+    rationale: WhatsApp OTP verification is mandatory for passwordless Patient login.
+    sourceRefs: &dependency_ref
+      - {source: patient-package-reviewed-spec, section: "7", line_start: 545, line_end: 597}
+      - {source: aafiatak-product-specification, section: "Booking and payment scope", line_start: 800, line_end: 1199}
+  - {id: relation.pinc-02, type: include, source: uc.puc-11, target: uc.puc-12, rationale: Every booking attempt requires currently valid bookable capacity., sourceRefs: *dependency_ref}
+  - {id: relation.pinc-03, type: include, source: uc.puc-11, target: uc.puc-13, rationale: Every booking attempt uses the approved atomic ReservationHold., sourceRefs: *dependency_ref}
+  - {id: relation.pinc-04, type: include, source: uc.puc-21, target: uc.puc-22, rationale: Trusted gateway verification is mandatory for the electronic payment outcome., sourceRefs: *dependency_ref}
+  - id: relation.pext-01
+    type: extend
+    source: uc.puc-21
+    target: uc.puc-11
+    rationale: Electronic payment occurs only under the full-payment booking policy.
+    metadata: {condition: "[Booking policy = FULL_PAYMENT_REQUIRED]"}
+    sourceRefs: *dependency_ref
+  - id: relation.pext-02
+    type: extend
+    source: uc.puc-15
+    target: uc.puc-12
+    rationale: Availability alert is offered only when suitable capacity is unavailable.
+    metadata: {condition: "[No bookable capacity available]"}
+    sourceRefs: *dependency_ref

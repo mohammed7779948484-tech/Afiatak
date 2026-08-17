@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Visitor Package Use Case Diagram — Aafiatak Medical Appointment Booking System</title>
+  <desc id="diagram-description">Detailed UML Visitor Package Use Case Diagram for the Aafiatak medical appointment booking system.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+    .package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+    .package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+    .helper { fill: #F3F5F6; }
+    </style>
+    <marker id="dependency-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#315F85" stroke-width="1.4" />
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#FAFAF8" />
+  <text x="800.0" y="48" class="page-title">
+    <tspan x="800.0" y="48">Visitor Package Use Case Diagram — Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <rect x="150" y="100" width="1250" height="720" rx="4" class="boundary" id="system-boundary" data-x="150" data-y="100" data-width="1250" data-height="720" />
+  <text x="174" y="131" class="boundary-title">
+    <tspan x="174" y="131">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Visitor Package UML container">
+    <path id="visitor-package" d="M 220 174 H 440 V 150 H 1220 V 760 H 220 Z" class="package" data-x="220" data-y="150" data-width="1000" data-height="610" />
+    <rect x="220" y="150" width="220" height="34" class="package-tab" />
+    <text x="330" y="172" class="boundary-title">
+      <tspan x="330" y="172">Visitor Package</tspan>
+    </text>
+  </g>
+  <g aria-label="Presentation-only Visitor Package neighborhoods">
+    <rect x="300" y="210" width="700" height="220" rx="18" class="field" />
+    <line x1="301" y1="228" x2="338" y2="228" class="field-accent" stroke="#E8F1F8" />
+    <text x="348" y="233" class="section-label">
+      <tspan x="348" y="233">DISCOVERY</tspan>
+    </text>
+    <rect x="420" y="470" width="690" height="230" rx="18" class="field" />
+    <line x1="421" y1="488" x2="458" y2="488" class="field-accent" stroke="#F8EBCF" />
+    <text x="468" y="493" class="section-label">
+      <tspan x="468" y="493">ACCESS</tspan>
+    </text>
+  </g>
+  <g aria-label="UML relationships">
+    <path id="relation-visitor-vuc-01" data-relation-id="relation.visitor-vuc-01" data-source="actor.visitor" data-target="uc.vuc-01" data-points="95,462 350,282" d="M 95 462 L 350 282" class="association" />
+    <path id="relation-visitor-vuc-02" data-relation-id="relation.visitor-vuc-02" data-source="actor.visitor" data-target="uc.vuc-02" data-points="95,462 680,282" d="M 95 462 L 680 282" class="association" />
+    <path id="relation-visitor-vuc-03" data-relation-id="relation.visitor-vuc-03" data-source="actor.visitor" data-target="uc.vuc-03" data-points="95,462 350,362" d="M 95 462 L 350 362" class="association" />
+    <path id="relation-visitor-vuc-04" data-relation-id="relation.visitor-vuc-04" data-source="actor.visitor" data-target="uc.vuc-04" data-points="95,462 680,362" d="M 95 462 L 680 362" class="association" />
+    <path id="relation-visitor-vuc-05" data-relation-id="relation.visitor-vuc-05" data-source="actor.visitor" data-target="uc.vuc-05" data-points="95,462 470,542" d="M 95 462 L 470 542" class="association" />
+    <path id="relation-visitor-vuc-06" data-relation-id="relation.visitor-vuc-06" data-source="actor.visitor" data-target="uc.vuc-06" data-points="95,462 800,542" d="M 95 462 L 800 542" class="association" />
+    <path id="relation-map-vuc-04" data-relation-id="relation.map-vuc-04" data-source="actor.map-service" data-target="uc.vuc-04" data-points="1485,352 1350,352 1350,362 940,362" d="M 1485 352 L 1350 352 L 1350 362 L 940 362" class="association" />
+    <path id="relation-whatsapp-vuc-07" data-relation-id="relation.whatsapp-vuc-07" data-source="actor.whatsapp-auth-provider" data-target="uc.vuc-07" data-points="1485,632 1350,632 1350,652 895,652" d="M 1485 632 L 1350 632 L 1350 652 L 895 652" class="association" />
+    <path id="relation-vinc-01" data-relation-id="relation.vinc-01" data-source="uc.vuc-05" data-target="uc.vuc-07" data-points="600,574 710,600 765,600 765,620" d="M 600 574 L 710 600 L 765 600 L 765 620" class="dependency" />
+    <text x="642" y="596" class="stereotype">
+      <tspan x="642" y="596">&lt;&lt;include&gt;&gt;</tspan>
+    </text>
+    <path id="relation-vinc-02" data-relation-id="relation.vinc-02" data-source="uc.vuc-06" data-target="uc.vuc-07" data-points="930,574 820,600 765,600 765,620" d="M 930 574 L 820 600 L 765 600 L 765 620" class="dependency" />
+    <text x="888" y="596" class="stereotype">
+      <tspan x="888" y="596">&lt;&lt;include&gt;&gt;</tspan>
+    </text>
+  </g>
+  <g aria-label="Visitor Package use cases">
+    <g id="uc-vuc-01" data-semantic-id="uc.vuc-01" data-kind="use_case" data-x="350" data-y="250" data-width="260" data-height="64">
+      <ellipse cx="480.0" cy="282.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="480.0" y="287.0" class="use-case-label">
+        <tspan x="480.0" y="278.5">Browse Facility &amp; Service</tspan>
+        <tspan x="480.0" y="295.5">Information</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-02" data-semantic-id="uc.vuc-02" data-kind="use_case" data-x="680" data-y="250" data-width="260" data-height="64">
+      <ellipse cx="810.0" cy="282.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="810.0" y="287.0" class="use-case-label">
+        <tspan x="810.0" y="287">Search Doctors &amp; Services</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-03" data-semantic-id="uc.vuc-03" data-kind="use_case" data-x="350" data-y="330" data-width="260" data-height="64">
+      <ellipse cx="480.0" cy="362.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="480.0" y="367.0" class="use-case-label">
+        <tspan x="480.0" y="358.5">View Available Days &amp; Arrival</tspan>
+        <tspan x="480.0" y="375.5">Groups</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-04" data-semantic-id="uc.vuc-04" data-kind="use_case" data-x="680" data-y="330" data-width="260" data-height="64">
+      <ellipse cx="810.0" cy="362.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="810.0" y="367.0" class="use-case-label">
+        <tspan x="810.0" y="367">View Facility Location</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-05" data-semantic-id="uc.vuc-05" data-kind="use_case" data-x="470" data-y="510" data-width="260" data-height="64">
+      <ellipse cx="600.0" cy="542.0" rx="130.0" ry="32.0" class="use-case patient" />
+      <text x="600.0" y="547.0" class="use-case-label">
+        <tspan x="600.0" y="547">Register Patient</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-06" data-semantic-id="uc.vuc-06" data-kind="use_case" data-x="800" data-y="510" data-width="260" data-height="64">
+      <ellipse cx="930.0" cy="542.0" rx="130.0" ry="32.0" class="use-case patient" />
+      <text x="930.0" y="547.0" class="use-case-label">
+        <tspan x="930.0" y="547">Log In</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-07" data-semantic-id="uc.vuc-07" data-kind="use_case" data-x="635" data-y="620" data-width="260" data-height="64">
+      <ellipse cx="765.0" cy="652.0" rx="130.0" ry="32.0" class="use-case helper" />
+      <text x="765.0" y="657.0" class="use-case-label">
+        <tspan x="765.0" y="657">Verify WhatsApp OTP</tspan>
+      </text>
+    </g>
+  </g>
+  <g aria-label="Actors outside the system boundary">
+    <g id="actor-visitor" data-semantic-id="actor.visitor" data-kind="actor" data-x="0" data-y="420" data-width="140" data-height="110">
+      <circle cx="70.0" cy="439" r="10" class="actor" />
+      <path d="M 70.0 449 V 478 M 45.0 462 H 95.0 M 70.0 478 L 47.0 502 M 70.0 478 L 93.0 502" class="actor" />
+      <text x="70.0" y="521" class="actor-label">
+        <tspan x="70.0" y="521">Visitor</tspan>
+      </text>
+    </g>
+    <g id="actor-map-service" data-semantic-id="actor.map-service" data-kind="actor" data-x="1430" data-y="310" data-width="160" data-height="110">
+      <circle cx="1510.0" cy="329" r="10" class="actor" />
+      <path d="M 1510.0 339 V 368 M 1485.0 352 H 1535.0 M 1510.0 368 L 1487.0 392 M 1510.0 368 L 1533.0 392" class="actor" />
+      <text x="1510.0" y="411" class="actor-label">
+        <tspan x="1510.0" y="411">Map Service</tspan>
+      </text>
+    </g>
+    <g id="actor-whatsapp-auth-provider" data-semantic-id="actor.whatsapp-auth-provider" data-kind="actor" data-x="1430" data-y="590" data-width="160" data-height="110">
+      <circle cx="1510.0" cy="609" r="10" class="actor" />
+      <path d="M 1510.0 619 V 648 M 1485.0 632 H 1535.0 M 1510.0 648 L 1487.0 672 M 1510.0 648 L 1533.0 672" class="actor" />
+      <text x="1510.0" y="691" class="actor-label">
+        <tspan x="1510.0" y="682.5">WhatsApp Authentication</tspan>
+        <tspan x="1510.0" y="699.5">Provider</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

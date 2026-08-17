@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="1900" viewBox="0 0 2800 1900" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Platform Administrator Package Use Case Diagram — Aafiatak Medical Appointment Booking System</title>
+  <desc id="diagram-description">Unified Platform Administrator package with all approved operations in one container and no displayed relationships.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+.package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+.package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+.helper { fill: #F3F5F6; }
+.use-case-label { font-size: 16px; }
+.section-label { font-size: 15px; letter-spacing: 0.8px; }
+.boundary-title { font-size: 14px; }</style>
+  </defs>
+  <rect width="2800" height="1900" fill="#FAFAF8" />
+  <text x="1400.0" y="48" class="page-title">
+    <tspan x="1400.0" y="48">Platform Administrator Package Use Case Diagram — Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <rect x="100" y="120" width="2600" height="1700" rx="4" class="boundary" id="system-boundary" data-x="100" data-y="120" data-width="2600" data-height="1700" />
+  <text x="124" y="151" class="boundary-title">
+    <tspan x="124" y="151">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Embedded package actor and UML package container">
+    <path id="package-container" d="M 135 199 H 355 V 175 H 2665 V 1775 H 135 Z" class="package" data-x="135" data-y="175" data-width="2530" data-height="1600" />
+    <rect x="135" y="175" width="220" height="34" class="package-tab" data-semantic-id="actor.platform-administrator" data-kind="actor" data-embedded-actor="true" data-x="135" data-y="175" data-width="2530" data-height="1600" />
+    <text x="245" y="197" class="boundary-title">
+      <tspan x="245" y="197">Platform Administrator</tspan>
+    </text>
+  </g>
+  <g aria-label="Presentation-only neighborhoods">
+    <rect x="175" y="300" width="500" height="190" rx="18" class="field" />
+    <line x1="176" y1="318" x2="213" y2="318" class="field-accent" stroke="#E8F1F8" />
+    <text x="223" y="323" class="section-label">
+      <tspan x="223" y="323">AUTHENTICATION</tspan>
+    </text>
+    <rect x="760" y="300" width="930" height="560" rx="18" class="field" />
+    <line x1="761" y1="318" x2="798" y2="318" class="field-accent" stroke="#E6F1E8" />
+    <text x="808" y="323" class="section-label">
+      <tspan x="808" y="323">FACILITY ONBOARDING</tspan>
+    </text>
+    <rect x="1740" y="300" width="850" height="350" rx="18" class="field" />
+    <line x1="1741" y1="318" x2="1778" y2="318" class="field-accent" stroke="#F8EBCF" />
+    <text x="1788" y="323" class="section-label">
+      <tspan x="1788" y="323">PLATFORM REFERENCE DATA</tspan>
+    </text>
+    <rect x="175" y="900" width="720" height="220" rx="18" class="field" />
+    <line x1="176" y1="918" x2="213" y2="918" class="field-accent" stroke="#F5E8DF" />
+    <text x="223" y="923" class="section-label">
+      <tspan x="223" y="923">PLATFORM STAFF</tspan>
+    </text>
+    <rect x="970" y="900" width="1620" height="500" rx="18" class="field" />
+    <line x1="971" y1="918" x2="1008" y2="918" class="field-accent" stroke="#ECEAF4" />
+    <text x="1018" y="923" class="section-label">
+      <tspan x="1018" y="923">SUPPORT &amp; OVERSIGHT</tspan>
+    </text>
+  </g>
+  <g aria-label="Use cases without displayed relationships">
+    <g id="uc-pauc-01" data-semantic-id="uc.pauc-01" data-kind="use_case" data-x="200" data-y="365" data-width="260" data-height="64">
+      <ellipse cx="330.0" cy="397.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="330.0" y="402.0" class="use-case-label">
+        <tspan x="330.0" y="402">Log In</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-02" data-semantic-id="uc.pauc-02" data-kind="use_case" data-x="485" data-y="365" data-width="260" data-height="64">
+      <ellipse cx="615.0" cy="397.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="615.0" y="402.0" class="use-case-label">
+        <tspan x="615.0" y="402">Verify WhatsApp OTP</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-03" data-semantic-id="uc.pauc-03" data-kind="use_case" data-x="790" data-y="365" data-width="290" data-height="64">
+      <ellipse cx="935.0" cy="397.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="935.0" y="402.0" class="use-case-label">
+        <tspan x="935.0" y="393.5">Review Facility Onboarding</tspan>
+        <tspan x="935.0" y="410.5">Request</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-04" data-semantic-id="uc.pauc-04" data-kind="use_case" data-x="1105" data-y="365" data-width="290" data-height="64">
+      <ellipse cx="1250.0" cy="397.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="1250.0" y="402.0" class="use-case-label">
+        <tspan x="1250.0" y="393.5">Request Additional</tspan>
+        <tspan x="1250.0" y="410.5">Information</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-05" data-semantic-id="uc.pauc-05" data-kind="use_case" data-x="790" data-y="441" data-width="290" data-height="64">
+      <ellipse cx="935.0" cy="473.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="935.0" y="478.0" class="use-case-label">
+        <tspan x="935.0" y="478">Approve Facility</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-06" data-semantic-id="uc.pauc-06" data-kind="use_case" data-x="1105" data-y="441" data-width="290" data-height="64">
+      <ellipse cx="1250.0" cy="473.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="1250.0" y="478.0" class="use-case-label">
+        <tspan x="1250.0" y="478">Reject Facility</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-07" data-semantic-id="uc.pauc-07" data-kind="use_case" data-x="790" data-y="517" data-width="290" data-height="64">
+      <ellipse cx="935.0" cy="549.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="935.0" y="554.0" class="use-case-label">
+        <tspan x="935.0" y="554">Activate Facility</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-08" data-semantic-id="uc.pauc-08" data-kind="use_case" data-x="1105" data-y="517" data-width="290" data-height="64">
+      <ellipse cx="1250.0" cy="549.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="1250.0" y="554.0" class="use-case-label">
+        <tspan x="1250.0" y="554">Suspend Facility</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-09" data-semantic-id="uc.pauc-09" data-kind="use_case" data-x="790" data-y="593" data-width="290" data-height="64">
+      <ellipse cx="935.0" cy="625.0" rx="145.0" ry="32.0" class="use-case facility" />
+      <text x="935.0" y="630.0" class="use-case-label">
+        <tspan x="935.0" y="621.5">Provision Initial Facility</tspan>
+        <tspan x="935.0" y="638.5">Administrator</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-10" data-semantic-id="uc.pauc-10" data-kind="use_case" data-x="1770" data-y="365" data-width="300" data-height="64">
+      <ellipse cx="1920.0" cy="397.0" rx="150.0" ry="32.0" class="use-case patient" />
+      <text x="1920.0" y="402.0" class="use-case-label">
+        <tspan x="1920.0" y="402">Manage Cities</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-11" data-semantic-id="uc.pauc-11" data-kind="use_case" data-x="2095" data-y="365" data-width="300" data-height="64">
+      <ellipse cx="2245.0" cy="397.0" rx="150.0" ry="32.0" class="use-case patient" />
+      <text x="2245.0" y="402.0" class="use-case-label">
+        <tspan x="2245.0" y="402">Manage Regions</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-12" data-semantic-id="uc.pauc-12" data-kind="use_case" data-x="1770" data-y="441" data-width="300" data-height="64">
+      <ellipse cx="1920.0" cy="473.0" rx="150.0" ry="32.0" class="use-case patient" />
+      <text x="1920.0" y="478.0" class="use-case-label">
+        <tspan x="1920.0" y="478">Manage Facility Types</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-13" data-semantic-id="uc.pauc-13" data-kind="use_case" data-x="2095" data-y="441" data-width="300" data-height="64">
+      <ellipse cx="2245.0" cy="473.0" rx="150.0" ry="32.0" class="use-case patient" />
+      <text x="2245.0" y="478.0" class="use-case-label">
+        <tspan x="2245.0" y="478">Manage Public Reference Lists</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-14" data-semantic-id="uc.pauc-14" data-kind="use_case" data-x="200" data-y="965" data-width="300" data-height="64">
+      <ellipse cx="350.0" cy="997.0" rx="150.0" ry="32.0" class="use-case operations" />
+      <text x="350.0" y="1002.0" class="use-case-label">
+        <tspan x="350.0" y="993.5">Manage Platform Staff</tspan>
+        <tspan x="350.0" y="1010.5">Accounts</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-15" data-semantic-id="uc.pauc-15" data-kind="use_case" data-x="1000" data-y="965" data-width="350" data-height="64">
+      <ellipse cx="1175.0" cy="997.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1175.0" y="1002.0" class="use-case-label">
+        <tspan x="1175.0" y="1002">Review Technical Escalation</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-16" data-semantic-id="uc.pauc-16" data-kind="use_case" data-x="1380" data-y="965" data-width="350" data-height="64">
+      <ellipse cx="1555.0" cy="997.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1555.0" y="1002.0" class="use-case-label">
+        <tspan x="1555.0" y="1002">Review Payment Escalation</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-17" data-semantic-id="uc.pauc-17" data-kind="use_case" data-x="1000" data-y="1041" data-width="350" data-height="64">
+      <ellipse cx="1175.0" cy="1073.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1175.0" y="1078.0" class="use-case-label">
+        <tspan x="1175.0" y="1078">Review Conflict Escalation</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-18" data-semantic-id="uc.pauc-18" data-kind="use_case" data-x="1380" data-y="1041" data-width="350" data-height="64">
+      <ellipse cx="1555.0" cy="1073.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1555.0" y="1078.0" class="use-case-label">
+        <tspan x="1555.0" y="1078">Review Audit Logs</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-19" data-semantic-id="uc.pauc-19" data-kind="use_case" data-x="1000" data-y="1117" data-width="350" data-height="64">
+      <ellipse cx="1175.0" cy="1149.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1175.0" y="1154.0" class="use-case-label">
+        <tspan x="1175.0" y="1154">Provide Technical Support</tspan>
+      </text>
+    </g>
+    <g id="uc-pauc-20" data-semantic-id="uc.pauc-20" data-kind="use_case" data-x="1380" data-y="1117" data-width="350" data-height="64">
+      <ellipse cx="1555.0" cy="1149.0" rx="175.0" ry="32.0" class="use-case platform" />
+      <text x="1555.0" y="1154.0" class="use-case-label">
+        <tspan x="1555.0" y="1154">View Platform Indicators</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

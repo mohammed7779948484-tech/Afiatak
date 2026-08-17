@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "stateCount": 5,
+  "transitionCount": 10,
+  "initialCount": 1,
+  "finalCount": 2,
+  "errors": []
+}

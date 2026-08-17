@@ -1,0 +1,15 @@
+change: parts-collapsed-into-unified-packages
+packages:
+  - Patient
+  - Visitor
+  - Booking & Reception Staff
+  - Facility Administrator
+booking_reception_staff:
+  unified_use_cases: 43
+  former_parts: 3
+facility_administrator:
+  unified_use_cases: 38
+  former_parts: 3
+relationship_display: none
+embedded_package_actor: true
+status: awaiting-user-approval

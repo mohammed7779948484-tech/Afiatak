@@ -1,0 +1,50 @@
+id: aafiatak-std01-availability-release
+diagramType: state
+title: State Diagram — AvailabilityRelease Lifecycle
+model: ../../model/catalog/states/aafiatak-std01-availability-release.yaml
+include:
+  - state.std01.initial
+  - state.std01.draft
+  - state.std01.published
+  - state.std01.frozen
+  - state.std01.closed
+  - state.std01.cancelled
+  - state.std01.final-closed
+  - state.std01.final-cancelled
+relations:
+  - relation.std01.t01
+  - relation.std01.t02
+  - relation.std01.t03
+  - relation.std01.t04
+  - relation.std01.t05
+  - relation.std01.t06
+  - relation.std01.t07
+  - relation.std01.t08
+  - relation.std01.t09
+  - relation.std01.t10
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T11:28:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 6bebde0d2134c45786e47dfbd49bc403269cb7a071d99fa52884d241e53780d7
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: AvailabilityRelease
+  expectedStateCount: 5
+  expectedTransitionCount: 10
+  approvedDoActivities: []
+  prohibitedContent:
+    - EXHAUSTED
+    - STALE
+    - ACTIVE
+    - OPEN
+    - REOPENED
+    - COMPLETED
+    - ARCHIVED
+    - DRAFT to FROZEN
+    - CLOSED to PUBLISHED
+    - CANCELLED to PUBLISHED

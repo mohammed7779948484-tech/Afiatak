@@ -1,0 +1,39 @@
+id: aafiatak-std03-reservation-hold
+diagramType: state
+title: State Diagram — ReservationHold Lifecycle
+model: ../../model/catalog/states/aafiatak-std03-reservation-hold.yaml
+include:
+  - state.std03.initial
+  - state.std03.active
+  - state.std03.consumed
+  - state.std03.expired
+  - state.std03.released
+  - state.std03.final-consumed
+  - state.std03.final-expired
+  - state.std03.final-released
+relations:
+  - relation.std03.t01
+  - relation.std03.t02
+  - relation.std03.t03
+  - relation.std03.t04
+  - relation.std03.t05
+  - relation.std03.t06
+  - relation.std03.t07
+  - relation.std03.t08
+  - relation.std03.t09
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:22:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 5df0c0878cb16c54feb631e8f3044cb90a404bfcc1907ac16919ae17af30c9bf
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: ReservationHold
+  expectedStateCount: 4
+  expectedTransitionCount: 9
+  approvedDoActivities: [protect one capacity unit and maintain countdown]
+  prohibitedContent: [PENDING, PAID, CONFIRMED, CANCELLED, PROCESSING, UNDER_REVIEW, '3 minutes', '5 minutes', '10 minutes']

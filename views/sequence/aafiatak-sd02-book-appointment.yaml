@@ -1,0 +1,72 @@
+id: aafiatak-sd02-book-appointment
+diagramType: sequence
+title: Sequence Diagram — Book Appointment
+model: ../../model/catalog/sequences/aafiatak-sd02-book-appointment.yaml
+include:
+  - actor.sd02.patient
+  - object.sd02.patient-application
+  - object.sd02.backend
+  - object.sd02.data-store
+  - object.sd02.payment-gateway
+  - object.sd02.notification-service
+relations:
+  - message.sd02.m01
+  - message.sd02.m02
+  - message.sd02.m03
+  - message.sd02.m04
+  - message.sd02.m05
+  - message.sd02.m06
+  - message.sd02.m07
+  - message.sd02.m08
+  - message.sd02.m09
+  - message.sd02.m10
+  - message.sd02.m11
+  - message.sd02.m12
+  - message.sd02.m13
+  - message.sd02.m14
+  - message.sd02.m15
+  - message.sd02.m16
+  - message.sd02.m17
+  - message.sd02.m18
+  - message.sd02.m19
+  - message.sd02.m20
+  - message.sd02.m21
+  - message.sd02.m22
+  - message.sd02.m23
+  - message.sd02.m24
+  - message.sd02.m25
+  - message.sd02.m26
+  - message.sd02.m27
+  - message.sd02.m28
+  - message.sd02.m29
+  - message.sd02.m30
+  - message.sd02.m31
+  - message.sd02.m32
+  - message.sd02.m33
+  - message.sd02.m34
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T09:00:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 25ff56cf61e0522060d7fe1d6c5dcad1c852605d1b15410875ed06e693a7d2d0
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Patient
+  participantCount: 6
+  mainFlowMessageCount: 34
+  visibleScope: FULL_PAYMENT_REQUIRED numbered-main-success-only
+  invisibleQaConstraints:
+    - Patient does not choose an arbitrary ArrivalGroup.
+    - Browser/app return is not payment truth.
+    - Trusted payment verification occurs after browser return and before Appointment creation.
+    - No deposit, partial payment, manual facility approval, duplicate PaymentIntent, or duplicate Appointment.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - PAY_AT_FACILITY branch
+    - Facility internal schedule

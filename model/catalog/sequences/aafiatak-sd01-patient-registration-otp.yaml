@@ -1,0 +1,263 @@
+modelId: aafiatak-sd01-patient-registration-otp
+version: '1.0'
+elements:
+  - id: actor.sd01.visitor
+    name: Visitor
+    type: actor
+    description: Unauthenticated human who starts registration, receives WhatsApp OTP delivery, and submits approved input.
+    tags: [sd01, participant, human]
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '4'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+  - id: object.sd01.patient-application
+    name: Patient Application
+    type: participant
+    description: Application boundary that collects registration input and displays registration and verification results.
+    tags: [sd01, participant, boundary]
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '4'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+  - id: object.sd01.backend
+    name: Aafiatak Backend
+    type: participant
+    description: Implementation-neutral control participant that normalizes phone data, enforces OTP rules, and orchestrates account creation.
+    tags: [sd01, participant, control]
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '4'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+  - id: object.sd01.data-store
+    name: Aafiatak Data Store
+    type: participant
+    description: Internal data participant that checks phone uniqueness and atomically persists User and Patient records.
+    tags: [sd01, participant, data]
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '4'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+  - id: object.sd01.whatsapp-provider
+    name: WhatsApp Authentication Provider
+    type: participant
+    description: External system that performs the approved WhatsApp OTP delivery integration.
+    tags: [sd01, participant, external]
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '4'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+relations:
+  - id: message.sd01.m01
+    type: message
+    source: actor.sd01.visitor
+    target: object.sd01.patient-application
+    name: Enter phone number and choose Register
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 1, messageKind: action}
+  - id: message.sd01.m02
+    type: message
+    source: object.sd01.patient-application
+    target: object.sd01.backend
+    name: Start patient registration(phone)
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 2, messageKind: request}
+  - id: message.sd01.m03
+    type: message
+    source: object.sd01.backend
+    target: object.sd01.backend
+    name: Normalize and validate phone number
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 3, messageKind: self}
+  - id: message.sd01.m04
+    type: message
+    source: object.sd01.backend
+    target: object.sd01.data-store
+    name: Check phone identity uniqueness
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 4, messageKind: request}
+  - id: message.sd01.m05
+    type: return_message
+    source: object.sd01.data-store
+    target: object.sd01.backend
+    name: 'Identity lookup result: available'
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 5, messageKind: response}
+  - id: message.sd01.m06
+    type: message
+    source: object.sd01.backend
+    target: object.sd01.whatsapp-provider
+    name: Request short-lived single-use OTP delivery
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 6, messageKind: request}
+  - id: message.sd01.m07
+    type: return_message
+    source: object.sd01.whatsapp-provider
+    target: object.sd01.backend
+    name: OTP delivery request accepted
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 7, messageKind: response}
+  - id: message.sd01.m08
+    type: return_message
+    source: object.sd01.backend
+    target: object.sd01.patient-application
+    name: Verification required
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 8, messageKind: response}
+  - id: message.sd01.m09
+    type: message
+    source: object.sd01.whatsapp-provider
+    target: actor.sd01.visitor
+    name: Deliver OTP via official WhatsApp channel
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 9, messageKind: external-event}
+  - id: message.sd01.m10
+    type: message
+    source: actor.sd01.visitor
+    target: object.sd01.patient-application
+    name: Submit OTP
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 10, messageKind: action}
+  - id: message.sd01.m11
+    type: message
+    source: object.sd01.patient-application
+    target: object.sd01.backend
+    name: Verify OTP attempt
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 11, messageKind: request}
+  - id: message.sd01.m12
+    type: message
+    source: object.sd01.backend
+    target: object.sd01.backend
+    name: Validate expiry, single-use and security limits
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 12, messageKind: self}
+  - id: message.sd01.m13
+    type: return_message
+    source: object.sd01.backend
+    target: object.sd01.patient-application
+    name: OTP verified; request basic Patient profile
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 13, messageKind: response}
+  - id: message.sd01.m14
+    type: message
+    source: actor.sd01.visitor
+    target: object.sd01.patient-application
+    name: Submit approved basic profile data
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 14, messageKind: action}
+  - id: message.sd01.m15
+    type: message
+    source: object.sd01.patient-application
+    target: object.sd01.backend
+    name: Create verified Patient account/profile
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 15, messageKind: request}
+  - id: message.sd01.m16
+    type: message
+    source: object.sd01.backend
+    target: object.sd01.data-store
+    name: Atomically create User + Patient for verified phone
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 16, messageKind: request}
+  - id: message.sd01.m17
+    type: return_message
+    source: object.sd01.data-store
+    target: object.sd01.backend
+    name: Account/profile created exactly once
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 17, messageKind: response}
+  - id: message.sd01.m18
+    type: return_message
+    source: object.sd01.backend
+    target: object.sd01.patient-application
+    name: Registration confirmed
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 18, messageKind: response}
+  - id: message.sd01.m19
+    type: return_message
+    source: object.sd01.patient-application
+    target: actor.sd01.visitor
+    name: Display Patient registration success
+    sourceRefs:
+      - source: sd01-final-reviewed-spec
+        section: '5'
+      - source: aafiatak-product-specification
+        section: '8.4, 9, 10.1'
+    metadata: {sequence: 19, messageKind: response}

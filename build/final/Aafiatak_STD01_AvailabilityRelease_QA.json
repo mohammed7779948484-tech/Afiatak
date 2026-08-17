@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-std01-availability-release.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-std01-availability-release.png",
+      "previewHash": "6bebde0d2134c45786e47dfbd49bc403269cb7a071d99fa52884d241e53780d7",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T11:28:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-std01-availability-release.png",
+    "previewHash": "6bebde0d2134c45786e47dfbd49bc403269cb7a071d99fa52884d241e53780d7",
+    "status": "awaiting-user-approval"
+  }
+}

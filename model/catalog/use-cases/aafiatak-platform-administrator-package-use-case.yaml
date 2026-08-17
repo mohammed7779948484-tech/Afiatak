@@ -1,0 +1,490 @@
+modelId: pkg.pauc
+version: '1.0'
+elements:
+- id: actor.platform-administrator
+  name: Platform Administrator
+  type: actor
+  description: Primary human actor for the Platform Administrator package.
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '3.4'
+    line_start: 146
+    line_end: 166
+  - &id001
+    source: aafiatak-product-specification
+    section: Authoritative role permissions
+    line_start: 1
+    line_end: 1
+- id: actor.whatsapp-auth-provider
+  name: WhatsApp Authentication Provider
+  type: actor
+  description: External provider used only for passwordless WhatsApp OTP authentication.
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '3.5'
+    line_start: 168
+    line_end: 187
+  - *id001
+- id: uc.pauc-01
+  name: Log In
+  type: use_case
+  description: Authenticate the provisioned Platform Administrator through passwordless
+    WhatsApp OTP.
+  tags:
+  - authentication
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.1'
+    line_start: 257
+    line_end: 273
+  - *id001
+- id: uc.pauc-02
+  name: Verify WhatsApp OTP
+  type: use_case
+  description: Verify the mandatory short-lived WhatsApp OTP used during Platform
+    Administrator login.
+  tags:
+  - authentication
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.1'
+    line_start: 277
+    line_end: 292
+  - *id001
+- id: uc.pauc-03
+  name: Review Facility Onboarding Request
+  type: use_case
+  description: Review a facility onboarding request through the approved platform
+    intake process.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 298
+    line_end: 309
+  - *id001
+- id: uc.pauc-04
+  name: Request Additional Information
+  type: use_case
+  description: Request additional information when onboarding material is insufficient
+    for a platform decision.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 313
+    line_end: 320
+  - *id001
+- id: uc.pauc-05
+  name: Approve Facility
+  type: use_case
+  description: Approve an eligible facility onboarding request.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 324
+    line_end: 337
+  - *id001
+- id: uc.pauc-06
+  name: Reject Facility
+  type: use_case
+  description: Reject a facility onboarding request when approved criteria are not
+    satisfied.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 341
+    line_end: 348
+  - *id001
+- id: uc.pauc-07
+  name: Activate Facility
+  type: use_case
+  description: Activate an approved facility account for participation in Aafiatak.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 352
+    line_end: 361
+  - *id001
+- id: uc.pauc-08
+  name: Suspend Facility
+  type: use_case
+  description: Suspend a facility account when platform-level suspension is required.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 365
+    line_end: 383
+  - *id001
+- id: uc.pauc-09
+  name: Provision Initial Facility Administrator
+  type: use_case
+  description: Provision or activate the initial Facility Administrator identity for
+    an approved facility representative.
+  tags:
+  - onboarding
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 387
+    line_end: 399
+  - *id001
+- id: uc.pauc-10
+  name: Manage Cities
+  type: use_case
+  description: Manage platform-level city reference data used by Aafiatak.
+  tags:
+  - reference-data
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 405
+    line_end: 412
+  - *id001
+- id: uc.pauc-11
+  name: Manage Regions
+  type: use_case
+  description: Manage platform-level region reference data.
+  tags:
+  - reference-data
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 416
+    line_end: 423
+  - *id001
+- id: uc.pauc-12
+  name: Manage Facility Types
+  type: use_case
+  description: Manage approved platform-level facility-type reference data.
+  tags:
+  - reference-data
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 425
+    line_end: 432
+  - *id001
+- id: uc.pauc-13
+  name: Manage Public Reference Lists
+  type: use_case
+  description: Manage other approved public reference lists maintained at platform
+    level.
+  tags:
+  - reference-data
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 434
+    line_end: 445
+  - *id001
+- id: uc.pauc-14
+  name: Manage Platform Staff Accounts
+  type: use_case
+  description: Manage controlled Aafiatak platform-staff accounts.
+  tags:
+  - platform-staff
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.4'
+    line_start: 451
+    line_end: 465
+  - *id001
+- id: uc.pauc-15
+  name: Review Technical Escalation
+  type: use_case
+  description: Review a documented technical escalation requiring platform-level support.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 471
+    line_end: 478
+  - *id001
+- id: uc.pauc-16
+  name: Review Payment Escalation
+  type: use_case
+  description: Review an escalated payment case requiring platform-level verification
+    or support.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 482
+    line_end: 494
+  - *id001
+- id: uc.pauc-17
+  name: Review Conflict Escalation
+  type: use_case
+  description: Review an escalated booking or conflict case requiring platform-level
+    support.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 498
+    line_end: 507
+  - *id001
+- id: uc.pauc-18
+  name: Review Audit Logs
+  type: use_case
+  description: Review audit records when required without deleting or rewriting audit
+    history.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 511
+    line_end: 523
+  - *id001
+- id: uc.pauc-19
+  name: Provide Technical Support
+  type: use_case
+  description: Provide documented technical support for approved platform or facility
+    issues.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 527
+    line_end: 545
+  - *id001
+- id: uc.pauc-20
+  name: View Platform Indicators
+  type: use_case
+  description: View approved general booking, payment, and availability-accuracy indicators.
+  tags:
+  - support-oversight
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '5.5'
+    line_start: 549
+    line_end: 562
+  - *id001
+relations:
+- id: relation.pauc-actor-01
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-01
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-03
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-03
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-04
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-04
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-05
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-05
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-06
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-06
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-07
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-07
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-08
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-08
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-09
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-09
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-10
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-10
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-11
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-11
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-12
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-12
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-13
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-13
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-14
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-14
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-15
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-15
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-16
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-16
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-17
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-17
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-18
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-18
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-19
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-19
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.pauc-actor-20
+  type: association
+  source: actor.platform-administrator
+  target: uc.pauc-20
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.whatsapp-pauc-02
+  type: association
+  source: actor.whatsapp-auth-provider
+  target: uc.pauc-02
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '6'
+    line_start: 436
+    line_end: 444
+  - *id001
+- id: relation.pauc-include-01
+  type: include
+  source: uc.pauc-01
+  target: uc.pauc-02
+  rationale: Passwordless login always requires successful WhatsApp OTP verification.
+  sourceRefs:
+  - source: platform-administrator-package-deep-reviewed-spec
+    section: '7'
+    line_start: 454
+    line_end: 472
+  - *id001

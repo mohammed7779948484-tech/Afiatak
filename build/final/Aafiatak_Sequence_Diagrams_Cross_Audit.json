@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "diagrams": [
+    {
+      "diagram": "sd01",
+      "participants": [
+        "Visitor",
+        "Patient Application",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "WhatsApp Authentication Provider"
+      ],
+      "messages": 19,
+      "status": "awaiting-user-approval"
+    },
+    {
+      "diagram": "sd02",
+      "participants": [
+        "Patient",
+        "Patient Application",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "Payment Gateway",
+        "Notification Service"
+      ],
+      "messages": 34,
+      "status": "awaiting-user-approval"
+    },
+    {
+      "diagram": "sd03",
+      "participants": [
+        "Patient",
+        "Patient Application",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "Payment Gateway",
+        "Notification Service"
+      ],
+      "messages": 18,
+      "status": "awaiting-user-approval"
+    },
+    {
+      "diagram": "sd04",
+      "participants": [
+        "Booking & Reception Staff",
+        "Facility Web Dashboard",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "Notification Service",
+        "Patient"
+      ],
+      "messages": 18,
+      "status": "awaiting-user-approval"
+    },
+    {
+      "diagram": "sd05",
+      "participants": [
+        "Patient",
+        "Booking & Reception Staff",
+        "Facility Web Dashboard",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "Doctor Interface",
+        "Doctor",
+        "Notification Service"
+      ],
+      "messages": 30,
+      "status": "awaiting-user-approval"
+    },
+    {
+      "diagram": "sd06",
+      "participants": [
+        "Booking & Reception Staff",
+        "Facility Web Dashboard",
+        "Aafiatak Backend",
+        "Aafiatak Data Store",
+        "Notification Service",
+        "Patient",
+        "Payment Gateway"
+      ],
+      "messages": 25,
+      "status": "awaiting-user-approval"
+    }
+  ],
+  "errors": [],
+  "commonStyle": "lecturer-style solid requests, dashed returns, vertical lifelines, numbered main-success flows"
+}

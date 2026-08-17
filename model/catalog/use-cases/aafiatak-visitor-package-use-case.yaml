@@ -1,0 +1,61 @@
+modelId: aafiatak-visitor-package-use-case
+version: "1.0"
+elements:
+  - id: actor.visitor
+    name: Visitor
+    type: actor
+    description: Unauthenticated public user interacting with Aafiatak before an authenticated Patient session.
+    sourceRefs: &visitor_actor_ref
+      - {source: visitor-package-reviewed-spec, section: "3.4", line_start: 104, line_end: 124}
+  - id: actor.map-service
+    name: Map Service
+    type: actor
+    description: External map service directly used for facility location.
+    sourceRefs: &external_actor_ref
+      - {source: visitor-package-reviewed-spec, section: "3.5", line_start: 126, line_end: 145}
+  - {id: actor.whatsapp-auth-provider, name: WhatsApp Authentication Provider, type: actor, description: Approved external provider used only for OTP authentication and phone verification., sourceRefs: *external_actor_ref}
+
+  - id: uc.vuc-01
+    name: Browse Facility & Service Information
+    type: use_case
+    description: Browse approved public information about facilities and offered medical-service context.
+    tags: [discovery]
+    sourceRefs: &visitor_package_ref
+      - {source: visitor-package-reviewed-spec, section: "4", line_start: 149, line_end: 300}
+  - {id: uc.vuc-02, name: Search Doctors & Services, type: use_case, description: "Search approved public discovery information by doctor, department, specialty, or service.", tags: [discovery], sourceRefs: *visitor_package_ref}
+  - {id: uc.vuc-03, name: View Available Days & Arrival Groups, type: use_case, description: View preliminary Aafiatak digital availability without reservation or arbitrary group selection., tags: [discovery], sourceRefs: *visitor_package_ref}
+  - {id: uc.vuc-04, name: View Facility Location, type: use_case, description: View the facility or branch location through the approved map service., tags: [discovery], sourceRefs: *visitor_package_ref}
+  - {id: uc.vuc-05, name: Register Patient, type: use_case, description: Create the approved Patient identity/profile after mandatory WhatsApp OTP verification., tags: [access], sourceRefs: *visitor_package_ref}
+  - {id: uc.vuc-06, name: Log In, type: use_case, description: Initiate passwordless authentication and establish a valid application session., tags: [access], sourceRefs: *visitor_package_ref}
+  - {id: uc.vuc-07, name: Verify WhatsApp OTP, type: use_case, description: Perform the mandatory WhatsApp OTP verification for registration and login., tags: [access, helper], sourceRefs: *visitor_package_ref}
+
+relations:
+  - id: relation.visitor-vuc-01
+    type: association
+    source: actor.visitor
+    target: uc.vuc-01
+    sourceRefs: &visitor_association_ref
+      - {source: visitor-package-reviewed-spec, section: "5", line_start: 304, line_end: 338}
+      - {source: aafiatak-product-specification, section: "Visitor public discovery and access scope", line_start: 291, line_end: 593}
+  - {id: relation.visitor-vuc-02, type: association, source: actor.visitor, target: uc.vuc-02, sourceRefs: *visitor_association_ref}
+  - {id: relation.visitor-vuc-03, type: association, source: actor.visitor, target: uc.vuc-03, sourceRefs: *visitor_association_ref}
+  - {id: relation.visitor-vuc-04, type: association, source: actor.visitor, target: uc.vuc-04, sourceRefs: *visitor_association_ref}
+  - {id: relation.visitor-vuc-05, type: association, source: actor.visitor, target: uc.vuc-05, sourceRefs: *visitor_association_ref}
+  - {id: relation.visitor-vuc-06, type: association, source: actor.visitor, target: uc.vuc-06, sourceRefs: *visitor_association_ref}
+  - {id: relation.map-vuc-04, type: association, source: actor.map-service, target: uc.vuc-04, sourceRefs: *visitor_association_ref}
+  - {id: relation.whatsapp-vuc-07, type: association, source: actor.whatsapp-auth-provider, target: uc.vuc-07, sourceRefs: *visitor_association_ref}
+
+  - id: relation.vinc-01
+    type: include
+    source: uc.vuc-05
+    target: uc.vuc-07
+    rationale: Verified phone ownership through WhatsApp OTP is mandatory for Patient self-registration.
+    sourceRefs: &visitor_dependency_ref
+      - {source: visitor-package-reviewed-spec, section: "6", line_start: 342, line_end: 375}
+      - {source: aafiatak-product-specification, section: "Visitor registration and authentication scope", line_start: 350, line_end: 382}
+  - id: relation.vinc-02
+    type: include
+    source: uc.vuc-06
+    target: uc.vuc-07
+    rationale: Passwordless login requires successful WhatsApp OTP verification.
+    sourceRefs: *visitor_dependency_ref

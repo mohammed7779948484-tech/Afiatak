@@ -1,0 +1,47 @@
+id: aafiatak-std05-payment-intent
+diagramType: state
+title: State Diagram — PaymentIntent Lifecycle
+model: ../../model/catalog/states/aafiatak-std05-payment-intent.yaml
+include:
+  - state.std05.initial
+  - state.std05.created
+  - state.std05.processing
+  - state.std05.succeeded
+  - state.std05.failed
+  - state.std05.expired
+  - state.std05.under-review
+  - state.std05.refund-pending
+  - state.std05.refunded
+  - state.std05.final-failed
+  - state.std05.final-expired
+  - state.std05.final-refunded
+relations:
+  - relation.std05.t01
+  - relation.std05.t02
+  - relation.std05.t03
+  - relation.std05.t04
+  - relation.std05.t05
+  - relation.std05.t06
+  - relation.std05.t07
+  - relation.std05.t08
+  - relation.std05.t09
+  - relation.std05.t10
+  - relation.std05.t11
+  - relation.std05.t12
+  - relation.std05.t13
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T13:31:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; refund route adjusted to avoid state crossings; final approval remains with the user.
+  previewHash: 165b69a5fc81fd5f76cd76186b84e3769afcd48c14b42d70787de90c1fe03dae
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: PaymentIntent
+  expectedStateCount: 8
+  expectedTransitionCount: 13
+  approvedDoActivities: [await trusted gateway result, await documented reconciliation, await full-refund completion]
+  prohibitedContent: [DUE_AT_FACILITY, PARTIALLY_PAID, PARTIALLY_REFUNDED, CANCELLED, APPOINTMENT_CONFIRMED, CHECKED_IN]

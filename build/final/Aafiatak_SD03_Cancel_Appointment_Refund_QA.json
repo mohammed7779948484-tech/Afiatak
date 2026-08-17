@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-sd03-cancel-appointment-refund.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-sd03-cancel-appointment-refund.png",
+      "previewHash": "497b560f7bf88cd7c77f1c13b3ed451c2b42b920a835e449ab001bbe3c996094",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T09:15:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-sd03-cancel-appointment-refund.png",
+    "previewHash": "497b560f7bf88cd7c77f1c13b3ed451c2b42b920a835e449ab001bbe3c996094",
+    "status": "awaiting-user-approval"
+  }
+}

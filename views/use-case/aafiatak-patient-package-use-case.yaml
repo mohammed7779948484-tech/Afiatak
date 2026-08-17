@@ -1,0 +1,46 @@
+id: aafiatak-patient-package-use-case
+title: Patient Package Use Case Diagram — Aafiatak Medical Appointment Booking System
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-patient-package-use-case.yaml
+layoutProfile: aafiatak_patient_package_use_case
+outputTargets:
+- svg
+- png
+approval: reviewed
+include:
+- actor.patient
+- uc.puc-01
+- uc.puc-02
+- uc.puc-03
+- uc.puc-04
+- uc.puc-05
+- uc.puc-06
+- uc.puc-07
+- uc.puc-08
+- uc.puc-09
+- uc.puc-10
+- uc.puc-11
+- uc.puc-12
+- uc.puc-13
+- uc.puc-14
+- uc.puc-15
+- uc.puc-16
+- uc.puc-17
+- uc.puc-18
+- uc.puc-19
+- uc.puc-20
+- uc.puc-21
+- uc.puc-22
+- uc.puc-23
+- uc.puc-24
+- uc.puc-25
+- uc.puc-26
+- uc.puc-27
+- uc.puc-28
+- uc.puc-29
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Patient Package
+  embeddedActor: true
+  relationshipDisplay: none

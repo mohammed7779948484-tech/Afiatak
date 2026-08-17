@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Facility Administrator Package Use Case Diagram — Part 3 — Staff &amp; Operations Oversight</title>
+  <desc id="diagram-description">Embedded Facility Administrator package actor with no displayed relationships.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+.package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+.package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+.helper { fill: #F3F5F6; }</style>
+  </defs>
+  <rect width="1920" height="1080" fill="#FAFAF8" />
+  <text x="960.0" y="48" class="page-title">
+    <tspan x="960.0" y="48">Facility Administrator Package Use Case Diagram — Part 3 — Staff &amp; Operations Oversight</tspan>
+  </text>
+  <rect x="220" y="120" width="1480" height="900" rx="4" class="boundary" id="system-boundary" data-x="220" data-y="120" data-width="1480" data-height="900" />
+  <text x="244" y="151" class="boundary-title">
+    <tspan x="244" y="151">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Embedded package actor and UML package container">
+    <path id="package-container" d="M 250 204 H 470 V 180 H 1670 V 970 H 250 Z" class="package" data-x="250" data-y="180" data-width="1420" data-height="790" />
+    <rect x="250" y="180" width="220" height="34" class="package-tab" />
+    <text x="360" y="202" class="boundary-title">
+      <tspan x="360" y="202">Facility Administrator Package</tspan>
+    </text>
+  </g>
+  <g aria-label="Embedded package actor">
+    <g id="actor-facility-administrator" data-semantic-id="actor.facility-administrator" data-kind="actor" data-embedded-actor="true" data-x="875" data-y="180" data-width="170" data-height="80">
+      <circle cx="960.0" cy="194" r="9" class="actor" />
+      <path d="M 960.0 203 V 223 M 938.0 208 H 982.0 M 960.0 223 L 941.0 242 M 960.0 223 L 979.0 242" class="actor" />
+      <text x="1075.0" y="211" class="actor-label">
+        <tspan x="1075.0" y="211">Facility Administrator</tspan>
+      </text>
+    </g>
+  </g>
+  <g aria-label="Presentation-only neighborhoods">
+    <rect x="290" y="250" width="640" height="300" rx="18" class="field" />
+    <line x1="291" y1="268" x2="328" y2="268" class="field-accent" stroke="#F5E8DF" />
+    <text x="338" y="273" class="section-label">
+      <tspan x="338" y="273">FACILITY STAFF ADMINISTRATION</tspan>
+    </text>
+    <rect x="980" y="250" width="620" height="420" rx="18" class="field" />
+    <line x1="981" y1="268" x2="1018" y2="268" class="field-accent" stroke="#ECEAF4" />
+    <text x="1028" y="273" class="section-label">
+      <tspan x="1028" y="273">OPERATIONS &amp; OVERSIGHT</tspan>
+    </text>
+  </g>
+  <g aria-label="Use cases without displayed relationships">
+    <g id="uc-fauc-29" data-semantic-id="uc.fauc-29" data-kind="use_case" data-x="320" data-y="300" data-width="270" data-height="58">
+      <ellipse cx="455.0" cy="329.0" rx="135.0" ry="29.0" class="use-case operations" />
+      <text x="455.0" y="334.0" class="use-case-label">
+        <tspan x="455.0" y="334">Add Facility Staff Account</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-30" data-semantic-id="uc.fauc-30" data-kind="use_case" data-x="630" data-y="300" data-width="270" data-height="58">
+      <ellipse cx="765.0" cy="329.0" rx="135.0" ry="29.0" class="use-case operations" />
+      <text x="765.0" y="334.0" class="use-case-label">
+        <tspan x="765.0" y="325.5">Disable Facility Staff</tspan>
+        <tspan x="765.0" y="342.5">Account</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-31" data-semantic-id="uc.fauc-31" data-kind="use_case" data-x="320" data-y="415" data-width="270" data-height="58">
+      <ellipse cx="455.0" cy="444.0" rx="135.0" ry="29.0" class="use-case operations" />
+      <text x="455.0" y="449.0" class="use-case-label">
+        <tspan x="455.0" y="449">Assign Approved Role</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-32" data-semantic-id="uc.fauc-32" data-kind="use_case" data-x="630" data-y="415" data-width="270" data-height="58">
+      <ellipse cx="765.0" cy="444.0" rx="135.0" ry="29.0" class="use-case operations" />
+      <text x="765.0" y="449.0" class="use-case-label">
+        <tspan x="765.0" y="449">Provision Doctor Login Access</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-33" data-semantic-id="uc.fauc-33" data-kind="use_case" data-x="1020" data-y="300" data-width="270" data-height="58">
+      <ellipse cx="1155.0" cy="329.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1155.0" y="334.0" class="use-case-label">
+        <tspan x="1155.0" y="334">Review Daily Operations</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-34" data-semantic-id="uc.fauc-34" data-kind="use_case" data-x="1310" data-y="300" data-width="270" data-height="58">
+      <ellipse cx="1445.0" cy="329.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1445.0" y="334.0" class="use-case-label">
+        <tspan x="1445.0" y="334">View Aafiatak Appointments</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-35" data-semantic-id="uc.fauc-35" data-kind="use_case" data-x="1020" data-y="415" data-width="270" data-height="58">
+      <ellipse cx="1155.0" cy="444.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1155.0" y="449.0" class="use-case-label">
+        <tspan x="1155.0" y="449">View Payment Status</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-36" data-semantic-id="uc.fauc-36" data-kind="use_case" data-x="1310" data-y="415" data-width="270" data-height="58">
+      <ellipse cx="1445.0" cy="444.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1445.0" y="449.0" class="use-case-label">
+        <tspan x="1445.0" y="449">Manage Operational Exceptions</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-37" data-semantic-id="uc.fauc-37" data-kind="use_case" data-x="1020" data-y="530" data-width="270" data-height="58">
+      <ellipse cx="1155.0" cy="559.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1155.0" y="564.0" class="use-case-label">
+        <tspan x="1155.0" y="564">View Operational Reports</tspan>
+      </text>
+    </g>
+    <g id="uc-fauc-38" data-semantic-id="uc.fauc-38" data-kind="use_case" data-x="1310" data-y="530" data-width="270" data-height="58">
+      <ellipse cx="1445.0" cy="559.0" rx="135.0" ry="29.0" class="use-case platform" />
+      <text x="1445.0" y="564.0" class="use-case-label">
+        <tspan x="1445.0" y="555.5">Receive Facility</tspan>
+        <tspan x="1445.0" y="572.5">Notifications</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

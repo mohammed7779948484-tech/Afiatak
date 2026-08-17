@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "diagrams": [
+    {
+      "diagram": "STD-01",
+      "object": "AvailabilityRelease",
+      "states": 5,
+      "transitions": 10,
+      "finals": 2,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-02",
+      "object": "ArrivalGroup",
+      "states": 3,
+      "transitions": 6,
+      "finals": 1,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-03",
+      "object": "ReservationHold",
+      "states": 4,
+      "transitions": 9,
+      "finals": 3,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-04",
+      "object": "Appointment",
+      "states": 3,
+      "transitions": 5,
+      "finals": 2,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-05",
+      "object": "PaymentIntent",
+      "states": 8,
+      "transitions": 13,
+      "finals": 3,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-06",
+      "object": "VisitInstance",
+      "states": 6,
+      "transitions": 12,
+      "finals": 3,
+      "status": "PASS"
+    },
+    {
+      "diagram": "STD-07",
+      "object": "QueueEntry",
+      "states": 4,
+      "transitions": 7,
+      "finals": 2,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "sharedStyle": {
+    "titlePrefix": "State Diagram \u2014",
+    "initial": "filled circle",
+    "states": "rounded rectangles",
+    "final": "bullseye",
+    "arrows": "solid directed",
+    "visualReview": "awaiting-user-approval"
+  }
+}

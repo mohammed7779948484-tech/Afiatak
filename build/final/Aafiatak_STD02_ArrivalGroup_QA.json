@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-std02-arrival-group.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-std02-arrival-group.png",
+      "previewHash": "36ec13df190de752f8b297236d045452492c6ea723f72eb9a2bf32b4140fcba7",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T11:56:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-std02-arrival-group.png",
+    "previewHash": "36ec13df190de752f8b297236d045452492c6ea723f72eb9a2bf32b4140fcba7",
+    "status": "awaiting-user-approval"
+  }
+}

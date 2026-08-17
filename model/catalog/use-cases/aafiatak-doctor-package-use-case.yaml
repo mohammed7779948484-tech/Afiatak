@@ -1,0 +1,218 @@
+modelId: pkg.duc
+version: '1.0'
+elements:
+- id: actor.doctor
+  name: Doctor
+  type: actor
+  description: Primary human actor for the Doctor package.
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '3.4'
+    line_start: 146
+    line_end: 166
+  - &id001
+    source: aafiatak-product-specification
+    section: Authoritative role permissions
+    line_start: 1
+    line_end: 1
+- id: actor.whatsapp-auth-provider
+  name: WhatsApp Authentication Provider
+  type: actor
+  description: External provider used only for passwordless WhatsApp OTP authentication.
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '3.5'
+    line_start: 168
+    line_end: 187
+  - *id001
+- id: uc.duc-01
+  name: Log In
+  type: use_case
+  description: Authenticate the provisioned Doctor account through passwordless WhatsApp
+    OTP.
+  tags:
+  - authentication
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.1'
+    line_start: 241
+    line_end: 258
+  - *id001
+- id: uc.duc-02
+  name: Verify WhatsApp OTP
+  type: use_case
+  description: Verify the mandatory short-lived WhatsApp OTP used during Doctor login.
+  tags:
+  - authentication
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.1'
+    line_start: 262
+    line_end: 276
+  - *id001
+- id: uc.duc-03
+  name: View Today's Appointments
+  type: use_case
+  description: View the Doctor's own Aafiatak appointments for the current day.
+  tags:
+  - appointments
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 280
+    line_end: 299
+  - *id001
+- id: uc.duc-04
+  name: View Upcoming Appointments
+  type: use_case
+  description: View the Doctor's own upcoming Aafiatak appointments.
+  tags:
+  - appointments
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.2'
+    line_start: 301
+    line_end: 317
+  - *id001
+- id: uc.duc-05
+  name: View Doctor Arrival Groups
+  type: use_case
+  description: View the Doctor's own Aafiatak Arrival Groups and relevant arrival
+    windows.
+  tags:
+  - queue
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 321
+    line_end: 343
+  - *id001
+- id: uc.duc-06
+  name: View Waiting Patients
+  type: use_case
+  description: View relevant checked-in and waiting Patients assigned to the Doctor.
+  tags:
+  - queue
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 345
+    line_end: 363
+  - *id001
+- id: uc.duc-07
+  name: Identify Next Patient
+  type: use_case
+  description: Identify the next Patient according to the relevant Aafiatak waiting
+    context.
+  tags:
+  - queue
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 365
+    line_end: 386
+  - *id001
+- id: uc.duc-08
+  name: Call Next Patient
+  type: use_case
+  description: Call the next Patient without changing the visit state lifecycle.
+  tags:
+  - queue
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '5.3'
+    line_start: 388
+    line_end: 405
+  - *id001
+relations:
+- id: relation.duc-actor-01
+  type: association
+  source: actor.doctor
+  target: uc.duc-01
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-03
+  type: association
+  source: actor.doctor
+  target: uc.duc-03
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-04
+  type: association
+  source: actor.doctor
+  target: uc.duc-04
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-05
+  type: association
+  source: actor.doctor
+  target: uc.duc-05
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-06
+  type: association
+  source: actor.doctor
+  target: uc.duc-06
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-07
+  type: association
+  source: actor.doctor
+  target: uc.duc-07
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.duc-actor-08
+  type: association
+  source: actor.doctor
+  target: uc.duc-08
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 409
+    line_end: 450
+  - *id001
+- id: relation.whatsapp-duc-02
+  type: association
+  source: actor.whatsapp-auth-provider
+  target: uc.duc-02
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '6'
+    line_start: 436
+    line_end: 444
+  - *id001
+- id: relation.duc-include-01
+  type: include
+  source: uc.duc-01
+  target: uc.duc-02
+  rationale: Passwordless login always requires successful WhatsApp OTP verification.
+  sourceRefs:
+  - source: doctor-package-deep-reviewed-spec
+    section: '7'
+    line_start: 454
+    line_end: 472
+  - *id001

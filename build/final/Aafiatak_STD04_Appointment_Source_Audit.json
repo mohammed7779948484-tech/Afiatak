@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "stateCount": 3,
+  "transitionCount": 5,
+  "noRescheduleSelfLoop": true,
+  "errors": []
+}

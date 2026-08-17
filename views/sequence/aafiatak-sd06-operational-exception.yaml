@@ -1,0 +1,66 @@
+id: aafiatak-sd06-operational-exception
+diagramType: sequence
+title: Sequence Diagram — Resolve Operational Exception
+model: ../../model/catalog/sequences/aafiatak-sd06-operational-exception.yaml
+include:
+  - actor.sd06.booking-reception-staff
+  - object.sd06.facility-web-dashboard
+  - object.sd06.backend
+  - object.sd06.data-store
+  - object.sd06.notification-service
+  - actor.sd06.patient
+  - object.sd06.payment-gateway
+relations:
+  - message.sd06.m01
+  - message.sd06.m02
+  - message.sd06.m03
+  - message.sd06.m04
+  - message.sd06.m05
+  - message.sd06.m06
+  - message.sd06.m07
+  - message.sd06.m08
+  - message.sd06.m09
+  - message.sd06.m10
+  - message.sd06.m11
+  - message.sd06.m12
+  - message.sd06.m13
+  - message.sd06.m14
+  - message.sd06.m15
+  - message.sd06.m16
+  - message.sd06.m17
+  - message.sd06.m18
+  - message.sd06.m19
+  - message.sd06.m20
+  - message.sd06.m21
+  - message.sd06.m22
+  - message.sd06.m23
+  - message.sd06.m24
+  - message.sd06.m25
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T10:05:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: beee47fd8d4fb442c55ef8a212f76314ce1a27e9ed81d7cd3d7281a9e34dd756
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Booking & Reception Staff
+  participantCount: 7
+  mainFlowMessageCount: 25
+  visibleScope: conflict-detected, facility-side cancellation, full refund, notification, verified closure only
+  invisibleQaConstraints:
+    - Each affected Appointment must have documented action/outcome before closure.
+    - Appointment cancellation and payment/refund state remain independent.
+    - Full refund applies only where collected payment exists.
+    - Platform Administrator is not a participant in this selected operational scenario.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - Platform Administrator
+    - Partial refund
+    - Internal facility capacity reverse import
+    - Alternate exception branches

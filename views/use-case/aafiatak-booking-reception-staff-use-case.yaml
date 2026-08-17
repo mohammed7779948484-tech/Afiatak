@@ -1,0 +1,58 @@
+id: aafiatak-booking-reception-staff-use-case
+diagramType: use_case
+title: Booking & Reception Staff Package Use Case Diagram
+model: ../../model/catalog/use-cases/aafiatak-booking-reception-staff-package-use-case.yaml
+include:
+- actor.booking-reception-staff
+- uc.bruc-01
+- uc.bruc-02
+- uc.bruc-03
+- uc.bruc-04
+- uc.bruc-05
+- uc.bruc-06
+- uc.bruc-07
+- uc.bruc-08
+- uc.bruc-09
+- uc.bruc-10
+- uc.bruc-11
+- uc.bruc-12
+- uc.bruc-13
+- uc.bruc-14
+- uc.bruc-15
+- uc.bruc-16
+- uc.bruc-17
+- uc.bruc-18
+- uc.bruc-19
+- uc.bruc-20
+- uc.bruc-21
+- uc.bruc-22
+- uc.bruc-23
+- uc.bruc-24
+- uc.bruc-25
+- uc.bruc-26
+- uc.bruc-27
+- uc.bruc-28
+- uc.bruc-29
+- uc.bruc-30
+- uc.bruc-31
+- uc.bruc-32
+- uc.bruc-33
+- uc.bruc-34
+- uc.bruc-35
+- uc.bruc-36
+- uc.bruc-37
+- uc.bruc-38
+- uc.bruc-39
+- uc.bruc-40
+- uc.bruc-41
+- uc.bruc-42
+- uc.bruc-43
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Booking & Reception Staff Package
+  sheetSubtitle: Part 1 — Daily Operations & Appointments
+  embeddedActor: true
+  relationshipDisplay: none
+  unifiedPackage: true
+approval: draft

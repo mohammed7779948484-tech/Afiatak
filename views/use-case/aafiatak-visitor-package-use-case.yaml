@@ -1,0 +1,24 @@
+id: aafiatak-visitor-package-use-case
+title: Visitor Package Use Case Diagram — Aafiatak Medical Appointment Booking System
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-visitor-package-use-case.yaml
+layoutProfile: aafiatak_visitor_package_use_case
+outputTargets:
+- svg
+- png
+approval: reviewed
+include:
+- actor.visitor
+- uc.vuc-01
+- uc.vuc-02
+- uc.vuc-03
+- uc.vuc-04
+- uc.vuc-05
+- uc.vuc-06
+- uc.vuc-07
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Visitor Package
+  embeddedActor: true
+  relationshipDisplay: none

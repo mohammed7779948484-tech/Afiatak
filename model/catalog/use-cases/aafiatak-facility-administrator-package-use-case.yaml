@@ -1,0 +1,832 @@
+modelId: aafiatak-facility-administrator-package-use-case
+version: '1.0'
+elements:
+- id: actor.facility-administrator
+  name: Facility Administrator
+  type: actor
+  description: Primary human actor with highest facility-level Aafiatak privileges for one participating facility.
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '3.4'
+    line_start: 97
+    line_end: 116
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: actor.whatsapp-auth-provider
+  name: WhatsApp Authentication Provider
+  type: actor
+  description: External provider used exclusively for official passwordless WhatsApp OTP authentication.
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '3.5'
+    line_start: 118
+    line_end: 136
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 358
+    line_end: 382
+- id: actor.notification-service
+  name: Notification Service
+  type: actor
+  description: External service that delivers approved facility notifications.
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '3.5'
+    line_start: 118
+    line_end: 136
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-01
+  name: Log In
+  type: use_case
+  description: Authenticate the provisioned Facility Administrator through approved passwordless authentication.
+  tags:
+  - authentication
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.1'
+    line_start: 193
+    line_end: 228
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-02
+  name: Verify WhatsApp OTP
+  type: use_case
+  description: Verify the mandatory short-lived WhatsApp OTP used for Facility Administrator authentication.
+  tags:
+  - authentication
+  - helper
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.1'
+    line_start: 193
+    line_end: 228
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-03
+  name: Manage Facility Data
+  type: use_case
+  description: Maintain approved public and operational information for the Administrator’s own facility.
+  tags:
+  - facility-configuration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.2'
+    line_start: 231
+    line_end: 243
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-04
+  name: Manage Branch Display & Contact Data
+  type: use_case
+  description: Maintain approved pilot-branch display, location, contact, and working-hours information.
+  tags:
+  - facility-configuration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.2'
+    line_start: 245
+    line_end: 260
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-05
+  name: Manage Facility Images & Logo
+  type: use_case
+  description: Maintain the facility’s approved public images and logo.
+  tags:
+  - facility-configuration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.2'
+    line_start: 262
+    line_end: 270
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-06
+  name: Associate Departments
+  type: use_case
+  description: Associate applicable platform-maintained departments with the facility.
+  tags:
+  - facility-configuration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.2'
+    line_start: 273
+    line_end: 281
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-07
+  name: Associate Specialties
+  type: use_case
+  description: Associate applicable platform-maintained specialties with the facility and approved doctors.
+  tags:
+  - facility-configuration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.2'
+    line_start: 284
+    line_end: 293
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-08
+  name: Add Doctor
+  type: use_case
+  description: Add an approved Doctor profile in the facility context.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 297
+    line_end: 306
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-09
+  name: Edit Doctor
+  type: use_case
+  description: Edit approved Doctor information in the facility context.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 308
+    line_end: 317
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-10
+  name: Add Service Offering
+  type: use_case
+  description: Create a bookable facility ServiceOffering.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 319
+    line_end: 328
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-11
+  name: Edit Service Offering
+  type: use_case
+  description: Edit approved ServiceOffering configuration for future applicable use.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 330
+    line_end: 339
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-12
+  name: Set Service Price
+  type: use_case
+  description: Set the full configured service or booking amount for a ServiceOffering.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 341
+    line_end: 355
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-13
+  name: Set Estimated Service Duration
+  type: use_case
+  description: Set the optional informational estimated service duration.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 357
+    line_end: 367
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-14
+  name: Set Attendance Instructions
+  type: use_case
+  description: Configure approved patient-facing attendance and arrival instructions.
+  tags:
+  - doctors-services
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.3'
+    line_start: 369
+    line_end: 376
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-15
+  name: Set Booking Policy
+  type: use_case
+  description: Configure the approved booking policy for a ServiceOffering.
+  tags:
+  - policies
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.4'
+    line_start: 380
+    line_end: 400
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-16
+  name: Set Cancellation/Refund Policy
+  type: use_case
+  description: Configure the approved cancellation and refund policy for fully paid bookings.
+  tags:
+  - policies
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.4'
+    line_start: 401
+    line_end: 411
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-17
+  name: Set No-show Policy
+  type: use_case
+  description: Configure the approved no-show financial policy for fully paid bookings.
+  tags:
+  - policies
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.4'
+    line_start: 412
+    line_end: 427
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-18
+  name: Configure Attendance Reconfirmation
+  type: use_case
+  description: Configure whether attendance reconfirmation is enabled without deciding the open send timing.
+  tags:
+  - policies
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.4'
+    line_start: 428
+    line_end: 440
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-19
+  name: Manage Doctor Schedules
+  type: use_case
+  description: Define and manage theoretical Doctor schedule windows for Aafiatak availability planning.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 442
+    line_end: 453
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-20
+  name: Record Planned Schedule Exception
+  type: use_case
+  description: Record an approved planned schedule exception before affected availability is published.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 455
+    line_end: 465
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-21
+  name: Create Availability Release
+  type: use_case
+  description: Create an AvailabilityRelease for bounded Aafiatak digital inventory.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 466
+    line_end: 475
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-22
+  name: Configure Arrival Groups
+  type: use_case
+  description: Configure Arrival Groups, approved windows, sequencing, and capacity allocation before publication.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 477
+    line_end: 490
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-23
+  name: Set Initial Digital Capacity
+  type: use_case
+  description: Set the Aafiatak digital capacity before publication.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 492
+    line_end: 503
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-24
+  name: Publish Availability
+  type: use_case
+  description: Publish a prepared AvailabilityRelease for new booking attempts.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 504
+    line_end: 515
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-25
+  name: View Capacity Status
+  type: use_case
+  description: View applicable Aafiatak digital capacity states and indicators.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 517
+    line_end: 536
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-26
+  name: Withdraw Remaining Capacity
+  type: use_case
+  description: Irreversibly transfer valid unused Aafiatak capacity to the facility internal schedule.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 537
+    line_end: 554
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-27
+  name: Freeze Availability
+  type: use_case
+  description: Temporarily stop new holds and bookings for an approved release or group.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 555
+    line_end: 565
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-28
+  name: Close Availability
+  type: use_case
+  description: Close an approved release or group for new holds and bookings.
+  tags:
+  - schedules-availability
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.5'
+    line_start: 566
+    line_end: 576
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-29
+  name: Add Facility Staff Account
+  type: use_case
+  description: Provision an approved facility staff identity and context for the Administrator’s own facility.
+  tags:
+  - staff-administration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.6'
+    line_start: 577
+    line_end: 589
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-30
+  name: Disable Facility Staff Account
+  type: use_case
+  description: Disable facility staff access when required while preserving required audit traceability.
+  tags:
+  - staff-administration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.6'
+    line_start: 590
+    line_end: 602
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-31
+  name: Assign Approved Role
+  type: use_case
+  description: Assign an approved facility role and permission context within RBAC boundaries.
+  tags:
+  - staff-administration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.6'
+    line_start: 603
+    line_end: 615
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-32
+  name: Provision Doctor Login Access
+  type: use_case
+  description: Provision or enable Doctor login access linked to the corresponding Doctor profile.
+  tags:
+  - staff-administration
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.6'
+    line_start: 616
+    line_end: 628
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-33
+  name: Review Daily Operations
+  type: use_case
+  description: Review facility-level daily Aafiatak operational status.
+  tags:
+  - operations-oversight
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 629
+    line_end: 641
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-34
+  name: View Aafiatak Appointments
+  type: use_case
+  description: View authorized Aafiatak appointments for the Administrator’s own facility.
+  tags:
+  - operations-oversight
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 642
+    line_end: 652
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-35
+  name: View Payment Status
+  type: use_case
+  description: View payment states without modifying Payment Gateway outcomes.
+  tags:
+  - operations-oversight
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 653
+    line_end: 669
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-36
+  name: Manage Operational Exceptions
+  type: use_case
+  description: Manage approved operational exceptions and documented resolution of affected appointments.
+  tags:
+  - operations-oversight
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 670
+    line_end: 693
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-37
+  name: View Operational Reports
+  type: use_case
+  description: View approved simple facility reports and indicators.
+  tags:
+  - operations-oversight
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 694
+    line_end: 719
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: uc.fauc-38
+  name: Receive Facility Notifications
+  type: use_case
+  description: Receive approved in-application or system facility notifications.
+  tags:
+  - operations-oversight
+  - notifications
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '5.7'
+    line_start: 720
+    line_end: 745
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+relations:
+- id: relation.facility-admin-fauc-01
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-01
+  sourceRefs: &id001
+  - source: facility-administrator-reviewed-spec
+    section: '6'
+    line_start: 748
+    line_end: 819
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 459
+    line_end: 486
+- id: relation.facility-admin-fauc-03
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-03
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-04
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-04
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-05
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-05
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-06
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-06
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-07
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-07
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-08
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-08
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-09
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-09
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-10
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-10
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-11
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-11
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-12
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-12
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-13
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-13
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-14
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-14
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-15
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-15
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-16
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-16
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-17
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-17
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-18
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-18
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-19
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-19
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-20
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-20
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-21
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-21
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-22
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-22
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-23
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-23
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-24
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-24
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-25
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-25
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-26
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-26
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-27
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-27
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-28
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-28
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-29
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-29
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-30
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-30
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-31
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-31
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-32
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-32
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-33
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-33
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-34
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-34
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-35
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-35
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-36
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-36
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-37
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-37
+  sourceRefs: *id001
+- id: relation.facility-admin-fauc-38
+  type: association
+  source: actor.facility-administrator
+  target: uc.fauc-38
+  sourceRefs: *id001
+- id: relation.whatsapp-fauc-02
+  type: association
+  source: actor.whatsapp-auth-provider
+  target: uc.fauc-02
+  sourceRefs: *id001
+- id: relation.notification-fauc-38
+  type: association
+  source: actor.notification-service
+  target: uc.fauc-38
+  sourceRefs: *id001
+- id: relation.finc-01
+  type: include
+  source: uc.fauc-01
+  target: uc.fauc-02
+  rationale: Facility Administrator login is passwordless and always requires successful WhatsApp OTP verification.
+  sourceRefs:
+  - source: facility-administrator-reviewed-spec
+    section: '7'
+    line_start: 822
+    line_end: 840
+  - source: aafiatak-product-specification
+    section: Facility Administrator permissions
+    line_start: 358
+    line_end: 382

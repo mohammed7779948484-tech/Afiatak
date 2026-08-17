@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-patient-package-use-case.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "generated",
+      "preview": "build/preview/aafiatak-patient-package-use-case.png",
+      "previewHash": "475baeb30084a56bb24cb65dd0a6aea3074393b69568456934b5b48c23e074ae",
+      "hashMatchesRecordedPreview": false,
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": null,
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-patient-package-use-case.png",
+    "previewHash": "475baeb30084a56bb24cb65dd0a6aea3074393b69568456934b5b48c23e074ae",
+    "status": "awaiting-user-approval"
+  }
+}

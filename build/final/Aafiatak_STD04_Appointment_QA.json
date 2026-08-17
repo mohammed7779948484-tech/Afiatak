@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-std04-appointment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-std04-appointment.png",
+      "previewHash": "c4ac5bc934d19c6ba55605eb85bf846ff24bde5a4031194d5fb4aff60436eeb1",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T12:47:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-std04-appointment.png",
+    "previewHash": "c4ac5bc934d19c6ba55605eb85bf846ff24bde5a4031194d5fb4aff60436eeb1",
+    "status": "awaiting-user-approval"
+  }
+}

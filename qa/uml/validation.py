@@ -30,7 +30,7 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
         return diagnostics
     element_types = {
         "use_case": {"actor", "use_case"},
-        "class": {"class"},
+        "class": {"class", "note"},
         "object": {"object"},
         "activity": {"initial", "final", "action", "decision", "fork", "join"},
         "sequence": {"participant", "actor", "object", "component"},

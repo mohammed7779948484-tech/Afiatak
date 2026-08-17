@@ -1,0 +1,98 @@
+modelId: aafiatak-sd02-book-appointment
+version: '1.0'
+elements:
+  - id: actor.sd02.patient
+    name: Patient
+    type: actor
+    description: Authenticated Patient selecting booking context and completing required payment.
+    tags: [sd02, participant, human]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 5, 6'
+      - source: aafiatak-product-specification
+        section: '13.3–16.5, 18, 19'
+  - id: object.sd02.patient-application
+    name: Patient Application
+    type: participant
+    description: Patient interaction boundary for capacity, hold, payment, and confirmation.
+    tags: [sd02, participant, boundary]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 5, 6'
+      - source: aafiatak-product-specification
+        section: '13.3–16.5, 18, 19'
+  - id: object.sd02.backend
+    name: Aafiatak Backend
+    type: participant
+    description: Implementation-neutral booking control participant.
+    tags: [sd02, participant, control]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 5, 6'
+      - source: aafiatak-product-specification
+        section: '13.3–16.5, 18, 19'
+  - id: object.sd02.data-store
+    name: Aafiatak Data Store
+    type: participant
+    description: Transactional persistence participant for release, hold, payment intent, and appointment state.
+    tags: [sd02, participant, data]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 5, 6'
+      - source: aafiatak-product-specification
+        section: '13.3–16.5, 18, 19'
+  - id: object.sd02.payment-gateway
+    name: Payment Gateway
+    type: participant
+    description: Trusted external full-payment processing participant.
+    tags: [sd02, participant, external]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 6'
+      - source: aafiatak-product-specification
+        section: '16.5, 18, 19'
+  - id: object.sd02.notification-service
+    name: Notification Service
+    type: participant
+    description: Independent external booking-notification participant.
+    tags: [sd02, participant, external]
+    sourceRefs:
+      - source: sd02-final-reviewed-spec
+        section: '4, 6'
+      - source: aafiatak-product-specification
+        section: '18, 19'
+relations:
+  - {id: message.sd02.m01, type: message, source: actor.sd02.patient, target: object.sd02.patient-application, name: 'Select service / doctor context / day', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 1}}
+  - {id: message.sd02.m02, type: message, source: object.sd02.patient-application, target: object.sd02.backend, name: 'Request currently bookable Aafiatak capacity', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 2}}
+  - {id: message.sd02.m03, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Load PUBLISHED release and frozen booking terms', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 3}}
+  - {id: message.sd02.m04, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Release terms and current capacity state', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 4}}
+  - {id: message.sd02.m05, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Find earliest currently bookable ArrivalGroup', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 5}}
+  - {id: message.sd02.m06, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Selected group/window and remaining capacity', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 6}}
+  - {id: message.sd02.m07, type: return_message, source: object.sd02.backend, target: object.sd02.patient-application, name: 'Display arrival window and governing booking terms', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 7}}
+  - {id: message.sd02.m08, type: message, source: actor.sd02.patient, target: object.sd02.patient-application, name: 'Confirm intent to proceed', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 8}}
+  - {id: message.sd02.m09, type: message, source: object.sd02.patient-application, target: object.sd02.backend, name: 'Create temporary ReservationHold', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 9}}
+  - {id: message.sd02.m10, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Atomically revalidate group and acquire one ACTIVE hold', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 10}}
+  - {id: message.sd02.m11, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Hold acquired: selected group and expiry context', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 11}}
+  - {id: message.sd02.m12, type: return_message, source: object.sd02.backend, target: object.sd02.patient-application, name: 'Show protected group and hold countdown', sourceRefs: [{source: sd02-final-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.3–16.5'}], metadata: {sequence: 12}}
+  - {id: message.sd02.m13, type: message, source: actor.sd02.patient, target: object.sd02.patient-application, name: 'Proceed to full electronic payment', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 13}}
+  - {id: message.sd02.m14, type: message, source: object.sd02.patient-application, target: object.sd02.backend, name: 'Start full payment for active hold', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 14}}
+  - {id: message.sd02.m15, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Load hold snapshot and enforce one non-terminal PaymentIntent', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 15}}
+  - {id: message.sd02.m16, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Valid hold and payment context', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 16}}
+  - {id: message.sd02.m17, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Create or safely reuse PaymentIntent', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 17}}
+  - {id: message.sd02.m18, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'PaymentIntent ready', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 18}}
+  - {id: message.sd02.m19, type: message, source: object.sd02.backend, target: object.sd02.payment-gateway, name: 'Initiate full amount payment', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 19}}
+  - {id: message.sd02.m20, type: return_message, source: object.sd02.payment-gateway, target: object.sd02.backend, name: 'Gateway payment session/reference', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 20}}
+  - {id: message.sd02.m21, type: return_message, source: object.sd02.backend, target: object.sd02.patient-application, name: 'Continue approved gateway interaction', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 21}}
+  - {id: message.sd02.m22, type: message, source: actor.sd02.patient, target: object.sd02.payment-gateway, name: 'Complete gateway payment interaction', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 22}}
+  - {id: message.sd02.m23, type: return_message, source: object.sd02.payment-gateway, target: object.sd02.patient-application, name: 'Return to application', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 23}}
+  - {id: message.sd02.m24, type: message, source: object.sd02.patient-application, target: object.sd02.backend, name: 'Report client return from gateway', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 24}}
+  - {id: message.sd02.m25, type: message, source: object.sd02.backend, target: object.sd02.payment-gateway, name: 'Verify payment through trusted gateway channel', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 25}}
+  - {id: message.sd02.m26, type: return_message, source: object.sd02.payment-gateway, target: object.sd02.backend, name: 'Trusted payment result: SUCCESS', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 26}}
+  - {id: message.sd02.m27, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Persist SUCCEEDED and revalidate hold/release/group/time', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 27}}
+  - {id: message.sd02.m28, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Payment persisted and booking target eligible', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 28}}
+  - {id: message.sd02.m29, type: message, source: object.sd02.backend, target: object.sd02.data-store, name: 'Atomically consume hold/capacity and create CONFIRMED Appointment', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 29}}
+  - {id: message.sd02.m30, type: return_message, source: object.sd02.data-store, target: object.sd02.backend, name: 'Appointment confirmed and hold CONSUMED', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '16.5, 18, 19'}], metadata: {sequence: 30}}
+  - {id: message.sd02.m31, type: message, source: object.sd02.backend, target: object.sd02.notification-service, name: 'Send full-payment booking confirmation', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '18, 19'}], metadata: {sequence: 31}}
+  - {id: message.sd02.m32, type: return_message, source: object.sd02.notification-service, target: object.sd02.backend, name: 'Notification accepted', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '18, 19'}], metadata: {sequence: 32}}
+  - {id: message.sd02.m33, type: return_message, source: object.sd02.backend, target: object.sd02.patient-application, name: 'Return confirmed Appointment and payment status', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '18, 19'}], metadata: {sequence: 33}}
+  - {id: message.sd02.m34, type: return_message, source: object.sd02.patient-application, target: actor.sd02.patient, name: 'Display confirmation, receipt summary and arrival window', sourceRefs: [{source: sd02-final-reviewed-spec, section: '6'}, {source: aafiatak-product-specification, section: '18, 19'}], metadata: {sequence: 34}}

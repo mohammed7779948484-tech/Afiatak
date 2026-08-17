@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-sd02-book-appointment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-sd02-book-appointment.png",
+      "previewHash": "25ff56cf61e0522060d7fe1d6c5dcad1c852605d1b15410875ed06e693a7d2d0",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T09:00:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-sd02-book-appointment.png",
+    "previewHash": "25ff56cf61e0522060d7fe1d6c5dcad1c852605d1b15410875ed06e693a7d2d0",
+    "status": "awaiting-user-approval"
+  }
+}

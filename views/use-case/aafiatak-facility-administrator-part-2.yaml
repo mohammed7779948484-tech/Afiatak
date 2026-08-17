@@ -1,0 +1,32 @@
+id: aafiatak-facility-administrator-part-2
+title: Facility Administrator Package Use Case Diagram — Part 2 — Policies, Schedules & Availability
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-facility-administrator-package-use-case.yaml
+layoutProfile: aafiatak_facility_administrator_part_2
+outputTargets:
+- svg
+- png
+approval: draft
+include:
+- actor.facility-administrator
+- uc.fauc-15
+- uc.fauc-16
+- uc.fauc-17
+- uc.fauc-18
+- uc.fauc-19
+- uc.fauc-20
+- uc.fauc-21
+- uc.fauc-22
+- uc.fauc-23
+- uc.fauc-24
+- uc.fauc-25
+- uc.fauc-26
+- uc.fauc-27
+- uc.fauc-28
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Facility Administrator Package
+  sheetSubtitle: Part 2 — Policies, Schedules & Availability
+  embeddedActor: true
+  relationshipDisplay: none

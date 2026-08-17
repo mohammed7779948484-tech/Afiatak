@@ -1,0 +1,10 @@
+change: embedded-package-actor-no-relationships
+packages:
+  - Patient
+  - Visitor
+  - Booking & Reception Staff
+  - Facility Administrator
+relationship_display: none
+external_actors_displayed: false
+package_actor_display: embedded-at-package-top
+status: awaiting-user-approval

@@ -1,0 +1,28 @@
+id: aafiatak-facility-administrator-part-3
+title: Facility Administrator Package Use Case Diagram — Part 3 — Staff & Operations Oversight
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-facility-administrator-package-use-case.yaml
+layoutProfile: aafiatak_facility_administrator_part_3
+outputTargets:
+- svg
+- png
+approval: draft
+include:
+- actor.facility-administrator
+- uc.fauc-29
+- uc.fauc-30
+- uc.fauc-31
+- uc.fauc-32
+- uc.fauc-33
+- uc.fauc-34
+- uc.fauc-35
+- uc.fauc-36
+- uc.fauc-37
+- uc.fauc-38
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Facility Administrator Package
+  sheetSubtitle: Part 3 — Staff & Operations Oversight
+  embeddedActor: true
+  relationshipDisplay: none

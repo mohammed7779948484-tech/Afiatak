@@ -1,0 +1,71 @@
+id: aafiatak-sd05-checkin-queue-call-next
+diagramType: sequence
+title: Sequence Diagram — Check-in, Queue & Call Next
+model: ../../model/catalog/sequences/aafiatak-sd05-checkin-queue-call-next.yaml
+include:
+  - actor.sd05.patient
+  - actor.sd05.booking-reception-staff
+  - object.sd05.facility-web-dashboard
+  - object.sd05.backend
+  - object.sd05.data-store
+  - object.sd05.doctor-interface
+  - actor.sd05.doctor
+  - object.sd05.notification-service
+relations:
+  - message.sd05.m01
+  - message.sd05.m02
+  - message.sd05.m03
+  - message.sd05.m04
+  - message.sd05.m05
+  - message.sd05.m06
+  - message.sd05.m07
+  - message.sd05.m08
+  - message.sd05.m09
+  - message.sd05.m10
+  - message.sd05.m11
+  - message.sd05.m12
+  - message.sd05.m13
+  - message.sd05.m14
+  - message.sd05.m15
+  - message.sd05.m16
+  - message.sd05.m17
+  - message.sd05.m18
+  - message.sd05.m19
+  - message.sd05.m20
+  - message.sd05.m21
+  - message.sd05.m22
+  - message.sd05.m23
+  - message.sd05.m24
+  - message.sd05.m25
+  - message.sd05.m26
+  - message.sd05.m27
+  - message.sd05.m28
+  - message.sd05.m29
+  - message.sd05.m30
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T09:48:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 321cfbfbe0943a981ad83e3aa34ab366a04f478c84ab66d72e354c743f90a7ea
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Patient
+  participantCount: 8
+  mainFlowMessageCount: 30
+  visibleScope: normal successful check-in, approved queue ordering, and QueueEntry call only
+  invisibleQaConstraints:
+    - Checked-in Patient is not automatically next.
+    - Approved queue ordering determines the next callable QueueEntry.
+    - Doctor call changes QueueEntry only, not VisitInstance state.
+    - QueueEntry remains in the original ArrivalGroup.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - Automatic next-patient claim
+    - Appointment status CHECKED_IN
+    - VisitInstance status change when calling QueueEntry

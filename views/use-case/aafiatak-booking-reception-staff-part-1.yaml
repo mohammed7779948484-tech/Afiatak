@@ -1,0 +1,34 @@
+id: aafiatak-booking-reception-staff-part-1
+title: Booking & Reception Staff Package Use Case Diagram — Part 1 — Daily Operations & Appointments
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-booking-reception-staff-package-use-case.yaml
+layoutProfile: aafiatak_booking_reception_staff_part_1
+outputTargets:
+- svg
+- png
+approval: draft
+include:
+- actor.booking-reception-staff
+- uc.bruc-01
+- uc.bruc-02
+- uc.bruc-03
+- uc.bruc-04
+- uc.bruc-05
+- uc.bruc-06
+- uc.bruc-07
+- uc.bruc-08
+- uc.bruc-09
+- uc.bruc-10
+- uc.bruc-11
+- uc.bruc-12
+- uc.bruc-13
+- uc.bruc-14
+- uc.bruc-15
+- uc.bruc-16
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Booking & Reception Staff Package
+  sheetSubtitle: Part 1 — Daily Operations & Appointments
+  embeddedActor: true
+  relationshipDisplay: none

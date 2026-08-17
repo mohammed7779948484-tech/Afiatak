@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-std05-payment-intent.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-std05-payment-intent.png",
+      "previewHash": "165b69a5fc81fd5f76cd76186b84e3769afcd48c14b42d70787de90c1fe03dae",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T13:31:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; refund route adjusted to avoid state crossings; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-std05-payment-intent.png",
+    "previewHash": "165b69a5fc81fd5f76cd76186b84e3769afcd48c14b42d70787de90c1fe03dae",
+    "status": "awaiting-user-approval"
+  }
+}

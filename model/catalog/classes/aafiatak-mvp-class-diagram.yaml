@@ -1,0 +1,1677 @@
+modelId: aafiatak-mvp-class-diagram
+version: '2.0'
+elements:
+- id: class.c01
+  name: User
+  type: class
+  description: Maintain the globally unique verified human identity and authentication state.
+  tags:
+  - identity
+  - access
+  sourceRefs:
+  - &id001
+    source: mvp-class-diagram-final-verified-spec
+    section: '4'
+    line_start: 102
+    line_end: 797
+  - &id002
+    source: aafiatak-product-specification
+    section: MVP domain rules
+    line_start: 1
+    line_end: 1
+  metadata:
+    class_id: C01
+    attributes:
+    - '- userId'
+    - '- normalizedPhone'
+    - '- phoneVerifiedAt'
+    - '- accountStatus'
+    operations:
+    - + requestOtp()
+    - + verifyOtp()
+    - + revokeSession()
+    responsibility: Maintain the globally unique verified human identity and authentication state.
+- id: class.c02
+  name: Patient
+  type: class
+  description: Represent Patient-specific non-clinical profile data linked to one User identity.
+  tags:
+  - identity
+  - patient
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C02
+    attributes:
+    - '- patientId'
+    - '- fullName'
+    - '- basicProfileData'
+    - '- active'
+    operations:
+    - + updateProfile()
+    - + viewOwnAppointments()
+    responsibility: Represent Patient-specific non-clinical profile data linked to one User identity.
+- id: class.c03
+  name: FacilityUser
+  type: class
+  description: Represent a provisioned User's role and access inside one participating Facility.
+  tags:
+  - identity
+  - facility
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C03
+    attributes:
+    - '- facilityUserId'
+    - '- role'
+    - '- status'
+    - '- permissions'
+    operations:
+    - + assignApprovedRole()
+    - + enable()
+    - + disable()
+    responsibility: Represent a provisioned User's role and access inside one participating Facility.
+- id: class.c04
+  name: PlatformRoleAssignment
+  type: class
+  description: Represent a controlled platform-role relationship for a User, including Platform Administrator/platform-staff
+    access.
+  tags:
+  - identity
+  - platform
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C04
+    attributes:
+    - '- assignmentId'
+    - '- role'
+    - '- status'
+    - '- permissions'
+    operations:
+    - + assignApprovedRole()
+    - + enable()
+    - + disable()
+    responsibility: Represent a controlled platform-role relationship for a User, including Platform Administrator/platform-staff
+      access.
+- id: class.c05
+  name: FacilityOnboardingRequest
+  type: class
+  description: Preserve the platform-side intake/review decision for facility onboarding.
+  tags:
+  - platform
+  - onboarding
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C05
+    attributes:
+    - '- requestId'
+    - '- status'
+    - '- submittedAt'
+    - '- decisionAt'
+    operations:
+    - + requestAdditionalInformation()
+    - + approve()
+    - + reject()
+    responsibility: Preserve the platform-side intake/review decision for facility onboarding.
+- id: class.c06
+  name: AuditRecord
+  type: class
+  description: Preserve auditable actor/time/reason/source information for important changes.
+  tags:
+  - platform
+  - audit
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C06
+    attributes:
+    - '- auditId'
+    - '- action'
+    - '- timestamp'
+    - '- reason'
+    - '- source'
+    operations:
+    - + recordChange()
+    responsibility: Preserve auditable actor/time/reason/source information for important changes.
+- id: class.c07
+  name: Notification
+  type: class
+  description: Represent approved in-application/system notification records.
+  tags:
+  - platform
+  - notification
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C07
+    attributes:
+    - '- notificationId'
+    - '- type'
+    - '- status'
+    - '- createdAt'
+    - '- deliveredAt'
+    operations:
+    - + markDelivered()
+    - + markFailed()
+    responsibility: Represent approved in-application/system notification records.
+- id: class.c08
+  name: Region
+  type: class
+  description: Provide platform-level region reference data.
+  tags:
+  - reference-data
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C08
+    attributes:
+    - '- regionId'
+    - '- name'
+    - '- active'
+    operations:
+    - + activate()
+    - + deactivate()
+    responsibility: Provide platform-level region reference data.
+- id: class.c09
+  name: City
+  type: class
+  description: Provide platform-level city reference data inside a Region.
+  tags:
+  - reference-data
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C09
+    attributes:
+    - '- cityId'
+    - '- name'
+    - '- active'
+    operations:
+    - + activate()
+    - + deactivate()
+    responsibility: Provide platform-level city reference data inside a Region.
+- id: class.c10
+  name: FacilityType
+  type: class
+  description: Classify participating Facilities using platform reference data.
+  tags:
+  - reference-data
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C10
+    attributes:
+    - '- facilityTypeId'
+    - '- name'
+    - '- active'
+    operations:
+    - + activate()
+    - + deactivate()
+    responsibility: Classify participating Facilities using platform reference data.
+- id: class.c11
+  name: Facility
+  type: class
+  description: Represent the participating health facility account without replacing its internal HIS/scheduling system.
+  tags:
+  - facility
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C11
+    attributes:
+    - '- facilityId'
+    - '- name'
+    - '- status'
+    - '- contactNumber'
+    - '- workingHours'
+    operations:
+    - + updateProfile()
+    - + activate()
+    - + suspend()
+    responsibility: Represent the participating health facility account without replacing its internal HIS/scheduling system.
+- id: class.c12
+  name: FacilityBranch
+  type: class
+  description: Represent the branch context in which bookings, releases, and local-time rules are interpreted.
+  tags:
+  - facility
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C12
+    attributes:
+    - '- branchId'
+    - '- name'
+    - '- address'
+    - '- mapLocation'
+    - '- contactNumber'
+    - '- localTimeZone'
+    operations:
+    - + updateContactData()
+    - + updateWorkingHours()
+    responsibility: Represent the branch context in which bookings, releases, and local-time rules are interpreted.
+- id: class.c13
+  name: Department
+  type: class
+  description: Provide a platform reference Department that Facilities may associate with themselves.
+  tags:
+  - reference-data
+  - facility
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C13
+    attributes:
+    - '- departmentId'
+    - '- name'
+    - '- active'
+    operations:
+    - + activate()
+    - + deactivate()
+    responsibility: Provide a platform reference Department that Facilities may associate with themselves.
+- id: class.c14
+  name: Specialty
+  type: class
+  description: Provide a platform reference Specialty associated with Facilities, Doctors, and services.
+  tags:
+  - reference-data
+  - facility
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C14
+    attributes:
+    - '- specialtyId'
+    - '- name'
+    - '- active'
+    operations:
+    - + activate()
+    - + deactivate()
+    responsibility: Provide a platform reference Specialty associated with Facilities, Doctors, and services.
+- id: class.c15
+  name: Doctor
+  type: class
+  description: Represent the Doctor's public/operational profile separately from the User authentication identity.
+  tags:
+  - facility
+  - doctor
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C15
+    attributes:
+    - '- doctorId'
+    - '- name'
+    - '- photo'
+    - '- qualification'
+    - '- biography'
+    - '- active'
+    operations:
+    - + updateProfile()
+    - + linkLoginAccess()
+    responsibility: Represent the Doctor's public/operational profile separately from the User authentication identity.
+- id: class.c16
+  name: ServiceOffering
+  type: class
+  description: Define the authoritative service terms used to prepare new AvailabilityRelease records.
+  tags:
+  - facility
+  - service
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C16
+    attributes:
+    - '- serviceOfferingId'
+    - '- serviceName'
+    - '- amount'
+    - '- currency'
+    - '- estimatedDuration'
+    - '- bookingPolicy'
+    - '- cancellationPolicy'
+    - '- cancellationWindow'
+    - '- noShowPolicy'
+    - '- reconfirmationEnabled'
+    - '- attendanceInstructions'
+    - '- active'
+    operations:
+    - + setAmount()
+    - + setBookingPolicy()
+    - + configurePolicies()
+    - + activate()
+    responsibility: Define the authoritative service terms used to prepare new AvailabilityRelease records.
+- id: class.c17
+  name: DoctorSchedule
+  type: class
+  description: Represent theoretical/basic Doctor working windows before digital availability is published.
+  tags:
+  - schedule
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C17
+    attributes:
+    - '- scheduleId'
+    - '- dayOrDate'
+    - '- startTime'
+    - '- endTime'
+    - '- active'
+    operations:
+    - + defineWindow()
+    - + updateWindow()
+    responsibility: Represent theoretical/basic Doctor working windows before digital availability is published.
+- id: class.c18
+  name: ScheduleException
+  type: class
+  description: Represent a planned leave, closure, or planned scheduling exception before publication.
+  tags:
+  - schedule
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C18
+    attributes:
+    - '- scheduleExceptionId'
+    - '- date'
+    - '- type'
+    - '- reason'
+    - '- status'
+    operations:
+    - + recordException()
+    - + deactivate()
+    responsibility: Represent a planned leave, closure, or planned scheduling exception before publication.
+- id: class.c19
+  name: AvailabilityRelease
+  type: class
+  description: Own the bounded digital capacity allocated to Aafiatak for one branch/doctor/service/date/session.
+  tags:
+  - availability
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C19
+    attributes:
+    - '- releaseId'
+    - '- date'
+    - '- receptionPeriod'
+    - '- published'
+    - '- held'
+    - '- confirmed'
+    - '- withdrawnToFacility'
+    - '- /remaining'
+    - '- amountSnapshot'
+    - '- currencySnapshot'
+    - '- bookingPolicySnapshot'
+    - '- cancellationPolicySnapshot'
+    - '- cancellationWindowSnapshot'
+    - '- noShowPolicySnapshot'
+    - '- state'
+    - '- lastUpdatedAt'
+    operations:
+    - + publish()
+    - + freeze()
+    - + close()
+    - + cancel()
+    - + calculateRemaining()
+    responsibility: Own the bounded digital capacity allocated to Aafiatak for one branch/doctor/service/date/session.
+- id: class.c20
+  name: ArrivalGroup
+  type: class
+  description: Represent one sequential arrival window inside an AvailabilityRelease.
+  tags:
+  - availability
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C20
+    attributes:
+    - '- arrivalGroupId'
+    - '- sequence'
+    - '- startAt'
+    - '- endAt'
+    - '- capacity'
+    - '- held'
+    - '- confirmed'
+    - '- withdrawnToFacility'
+    - '- /remaining'
+    - '- state'
+    operations:
+    - + isBookable()
+    - + freeze()
+    - + close()
+    - + calculateRemaining()
+    responsibility: Represent one sequential arrival window inside an AvailabilityRelease.
+- id: class.c21
+  name: CapacityWithdrawal
+  type: class
+  description: Record the atomic one-way transfer of valid unused Aafiatak capacity to the Facility's internal schedule.
+  tags:
+  - availability
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C21
+    attributes:
+    - '- withdrawalId'
+    - '- quantity'
+    - '- source'
+    - '- reason'
+    - '- occurredAt'
+    operations:
+    - + execute()
+    responsibility: Record the atomic one-way transfer of valid unused Aafiatak capacity to the Facility's internal schedule.
+- id: class.c22
+  name: ReservationHold
+  type: class
+  description: Temporarily protect exactly one valid booking capacity unit against double booking.
+  tags:
+  - appointment
+  - payment
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C22
+    attributes:
+    - '- reservationHoldId'
+    - '- state'
+    - '- createdAt'
+    - '- expiresAt'
+    - '- idempotencyKey'
+    operations:
+    - + consume()
+    - + expire()
+    - + release()
+    - + isActive()
+    responsibility: Temporarily protect exactly one valid booking capacity unit against double booking.
+- id: class.c23
+  name: AvailabilityAlertSubscription
+  type: class
+  description: Record Patient interest in returned availability without reserving capacity or granting priority.
+  tags:
+  - appointment
+  - alert
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C23
+    attributes:
+    - '- subscriptionId'
+    - '- targetDate'
+    - '- status'
+    - '- createdAt'
+    - '- lastNotifiedAt'
+    operations:
+    - + markNotified()
+    - + expire()
+    responsibility: Record Patient interest in returned availability without reserving capacity or granting priority.
+- id: class.c24
+  name: Appointment
+  type: class
+  description: Represent the confirmed booking commitment and preserve its historical booking terms.
+  tags:
+  - appointment
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C24
+    attributes:
+    - '- appointmentId'
+    - '- status'
+    - '- bookingNumber'
+    - '- verificationToken'
+    - '- confirmedAt'
+    - '- amountSnapshot'
+    - '- currencySnapshot'
+    - '- bookingPolicySnapshot'
+    - '- cancellationPolicySnapshot'
+    - '- cancellationWindowSnapshot'
+    - '- noShowPolicySnapshot'
+    - '- arrivalWindowSnapshot'
+    operations:
+    - + cancelByPatient()
+    - + cancelByFacility()
+    - + reschedule()
+    - + reconfirmAttendance()
+    responsibility: Represent the confirmed booking commitment and preserve its historical booking terms.
+- id: class.c25
+  name: AppointmentStatusHistory
+  type: class
+  description: Preserve auditable appointment cancellation/rescheduling history without rewriting the original record.
+  tags:
+  - appointment
+  - audit
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C25
+    attributes:
+    - '- historyId'
+    - '- previousSchedulingData'
+    - '- newSchedulingData'
+    - '- changedAt'
+    - '- reason'
+    operations:
+    - + recordChange()
+    responsibility: Preserve auditable appointment cancellation/rescheduling history without rewriting the original record.
+- id: class.c26
+  name: PaymentIntent
+  type: class
+  description: Represent the independent full electronic payment/refund lifecycle for FULL_PAYMENT_REQUIRED.
+  tags:
+  - payment
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C26
+    attributes:
+    - '- paymentIntentId'
+    - '- amount'
+    - '- currency'
+    - '- state'
+    - '- externalReference'
+    - '- createdAt'
+    - '- expiresAt'
+    - '- idempotencyKey'
+    operations:
+    - + markProcessing()
+    - + verifyResult()
+    - + markUnderReview()
+    - + startRefund()
+    - + markRefunded()
+    responsibility: Represent the independent full electronic payment/refund lifecycle for FULL_PAYMENT_REQUIRED.
+- id: class.c27
+  name: VisitInstance
+  type: class
+  description: Represent what actually happens operationally on the service day, separately from Appointment status.
+  tags:
+  - visit
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C27
+    attributes:
+    - '- visitInstanceId'
+    - '- status'
+    - '- arrivalTime'
+    - '- serviceStart'
+    - '- serviceEnd'
+    - '- lateAccepted'
+    operations:
+    - + checkIn()
+    - + startService()
+    - + complete()
+    - + markNotCompleted()
+    - + markNoShow()
+    - + correctCheckIn()
+    responsibility: Represent what actually happens operationally on the service day, separately from Appointment status.
+- id: class.c28
+  name: QueueEntry
+  type: class
+  description: Represent the Patient's lightweight Aafiatak queue presence inside an ArrivalGroup.
+  tags:
+  - queue
+  - visit
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C28
+    attributes:
+    - '- queueEntryId'
+    - '- status'
+    - '- createdAt'
+    - '- calledAt'
+    - '- completedAt'
+    - '- manualHandling'
+    operations:
+    - + call()
+    - + markDone()
+    - + remove()
+    responsibility: Represent the Patient's lightweight Aafiatak queue presence inside an ArrivalGroup.
+- id: class.c29
+  name: OperationalException
+  type: class
+  description: Represent an unplanned post-publication/daily-operation event and require documented outcomes for affected
+    appointments.
+  tags:
+  - exception
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C29
+    attributes:
+    - '- operationalExceptionId'
+    - '- type'
+    - '- status'
+    - '- openedAt'
+    - '- closedAt'
+    - '- reason'
+    operations:
+    - + open()
+    - + recordAffectedAppointmentOutcome()
+    - + close()
+    responsibility: Represent an unplanned post-publication/daily-operation event and require documented outcomes for affected
+      appointments.
+- id: class.c30
+  name: OperationalExceptionResolution
+  type: class
+  description: Preserve the documented action and outcome for one Appointment affected by one OperationalException.
+  tags:
+  - exception
+  sourceRefs:
+  - *id001
+  - *id002
+  metadata:
+    class_id: C30
+    attributes:
+    - '- resolutionId'
+    - '- action'
+    - '- outcome'
+    - '- recordedAt'
+    - '- reason'
+    operations:
+    - + recordOutcome()
+    - + updateOutcome()
+    responsibility: Preserve the documented action and outcome for one Appointment affected by one OperationalException.
+- id: class.note-n1
+  name: Identity
+  type: note
+  description: One normalized verified phone identifies one User. The same User may hold multiple approved roles/profiles.
+  tags:
+  - uml-note
+  sourceRefs:
+  - &id003
+    source: mvp-class-diagram-final-verified-spec
+    section: '7'
+    line_start: 929
+    line_end: 962
+  - *id002
+  metadata:
+    note_id: N1
+    text: One normalized verified phone identifies one User. The same User may hold multiple approved roles/profiles.
+- id: class.note-n2
+  name: Capacity
+  type: note
+  description: 'remaining = published - held - confirmed - withdrawnToFacility
+
+    published cannot increase after PUBLISHED.'
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N2
+    text: 'remaining = published - held - confirmed - withdrawnToFacility
+
+      published cannot increase after PUBLISHED.'
+- id: class.note-n3
+  name: Arrival Groups
+  type: note
+  description: New holds use the earliest currently bookable ArrivalGroup. Patients do not choose an arbitrary group.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N3
+    text: New holds use the earliest currently bookable ArrivalGroup. Patients do not choose an arbitrary group.
+- id: class.note-n4
+  name: Hold
+  type: note
+  description: ReservationHold protects one capacity unit and ends as CONSUMED, EXPIRED, or RELEASED. Exact default duration
+    remains open.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N4
+    text: ReservationHold protects one capacity unit and ends as CONSUMED, EXPIRED, or RELEASED. Exact default duration remains
+      open.
+- id: class.note-n5
+  name: Booking Policy
+  type: note
+  description: ServiceOffering policy is exactly FULL_PAYMENT_REQUIRED or PAY_AT_FACILITY. No deposit/partial payment.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N5
+    text: ServiceOffering policy is exactly FULL_PAYMENT_REQUIRED or PAY_AT_FACILITY. No deposit/partial payment.
+- id: class.note-n6
+  name: Independent Lifecycles
+  type: note
+  description: ReservationHold, Appointment, PaymentIntent, VisitInstance, and QueueEntry states are independent and must
+    not be collapsed.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N6
+    text: ReservationHold, Appointment, PaymentIntent, VisitInstance, and QueueEntry states are independent and must not be
+      collapsed.
+- id: class.note-n7
+  name: Payment
+  type: note
+  description: PAY_AT_FACILITY creates no PaymentIntent. Refund is full collected amount or zero.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N7
+    text: PAY_AT_FACILITY creates no PaymentIntent. Refund is full collected amount or zero.
+- id: class.note-n8
+  name: Late Arrival
+  type: note
+  description: Accepted late Patient keeps the original Appointment/ArrivalGroup and uses manual queue handling; no auto-transfer
+    or re-entry.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N8
+    text: Accepted late Patient keeps the original Appointment/ArrivalGroup and uses manual queue handling; no auto-transfer
+      or re-entry.
+- id: class.note-n9
+  name: Operational Exception
+  type: note
+  description: OperationalException cannot close until every affected Appointment has a documented action/outcome.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N9
+    text: OperationalException cannot close until every affected Appointment has a documented action/outcome.
+- id: class.note-n10
+  name: Scope
+  type: note
+  description: Aafiatak is not an HIS/EHR/cashier/accounting/full internal scheduling system and stores no clinical record
+    content.
+  tags:
+  - uml-note
+  sourceRefs:
+  - *id003
+  - *id002
+  metadata:
+    note_id: N10
+    text: Aafiatak is not an HIS/EHR/cashier/accounting/full internal scheduling system and stores no clinical record content.
+relations:
+- id: relation.r01
+  name: R01
+  type: association
+  source: class.c01
+  target: class.c02
+  rationale: null
+  sourceRefs:
+  - &id004
+    source: mvp-class-diagram-final-verified-spec
+    section: '5'
+    line_start: 800
+    line_end: 859
+  - *id002
+  metadata:
+    relationship_id: R01
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..1
+    source_multiplicity: '1'
+    target_multiplicity: 0..1
+    whole: null
+- id: relation.r02
+  name: R02
+  type: association
+  source: class.c01
+  target: class.c03
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R02
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r03
+  name: R03
+  type: association
+  source: class.c01
+  target: class.c04
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R03
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r04
+  name: R04
+  type: association
+  source: class.c11
+  target: class.c03
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R04
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r05
+  name: R05
+  type: association
+  source: class.c15
+  target: class.c03
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R05
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..1
+    source_multiplicity: 0..1
+    target_multiplicity: 0..1
+    whole: null
+- id: relation.r06
+  name: R06
+  type: association
+  source: class.c01
+  target: class.c07
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R06
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r07
+  name: R07
+  type: association
+  source: class.c01
+  target: class.c06
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R07
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r08
+  name: R08
+  type: association
+  source: class.c05
+  target: class.c11
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R08
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..1
+    source_multiplicity: '1'
+    target_multiplicity: 0..1
+    whole: null
+- id: relation.r09
+  name: R09
+  type: association
+  source: class.c08
+  target: class.c09
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R09
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r10
+  name: R10
+  type: association
+  source: class.c09
+  target: class.c12
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R10
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r11
+  name: R11
+  type: association
+  source: class.c10
+  target: class.c11
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R11
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r12
+  name: R12
+  type: composition
+  source: class.c11
+  target: class.c12
+  rationale: Facility lifecycle-owns FacilityBranch as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R12
+    sourceMultiplicity: '1'
+    targetMultiplicity: 1..*
+    source_multiplicity: '1'
+    target_multiplicity: 1..*
+    whole: Facility
+- id: relation.r13
+  name: R13
+  type: aggregation
+  source: class.c11
+  target: class.c13
+  rationale: Facility aggregates independent Department reference concepts.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R13
+    sourceMultiplicity: 0..*
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..*
+    target_multiplicity: 0..*
+    whole: Facility
+- id: relation.r14
+  name: R14
+  type: aggregation
+  source: class.c11
+  target: class.c14
+  rationale: Facility aggregates independent Specialty reference concepts.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R14
+    sourceMultiplicity: 0..*
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..*
+    target_multiplicity: 0..*
+    whole: Facility
+- id: relation.r15
+  name: R15
+  type: association
+  source: class.c11
+  target: class.c15
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R15
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r16
+  name: R16
+  type: association
+  source: class.c14
+  target: class.c15
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R16
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r17
+  name: R17
+  type: association
+  source: class.c13
+  target: class.c15
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R17
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r18
+  name: R18
+  type: association
+  source: class.c12
+  target: class.c16
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R18
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r19
+  name: R19
+  type: association
+  source: class.c13
+  target: class.c16
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R19
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r20
+  name: R20
+  type: association
+  source: class.c14
+  target: class.c16
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R20
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r21
+  name: R21
+  type: association
+  source: class.c15
+  target: class.c16
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R21
+    sourceMultiplicity: 0..*
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..*
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r22
+  name: R22
+  type: association
+  source: class.c15
+  target: class.c17
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R22
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r23
+  name: R23
+  type: association
+  source: class.c12
+  target: class.c17
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R23
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r24
+  name: R24
+  type: association
+  source: class.c17
+  target: class.c18
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R24
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r25
+  name: R25
+  type: association
+  source: class.c12
+  target: class.c18
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R25
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r26
+  name: R26
+  type: association
+  source: class.c12
+  target: class.c19
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R26
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r27
+  name: R27
+  type: association
+  source: class.c15
+  target: class.c19
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R27
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r28
+  name: R28
+  type: association
+  source: class.c16
+  target: class.c19
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R28
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r29
+  name: R29
+  type: composition
+  source: class.c19
+  target: class.c20
+  rationale: AvailabilityRelease lifecycle-owns ArrivalGroup as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R29
+    sourceMultiplicity: '1'
+    targetMultiplicity: 1..*
+    source_multiplicity: '1'
+    target_multiplicity: 1..*
+    whole: AvailabilityRelease
+- id: relation.r30
+  name: R30
+  type: composition
+  source: class.c19
+  target: class.c21
+  rationale: AvailabilityRelease lifecycle-owns CapacityWithdrawal as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R30
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: AvailabilityRelease
+- id: relation.r31
+  name: R31
+  type: association
+  source: class.c20
+  target: class.c21
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R31
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r32
+  name: R32
+  type: association
+  source: class.c02
+  target: class.c22
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R32
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r33
+  name: R33
+  type: association
+  source: class.c20
+  target: class.c22
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R33
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r34
+  name: R34
+  type: association
+  source: class.c02
+  target: class.c23
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R34
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r35
+  name: R35
+  type: association
+  source: class.c16
+  target: class.c23
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R35
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r36
+  name: R36
+  type: association
+  source: class.c15
+  target: class.c23
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R36
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r37
+  name: R37
+  type: association
+  source: class.c19
+  target: class.c23
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R37
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r38
+  name: R38
+  type: association
+  source: class.c02
+  target: class.c24
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R38
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r39
+  name: R39
+  type: association
+  source: class.c12
+  target: class.c24
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R39
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r40
+  name: R40
+  type: association
+  source: class.c15
+  target: class.c24
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R40
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r41
+  name: R41
+  type: association
+  source: class.c16
+  target: class.c24
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R41
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r42
+  name: R42
+  type: association
+  source: class.c20
+  target: class.c24
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R42
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r43
+  name: R43
+  type: composition
+  source: class.c24
+  target: class.c25
+  rationale: Appointment lifecycle-owns AppointmentStatusHistory as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R43
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: Appointment
+- id: relation.r44
+  name: R44
+  type: association
+  source: class.c22
+  target: class.c26
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R44
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r45
+  name: R45
+  type: association
+  source: class.c24
+  target: class.c26
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R45
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r46
+  name: R46
+  type: composition
+  source: class.c24
+  target: class.c27
+  rationale: Appointment lifecycle-owns VisitInstance as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R46
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..1
+    source_multiplicity: '1'
+    target_multiplicity: 0..1
+    whole: Appointment
+- id: relation.r47
+  name: R47
+  type: composition
+  source: class.c27
+  target: class.c28
+  rationale: VisitInstance lifecycle-owns QueueEntry as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R47
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: VisitInstance
+- id: relation.r48
+  name: R48
+  type: association
+  source: class.c20
+  target: class.c28
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R48
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r49
+  name: R49
+  type: association
+  source: class.c15
+  target: class.c29
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R49
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r50
+  name: R50
+  type: association
+  source: class.c19
+  target: class.c29
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R50
+    sourceMultiplicity: 0..1
+    targetMultiplicity: 0..*
+    source_multiplicity: 0..1
+    target_multiplicity: 0..*
+    whole: null
+- id: relation.r51
+  name: R51
+  type: composition
+  source: class.c29
+  target: class.c30
+  rationale: OperationalException lifecycle-owns OperationalExceptionResolution as an approved composition.
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R51
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: OperationalException
+- id: relation.r52
+  name: R52
+  type: association
+  source: class.c24
+  target: class.c30
+  rationale: null
+  sourceRefs:
+  - *id004
+  - *id002
+  metadata:
+    relationship_id: R52
+    sourceMultiplicity: '1'
+    targetMultiplicity: 0..*
+    source_multiplicity: '1'
+    target_multiplicity: 0..*
+    whole: null

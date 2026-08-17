@@ -1,0 +1,36 @@
+id: aafiatak-std07-queue-entry
+diagramType: state
+title: State Diagram — QueueEntry Lifecycle
+model: ../../model/catalog/states/aafiatak-std07-queue-entry.yaml
+include:
+  - state.std07.initial
+  - state.std07.waiting
+  - state.std07.called
+  - state.std07.done
+  - state.std07.removed
+  - state.std07.final-done
+  - state.std07.final-removed
+relations:
+  - relation.std07.t01
+  - relation.std07.t02
+  - relation.std07.t03
+  - relation.std07.t04
+  - relation.std07.t05
+  - relation.std07.t06
+  - relation.std07.t07
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T13:52:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 091eebe60cd3605227808da79f58da9eb5a57724e57c1e3e8ed62d9406733aee
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: QueueEntry
+  expectedStateCount: 4
+  expectedTransitionCount: 7
+  approvedDoActivities: []
+  prohibitedContent: [CHECKED_IN, IN_SERVICE, COMPLETED, NO_SHOW, MANUAL_HANDLING, REENTERED, REQUEUED, DONE_TO_WAITING, REMOVED_TO_WAITING, actor-head, lifeline, message-label, alt-fragment]

@@ -1,0 +1,158 @@
+modelId: aafiatak-booking-reception-staff-package-use-case
+version: "1.0"
+elements:
+  - id: actor.booking-reception-staff
+    name: Booking & Reception Staff
+    type: actor
+    description: Primary facility operations actor for the Booking and Reception Staff package.
+    sourceRefs: &actor_ref
+      - {source: booking-reception-staff-reviewed-spec, section: "3.4", line_start: 93, line_end: 109}
+  - id: actor.whatsapp-auth-provider
+    name: WhatsApp Authentication Provider
+    type: actor
+    description: External provider used only for passwordless OTP authentication.
+    sourceRefs: &external_ref
+      - {source: booking-reception-staff-reviewed-spec, section: "3.5", line_start: 111, line_end: 127}
+  - id: actor.notification-service
+    name: Notification Service
+    type: actor
+    description: External service that delivers approved system notifications.
+    sourceRefs: *external_ref
+
+  - id: uc.bruc-01
+    name: Log In
+    type: use_case
+    description: Approved operational Use Case BRUC-01 in the Booking & Reception Staff Package.
+    tags: [authentication, part-1]
+    sourceRefs: &part1_ref
+      - {source: booking-reception-staff-reviewed-spec, section: "5.1", line_start: 216, line_end: 245}
+  - {id: uc.bruc-02, name: Verify WhatsApp OTP, type: use_case, description: "Approved operational Use Case BRUC-02 in the Booking & Reception Staff Package.", tags: [authentication, helper, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-03, name: Review Daily Operations, type: use_case, description: "Approved operational Use Case BRUC-03 in the Booking & Reception Staff Package.", tags: [daily-operations, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-04, name: View Today's Doctors & Sessions, type: use_case, description: "Approved operational Use Case BRUC-04 in the Booking & Reception Staff Package.", tags: [daily-operations, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-05, name: View Arrival Groups, type: use_case, description: "Approved operational Use Case BRUC-05 in the Booking & Reception Staff Package.", tags: [daily-operations, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-06, name: View Capacity Status, type: use_case, description: "Approved operational Use Case BRUC-06 in the Booking & Reception Staff Package.", tags: [daily-operations, capacity, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-07, name: View Payment Status, type: use_case, description: "Approved operational Use Case BRUC-07 in the Booking & Reception Staff Package.", tags: [daily-operations, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-08, name: View Active Reservation Holds, type: use_case, description: "Approved operational Use Case BRUC-08 in the Booking & Reception Staff Package.", tags: [daily-operations, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-09, name: Receive Facility Notifications, type: use_case, description: "Approved operational Use Case BRUC-09 in the Booking & Reception Staff Package.", tags: [daily-operations, notifications, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-10, name: Withdraw Remaining Capacity, type: use_case, description: "Approved operational Use Case BRUC-10 in the Booking & Reception Staff Package.", tags: [capacity, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-11, name: Freeze Availability, type: use_case, description: "Approved operational Use Case BRUC-11 in the Booking & Reception Staff Package.", tags: [capacity, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-12, name: Close Availability, type: use_case, description: "Approved operational Use Case BRUC-12 in the Booking & Reception Staff Package.", tags: [capacity, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-13, name: Search Appointments, type: use_case, description: "Approved operational Use Case BRUC-13 in the Booking & Reception Staff Package.", tags: [appointments, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-14, name: View Appointment Details, type: use_case, description: "Approved operational Use Case BRUC-14 in the Booking & Reception Staff Package.", tags: [appointments, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-15, name: Reschedule Appointment, type: use_case, description: "Approved operational Use Case BRUC-15 in the Booking & Reception Staff Package.", tags: [appointments, part-1], sourceRefs: *part1_ref}
+  - {id: uc.bruc-16, name: Cancel Appointment, type: use_case, description: "Approved operational Use Case BRUC-16 in the Booking & Reception Staff Package.", tags: [appointments, part-1], sourceRefs: *part1_ref}
+
+  - {id: uc.bruc-17, name: Register Patient Check-in, type: use_case, description: "Approved operational Use Case BRUC-17 in the Booking & Reception Staff Package.", tags: [check-in, part-2], sourceRefs: &part2_ref [{source: booking-reception-staff-reviewed-spec, section: "5.5-5.7", line_start: 487, line_end: 700}]}
+  - {id: uc.bruc-18, name: Create or Activate Visit, type: use_case, description: "Approved operational Use Case BRUC-18 in the Booking & Reception Staff Package.", tags: [check-in, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-19, name: Create or Activate Queue Entry, type: use_case, description: "Approved operational Use Case BRUC-19 in the Booking & Reception Staff Package.", tags: [check-in, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-20, name: Correct Erroneous Check-in, type: use_case, description: "Approved operational Use Case BRUC-20 in the Booking & Reception Staff Package.", tags: [check-in, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-21, name: Manage Patient Queue, type: use_case, description: "Approved operational Use Case BRUC-21 in the Booking & Reception Staff Package.", tags: [queue, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-22, name: View Waiting Patients, type: use_case, description: "Approved operational Use Case BRUC-22 in the Booking & Reception Staff Package.", tags: [queue, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-23, name: Identify Next Patient, type: use_case, description: "Approved operational Use Case BRUC-23 in the Booking & Reception Staff Package.", tags: [queue, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-24, name: Call Next Patient, type: use_case, description: "Approved operational Use Case BRUC-24 in the Booking & Reception Staff Package.", tags: [queue, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-25, name: Remove Incorrect Queue Entry, type: use_case, description: "Approved operational Use Case BRUC-25 in the Booking & Reception Staff Package.", tags: [queue, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-26, name: Record Service Start, type: use_case, description: "Approved operational Use Case BRUC-26 in the Booking & Reception Staff Package.", tags: [visit, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-27, name: Complete Visit, type: use_case, description: "Approved operational Use Case BRUC-27 in the Booking & Reception Staff Package.", tags: [visit, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-28, name: Record Visit Non-completion, type: use_case, description: "Approved operational Use Case BRUC-28 in the Booking & Reception Staff Package.", tags: [visit, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-29, name: Record No-show, type: use_case, description: "Approved operational Use Case BRUC-29 in the Booking & Reception Staff Package.", tags: [visit, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-30, name: Record Late Arrival, type: use_case, description: "Approved operational Use Case BRUC-30 in the Booking & Reception Staff Package.", tags: [late-arrival, part-2], sourceRefs: *part2_ref}
+  - {id: uc.bruc-31, name: Accept Late Arrival Manually, type: use_case, description: "Approved operational Use Case BRUC-31 in the Booking & Reception Staff Package.", tags: [late-arrival, part-2], sourceRefs: *part2_ref}
+
+  - {id: uc.bruc-32, name: Record Doctor Delay, type: use_case, description: "Approved operational Use Case BRUC-32 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: &part3_ref [{source: booking-reception-staff-reviewed-spec, section: "5.8", line_start: 702, line_end: 843}]}
+  - {id: uc.bruc-33, name: Record Doctor Absence, type: use_case, description: "Approved operational Use Case BRUC-33 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-34, name: Cancel Session, type: use_case, description: "Approved operational Use Case BRUC-34 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-35, name: Record Facility Closure, type: use_case, description: "Approved operational Use Case BRUC-35 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-36, name: Record Capacity Reduction, type: use_case, description: "Approved operational Use Case BRUC-36 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-37, name: Record Power or Connectivity Outage, type: use_case, description: "Approved operational Use Case BRUC-37 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-38, name: Record Booking Conflict, type: use_case, description: "Approved operational Use Case BRUC-38 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-39, name: Notify Affected Patients, type: use_case, description: "Approved operational Use Case BRUC-39 in the Booking & Reception Staff Package.", tags: [exceptions, notifications, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-40, name: Offer Alternative Appointment, type: use_case, description: "Approved operational Use Case BRUC-40 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-41, name: Escalate Case, type: use_case, description: "Approved operational Use Case BRUC-41 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-42, name: Resolve Affected Appointments, type: use_case, description: "Approved operational Use Case BRUC-42 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+  - {id: uc.bruc-43, name: Close Operational Exception, type: use_case, description: "Approved operational Use Case BRUC-43 in the Booking & Reception Staff Package.", tags: [exceptions, part-3], sourceRefs: *part3_ref}
+
+relations:
+  - id: relation.brinc-01
+    type: include
+    source: uc.bruc-01
+    target: uc.bruc-02
+    rationale: Log In always requires WhatsApp OTP verification.
+    sourceRefs: &include_ref
+      - {source: booking-reception-staff-reviewed-spec, section: "7", line_start: 872, line_end: 925}
+      - {source: aafiatak-product-specification, section: "authentication", line_start: 350, line_end: 382}
+  - id: relation.brinc-02
+    type: include
+    source: uc.bruc-17
+    target: uc.bruc-18
+    rationale: Patient check-in includes creating or activating the visit record.
+    sourceRefs: *include_ref
+  - id: relation.brinc-03
+    type: include
+    source: uc.bruc-17
+    target: uc.bruc-19
+    rationale: Patient check-in includes creating or activating the queue entry.
+    sourceRefs: *include_ref
+  - id: relation.brinc-04
+    type: include
+    source: uc.bruc-20
+    target: uc.bruc-25
+    rationale: Correcting an erroneous check-in includes removing its incorrect queue entry.
+    sourceRefs: *include_ref
+  - id: relation.brinc-05
+    type: include
+    source: uc.bruc-31
+    target: uc.bruc-17
+    rationale: Manual late-arrival acceptance reuses the approved patient check-in operation.
+    sourceRefs: *include_ref
+
+  - id: relation.staff-bruc-01
+    type: association
+    source: actor.booking-reception-staff
+    target: uc.bruc-01
+    sourceRefs: &staff_assoc_ref
+      - {source: booking-reception-staff-reviewed-spec, section: "6", line_start: 845, line_end: 869}
+      - {source: aafiatak-product-specification, section: "Booking & Reception Staff permissions", line_start: 291, line_end: 593}
+  - {id: relation.staff-bruc-03, type: association, source: actor.booking-reception-staff, target: uc.bruc-03, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-04, type: association, source: actor.booking-reception-staff, target: uc.bruc-04, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-05, type: association, source: actor.booking-reception-staff, target: uc.bruc-05, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-06, type: association, source: actor.booking-reception-staff, target: uc.bruc-06, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-07, type: association, source: actor.booking-reception-staff, target: uc.bruc-07, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-08, type: association, source: actor.booking-reception-staff, target: uc.bruc-08, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-09, type: association, source: actor.booking-reception-staff, target: uc.bruc-09, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-10, type: association, source: actor.booking-reception-staff, target: uc.bruc-10, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-11, type: association, source: actor.booking-reception-staff, target: uc.bruc-11, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-12, type: association, source: actor.booking-reception-staff, target: uc.bruc-12, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-13, type: association, source: actor.booking-reception-staff, target: uc.bruc-13, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-14, type: association, source: actor.booking-reception-staff, target: uc.bruc-14, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-15, type: association, source: actor.booking-reception-staff, target: uc.bruc-15, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-16, type: association, source: actor.booking-reception-staff, target: uc.bruc-16, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-17, type: association, source: actor.booking-reception-staff, target: uc.bruc-17, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-18, type: association, source: actor.booking-reception-staff, target: uc.bruc-18, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-19, type: association, source: actor.booking-reception-staff, target: uc.bruc-19, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-20, type: association, source: actor.booking-reception-staff, target: uc.bruc-20, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-21, type: association, source: actor.booking-reception-staff, target: uc.bruc-21, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-22, type: association, source: actor.booking-reception-staff, target: uc.bruc-22, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-23, type: association, source: actor.booking-reception-staff, target: uc.bruc-23, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-24, type: association, source: actor.booking-reception-staff, target: uc.bruc-24, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-25, type: association, source: actor.booking-reception-staff, target: uc.bruc-25, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-26, type: association, source: actor.booking-reception-staff, target: uc.bruc-26, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-27, type: association, source: actor.booking-reception-staff, target: uc.bruc-27, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-28, type: association, source: actor.booking-reception-staff, target: uc.bruc-28, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-29, type: association, source: actor.booking-reception-staff, target: uc.bruc-29, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-30, type: association, source: actor.booking-reception-staff, target: uc.bruc-30, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-31, type: association, source: actor.booking-reception-staff, target: uc.bruc-31, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-32, type: association, source: actor.booking-reception-staff, target: uc.bruc-32, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-33, type: association, source: actor.booking-reception-staff, target: uc.bruc-33, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-34, type: association, source: actor.booking-reception-staff, target: uc.bruc-34, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-35, type: association, source: actor.booking-reception-staff, target: uc.bruc-35, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-36, type: association, source: actor.booking-reception-staff, target: uc.bruc-36, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-37, type: association, source: actor.booking-reception-staff, target: uc.bruc-37, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-38, type: association, source: actor.booking-reception-staff, target: uc.bruc-38, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-39, type: association, source: actor.booking-reception-staff, target: uc.bruc-39, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-40, type: association, source: actor.booking-reception-staff, target: uc.bruc-40, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-41, type: association, source: actor.booking-reception-staff, target: uc.bruc-41, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-42, type: association, source: actor.booking-reception-staff, target: uc.bruc-42, sourceRefs: *staff_assoc_ref}
+  - {id: relation.staff-bruc-43, type: association, source: actor.booking-reception-staff, target: uc.bruc-43, sourceRefs: *staff_assoc_ref}
+  - {id: relation.whatsapp-bruc-02, type: association, source: actor.whatsapp-auth-provider, target: uc.bruc-02, sourceRefs: *staff_assoc_ref}
+  - {id: relation.notification-bruc-09, type: association, source: actor.notification-service, target: uc.bruc-09, sourceRefs: *staff_assoc_ref}
+  - {id: relation.notification-bruc-39, type: association, source: actor.notification-service, target: uc.bruc-39, sourceRefs: *staff_assoc_ref}

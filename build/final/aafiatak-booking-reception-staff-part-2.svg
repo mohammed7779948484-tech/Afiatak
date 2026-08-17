@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Booking &amp; Reception Staff Package Use Case Diagram — Part 2 — Arrival, Queue &amp; Visit</title>
+  <desc id="diagram-description">Embedded Booking &amp; Reception Staff package actor with no displayed relationships.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+.package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+.package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+.helper { fill: #F3F5F6; }</style>
+  </defs>
+  <rect width="1920" height="1080" fill="#FAFAF8" />
+  <text x="960.0" y="48" class="page-title">
+    <tspan x="960.0" y="48">Booking &amp; Reception Staff Package Use Case Diagram — Part 2 — Arrival, Queue &amp; Visit</tspan>
+  </text>
+  <rect x="220" y="120" width="1480" height="900" rx="4" class="boundary" id="system-boundary" data-x="220" data-y="120" data-width="1480" data-height="900" />
+  <text x="244" y="151" class="boundary-title">
+    <tspan x="244" y="151">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Embedded package actor and UML package container">
+    <path id="package-container" d="M 250 204 H 470 V 180 H 1670 V 970 H 250 Z" class="package" data-x="250" data-y="180" data-width="1420" data-height="790" />
+    <rect x="250" y="180" width="220" height="34" class="package-tab" />
+    <text x="360" y="202" class="boundary-title">
+      <tspan x="360" y="194.5">Booking &amp; Reception Staff</tspan>
+      <tspan x="360" y="209.5">Package</tspan>
+    </text>
+  </g>
+  <g aria-label="Embedded package actor">
+    <g id="actor-booking-reception-staff" data-semantic-id="actor.booking-reception-staff" data-kind="actor" data-embedded-actor="true" data-x="875" data-y="180" data-width="170" data-height="80">
+      <circle cx="960.0" cy="194" r="9" class="actor" />
+      <path d="M 960.0 203 V 223 M 938.0 208 H 982.0 M 960.0 223 L 941.0 242 M 960.0 223 L 979.0 242" class="actor" />
+      <text x="1075.0" y="211" class="actor-label">
+        <tspan x="1075.0" y="211">Booking &amp; Reception Staff</tspan>
+      </text>
+    </g>
+  </g>
+  <g aria-label="Presentation-only neighborhoods">
+    <rect x="285" y="235" width="1320" height="405" rx="18" class="field" />
+    <line x1="286" y1="253" x2="323" y2="253" class="field-accent" stroke="#F5E8DF" />
+    <text x="333" y="258" class="section-label">
+      <tspan x="333" y="258">CHECK-IN &amp; QUEUE</tspan>
+    </text>
+    <rect x="285" y="650" width="880" height="170" rx="18" class="field" />
+    <line x1="286" y1="668" x2="323" y2="668" class="field-accent" stroke="#E6F1E8" />
+    <text x="333" y="673" class="section-label">
+      <tspan x="333" y="673">VISIT PROGRESS</tspan>
+    </text>
+    <rect x="1110" y="650" width="495" height="170" rx="18" class="field" />
+    <line x1="1111" y1="668" x2="1148" y2="668" class="field-accent" stroke="#F8EBCF" />
+    <text x="1158" y="673" class="section-label">
+      <tspan x="1158" y="673">LATE ARRIVAL</tspan>
+    </text>
+  </g>
+  <g aria-label="Use cases without displayed relationships">
+    <g id="uc-bruc-17" data-semantic-id="uc.bruc-17" data-kind="use_case" data-x="320" data-y="275" data-width="260" data-height="54">
+      <ellipse cx="450.0" cy="302.0" rx="130.0" ry="27.0" class="use-case operations" />
+      <text x="450.0" y="307.0" class="use-case-label">
+        <tspan x="450.0" y="307">Register Patient Check-in</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-18" data-semantic-id="uc.bruc-18" data-kind="use_case" data-x="750" data-y="275" data-width="270" data-height="54">
+      <ellipse cx="885.0" cy="302.0" rx="135.0" ry="27.0" class="use-case helper" />
+      <text x="885.0" y="307.0" class="use-case-label">
+        <tspan x="885.0" y="307">Create or Activate Visit</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-19" data-semantic-id="uc.bruc-19" data-kind="use_case" data-x="1180" data-y="275" data-width="270" data-height="54">
+      <ellipse cx="1315.0" cy="302.0" rx="135.0" ry="27.0" class="use-case helper" />
+      <text x="1315.0" y="307.0" class="use-case-label">
+        <tspan x="1315.0" y="298.5">Create or Activate Queue</tspan>
+        <tspan x="1315.0" y="315.5">Entry</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-20" data-semantic-id="uc.bruc-20" data-kind="use_case" data-x="320" data-y="367" data-width="260" data-height="54">
+      <ellipse cx="450.0" cy="394.0" rx="130.0" ry="27.0" class="use-case operations" />
+      <text x="450.0" y="399.0" class="use-case-label">
+        <tspan x="450.0" y="399">Correct Erroneous Check-in</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-21" data-semantic-id="uc.bruc-21" data-kind="use_case" data-x="1180" data-y="367" data-width="270" data-height="54">
+      <ellipse cx="1315.0" cy="394.0" rx="135.0" ry="27.0" class="use-case operations" />
+      <text x="1315.0" y="399.0" class="use-case-label">
+        <tspan x="1315.0" y="399">Manage Patient Queue</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-22" data-semantic-id="uc.bruc-22" data-kind="use_case" data-x="1180" data-y="459" data-width="270" data-height="54">
+      <ellipse cx="1315.0" cy="486.0" rx="135.0" ry="27.0" class="use-case operations" />
+      <text x="1315.0" y="491.0" class="use-case-label">
+        <tspan x="1315.0" y="491">View Waiting Patients</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-23" data-semantic-id="uc.bruc-23" data-kind="use_case" data-x="320" data-y="459" data-width="260" data-height="54">
+      <ellipse cx="450.0" cy="486.0" rx="130.0" ry="27.0" class="use-case operations" />
+      <text x="450.0" y="491.0" class="use-case-label">
+        <tspan x="450.0" y="491">Identify Next Patient</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-24" data-semantic-id="uc.bruc-24" data-kind="use_case" data-x="750" data-y="459" data-width="270" data-height="54">
+      <ellipse cx="885.0" cy="486.0" rx="135.0" ry="27.0" class="use-case operations" />
+      <text x="885.0" y="491.0" class="use-case-label">
+        <tspan x="885.0" y="491">Call Next Patient</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-25" data-semantic-id="uc.bruc-25" data-kind="use_case" data-x="750" data-y="367" data-width="270" data-height="54">
+      <ellipse cx="885.0" cy="394.0" rx="135.0" ry="27.0" class="use-case helper" />
+      <text x="885.0" y="399.0" class="use-case-label">
+        <tspan x="885.0" y="399">Remove Incorrect Queue Entry</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-26" data-semantic-id="uc.bruc-26" data-kind="use_case" data-x="320" data-y="551" data-width="260" data-height="54">
+      <ellipse cx="450.0" cy="578.0" rx="130.0" ry="27.0" class="use-case facility" />
+      <text x="450.0" y="583.0" class="use-case-label">
+        <tspan x="450.0" y="583">Record Service Start</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-27" data-semantic-id="uc.bruc-27" data-kind="use_case" data-x="750" data-y="551" data-width="270" data-height="54">
+      <ellipse cx="885.0" cy="578.0" rx="135.0" ry="27.0" class="use-case facility" />
+      <text x="885.0" y="583.0" class="use-case-label">
+        <tspan x="885.0" y="583">Complete Visit</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-28" data-semantic-id="uc.bruc-28" data-kind="use_case" data-x="1180" data-y="551" data-width="270" data-height="54">
+      <ellipse cx="1315.0" cy="578.0" rx="135.0" ry="27.0" class="use-case facility" />
+      <text x="1315.0" y="583.0" class="use-case-label">
+        <tspan x="1315.0" y="583">Record Visit Non-completion</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-29" data-semantic-id="uc.bruc-29" data-kind="use_case" data-x="320" data-y="643" data-width="260" data-height="54">
+      <ellipse cx="450.0" cy="670.0" rx="130.0" ry="27.0" class="use-case facility" />
+      <text x="450.0" y="675.0" class="use-case-label">
+        <tspan x="450.0" y="675">Record No-show</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-30" data-semantic-id="uc.bruc-30" data-kind="use_case" data-x="750" data-y="643" data-width="260" data-height="54">
+      <ellipse cx="880.0" cy="670.0" rx="130.0" ry="27.0" class="use-case patient" />
+      <text x="880.0" y="675.0" class="use-case-label">
+        <tspan x="880.0" y="675">Record Late Arrival</tspan>
+      </text>
+    </g>
+    <g id="uc-bruc-31" data-semantic-id="uc.bruc-31" data-kind="use_case" data-x="1180" data-y="643" data-width="260" data-height="54">
+      <ellipse cx="1310.0" cy="670.0" rx="130.0" ry="27.0" class="use-case patient" />
+      <text x="1310.0" y="675.0" class="use-case-label">
+        <tspan x="1310.0" y="675">Accept Late Arrival Manually</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,57 @@
+id: aafiatak-sd03-cancel-appointment-refund
+diagramType: sequence
+title: Sequence Diagram — Cancel Appointment & Refund
+model: ../../model/catalog/sequences/aafiatak-sd03-cancel-appointment-refund.yaml
+include:
+  - actor.sd03.patient
+  - object.sd03.patient-application
+  - object.sd03.backend
+  - object.sd03.data-store
+  - object.sd03.payment-gateway
+  - object.sd03.notification-service
+relations:
+  - message.sd03.m01
+  - message.sd03.m02
+  - message.sd03.m03
+  - message.sd03.m04
+  - message.sd03.m05
+  - message.sd03.m06
+  - message.sd03.m07
+  - message.sd03.m08
+  - message.sd03.m09
+  - message.sd03.m10
+  - message.sd03.m11
+  - message.sd03.m12
+  - message.sd03.m13
+  - message.sd03.m14
+  - message.sd03.m15
+  - message.sd03.m16
+  - message.sd03.m17
+  - message.sd03.m18
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T09:15:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 497b560f7bf88cd7c77f1c13b3ed451c2b42b920a835e449ab001bbe3c996094
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Patient
+  participantCount: 6
+  mainFlowMessageCount: 18
+  visibleScope: fully-paid eligible cancellation with full refund only
+  invisibleQaConstraints:
+    - Saved policy/window governs eligibility.
+    - Refund is full collected amount or zero only.
+    - Returned capacity remains in the same ArrivalGroup.
+    - Appointment cancellation remains final even if refund is pending.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - Partial refund
+    - PAY_AT_FACILITY refund PaymentIntent
+    - Patient direct gateway-state overwrite

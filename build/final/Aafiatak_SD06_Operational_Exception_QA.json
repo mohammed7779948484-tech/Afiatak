@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-sd06-operational-exception.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-sd06-operational-exception.png",
+      "previewHash": "beee47fd8d4fb442c55ef8a212f76314ce1a27e9ed81d7cd3d7281a9e34dd756",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T10:05:00+00:00",
+      "notes": "Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-sd06-operational-exception.png",
+    "previewHash": "beee47fd8d4fb442c55ef8a212f76314ce1a27e9ed81d7cd3d7281a9e34dd756",
+    "status": "awaiting-user-approval"
+  }
+}

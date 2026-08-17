@@ -1,0 +1,33 @@
+id: aafiatak-std04-appointment
+diagramType: state
+title: State Diagram — Appointment Lifecycle
+model: ../../model/catalog/states/aafiatak-std04-appointment.yaml
+include:
+  - state.std04.initial
+  - state.std04.confirmed
+  - state.std04.cancelled-patient
+  - state.std04.cancelled-facility
+  - state.std04.final-patient
+  - state.std04.final-facility
+relations:
+  - relation.std04.t01
+  - relation.std04.t02
+  - relation.std04.t03
+  - relation.std04.t04
+  - relation.std04.t05
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T12:47:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: c4ac5bc934d19c6ba55605eb85bf846ff24bde5a4031194d5fb4aff60436eeb1
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: Appointment
+  expectedStateCount: 3
+  expectedTransitionCount: 5
+  approvedDoActivities: []
+  prohibitedContent: [PENDING, PENDING_APPROVAL, APPROVED, REJECTED, RESCHEDULED, PAID, CHECKED_IN, IN_SERVICE, COMPLETED, NOT_COMPLETED, NO_SHOW, REFUND_PENDING, REFUNDED]

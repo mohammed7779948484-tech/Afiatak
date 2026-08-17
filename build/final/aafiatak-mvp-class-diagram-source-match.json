@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checks": {
+    "sourceClassCount": 30,
+    "modelClassCount": 30,
+    "sourceRelationCount": 52,
+    "modelRelationCount": 52,
+    "sourceNoteCount": 10,
+    "modelNoteCount": 10,
+    "relationshipTypes": {
+      "association": 43,
+      "composition": 7,
+      "aggregation": 2
+    }
+  },
+  "errors": []
+}

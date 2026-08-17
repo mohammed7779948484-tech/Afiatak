@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": {
+    "title": "Sequence Diagram \u2014 Patient Registration & WhatsApp OTP Verification",
+    "primaryActor": "Visitor",
+    "participantCount": 5,
+    "mainFlowMessageCount": 19,
+    "alternativeFragmentCount": 4,
+    "requestCount": 12,
+    "responseCount": 7
+  },
+  "errors": []
+}

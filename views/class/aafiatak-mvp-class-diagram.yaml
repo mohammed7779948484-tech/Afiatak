@@ -1,0 +1,114 @@
+id: aafiatak-mvp-class-diagram
+diagramType: class
+title: Class Diagram — Aafiatak Medical Appointment Booking System (MVP)
+model: ../../model/catalog/classes/aafiatak-mvp-class-diagram.yaml
+include:
+  - class.c01
+  - class.c02
+  - class.c03
+  - class.c04
+  - class.c05
+  - class.c06
+  - class.c07
+  - class.c08
+  - class.c09
+  - class.c10
+  - class.c11
+  - class.c12
+  - class.c13
+  - class.c14
+  - class.c15
+  - class.c16
+  - class.c17
+  - class.c18
+  - class.c19
+  - class.c20
+  - class.c21
+  - class.c22
+  - class.c23
+  - class.c24
+  - class.c25
+  - class.c26
+  - class.c27
+  - class.c28
+  - class.c29
+  - class.c30
+  - class.note-n1
+  - class.note-n2
+  - class.note-n3
+  - class.note-n4
+  - class.note-n5
+  - class.note-n6
+  - class.note-n7
+  - class.note-n8
+  - class.note-n9
+  - class.note-n10
+relations:
+  - relation.r01
+  - relation.r02
+  - relation.r03
+  - relation.r04
+  - relation.r05
+  - relation.r06
+  - relation.r07
+  - relation.r08
+  - relation.r09
+  - relation.r10
+  - relation.r11
+  - relation.r12
+  - relation.r13
+  - relation.r14
+  - relation.r15
+  - relation.r16
+  - relation.r17
+  - relation.r18
+  - relation.r19
+  - relation.r20
+  - relation.r21
+  - relation.r22
+  - relation.r23
+  - relation.r24
+  - relation.r25
+  - relation.r26
+  - relation.r27
+  - relation.r28
+  - relation.r29
+  - relation.r30
+  - relation.r31
+  - relation.r32
+  - relation.r33
+  - relation.r34
+  - relation.r35
+  - relation.r36
+  - relation.r37
+  - relation.r38
+  - relation.r39
+  - relation.r40
+  - relation.r41
+  - relation.r42
+  - relation.r43
+  - relation.r44
+  - relation.r45
+  - relation.r46
+  - relation.r47
+  - relation.r48
+  - relation.r49
+  - relation.r50
+  - relation.r51
+  - relation.r52
+layoutProfile: a3-landscape-curated-class
+outputTargets: [svg, png]
+options:
+  masterSheet: A3 landscape equivalent
+  classCount: 30
+  relationshipCount: 52
+  noteCount: 10
+  generalizationCount: 0
+  realizationCount: 0
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T08:12:26+00:00'
+  notes: Structural, source-match, native editable-source, and visual QA completed; final approval remains with the user.
+  previewHash: 83b78a196543cc6493479bbb6660a60ed363ee240472cfe94723a6a67d9b6edf

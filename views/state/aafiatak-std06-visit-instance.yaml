@@ -1,0 +1,44 @@
+id: aafiatak-std06-visit-instance
+diagramType: state
+title: State Diagram — VisitInstance Lifecycle
+model: ../../model/catalog/states/aafiatak-std06-visit-instance.yaml
+include:
+  - state.std06.initial
+  - state.std06.created
+  - state.std06.checked-in
+  - state.std06.in-service
+  - state.std06.completed
+  - state.std06.not-completed
+  - state.std06.no-show
+  - state.std06.final-completed
+  - state.std06.final-not-completed
+  - state.std06.final-no-show
+relations:
+  - relation.std06.t01
+  - relation.std06.t02
+  - relation.std06.t03
+  - relation.std06.t04
+  - relation.std06.t05
+  - relation.std06.t06
+  - relation.std06.t07
+  - relation.std06.t08
+  - relation.std06.t09
+  - relation.std06.t10
+  - relation.std06.t11
+  - relation.std06.t12
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T13:43:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 590aed499a82014351175af3154fa46e7c8dc4e34270d2a810cb2812ed333c66
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: VisitInstance
+  expectedStateCount: 6
+  expectedTransitionCount: 12
+  approvedDoActivities: [service in progress]
+  prohibitedContent: [WAITING, CALLED, DONE, REMOVED, LATE, REENTERED, REQUEUED, CANCELLED_BY_PATIENT, CANCELLED_BY_FACILITY, PAID, Appointment, QueueEntry Lifecycle, actor-head, lifeline, message-label, alt-fragment]

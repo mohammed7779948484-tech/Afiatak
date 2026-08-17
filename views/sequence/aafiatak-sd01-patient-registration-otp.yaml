@@ -1,0 +1,61 @@
+id: aafiatak-sd01-patient-registration-otp
+diagramType: sequence
+title: Sequence Diagram — Patient Registration & WhatsApp OTP Verification
+model: ../../model/catalog/sequences/aafiatak-sd01-patient-registration-otp.yaml
+include:
+  - actor.sd01.visitor
+  - object.sd01.patient-application
+  - object.sd01.backend
+  - object.sd01.data-store
+  - object.sd01.whatsapp-provider
+relations:
+  - message.sd01.m01
+  - message.sd01.m02
+  - message.sd01.m03
+  - message.sd01.m04
+  - message.sd01.m05
+  - message.sd01.m06
+  - message.sd01.m07
+  - message.sd01.m08
+  - message.sd01.m09
+  - message.sd01.m10
+  - message.sd01.m11
+  - message.sd01.m12
+  - message.sd01.m13
+  - message.sd01.m14
+  - message.sd01.m15
+  - message.sd01.m16
+  - message.sd01.m17
+  - message.sd01.m18
+  - message.sd01.m19
+layoutProfile: lecturer-style-landscape-sequence
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T08:35:00+00:00'
+  notes: Lecturer-style correction passed structural and visual review; final approval remains with the user.
+  previewHash: 155291537c61618ac4e75f9e62ccb62433e7f8afd5e547da314e2f36ae6badcf
+options:
+  masterSheet: A3 landscape equivalent
+  primaryActor: Visitor
+  participantCount: 5
+  mainFlowMessageCount: 19
+  visibleScope: numbered-main-success-only
+  invisibleQaConstraints:
+    - Existing identity must not create a verified account.
+    - Invalid, expired, or reused OTP must not establish verified registration.
+    - Rate-limited OTP activity must not create a duplicate account.
+    - Provider unavailability must not use SMS or password fallback.
+    - Connectivity retries must not create duplicate User or Patient records.
+  prohibitedContent:
+    - Combined Fragments
+    - UML Notes
+    - Stereotypes
+    - SMS Provider
+    - Password Service
+    - Patient Service
+    - Patient Repository
+    - API Gateway
+    - OTP Validator

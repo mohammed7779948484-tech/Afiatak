@@ -88,15 +88,22 @@ def validate_svg(path: Path, model: SemanticModel, view: ViewSpec) -> list[Diagn
         boundary = _box(boundary_node)
         use_cases = [(node.get("data-semantic-id"), _box(node)) for node in semantic_nodes if node.get("data-kind") == "use_case"]
         actors = [(node.get("data-semantic-id"), _box(node)) for node in semantic_nodes if node.get("data-kind") == "actor"]
+        visual_actor_boxes = {}
+        for node in root.iter():
+            duplicate_of = node.get("data-actor-duplicate-of")
+            if duplicate_of:
+                visual_actor_boxes.setdefault(duplicate_of, []).append(_box(node))
     except (KeyError, ValueError) as exc:
         diagnostics.append(Diagnostic("Q4", "invalid-bounds", str(exc)))
         return diagnostics
     for item_id, box in use_cases:
         if not _inside(box, boundary):
             diagnostics.append(Diagnostic("Q5", "use-case-outside-boundary", "Use case must be inside the system boundary", subject=item_id))
-    for item_id, box in actors:
-        if _overlap(box, boundary):
-            diagnostics.append(Diagnostic("Q5", "actor-inside-boundary", "Actor must remain outside the system boundary", subject=item_id))
+    for node in semantic_nodes:
+        if node.get("data-kind") == "actor" and node.get("data-embedded-actor") != "true":
+            item_id, box = node.get("data-semantic-id"), _box(node)
+            if _overlap(box, boundary):
+                diagnostics.append(Diagnostic("Q5", "actor-inside-boundary", "Actor must remain outside the system boundary", subject=item_id))
     for index, (first_id, first) in enumerate(use_cases):
         for second_id, second in use_cases[index + 1 :]:
             if _overlap(first, second):
@@ -115,7 +122,15 @@ def validate_svg(path: Path, model: SemanticModel, view: ViewSpec) -> list[Diagn
         except ValueError as exc:
             diagnostics.append(Diagnostic("Q4", "invalid-route", str(exc), subject=relation_id))
             continue
-        if len(points) < 2 or not _touches(kinds[relation.source], boxes[relation.source], points[0]) or not _touches(kinds[relation.target], boxes[relation.target], points[-1]):
+        source_boxes = [boxes[relation.source]]
+        if kinds[relation.source] == "actor":
+            source_boxes.extend(visual_actor_boxes.get(relation.source, []))
+        target_boxes = [boxes[relation.target]]
+        if kinds[relation.target] == "actor":
+            target_boxes.extend(visual_actor_boxes.get(relation.target, []))
+        source_touches = any(_touches(kinds[relation.source], box, points[0]) for box in source_boxes)
+        target_touches = any(_touches(kinds[relation.target], box, points[-1]) for box in target_boxes)
+        if len(points) < 2 or not source_touches or not target_touches:
             diagnostics.append(Diagnostic("Q5", "relation-direction", "Route must start at its UML source and end at its UML target", subject=relation_id))
             continue
         for first, second in zip(points, points[1:], strict=False):

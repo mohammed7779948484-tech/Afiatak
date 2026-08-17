@@ -1,0 +1,15 @@
+modelId: aafiatak-std02-arrival-group
+version: '1.0'
+elements:
+  - {id: state.std02.initial, name: Initial, type: initial, description: Lifecycle entry pseudostate, tags: [std02, pseudostate], sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}]}
+  - {id: state.std02.open, name: OPEN, type: state, description: Open ArrivalGroup lifecycle state, tags: [std02, lifecycle-state], sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '4'}]}
+  - {id: state.std02.frozen, name: FROZEN, type: state, description: Frozen ArrivalGroup lifecycle state, tags: [std02, lifecycle-state], sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '4'}]}
+  - {id: state.std02.closed, name: CLOSED, type: state, description: Terminal closed ArrivalGroup lifecycle state, tags: [std02, lifecycle-state, terminal], sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '4'}]}
+  - {id: state.std02.final, name: Final, type: final, description: Final pseudostate after close, tags: [std02, pseudostate], sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}]}
+relations:
+  - {id: relation.std02.t01, type: transition, source: state.std02.initial, target: state.std02.open, name: completion, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {completion: true, visibleLabel: false}}
+  - {id: relation.std02.t02, type: transition, source: state.std02.open, target: state.std02.frozen, name: freeze group, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {event: freeze group}}
+  - {id: relation.std02.t03, type: transition, source: state.std02.frozen, target: state.std02.open, name: resume group, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {event: resume group}}
+  - {id: relation.std02.t04, type: transition, source: state.std02.open, target: state.std02.closed, name: close group, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {event: close group}}
+  - {id: relation.std02.t05, type: transition, source: state.std02.frozen, target: state.std02.closed, name: close group, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {event: close group}}
+  - {id: relation.std02.t06, type: transition, source: state.std02.closed, target: state.std02.final, name: completion, sourceRefs: [{source: std02-arrival-group-reviewed-spec, section: '5'}, {source: aafiatak-product-specification, section: '13.4'}], metadata: {event: completion}}

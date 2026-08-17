@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1280" viewBox="0 0 1920 1280" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Patient Package Use Case Diagram — Aafiatak Medical Appointment Booking System</title>
+  <desc id="diagram-description">Embedded Patient package actor with no displayed relationships.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+.package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+.package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+.helper { fill: #F3F5F6; }</style>
+  </defs>
+  <rect width="1920" height="1280" fill="#FAFAF8" />
+  <text x="960.0" y="48" class="page-title">
+    <tspan x="960.0" y="48">Patient Package Use Case Diagram — Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <rect x="210" y="120" width="1500" height="1100" rx="4" class="boundary" id="system-boundary" data-x="210" data-y="120" data-width="1500" data-height="1100" />
+  <text x="234" y="151" class="boundary-title">
+    <tspan x="234" y="151">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Embedded package actor and UML package container">
+    <path id="package-container" d="M 240 204 H 460 V 180 H 1680 V 1175 H 240 Z" class="package" data-x="240" data-y="180" data-width="1440" data-height="995" />
+    <rect x="240" y="180" width="220" height="34" class="package-tab" data-semantic-id="actor.patient" data-kind="actor" data-embedded-actor="true" data-x="240" data-y="180" data-width="1440" data-height="995" />
+    <text x="350" y="202" class="boundary-title">
+      <tspan x="350" y="202">Patient</tspan>
+    </text>
+  </g>
+  <g aria-label="Presentation-only neighborhoods">
+    <rect x="270" y="230" width="520" height="350" rx="18" class="field" />
+    <line x1="271" y1="248" x2="308" y2="248" class="field-accent" stroke="#E8F1F8" />
+    <text x="318" y="253" class="section-label">
+      <tspan x="318" y="253">ACCOUNT &amp; DISCOVERY</tspan>
+    </text>
+    <rect x="920" y="230" width="720" height="350" rx="18" class="field" />
+    <line x1="921" y1="248" x2="958" y2="248" class="field-accent" stroke="#F8EBCF" />
+    <text x="968" y="253" class="section-label">
+      <tspan x="968" y="253">BOOKING &amp; AVAILABILITY</tspan>
+    </text>
+    <rect x="270" y="610" width="520" height="280" rx="18" class="field" />
+    <line x1="271" y1="628" x2="308" y2="628" class="field-accent" stroke="#F5E8DF" />
+    <text x="318" y="633" class="section-label">
+      <tspan x="318" y="633">APPOINTMENT FOLLOW-UP</tspan>
+    </text>
+    <rect x="920" y="610" width="720" height="220" rx="18" class="field" />
+    <line x1="921" y1="628" x2="958" y2="628" class="field-accent" stroke="#F8EBCF" />
+    <text x="968" y="633" class="section-label">
+      <tspan x="968" y="633">PAYMENT</tspan>
+    </text>
+    <rect x="270" y="925" width="520" height="210" rx="18" class="field" />
+    <line x1="271" y1="943" x2="308" y2="943" class="field-accent" stroke="#E6F1E8" />
+    <text x="318" y="948" class="section-label">
+      <tspan x="318" y="948">VISIT &amp; QUEUE VISIBILITY</tspan>
+    </text>
+    <rect x="920" y="875" width="720" height="260" rx="18" class="field" />
+    <line x1="921" y1="893" x2="958" y2="893" class="field-accent" stroke="#ECEAF4" />
+    <text x="968" y="898" class="section-label">
+      <tspan x="968" y="898">NOTIFICATIONS</tspan>
+    </text>
+  </g>
+  <g aria-label="Use cases without displayed relationships">
+    <g id="uc-puc-01" data-semantic-id="uc.puc-01" data-kind="use_case" data-x="290" data-y="280" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="305.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="400.0" y="310.0" class="use-case-label">
+        <tspan x="400.0" y="310">Log In</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-02" data-semantic-id="uc.puc-02" data-kind="use_case" data-x="550" data-y="280" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="305.0" rx="110.0" ry="25.0" class="use-case helper" />
+      <text x="660.0" y="310.0" class="use-case-label">
+        <tspan x="660.0" y="310">Verify WhatsApp OTP</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-03" data-semantic-id="uc.puc-03" data-kind="use_case" data-x="290" data-y="340" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="365.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="400.0" y="370.0" class="use-case-label">
+        <tspan x="400.0" y="370">Log Out</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-04" data-semantic-id="uc.puc-04" data-kind="use_case" data-x="550" data-y="340" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="365.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="660.0" y="370.0" class="use-case-label">
+        <tspan x="660.0" y="370">Manage Patient Profile</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-05" data-semantic-id="uc.puc-05" data-kind="use_case" data-x="290" data-y="400" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="425.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="400.0" y="430.0" class="use-case-label">
+        <tspan x="400.0" y="421.5">Browse Facility &amp; Service</tspan>
+        <tspan x="400.0" y="438.5">Information</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-06" data-semantic-id="uc.puc-06" data-kind="use_case" data-x="550" data-y="400" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="425.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="660.0" y="430.0" class="use-case-label">
+        <tspan x="660.0" y="430">Search Doctors &amp; Services</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-07" data-semantic-id="uc.puc-07" data-kind="use_case" data-x="290" data-y="460" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="485.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="400.0" y="490.0" class="use-case-label">
+        <tspan x="400.0" y="481.5">View Available Days &amp; Arrival</tspan>
+        <tspan x="400.0" y="498.5">Groups</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-08" data-semantic-id="uc.puc-08" data-kind="use_case" data-x="550" data-y="460" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="485.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="660.0" y="490.0" class="use-case-label">
+        <tspan x="660.0" y="490">View Facility Location</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-09" data-semantic-id="uc.puc-09" data-kind="use_case" data-x="290" data-y="520" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="545.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="400.0" y="550.0" class="use-case-label">
+        <tspan x="400.0" y="550">View Service Price &amp; Policies</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-10" data-semantic-id="uc.puc-10" data-kind="use_case" data-x="550" data-y="520" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="545.0" rx="110.0" ry="25.0" class="use-case access" />
+      <text x="660.0" y="550.0" class="use-case-label">
+        <tspan x="660.0" y="550">View Attendance Instructions</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-11" data-semantic-id="uc.puc-11" data-kind="use_case" data-x="970" data-y="280" data-width="210" data-height="50">
+      <ellipse cx="1075.0" cy="305.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1075.0" y="310.0" class="use-case-label">
+        <tspan x="1075.0" y="310">Book Appointment</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-12" data-semantic-id="uc.puc-12" data-kind="use_case" data-x="1215" data-y="280" data-width="210" data-height="50">
+      <ellipse cx="1320.0" cy="305.0" rx="105.0" ry="25.0" class="use-case helper" />
+      <text x="1320.0" y="310.0" class="use-case-label">
+        <tspan x="1320.0" y="310">Check Bookable Availability</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-13" data-semantic-id="uc.puc-13" data-kind="use_case" data-x="1460" data-y="280" data-width="160" data-height="50">
+      <ellipse cx="1540.0" cy="305.0" rx="80.0" ry="25.0" class="use-case helper" />
+      <text x="1540.0" y="310.0" class="use-case-label">
+        <tspan x="1540.0" y="310">Create Reservation Hold</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-14" data-semantic-id="uc.puc-14" data-kind="use_case" data-x="970" data-y="365" data-width="210" data-height="50">
+      <ellipse cx="1075.0" cy="390.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1075.0" y="395.0" class="use-case-label">
+        <tspan x="1075.0" y="386.5">View Reservation Hold</tspan>
+        <tspan x="1075.0" y="403.5">Countdown</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-15" data-semantic-id="uc.puc-15" data-kind="use_case" data-x="1215" data-y="365" data-width="210" data-height="50">
+      <ellipse cx="1320.0" cy="390.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1320.0" y="395.0" class="use-case-label">
+        <tspan x="1320.0" y="386.5">Subscribe to Availability</tspan>
+        <tspan x="1320.0" y="403.5">Alert</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-16" data-semantic-id="uc.puc-16" data-kind="use_case" data-x="290" data-y="660" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="685.0" rx="110.0" ry="25.0" class="use-case operations" />
+      <text x="400.0" y="690.0" class="use-case-label">
+        <tspan x="400.0" y="690">View Patient Appointments</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-17" data-semantic-id="uc.puc-17" data-kind="use_case" data-x="550" data-y="660" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="685.0" rx="110.0" ry="25.0" class="use-case operations" />
+      <text x="660.0" y="690.0" class="use-case-label">
+        <tspan x="660.0" y="681.5">View Booking Number &amp;</tspan>
+        <tspan x="660.0" y="698.5">Verification Code</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-18" data-semantic-id="uc.puc-18" data-kind="use_case" data-x="290" data-y="735" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="760.0" rx="110.0" ry="25.0" class="use-case operations" />
+      <text x="400.0" y="765.0" class="use-case-label">
+        <tspan x="400.0" y="765">Reconfirm Attendance</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-19" data-semantic-id="uc.puc-19" data-kind="use_case" data-x="550" data-y="735" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="760.0" rx="110.0" ry="25.0" class="use-case operations" />
+      <text x="660.0" y="765.0" class="use-case-label">
+        <tspan x="660.0" y="765">Cancel Appointment</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-20" data-semantic-id="uc.puc-20" data-kind="use_case" data-x="290" data-y="810" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="835.0" rx="110.0" ry="25.0" class="use-case operations" />
+      <text x="400.0" y="840.0" class="use-case-label">
+        <tspan x="400.0" y="840">View Arrival Instructions</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-21" data-semantic-id="uc.puc-21" data-kind="use_case" data-x="970" data-y="660" data-width="210" data-height="50">
+      <ellipse cx="1075.0" cy="685.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1075.0" y="690.0" class="use-case-label">
+        <tspan x="1075.0" y="690">Process Full Payment</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-22" data-semantic-id="uc.puc-22" data-kind="use_case" data-x="1215" data-y="660" data-width="210" data-height="50">
+      <ellipse cx="1320.0" cy="685.0" rx="105.0" ry="25.0" class="use-case helper" />
+      <text x="1320.0" y="690.0" class="use-case-label">
+        <tspan x="1320.0" y="690">Verify Payment Result</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-23" data-semantic-id="uc.puc-23" data-kind="use_case" data-x="970" data-y="740" data-width="210" data-height="50">
+      <ellipse cx="1075.0" cy="765.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1075.0" y="770.0" class="use-case-label">
+        <tspan x="1075.0" y="770">View Payment Status</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-24" data-semantic-id="uc.puc-24" data-kind="use_case" data-x="1215" data-y="740" data-width="210" data-height="50">
+      <ellipse cx="1320.0" cy="765.0" rx="105.0" ry="25.0" class="use-case patient" />
+      <text x="1320.0" y="770.0" class="use-case-label">
+        <tspan x="1320.0" y="761.5">View Simplified Payment</tspan>
+        <tspan x="1320.0" y="778.5">Receipt</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-25" data-semantic-id="uc.puc-25" data-kind="use_case" data-x="290" data-y="980" data-width="220" data-height="50">
+      <ellipse cx="400.0" cy="1005.0" rx="110.0" ry="25.0" class="use-case facility" />
+      <text x="400.0" y="1010.0" class="use-case-label">
+        <tspan x="400.0" y="1010">View Check-in Status</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-26" data-semantic-id="uc.puc-26" data-kind="use_case" data-x="550" data-y="980" data-width="220" data-height="50">
+      <ellipse cx="660.0" cy="1005.0" rx="110.0" ry="25.0" class="use-case facility" />
+      <text x="660.0" y="1010.0" class="use-case-label">
+        <tspan x="660.0" y="1010">View Queue Status</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-27" data-semantic-id="uc.puc-27" data-kind="use_case" data-x="425" data-y="1050" data-width="220" data-height="50">
+      <ellipse cx="535.0" cy="1075.0" rx="110.0" ry="25.0" class="use-case facility" />
+      <text x="535.0" y="1080.0" class="use-case-label">
+        <tspan x="535.0" y="1080">View Visit Outcome</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-28" data-semantic-id="uc.puc-28" data-kind="use_case" data-x="970" data-y="940" data-width="210" data-height="50">
+      <ellipse cx="1075.0" cy="965.0" rx="105.0" ry="25.0" class="use-case platform" />
+      <text x="1075.0" y="970.0" class="use-case-label">
+        <tspan x="1075.0" y="970">Receive Patient Notifications</tspan>
+      </text>
+    </g>
+    <g id="uc-puc-29" data-semantic-id="uc.puc-29" data-kind="use_case" data-x="1215" data-y="940" data-width="210" data-height="50">
+      <ellipse cx="1320.0" cy="965.0" rx="105.0" ry="25.0" class="use-case platform" />
+      <text x="1320.0" y="970.0" class="use-case-label">
+        <tspan x="1320.0" y="970">Receive Availability Alert</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

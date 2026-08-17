@@ -1,0 +1,33 @@
+id: aafiatak-booking-reception-staff-part-2
+title: Booking & Reception Staff Package Use Case Diagram — Part 2 — Arrival, Queue & Visit
+diagramType: use_case
+model: ../../model/catalog/use-cases/aafiatak-booking-reception-staff-package-use-case.yaml
+layoutProfile: aafiatak_booking_reception_staff_part_2
+outputTargets:
+- svg
+- png
+approval: draft
+include:
+- actor.booking-reception-staff
+- uc.bruc-17
+- uc.bruc-18
+- uc.bruc-19
+- uc.bruc-20
+- uc.bruc-21
+- uc.bruc-22
+- uc.bruc-23
+- uc.bruc-24
+- uc.bruc-25
+- uc.bruc-26
+- uc.bruc-27
+- uc.bruc-28
+- uc.bruc-29
+- uc.bruc-30
+- uc.bruc-31
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Booking & Reception Staff Package
+  sheetSubtitle: Part 2 — Arrival, Queue & Visit
+  embeddedActor: true
+  relationshipDisplay: none

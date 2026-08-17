@@ -8,10 +8,40 @@ import yaml
 
 from engine.core.io import ROOT, load_view, load_yaml, sha256_file
 from engine.export import export_svg_png
+from engine.svg.embedded_actor_package_use_case import render_embedded_actor_package_svg
+from engine.svg.class_diagram import render_class_diagram_svg
+from engine.svg.sequence_diagram import render_sequence_diagram_svg
+from engine.svg.lecturer_sequence_diagram import render_lecturer_sequence_diagram_svg
+from engine.svg.state_diagram import render_state_diagram_svg
 from engine.manifests import create_manifest, write_manifest
-from engine.svg import render_use_case_svg
+from engine.compositions import aafiatak_patient_package_use_case as patient_composition
+from engine.compositions import aafiatak_visitor_package_use_case as visitor_composition
+from engine.compositions import aafiatak_booking_reception_staff_part_1 as booking_part_1_composition
+from engine.compositions import aafiatak_booking_reception_staff_part_2 as booking_part_2_composition
+from engine.compositions import aafiatak_booking_reception_staff_part_3 as booking_part_3_composition
+from engine.compositions import aafiatak_facility_administrator_part_1 as facility_part_1_composition
+from engine.compositions import aafiatak_facility_administrator_part_2 as facility_part_2_composition
+from engine.compositions import aafiatak_facility_administrator_part_3 as facility_part_3_composition
+from engine.compositions import aafiatak_booking_reception_staff_use_case as booking_unified_composition
+from engine.compositions import aafiatak_facility_administrator_use_case as facility_unified_composition
+from engine.compositions import aafiatak_doctor_package_use_case as doctor_unified_composition
+from engine.compositions import aafiatak_platform_administrator_package_use_case as platform_unified_composition
+from engine.svg import (
+    render_patient_package_use_case_svg,
+    render_use_case_svg,
+    render_visitor_package_use_case_svg,
+    render_booking_reception_staff_part_1_svg,
+    render_booking_reception_staff_part_2_svg,
+    render_booking_reception_staff_part_3_svg,
+    render_facility_administrator_part_1_svg,
+    render_facility_administrator_part_2_svg,
+    render_facility_administrator_part_3_svg,
+)
 from qa.pipeline import validate_inputs
 from qa.svg_validation import validate_svg
+from qa.class_svg_validation import validate_class_svg
+from qa.sequence_svg_validation import validate_sequence_svg
+from qa.state_svg_validation import validate_state_svg
 
 
 def model_path_for(view_path: Path, model_value: str) -> Path:
@@ -26,23 +56,79 @@ def _validated(view_path: Path):
     errors = [item for item in diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
-    if view.diagram_type != "use_case":
-        raise ValueError("the simplified renderer currently supports the Aafiatak use-case view")
+    if view.diagram_type not in {"use_case", "class", "sequence", "state"}:
+        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, and state views")
     return model, view, model_path, diagnostics
+
+
+def _render_svg(model, view, output: Path) -> None:
+    if view.id == "aafiatak-sd01-patient-registration-otp":
+        render_sequence_diagram_svg(model, view, output)
+        return
+    if view.diagram_type == "sequence":
+        render_lecturer_sequence_diagram_svg(model, view, output)
+        return
+    if view.diagram_type == "state":
+        render_state_diagram_svg(model, view, output)
+        return
+    if view.id == "aafiatak-mvp-class-diagram":
+        render_class_diagram_svg(model, view, output)
+        return
+    if view.id == "aafiatak-main-use-case":
+        render_use_case_svg(model, view, output)
+        return
+    if view.id == "aafiatak-patient-package-use-case":
+        render_embedded_actor_package_svg(model, view, output, patient_composition, "Embedded Patient package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-visitor-package-use-case":
+        render_embedded_actor_package_svg(model, view, output, visitor_composition, "Embedded Visitor package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-booking-reception-staff-part-1":
+        render_embedded_actor_package_svg(model, view, output, booking_part_1_composition, "Embedded Booking & Reception Staff package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-booking-reception-staff-part-2":
+        render_embedded_actor_package_svg(model, view, output, booking_part_2_composition, "Embedded Booking & Reception Staff package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-booking-reception-staff-part-3":
+        render_embedded_actor_package_svg(model, view, output, booking_part_3_composition, "Embedded Booking & Reception Staff package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-facility-administrator-part-1":
+        render_embedded_actor_package_svg(model, view, output, facility_part_1_composition, "Embedded Facility Administrator package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-facility-administrator-part-2":
+        render_embedded_actor_package_svg(model, view, output, facility_part_2_composition, "Embedded Facility Administrator package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-facility-administrator-part-3":
+        render_embedded_actor_package_svg(model, view, output, facility_part_3_composition, "Embedded Facility Administrator package actor with no displayed relationships.")
+        return
+    if view.id == "aafiatak-booking-reception-staff-use-case":
+        render_embedded_actor_package_svg(model, view, output, booking_unified_composition, "Unified Booking & Reception Staff package with all operations in one container and no displayed relationships.")
+        return
+    if view.id == "aafiatak-facility-administrator-use-case":
+        render_embedded_actor_package_svg(model, view, output, facility_unified_composition, "Unified Facility Administrator package with all operations in one container and no displayed relationships.")
+        return
+    if view.id == "aafiatak-doctor-package-use-case":
+        render_embedded_actor_package_svg(model, view, output, doctor_unified_composition, "Unified Doctor package with all approved operations in one container and no displayed relationships.")
+        return
+    if view.id == "aafiatak-platform-administrator-package-use-case":
+        render_embedded_actor_package_svg(model, view, output, platform_unified_composition, "Unified Platform Administrator package with all approved operations in one container and no displayed relationships.")
+        return
+    raise ValueError(f"no curated SVG composition for {view.id}")
 
 
 def render(view_path: Path, output: Path | None = None) -> Path:
     model, view, _, _ = _validated(view_path.resolve())
     output = output or ROOT / "build" / "work" / f"{view.id}.svg"
-    render_use_case_svg(model, view, output)
-    errors = [item for item in validate_svg(output, model, view) if item.severity == "error"]
+    _render_svg(model, view, output)
+    artifact_diagnostics = validate_class_svg(output, model, view) if view.diagram_type == "class" else validate_sequence_svg(output, model, view) if view.diagram_type == "sequence" else validate_state_svg(output, model, view) if view.diagram_type == "state" else validate_svg(output, model, view)
+    errors = [item for item in artifact_diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
     return output
 
 
 def _qa_data(model, view, input_diagnostics, svg: Path, preview: Path) -> tuple[dict, list[str]]:
-    artifact_diagnostics = validate_svg(svg, model, view)
+    artifact_diagnostics = validate_class_svg(svg, model, view) if view.diagram_type == "class" else validate_sequence_svg(svg, model, view) if view.diagram_type == "sequence" else validate_state_svg(svg, model, view) if view.diagram_type == "state" else validate_svg(svg, model, view)
     diagnostics = [str(item) for item in [*input_diagnostics, *artifact_diagnostics]]
     export_svg_png(svg, preview)
     preview_hash = sha256_file(preview)
@@ -78,7 +164,7 @@ def qa(view_path: Path) -> tuple[Path, list[str]]:
     view_path = view_path.resolve()
     model, view, _, input_diagnostics = _validated(view_path)
     svg = ROOT / "build" / "work" / f"{view.id}.svg"
-    render_use_case_svg(model, view, svg)
+    _render_svg(model, view, svg)
     preview = ROOT / "build" / "preview" / f"{view.id}.png"
     report_data, diagnostics = _qa_data(model, view, input_diagnostics, svg, preview)
     report = ROOT / "build" / "qa" / f"{view.id}.json"

@@ -1,0 +1,33 @@
+id: aafiatak-std02-arrival-group
+diagramType: state
+title: State Diagram — ArrivalGroup Lifecycle
+model: ../../model/catalog/states/aafiatak-std02-arrival-group.yaml
+include:
+  - state.std02.initial
+  - state.std02.open
+  - state.std02.frozen
+  - state.std02.closed
+  - state.std02.final
+relations:
+  - relation.std02.t01
+  - relation.std02.t02
+  - relation.std02.t03
+  - relation.std02.t04
+  - relation.std02.t05
+  - relation.std02.t06
+layoutProfile: lecturer-style-state-landscape
+outputTargets: [svg, png]
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-17T11:56:00+00:00'
+  notes: Lecturer-style semantic, notation, editable-source, and visual QA passed; final approval remains with the user.
+  previewHash: 36ec13df190de752f8b297236d045452492c6ea723f72eb9a2bf32b4140fcba7
+options:
+  masterSheet: A3 landscape equivalent
+  modeledObject: ArrivalGroup
+  expectedStateCount: 3
+  expectedTransitionCount: 6
+  approvedDoActivities: []
+  prohibitedContent: [EXHAUSTED, STALE, FULL, ACTIVE, PUBLISHED, CANCELLED, REOPENED, LATE, WAITING]

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "stateCount": 6,
+  "transitionCount": 12,
+  "initialCount": 1,
+  "finalCount": 3,
+  "noShowBusinessOutgoing": 0,
+  "errors": []
+}

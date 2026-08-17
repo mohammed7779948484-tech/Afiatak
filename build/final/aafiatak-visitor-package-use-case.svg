@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Visitor Package Use Case Diagram — Aafiatak Medical Appointment Booking System</title>
+  <desc id="diagram-description">Embedded Visitor package actor with no displayed relationships.</desc>
+  <defs>
+    <style>text { font-family: Arial, Helvetica, sans-serif; fill: #243142; text-anchor: middle; }
+.page-title { font-size: 28px; font-weight: 700; }
+.boundary-title { font-size: 18px; font-weight: 700; text-anchor: start; }
+.section-label { font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-anchor: start; text-transform: uppercase; }
+.use-case-label { font-size: 15px; }
+.actor-label { font-size: 14px; font-weight: 600; }
+.stereotype { font-size: 13px; font-style: italic; }
+.condition { font-size: 11px; fill: #64748B; }
+.boundary { fill: none; stroke: #334E68; stroke-width: 2; }
+.field { fill: #F4F3EF; opacity: .72; }
+.field-accent { stroke-width: 4; stroke-linecap: round; }
+.actor { fill: none; stroke: #243142; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.use-case { stroke: #334E68; stroke-width: 1.5; }
+.access { fill: #E8F1F8; } .patient { fill: #F8EBCF; }
+.facility { fill: #E6F1E8; } .operations { fill: #F5E8DF; }
+.doctor { fill: #E8EFF2; } .platform { fill: #ECEAF4; }
+.association { fill: none; stroke: #8191A3; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.dependency { fill: none; stroke: #315F85; stroke-width: 1.6; stroke-dasharray: 7 5; marker-end: url(#dependency-arrow); stroke-linecap: round; stroke-linejoin: round; }
+.label-backdrop { fill: #FAFAF8; opacity: .94; }
+.package { fill: none; stroke: #334E68; stroke-width: 1.8; }
+.package-tab { fill: #F4F3EF; stroke: #334E68; stroke-width: 1.8; }
+.helper { fill: #F3F5F6; }</style>
+  </defs>
+  <rect width="1600" height="900" fill="#FAFAF8" />
+  <text x="800.0" y="48" class="page-title">
+    <tspan x="800.0" y="48">Visitor Package Use Case Diagram — Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <rect x="150" y="100" width="1250" height="720" rx="4" class="boundary" id="system-boundary" data-x="150" data-y="100" data-width="1250" data-height="720" />
+  <text x="174" y="131" class="boundary-title">
+    <tspan x="174" y="131">Aafiatak Medical Appointment Booking System</tspan>
+  </text>
+  <g aria-label="Embedded package actor and UML package container">
+    <path id="package-container" d="M 220 174 H 440 V 150 H 1220 V 760 H 220 Z" class="package" data-x="220" data-y="150" data-width="1000" data-height="610" />
+    <rect x="220" y="150" width="220" height="34" class="package-tab" data-semantic-id="actor.visitor" data-kind="actor" data-embedded-actor="true" data-x="220" data-y="150" data-width="1000" data-height="610" />
+    <text x="330" y="172" class="boundary-title">
+      <tspan x="330" y="172">Visitor</tspan>
+    </text>
+  </g>
+  <g aria-label="Presentation-only neighborhoods">
+    <rect x="300" y="210" width="700" height="220" rx="18" class="field" />
+    <line x1="301" y1="228" x2="338" y2="228" class="field-accent" stroke="#E8F1F8" />
+    <text x="348" y="233" class="section-label">
+      <tspan x="348" y="233">DISCOVERY</tspan>
+    </text>
+    <rect x="420" y="470" width="690" height="230" rx="18" class="field" />
+    <line x1="421" y1="488" x2="458" y2="488" class="field-accent" stroke="#F8EBCF" />
+    <text x="468" y="493" class="section-label">
+      <tspan x="468" y="493">ACCESS</tspan>
+    </text>
+  </g>
+  <g aria-label="Use cases without displayed relationships">
+    <g id="uc-vuc-01" data-semantic-id="uc.vuc-01" data-kind="use_case" data-x="350" data-y="250" data-width="260" data-height="64">
+      <ellipse cx="480.0" cy="282.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="480.0" y="287.0" class="use-case-label">
+        <tspan x="480.0" y="278.5">Browse Facility &amp; Service</tspan>
+        <tspan x="480.0" y="295.5">Information</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-02" data-semantic-id="uc.vuc-02" data-kind="use_case" data-x="680" data-y="250" data-width="260" data-height="64">
+      <ellipse cx="810.0" cy="282.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="810.0" y="287.0" class="use-case-label">
+        <tspan x="810.0" y="287">Search Doctors &amp; Services</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-03" data-semantic-id="uc.vuc-03" data-kind="use_case" data-x="350" data-y="330" data-width="260" data-height="64">
+      <ellipse cx="480.0" cy="362.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="480.0" y="367.0" class="use-case-label">
+        <tspan x="480.0" y="358.5">View Available Days &amp; Arrival</tspan>
+        <tspan x="480.0" y="375.5">Groups</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-04" data-semantic-id="uc.vuc-04" data-kind="use_case" data-x="680" data-y="330" data-width="260" data-height="64">
+      <ellipse cx="810.0" cy="362.0" rx="130.0" ry="32.0" class="use-case access" />
+      <text x="810.0" y="367.0" class="use-case-label">
+        <tspan x="810.0" y="367">View Facility Location</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-05" data-semantic-id="uc.vuc-05" data-kind="use_case" data-x="470" data-y="510" data-width="260" data-height="64">
+      <ellipse cx="600.0" cy="542.0" rx="130.0" ry="32.0" class="use-case patient" />
+      <text x="600.0" y="547.0" class="use-case-label">
+        <tspan x="600.0" y="547">Register Patient</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-06" data-semantic-id="uc.vuc-06" data-kind="use_case" data-x="800" data-y="510" data-width="260" data-height="64">
+      <ellipse cx="930.0" cy="542.0" rx="130.0" ry="32.0" class="use-case patient" />
+      <text x="930.0" y="547.0" class="use-case-label">
+        <tspan x="930.0" y="547">Log In</tspan>
+      </text>
+    </g>
+    <g id="uc-vuc-07" data-semantic-id="uc.vuc-07" data-kind="use_case" data-x="635" data-y="620" data-width="260" data-height="64">
+      <ellipse cx="765.0" cy="652.0" rx="130.0" ry="32.0" class="use-case helper" />
+      <text x="765.0" y="657.0" class="use-case-label">
+        <tspan x="765.0" y="657">Verify WhatsApp OTP</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

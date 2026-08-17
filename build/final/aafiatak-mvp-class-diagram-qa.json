@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-mvp-class-diagram.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-mvp-class-diagram.png",
+      "previewHash": "83b78a196543cc6493479bbb6660a60ed363ee240472cfe94723a6a67d9b6edf",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-17T08:12:26+00:00",
+      "notes": "Structural, source-match, native editable-source, and visual QA completed; final approval remains with the user.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-mvp-class-diagram.png",
+    "previewHash": "83b78a196543cc6493479bbb6660a60ed363ee240472cfe94723a6a67d9b6edf",
+    "status": "awaiting-user-approval"
+  }
+}

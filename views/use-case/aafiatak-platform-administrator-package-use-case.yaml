@@ -1,0 +1,36 @@
+id: aafiatak-platform-administrator-package-use-case
+diagramType: use_case
+title: "Platform Administrator Package Use Case Diagram \u2014 Aafiatak Medical Appointment\
+  \ Booking System"
+model: ../../model/catalog/use-cases/aafiatak-platform-administrator-package-use-case.yaml
+include:
+- actor.platform-administrator
+- uc.pauc-01
+- uc.pauc-02
+- uc.pauc-03
+- uc.pauc-04
+- uc.pauc-05
+- uc.pauc-06
+- uc.pauc-07
+- uc.pauc-08
+- uc.pauc-09
+- uc.pauc-10
+- uc.pauc-11
+- uc.pauc-12
+- uc.pauc-13
+- uc.pauc-14
+- uc.pauc-15
+- uc.pauc-16
+- uc.pauc-17
+- uc.pauc-18
+- uc.pauc-19
+- uc.pauc-20
+relations: []
+options:
+  systemName: Aafiatak Medical Appointment Booking System
+  packageName: Platform Administrator Package
+  sheetSubtitle: One unified Platform Administrator Package view
+  embeddedActor: true
+  relationshipDisplay: none
+  unifiedPackage: true
+approval: draft
