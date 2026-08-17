@@ -1,0 +1,14 @@
+version: 1
+required_reference_fields: [source]
+supported_locators: [section, heading, page, line_start, line_end, requirement_id]
+requirements:
+  elements: at_least_one_authoritative_source_ref
+  relationships: at_least_one_product_ref
+  modeled_relationships:
+    include: product_and_modeling_rationale
+    extend: product_and_modeling_rationale
+    generalization: product_and_modeling_rationale
+    composition: product_and_modeling_rationale
+    aggregation: product_and_modeling_rationale
+    transition: product_ref
+    dependency: product_or_technical_boundary_ref

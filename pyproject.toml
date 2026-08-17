@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aafiatak-diagram-engine"
+version = "0.1.0"
+description = "Traceable UML-to-draw.io modeling compiler"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0,<7", "jsonschema>=4.23,<5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1"]
+
+[project.scripts]
+diagram-engine = "engine.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["engine", "qa"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+exclude = [".agents", ".venv", "build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]

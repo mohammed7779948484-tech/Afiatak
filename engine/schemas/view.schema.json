@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["id", "title", "diagramType", "model", "include"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"}, "title": {"type": "string", "minLength": 1},
+    "diagramType": {"enum": ["use_case", "package", "class", "object", "activity", "sequence", "communication", "state", "component", "deployment"]},
+    "model": {"type": "string"}, "include": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "relations": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "layoutProfile": {"type": "string"}, "outputTargets": {"type": "array", "items": {"enum": ["drawio", "png", "svg", "pdf", "jpg", "markdown"]}},
+    "approval": {"enum": ["draft", "reviewed", "approved"]},
+    "visualReview": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewedAt"],
+      "properties": {
+        "status": {"const": "approved"}, "reviewer": {"type": "string", "minLength": 1},
+        "reviewedAt": {"type": "string", "format": "date-time"},
+        "previewHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "options": {"type": "object"}
+  }
+}

@@ -1,0 +1,20 @@
+version: 1
+grid: 10
+page:
+  landscape: {width: 1600, height: 1000, margin: 60}
+  report_landscape: {width: 1400, height: 900, margin: 50}
+spacing: {xs: 10, sm: 20, md: 40, lg: 80, xl: 120}
+shapes:
+  actor: {width: 90, height: 130}
+  use_case: {width: 220, height: 70}
+  node: {width: 180, height: 70}
+  class: {width: 260, height: 180}
+  state: {width: 180, height: 60}
+  component: {width: 200, height: 90}
+quality:
+  minimum_node_gap: 30
+  minimum_actor_boundary_gap: 40
+  minimum_connector_clearance: 10
+  minimum_page_margin: 40
+  maximum_edge_crossings: 8
+  occupancy_target: {min: 0.25, max: 0.85}

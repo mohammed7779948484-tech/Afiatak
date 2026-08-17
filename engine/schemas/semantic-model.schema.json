@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["modelId", "version", "elements", "relations"],
+  "properties": {
+    "modelId": {"type": "string", "minLength": 1},
+    "version": {"type": ["string", "number"]},
+    "testData": {"type": "boolean"},
+    "elements": {"type": "array", "items": {"$ref": "#/$defs/element"}},
+    "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}}
+  },
+  "$defs": {
+    "sourceRef": {
+      "type": "object", "additionalProperties": false, "required": ["source"],
+      "properties": {
+        "source": {"type": "string"}, "section": {"type": "string"}, "heading": {"type": "string"},
+        "page": {"type": "integer", "minimum": 1}, "line_start": {"type": "integer", "minimum": 1},
+        "line_end": {"type": "integer", "minimum": 1}, "requirement_id": {"type": "string"}
+      }
+    },
+    "element": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "type", "description", "sourceRefs"],
+      "properties": {
+        "id": {"type": "string"}, "name": {"type": "string", "minLength": 1}, "type": {"enum": ["actor", "use_case", "package", "class", "object", "state", "initial", "final", "action", "decision", "fork", "join", "participant", "component", "provided_interface", "required_interface", "deployment_node", "artifact", "note"]},
+        "description": {"type": "string"}, "status": {"type": "string"},
+        "sourceRefs": {"type": "array", "items": {"$ref": "#/$defs/sourceRef"}},
+        "tags": {"type": "array", "items": {"type": "string"}}, "metadata": {"type": "object"}
+      }
+    },
+    "relation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "type", "source", "target", "sourceRefs"],
+      "properties": {
+        "id": {"type": "string"}, "type": {"enum": ["association", "include", "extend", "generalization", "aggregation", "composition", "dependency", "realization", "control_flow", "transition", "message", "return_message", "connector", "communication_path", "deployment"]}, "source": {"type": "string"},
+        "target": {"type": "string"}, "name": {"type": "string"}, "rationale": {"type": ["string", "null"]},
+        "sourceRefs": {"type": "array", "items": {"$ref": "#/$defs/sourceRef"}}, "metadata": {"type": "object"}
+      }
+    }
+  }
+}

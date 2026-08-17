@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/work/
+build/drawio/
+build/preview/
+build/qa/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Approved build/final artifacts are intentionally trackable.
+!build/final/.gitkeep

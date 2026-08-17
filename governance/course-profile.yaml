@@ -1,0 +1,56 @@
+version: 1
+source: lecturer-uml-rules
+source_pages: 1-12
+language: Arabic lecture material with English UML terms and examples
+required_diagram_types:
+  - class
+  - object
+  - use_case
+  - state
+  - sequence
+  - communication
+  - activity
+  - deployment
+  - component
+  - package
+terminology:
+  source_term_activate_diagram: activity
+  source_term_collaboration_diagram: communication
+class:
+  compartments: [name, attributes, operations, responsibility]
+  visibility_symbols: {public: "+", private: "-", protected: "#"}
+  accepted_relationships: [association, generalization, aggregation, composition]
+  multiplicities_are_illustrated: true
+object:
+  rule: An object is an instance/state of a class and shows concrete attribute values.
+use_case:
+  required_elements: [system_boundary, actors, use_cases, relationships]
+  accepted_relationships: [association, include, extend, generalization]
+  method_steps:
+    - define_system_boundary
+    - identify_actors
+    - identify_use_cases
+    - describe_each_use_case
+    - review_model
+    - identify_priorities
+    - add_future_requirements
+    - create_use_case_model
+use_case_modeling:
+  required_fields: [id, name, brief_description, primary_actor, preconditions, main_flow, alternate_flows, postconditions]
+  scenario_expectation: Include success and failure/alternative scenarios with logical step counts.
+sequence:
+  illustrated_elements: [participants, lifelines, ordered_messages, activations, return_messages]
+  time_direction: top_to_bottom
+communication:
+  illustrated_elements: [objects, links, numbered_messages]
+state:
+  illustrated_elements: [states, directed_transitions, transition_labels]
+activity:
+  illustrated_elements: [initial_node, actions, decisions, guards, fork_join, final_node]
+component:
+  illustrated_elements: [components, interfaces, connectors]
+deployment:
+  illustrated_elements: [nodes, deployed_artifacts_or_components, communication_paths]
+package:
+  illustrated_purpose: Group related use cases or model elements by responsibility.
+unsupported_claims: []

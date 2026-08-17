@@ -1,0 +1,11 @@
+version: 1
+default: edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1
+association: endArrow=none
+dependency: dashed=1;endArrow=open;endFill=0
+generalization: endArrow=block;endFill=0
+composition: startArrow=diamondThin;startFill=1;endArrow=none
+aggregation: startArrow=diamondThin;startFill=0;endArrow=none
+include: dashed=1;endArrow=open;endFill=0
+extend: dashed=1;endArrow=open;endFill=0
+return_message: dashed=1;endArrow=open;endFill=0
+label: labelBackgroundColor=#FFFFFF;fontSize=11

@@ -1,0 +1,20 @@
+version: 1
+stable_ids:
+  pattern: "^(actor|uc|package|class|object|state|component|node|scenario|relation|activity|message)\\.[a-z0-9][a-z0-9._-]*$"
+  display_names_are_identifiers: false
+semantics:
+  coordinates_are_semantics: false
+  colors_are_semantics: false
+  drawio_is_canonical: false
+  require_source_refs_for_elements: true
+  require_source_refs_for_relations: true
+uml:
+  include_direction: including_use_case_to_included_use_case
+  extend_direction: extending_use_case_to_base_use_case
+  generalization_direction: specific_to_general
+  package_relationships: [dependency]
+  multiplicity_pattern: "^(\\*|[0-9]+|[0-9]+\\.\\.(\\*|[0-9]+))$"
+layout:
+  deterministic_types: [use_case, activity, sequence, communication, state, object, deployment]
+  graph_assisted_types: [class, package, component]
+  graphviz_threshold_nodes: 15

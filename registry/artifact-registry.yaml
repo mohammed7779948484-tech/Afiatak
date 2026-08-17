@@ -1,0 +1,3 @@
+version: 1
+artifacts: []
+policy: Approved files under build/final are tracked; work, preview, and QA intermediates are regenerated.

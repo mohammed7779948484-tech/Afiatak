@@ -1,0 +1,15 @@
+version: 1
+precedence:
+  - rank: 1
+    source: aafiatak-product-specification
+    governs: [scope, actors, permissions, business-rules, lifecycles, boundaries, non-functional-requirements]
+  - rank: 2
+    source: lecturer-uml-rules
+    governs: [course-notation, required-diagram-families, submission-structure]
+  - rank: 3
+    source: local-drawio-skill
+    governs: [drawio-xml, layout, routing, validation, export]
+  - rank: 4
+    source: general-engineering-knowledge
+    governs: [non-conflicting-modeling-mechanics]
+conflict_policy: Higher-ranked authority wins. Open product decisions must remain unresolved.

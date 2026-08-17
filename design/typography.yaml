@@ -1,0 +1,8 @@
+version: 1
+font_family: Arial
+title: {size: 20, bold: true}
+section: {size: 14, bold: true}
+node: {size: 12, bold: false}
+edge: {size: 11, bold: false}
+note: {size: 10, bold: false}
+minimum_size: 10

@@ -1,0 +1,4 @@
+diagram_type: sequence
+orientation: LR
+time_direction: TB
+participant_gap: 200

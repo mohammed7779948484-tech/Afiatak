@@ -1,0 +1,6 @@
+version: 1
+ids: lowercase dotted namespaces with stable slugs
+semantic_names: singular domain nouns or verb-object use-case names
+view_files: kebab-case.yaml
+generated_files: diagram-id.drawio
+relations: relation.<diagram-domain>.<source-slug>.<target-slug>

@@ -1,0 +1,23 @@
+version: 1
+sources:
+  - name: aafiatak-product-specification
+    path: Aafiatak_Project_Specification_EN.md
+    role: product_truth
+    sha256: 9ff2337c1fb334cff24e93d2830c5c3648ef001e5f3e06ab2ad951ba8854d593
+    immutable: true
+    authority_precedence: 1
+  - name: lecturer-uml-rules
+    path: "�لغة النمذجة الموحدة UML.pdf"
+    role: course_constraints
+    sha256: 0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73
+    immutable: true
+    authority_precedence: 2
+  - name: local-drawio-skill
+    path: .agents/skills/drawio/SKILL.md
+    tree_path: .agents/skills/drawio
+    tree_sha256: adb43193626e95024aa4b69943300278305a2795bfaed3ab514ac93435d60204
+    role: drawio_tooling_practices
+    sha256: b5b6f5cb2f53b9ea9c9d33f6b6e14b2d45c1f6d14ed54d6f0991e20b32711600
+    immutable: true
+    authority_precedence: 3
+    version: 2.1.0
