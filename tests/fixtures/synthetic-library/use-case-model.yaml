@@ -1,0 +1,16 @@
+id: uc.borrow_item
+name: "TEST DATA - Borrow Item"
+briefDescription: A synthetic library member borrows an available item.
+primaryActor: actor.member
+secondaryActors: [actor.librarian]
+preconditions: [The member account exists.]
+mainFlow:
+  - {step: 1, actor: actor.member, action: Select an available item.}
+  - {step: 2, actor: system, action: Record the synthetic loan.}
+alternateFlows:
+  - name: Item unavailable
+    condition: The selected item is already loaned.
+    steps: [Inform the member that the item is unavailable.]
+    outcome: No loan is created.
+postconditions: [A synthetic loan exists for the selected item.]
+sourceRefs: [{source: synthetic-test-reference, section: Use Case Modeling}]

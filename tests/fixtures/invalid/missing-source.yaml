@@ -1,0 +1,6 @@
+modelId: invalid.missing-source
+version: 1
+testData: true
+elements:
+  - {id: actor.invalid, name: Invalid, type: actor, description: TEST DATA invalid, sourceRefs: []}
+relations: []

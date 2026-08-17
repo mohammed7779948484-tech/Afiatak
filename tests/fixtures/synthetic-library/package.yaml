@@ -1,0 +1,7 @@
+id: synthetic-library-package
+title: "TEST DATA - Packages"
+diagramType: package
+model: model.yaml
+include: [package.catalog, package.loans]
+relations: [relation.loans.catalog]
+approval: draft

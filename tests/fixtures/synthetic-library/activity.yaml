@@ -1,0 +1,7 @@
+id: synthetic-library-activity
+title: "TEST DATA - Borrow Activity"
+diagramType: activity
+model: model.yaml
+include: [activity.start, activity.select, activity.available, activity.record, activity.end]
+relations: [relation.activity.start_select, relation.activity.select_available, relation.activity.yes, relation.activity.no, relation.activity.record_end]
+approval: draft

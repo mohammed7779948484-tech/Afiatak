@@ -1,0 +1,54 @@
+modelId: synthetic.library
+version: 1
+testData: true
+elements:
+  - {id: actor.member, name: Member, type: actor, description: TEST DATA library member, sourceRefs: [{source: synthetic-test-reference, section: Actors}]}
+  - {id: actor.librarian, name: Librarian, type: actor, description: TEST DATA library staff, sourceRefs: [{source: synthetic-test-reference, section: Actors}]}
+  - {id: uc.borrow_item, name: Borrow Item, type: use_case, description: TEST DATA checkout, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: uc.authenticate, name: Authenticate Member, type: use_case, description: TEST DATA identity check, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: uc.renew_item, name: Renew Item, type: use_case, description: TEST DATA optional renewal, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: package.catalog, name: Catalog, type: package, description: TEST DATA package, sourceRefs: [{source: synthetic-test-reference, section: Packages}]}
+  - {id: package.loans, name: Loans, type: package, description: TEST DATA package, sourceRefs: [{source: synthetic-test-reference, section: Packages}]}
+  - {id: class.item, name: Item, type: class, description: TEST DATA base class, sourceRefs: [{source: synthetic-test-reference, section: Classes}], metadata: {attributes: ["+ id: String"], operations: ["+ locate()"], responsibilities: [Track catalog identity]}}
+  - {id: class.book, name: Book, type: class, description: TEST DATA subtype, sourceRefs: [{source: synthetic-test-reference, section: Classes}], metadata: {attributes: ["+ isbn: String"], operations: ["+ lend()"]}}
+  - {id: class.loan, name: Loan, type: class, description: TEST DATA loan class, sourceRefs: [{source: synthetic-test-reference, section: Classes}], metadata: {attributes: ["+ dueDate: Date"], operations: ["+ close()"]}}
+  - {id: object.book_copy_1, name: "bookCopy1 : Book", type: object, description: TEST DATA object, sourceRefs: [{source: synthetic-test-reference, section: Objects}], metadata: {values: {isbn: "TEST-001", status: available}}}
+  - {id: object.loan_1, name: "loan1 : Loan", type: object, description: TEST DATA object, sourceRefs: [{source: synthetic-test-reference, section: Objects}], metadata: {values: {dueDate: "2099-01-01"}}}
+  - {id: activity.start, name: Start, type: initial, description: TEST DATA initial, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: activity.select, name: Select Item, type: action, description: TEST DATA action, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: activity.available, name: "Available?", type: decision, description: TEST DATA decision, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: activity.record, name: Record Loan, type: action, description: TEST DATA action, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: activity.end, name: End, type: final, description: TEST DATA final, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: state.initial, name: Initial, type: initial, description: TEST DATA state initial, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: state.available, name: Available, type: state, description: TEST DATA state, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: state.loaned, name: Loaned, type: state, description: TEST DATA state, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: state.retired, name: Retired, type: final, description: TEST DATA final, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: component.member_app, name: Member App, type: component, description: TEST DATA interaction participant and component, sourceRefs: [{source: synthetic-test-reference, section: Components}]}
+  - {id: component.loan_service, name: Loan Service, type: component, description: TEST DATA interaction participant and component, sourceRefs: [{source: synthetic-test-reference, section: Components}]}
+  - {id: component.catalog_db, name: Catalog DB, type: component, description: TEST DATA data component, sourceRefs: [{source: synthetic-test-reference, section: Components}]}
+  - {id: node.tablet, name: Library Tablet, type: deployment_node, description: TEST DATA node, sourceRefs: [{source: synthetic-test-reference, section: Deployment}], metadata: {artifacts: [Member App]}}
+  - {id: node.server, name: Application Server, type: deployment_node, description: TEST DATA node, sourceRefs: [{source: synthetic-test-reference, section: Deployment}], metadata: {artifacts: [Loan Service]}}
+relations:
+  - {id: relation.member.borrow, type: association, source: actor.member, target: uc.borrow_item, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: relation.librarian.borrow, type: association, source: actor.librarian, target: uc.borrow_item, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: relation.borrow.authenticate, type: include, source: uc.borrow_item, target: uc.authenticate, rationale: TEST DATA borrowing always authenticates, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: relation.renew.borrow, type: extend, source: uc.renew_item, target: uc.borrow_item, rationale: TEST DATA renewal optionally extends borrowing, sourceRefs: [{source: synthetic-test-reference, section: Use Cases}]}
+  - {id: relation.loans.catalog, type: dependency, source: package.loans, target: package.catalog, sourceRefs: [{source: synthetic-test-reference, section: Packages}]}
+  - {id: relation.book.item, type: generalization, source: class.book, target: class.item, rationale: TEST DATA book is an item, sourceRefs: [{source: synthetic-test-reference, section: Classes}]}
+  - {id: relation.loan.book, type: association, source: class.loan, target: class.book, sourceRefs: [{source: synthetic-test-reference, section: Classes}], metadata: {sourceMultiplicity: "0..*", targetMultiplicity: "1"}}
+  - {id: relation.object.loan_book, type: association, source: object.loan_1, target: object.book_copy_1, sourceRefs: [{source: synthetic-test-reference, section: Objects}]}
+  - {id: relation.activity.start_select, type: control_flow, source: activity.start, target: activity.select, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: relation.activity.select_available, type: control_flow, source: activity.select, target: activity.available, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: relation.activity.yes, type: control_flow, source: activity.available, target: activity.record, name: "[yes]", sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: relation.activity.no, type: control_flow, source: activity.available, target: activity.end, name: "[no]", sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: relation.activity.record_end, type: control_flow, source: activity.record, target: activity.end, sourceRefs: [{source: synthetic-test-reference, section: Activity}]}
+  - {id: relation.state.begin, type: transition, source: state.initial, target: state.available, name: create, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: relation.state.borrow, type: transition, source: state.available, target: state.loaned, name: borrow, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: relation.state.return, type: transition, source: state.loaned, target: state.available, name: return, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: relation.state.retire, type: transition, source: state.available, target: state.retired, name: retire, sourceRefs: [{source: synthetic-test-reference, section: States}]}
+  - {id: relation.message.request, type: message, source: component.member_app, target: component.loan_service, name: request loan, sourceRefs: [{source: synthetic-test-reference, section: Interactions}], metadata: {sequence: 1}}
+  - {id: relation.message.lookup, type: message, source: component.loan_service, target: component.catalog_db, name: check availability, sourceRefs: [{source: synthetic-test-reference, section: Interactions}], metadata: {sequence: 2}}
+  - {id: relation.message.result, type: return_message, source: component.catalog_db, target: component.loan_service, name: available, sourceRefs: [{source: synthetic-test-reference, section: Interactions}], metadata: {sequence: 3}}
+  - {id: relation.component.app_service, type: dependency, source: component.member_app, target: component.loan_service, sourceRefs: [{source: synthetic-test-reference, section: Components}]}
+  - {id: relation.component.service_db, type: dependency, source: component.loan_service, target: component.catalog_db, sourceRefs: [{source: synthetic-test-reference, section: Components}]}
+  - {id: relation.node.network, type: communication_path, source: node.tablet, target: node.server, name: HTTPS, sourceRefs: [{source: synthetic-test-reference, section: Deployment}]}

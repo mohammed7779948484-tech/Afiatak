@@ -1,0 +1,7 @@
+modelId: invalid.dangling
+version: 1
+testData: true
+elements:
+  - {id: actor.valid, name: Valid, type: actor, description: TEST DATA, sourceRefs: [{source: synthetic-test-reference}]}
+relations:
+  - {id: relation.invalid.dangling, type: association, source: actor.valid, target: uc.missing, sourceRefs: [{source: synthetic-test-reference}]}

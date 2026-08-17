@@ -1,0 +1,7 @@
+id: synthetic-library-state
+title: "TEST DATA - Item States"
+diagramType: state
+model: model.yaml
+include: [state.initial, state.available, state.loaned, state.retired]
+relations: [relation.state.begin, relation.state.borrow, relation.state.return, relation.state.retire]
+approval: draft
