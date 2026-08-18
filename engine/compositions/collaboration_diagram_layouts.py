@@ -5,15 +5,23 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class CollaborationLayout:
-    """Shared paper and typography system; scenario topology belongs below."""
+    """Shared compact paper and typography system; scenario topology belongs below.
 
-    width: int = 16000
-    height: int = 10400
-    participant_width: int = 2200
-    participant_height: int = 720
-    participant_font_size: int = 64
-    message_font_size: int = 62
-    message_line_height: int = 78
+    Participant coordinates remain authored on the original 16000×10400 composition grid.
+    The geometry engine applies ``network_scale`` around its centre, so every scenario
+    inherits the compact lecturer-style network without per-page coordinate patches.
+    """
+
+    width: int = 14000
+    height: int = 9000
+    composition_width: int = 16000
+    composition_height: int = 10400
+    network_scale: float = 0.86
+    participant_width: int = 1950
+    participant_height: int = 620
+    participant_font_size: int = 60
+    message_font_size: int = 60
+    message_line_height: int = 74
 
 
 # This is intentionally not a list of free-floating message coordinates.  Each
@@ -112,7 +120,7 @@ LAYOUTS: dict[str, tuple[CollaborationLayout, dict]] = {
         },
     ),
     "aafiatak-cd05-checkin-queue-call-next": (
-        CollaborationLayout(participant_width=2150),
+        CollaborationLayout(participant_width=1900),
         {
             "participants": {
                 "participant.cd05.aafiatak-backend": (7850, 5000),

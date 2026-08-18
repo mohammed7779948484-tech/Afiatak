@@ -306,12 +306,12 @@ class TextMeasurer:
     def label(self, relation: SemanticRelation, origin: Point, maximum_width: float) -> TextBlock:
         number = f"{relation.metadata['sequence']}."
         number_width = self.width(number)
-        gap = max(46.0, self.font_size * 0.6)
-        lines = self.wrap(relation.name, max(360.0, maximum_width - number_width - gap))
+        gap = max(30.0, self.font_size * 0.46)
+        lines = self.wrap(relation.name, max(310.0, maximum_width - number_width - gap))
         line_widths = [self.width(line) for line in lines]
         width = max(number_width + gap + line_width for line_width in line_widths)
-        top_pad = max(18.0, self.font_size * 0.22)
-        bottom_pad = max(20.0, self.font_size * 0.28)
+        top_pad = max(12.0, self.font_size * 0.16)
+        bottom_pad = max(14.0, self.font_size * 0.20)
         height = top_pad + self.line_height * len(lines) + bottom_pad
         baseline = origin.y + top_pad + self.font_size
         return TextBlock(
@@ -388,8 +388,12 @@ def _participant_geometry(model: SemanticModel, view: ViewSpec, composition: dic
     if set(visible) != set(composition["participants"]):
         raise ValueError("Collaboration composition and visible participant set do not match")
     result: dict[str, ParticipantGeometry] = {}
+    source_centre = Point(layout.composition_width / 2, layout.composition_height / 2)
+    target_centre = Point(layout.width / 2, layout.height / 2)
     for element_id, element in visible.items():
-        cx, cy = composition["participants"][element_id]
+        raw_x, raw_y = composition["participants"][element_id]
+        cx = target_centre.x + (raw_x - source_centre.x) * layout.network_scale
+        cy = target_centre.y + (raw_y - source_centre.y) * layout.network_scale
         bounds = Rect(cx - layout.participant_width / 2, cy - layout.participant_height / 2, layout.participant_width, layout.participant_height)
         result[element_id] = ParticipantGeometry(element, bounds, measurer.participant_lines(element.name, layout.participant_width - 180))
     return result
@@ -422,21 +426,26 @@ def _link_geometries(view: ViewSpec, participants: dict[str, ParticipantGeometry
     return result
 
 
-def _candidate_group_rect(link_bounds: Rect, side: str, width: float, height: float, shift: float, gap: float) -> Rect:
+def _candidate_group_rect(anchor: Point, side: str, width: float, height: float, shift: float, gap: float) -> Rect:
+    """Place a message run from a local point on its own communication link.
+
+    This avoids the detached, bounding-box-driven placement that made labels appear
+    far from diagonal and long structural links in earlier revisions.
+    """
     if side == "right":
-        return Rect(link_bounds.right + gap, link_bounds.center.y - height / 2 + shift, width, height)
+        return Rect(anchor.x + gap, anchor.y - height / 2 + shift, width, height)
     if side == "left":
-        return Rect(link_bounds.left - gap - width, link_bounds.center.y - height / 2 + shift, width, height)
+        return Rect(anchor.x - gap - width, anchor.y - height / 2 + shift, width, height)
     if side == "above":
-        return Rect(link_bounds.center.x - width / 2 + shift, link_bounds.top - gap - height, width, height)
+        return Rect(anchor.x - width / 2 + shift, anchor.y - gap - height, width, height)
     if side == "below":
-        return Rect(link_bounds.center.x - width / 2 + shift, link_bounds.bottom + gap, width, height)
+        return Rect(anchor.x - width / 2 + shift, anchor.y + gap, width, height)
     raise ValueError(f"Unknown label side: {side}")
 
 
 def _shifts() -> tuple[float, ...]:
     values = [0.0]
-    for offset in range(320, 4161, 320):
+    for offset in range(220, 2861, 220):
         values.extend((-float(offset), float(offset)))
     return tuple(values)
 
@@ -449,8 +458,8 @@ def _group_measure(relations: Sequence[SemanticRelation], measurer: TextMeasurer
         text = measurer.label(relation, Point(0.0, cursor), width_limit)
         drafts.append(text)
         max_width = max(max_width, text.bounds.width)
-        cursor += text.bounds.height + 24.0
-    return drafts, max_width, max(0.0, cursor - 24.0)
+        cursor += text.bounds.height + 32.0
+    return drafts, max_width, max(0.0, cursor - 32.0)
 
 
 def _collides_group(
@@ -490,92 +499,133 @@ def _place_link_run(
     measurer: TextMeasurer,
 ) -> tuple[str, Rect, tuple[MessageLabelGeometry, ...]] | None:
     base_width = float(hint.get("maxLabelWidth", 2700))
-    for side in _layout_side_candidates(hint.get("side")):
-        for width_limit in (base_width, max(1700.0, base_width - 360), max(1500.0, base_width - 720)):
+    local_gap = max(140.0, float(hint.get("labelGap", 180)) * 0.76)
+    # Keep labels attached to their own link, but try nearby local anchor points
+    # and all four local sides before expanding the search into a remote position.
+    anchors = tuple(link.polyline.at(link.polyline.length * fraction)[0] for fraction in (0.50, 0.38, 0.62, 0.26, 0.74))
+    preferred_sides = _layout_side_candidates(hint.get("side"))
+    sides = preferred_sides + tuple(side for side in ("right", "left", "above", "below") if side not in preferred_sides)
+    for side in sides:
+        for width_limit in (base_width, max(1600.0, base_width - 320), max(1400.0, base_width - 640)):
             drafts, group_width, group_height = _group_measure(relations, measurer, width_limit)
-            for shift in _shifts():
-                group = _candidate_group_rect(link.polyline.bounds, side, group_width, group_height, shift, float(hint.get("labelGap", 180)))
-                if _collides_group(group, canvas, heading, participants.values(), links, link_id, occupied_labels, occupied_loops):
-                    continue
-                labels: list[MessageLabelGeometry] = []
-                cursor = group.y
-                for relation in relations:
-                    text = measurer.label(relation, Point(group.x, cursor), width_limit)
-                    labels.append(MessageLabelGeometry(relation, link_id, text))
-                    cursor += text.bounds.height + 24.0
-                occupied_labels.extend(label.text.bounds for label in labels)
-                return side, group, tuple(labels)
+            for gap in (local_gap, 110.0):
+                for anchor in anchors:
+                    for shift in _shifts():
+                        group = _candidate_group_rect(anchor, side, group_width, group_height, shift, gap)
+                        if _collides_group(group, canvas, heading, participants.values(), links, link_id, occupied_labels, occupied_loops):
+                            continue
+                        labels: list[MessageLabelGeometry] = []
+                        cursor = group.y
+                        for relation in relations:
+                            text = measurer.label(relation, Point(group.x, cursor), width_limit)
+                            labels.append(MessageLabelGeometry(relation, link_id, text))
+                            cursor += text.bounds.height + 32.0
+                        occupied_labels.extend(label.text.bounds for label in labels)
+                        return side, group, tuple(labels)
     return None
 
 
-def _arrow_geometries(link_id: str, relations: Sequence[SemanticRelation], link: StructuralLinkGeometry, first_participant_id: str) -> tuple[ArrowGeometry, ...]:
+def _arrow_geometries(
+    link_id: str,
+    relations: Sequence[SemanticRelation],
+    link: StructuralLinkGeometry,
+    first_participant_id: str,
+    label_bounds: Sequence[Rect],
+) -> tuple[ArrowGeometry, ...]:
+    """Place small arrows on a link while reserving every rendered label corridor."""
     if not relations:
         return ()
     total = link.polyline.length
-    endpoint_clearance = min(280.0, total * 0.10)
-    usable = max(420.0, total - 2 * endpoint_clearance)
-    minimum_length, minimum_gap = 120.0, 85.0
-    per_lane_capacity = max(1, int((usable + minimum_gap) // (minimum_length + minimum_gap)))
+    endpoint_clearance = min(220.0, total * 0.09)
+    usable = max(340.0, total - 2 * endpoint_clearance)
+    minimum_length, minimum_gap = 82.0, 64.0
+    # Reserve extra visual breathing room beyond the validator's hard minimum;
+    # this produces compact parallel lanes instead of a crowded single-arrow rail.
+    per_lane_capacity = min(5, max(1, int((usable + minimum_gap) // (minimum_length + minimum_gap + 50.0))))
     lane_count = max(1, ceil(len(relations) / per_lane_capacity))
     assignments: list[list[tuple[int, SemanticRelation]]] = [[] for _ in range(lane_count)]
     for index, relation in enumerate(relations):
         assignments[index % lane_count].append((index, relation))
+
+    def segment_for(distance: float, relation: SemanticRelation, lane_offset: float, length: float) -> Segment:
+        centre, direction = link.polyline.at(distance)
+        normal = Point(-direction.y, direction.x)
+        centre = centre.shifted(normal.x * lane_offset, normal.y * lane_offset)
+        half = length / 2
+        actual_direction = direction if relation.source == first_participant_id else Point(-direction.x, -direction.y)
+        return Segment(
+            Point(centre.x - actual_direction.x * half, centre.y - actual_direction.y * half),
+            Point(centre.x + actual_direction.x * half, centre.y + actual_direction.y * half),
+        )
+
     arrows: list[ArrowGeometry] = []
     for lane, assigned in enumerate(assignments):
         slot_count = len(assigned)
         spacing = usable / (slot_count + 1)
-        arrow_length = max(minimum_length, min(320.0, spacing - minimum_gap))
-        lane_offset = (lane - (lane_count - 1) / 2) * 72.0
+        arrow_length = max(minimum_length, min(210.0, spacing - minimum_gap))
+        lane_offset = (lane - (lane_count - 1) / 2) * 52.0
+        used_distances: list[float] = []
         for slot, (_, relation) in enumerate(assigned, start=1):
-            centre_distance = endpoint_clearance + slot * spacing
-            centre, direction = link.polyline.at(centre_distance)
-            normal = Point(-direction.y, direction.x)
-            centre = centre.shifted(normal.x * lane_offset, normal.y * lane_offset)
+            preferred = endpoint_clearance + slot * spacing
+            step = max(120.0, arrow_length + minimum_gap)
+            candidates = [preferred]
+            for multiple in range(1, 16):
+                candidates.extend((preferred - multiple * step, preferred + multiple * step))
+            centre_distance = preferred
+            segment = segment_for(preferred, relation, lane_offset, arrow_length)
+            for proposal in candidates:
+                if proposal - arrow_length / 2 < endpoint_clearance or proposal + arrow_length / 2 > total - endpoint_clearance:
+                    continue
+                candidate_segment = segment_for(proposal, relation, lane_offset, arrow_length)
+                if any(segment_intersects_rect(candidate_segment, bounds.expanded(18)) for bounds in label_bounds):
+                    continue
+                if any(abs(proposal - existing) < arrow_length + minimum_gap for existing in used_distances):
+                    continue
+                centre_distance, segment = proposal, candidate_segment
+                break
+            used_distances.append(centre_distance)
             half = arrow_length / 2
-            actual_direction = direction if relation.source == first_participant_id else Point(-direction.x, -direction.y)
-            start = Point(centre.x - actual_direction.x * half, centre.y - actual_direction.y * half)
-            end = Point(centre.x + actual_direction.x * half, centre.y + actual_direction.y * half)
-            arrows.append(ArrowGeometry(relation, link_id, Segment(start, end), lane, centre_distance - half, centre_distance + half))
+            arrows.append(ArrowGeometry(relation, link_id, segment, lane, centre_distance - half, centre_distance + half))
     return tuple(sorted(arrows, key=lambda arrow: arrow.relation.metadata["sequence"]))
 
 
 def _loop_candidate(owner: ParticipantGeometry, side: str, lane: int, relation: SemanticRelation, measurer: TextMeasurer, canvas: Rect, label_side: str = "right") -> SelfLoopGeometry:
     bounds = owner.bounds
-    clearance = 120.0 + lane * 110.0
-    span = 390.0
-    depth = 340.0 + lane * 80.0
+    clearance = 82.0 + lane * 72.0
+    span = 285.0
+    depth = 235.0 + lane * 55.0
     # Assign a distinct attachment slot for each self message.  The first uses the
     # object centre; later loops alternate above/below (or left/right) instead of
     # expanding into the same geometry.
-    slot = 0.0 if lane == 0 else (1.0 if lane % 2 else -1.0) * ((lane + 1) // 2) * 430.0
+    slot = 0.0 if lane == 0 else (1.0 if lane % 2 else -1.0) * ((lane + 1) // 2) * 320.0
     if side == "right":
         centre_y = bounds.center.y + slot
         loop_bounds = Rect(bounds.right, centre_y - span / 2, clearance + depth, span)
         path = Polyline((Point(bounds.right, centre_y - span * 0.28), Point(loop_bounds.right, loop_bounds.top), Point(loop_bounds.right, loop_bounds.bottom), Point(bounds.right, centre_y + span * 0.28)))
-        label_origin = Point(loop_bounds.right + 120.0, loop_bounds.top)
+        label_origin = Point(loop_bounds.right + 70.0, loop_bounds.top)
     elif side == "left":
         centre_y = bounds.center.y + slot
         loop_bounds = Rect(bounds.left - clearance - depth, centre_y - span / 2, clearance + depth, span)
         path = Polyline((Point(bounds.left, centre_y - span * 0.28), Point(loop_bounds.left, loop_bounds.top), Point(loop_bounds.left, loop_bounds.bottom), Point(bounds.left, centre_y + span * 0.28)))
-        draft = measurer.label(relation, Point(0, 0), 2500)
-        label_origin = Point(loop_bounds.left - 120.0 - draft.bounds.width, loop_bounds.top)
+        draft = measurer.label(relation, Point(0, 0), 2200)
+        label_origin = Point(loop_bounds.left - 70.0 - draft.bounds.width, loop_bounds.top)
     elif side == "above":
         centre_x = bounds.center.x + slot
         loop_bounds = Rect(centre_x - span / 2, bounds.top - clearance - depth, span, clearance + depth)
         path = Polyline((Point(centre_x - span * 0.28, bounds.top), Point(loop_bounds.left, loop_bounds.top), Point(loop_bounds.right, loop_bounds.top), Point(centre_x + span * 0.28, bounds.top)))
-        label_origin = Point(loop_bounds.right + 120.0, loop_bounds.top)
+        label_origin = Point(loop_bounds.right + 70.0, loop_bounds.top)
     elif side == "below":
         centre_x = bounds.center.x + slot
         loop_bounds = Rect(centre_x - span / 2, bounds.bottom, span, clearance + depth)
         path = Polyline((Point(centre_x - span * 0.28, bounds.bottom), Point(loop_bounds.left, loop_bounds.bottom), Point(loop_bounds.right, loop_bounds.bottom), Point(centre_x + span * 0.28, bounds.bottom)))
         if label_side == "left":
-            draft = measurer.label(relation, Point(0, 0), 2500)
-            label_origin = Point(loop_bounds.left - 120.0 - draft.bounds.width, loop_bounds.bottom - depth)
+            draft = measurer.label(relation, Point(0, 0), 2200)
+            label_origin = Point(loop_bounds.left - 70.0 - draft.bounds.width, loop_bounds.bottom - depth)
         else:
-            label_origin = Point(loop_bounds.right + 120.0, loop_bounds.bottom - depth)
+            label_origin = Point(loop_bounds.right + 70.0, loop_bounds.bottom - depth)
     else:
         raise ValueError(f"Unknown self-loop side: {side}")
-    label = MessageLabelGeometry(relation, "SELF", measurer.label(relation, label_origin, 2500))
+    label = MessageLabelGeometry(relation, "SELF", measurer.label(relation, label_origin, 2200))
     return SelfLoopGeometry(relation, owner.element.id, side, lane, path, loop_bounds, label)
 
 
@@ -639,13 +689,13 @@ def _place_self_loops(
 
 
 def _heading(view: ViewSpec, canvas: Rect) -> TextBlock:
-    measurer = TextMeasurer(72, 88)
+    measurer = TextMeasurer(54, 66)
     relation = type("Heading", (), {"metadata": {"sequence": ""}, "name": view.title})()
     # A heading is ordinary text without a visible numerical prefix.
-    lines = measurer.wrap(view.title, canvas.width - 1000)
+    lines = measurer.wrap(view.title, canvas.width - 700)
     width = max(measurer.width(line) for line in lines)
-    top = 180.0
-    return TextBlock(lines, Rect(450.0, top, width, 24.0 + len(lines) * 88.0), "", 450.0, 450.0, top + 72.0, 88.0, 72.0)
+    top = 120.0
+    return TextBlock(lines, Rect(300.0, top, width, 18.0 + len(lines) * 66.0), "", 300.0, 300.0, top + 54.0, 66.0, 54.0)
 
 
 def build_collaboration_render_plan(model: SemanticModel, view: ViewSpec) -> CollaborationRenderPlan:
@@ -664,7 +714,7 @@ def build_collaboration_render_plan(model: SemanticModel, view: ViewSpec) -> Col
     for relation in relations:
         if relation.source != relation.target:
             by_link[relation.metadata["structuralLink"]].append(relation)
-    runs: dict[str, MessageRunGeometry] = {}
+    pending_runs: dict[str, tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...], str]] = {}
     for link_data in view.options["structuralLinks"]:
         link_id = link_data["id"]
         group = tuple(sorted(by_link.get(link_id, []), key=lambda relation: relation.metadata["sequence"]))
@@ -679,12 +729,18 @@ def build_collaboration_render_plan(model: SemanticModel, view: ViewSpec) -> Col
             for relation in group:
                 text = measurer.label(relation, Point(group_bounds.x, cursor), 1800)
                 labels.append(MessageLabelGeometry(relation, link_id, text))
-                cursor += text.bounds.height + 24
+                cursor += text.bounds.height + 32
             side = "fallback"
         else:
             side, group_bounds, labels = placement
-        arrows = _arrow_geometries(link_id, group, links[link_id], link_data["participants"][0])
-        runs[link_id] = MessageRunGeometry(link_id, side, group_bounds, tuple(labels), arrows)
+        pending_runs[link_id] = (side, group_bounds, tuple(labels), group, link_data["participants"][0])
+
+    all_label_bounds = [label.text.bounds for loop in loops for label in (loop.label,)]
+    all_label_bounds.extend(label.text.bounds for _, _, labels, _, _ in pending_runs.values() for label in labels)
+    runs: dict[str, MessageRunGeometry] = {}
+    for link_id, (side, group_bounds, labels, group, first_participant_id) in pending_runs.items():
+        arrows = _arrow_geometries(link_id, group, links[link_id], first_participant_id, all_label_bounds)
+        runs[link_id] = MessageRunGeometry(link_id, side, group_bounds, labels, arrows)
     return CollaborationRenderPlan(canvas, heading, participants, links, runs, loops, issues)
 
 
