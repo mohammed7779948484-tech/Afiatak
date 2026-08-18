@@ -8,7 +8,7 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-cd06-operational-exception.png",
-      "previewHash": "e7eb02855708202d2b05c5755b25ce3ea7481e027a5025c26f72e6bcb1932ee5",
+      "previewHash": "7d99e6f7acdc31b244df70cad38a45f60b326b6438fd1aa7c7f315c766aedd86",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-18T00:00:00+00:00",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-cd06-operational-exception.png",
-    "previewHash": "e7eb02855708202d2b05c5755b25ce3ea7481e027a5025c26f72e6bcb1932ee5",
+    "previewHash": "7d99e6f7acdc31b244df70cad38a45f60b326b6438fd1aa7c7f315c766aedd86",
     "status": "awaiting-user-approval"
   }
 }

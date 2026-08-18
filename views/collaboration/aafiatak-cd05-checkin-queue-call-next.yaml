@@ -52,7 +52,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-18T00:00:00+00:00'
   notes: Awaiting the user's final visual approval after semantic and rendering QA.
-  previewHash: 5abfe2ba46b11d7f349e4f577fdde1da598b13514436212b7712913efcd76e90
+  previewHash: 1f58f2996f6ea8e9f5d45c51d53995fe8df6a2888baf7f0d79f7472f6f624694
 options:
   sourceSpecification: CD05_CheckIn_Queue_CallNext_FINAL_VERIFIED_9PASS.md
   outputStem: Aafiatak_CD05_CheckIn_Queue_CallNext

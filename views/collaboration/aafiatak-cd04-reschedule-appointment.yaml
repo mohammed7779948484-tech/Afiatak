@@ -38,7 +38,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-18T00:00:00+00:00'
   notes: Awaiting the user's final visual approval after semantic and rendering QA.
-  previewHash: 49cfbf1ae726d36cc882b180ac553053406152f6a462d91b338e3dbd049d0667
+  previewHash: dc7b79fe2c910d40a33e66636275f04b6ccf880d0667d08d04221f47eba82597
 options:
   sourceSpecification: CD04_Reschedule_Appointment_FINAL_VERIFIED_9PASS.md
   outputStem: Aafiatak_CD04_Reschedule_Appointment

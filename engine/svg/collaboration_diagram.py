@@ -143,14 +143,14 @@ def _self_loop(parent, loop) -> None:
 def _style() -> str:
     return """
       .page { fill:#FFFFFF; }
-      .page-heading { font-family:"DejaVu Serif","Times New Roman",serif; font-size:54px; font-weight:700; fill:#8B1E1E; }
-      .participant-box { fill:#FFFFFF; stroke:#222222; stroke-width:2.4; }
-      .participant-name { font-family:"DejaVu Serif","Times New Roman",serif; font-size:60px; font-weight:400; text-decoration:underline; fill:#222222; }
-      .structural-link-line { stroke:#808080; stroke-width:1.9; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-      .message-arrow { stroke:#555555; stroke-width:1.8; fill:none; stroke-linecap:round; }
-      .self-message-self { stroke:#555555; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-      .message-number { font-family:"DejaVu Serif","Times New Roman",serif; font-size:60px; font-weight:700; fill:#333333; }
-      .message-label { font-family:"DejaVu Serif","Times New Roman",serif; font-size:60px; font-weight:400; fill:#333333; }
+      .page-heading { font-family:"DejaVu Serif","Times New Roman",serif; font-size:48px; font-weight:700; fill:#8B1E1E; }
+      .participant-box { fill:#FFFFFF; stroke:#222222; stroke-width:2.2; }
+      .participant-name { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:400; text-decoration:underline; fill:#222222; }
+      .structural-link-line { stroke:#878787; stroke-width:1.55; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .message-arrow { stroke:#5D5D5D; stroke-width:1.45; fill:none; stroke-linecap:round; }
+      .self-message-self { stroke:#5D5D5D; stroke-width:1.45; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .message-number { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:700; fill:#333333; }
+      .message-label { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:400; fill:#333333; }
     """
 
 
@@ -175,8 +175,8 @@ def render_collaboration_diagram_svg(model: SemanticModel, view: ViewSpec, outpu
     definitions = ET.SubElement(root, tag("defs"))
     style = ET.SubElement(definitions, tag("style"))
     style.text = _style()
-    marker = ET.SubElement(definitions, tag("marker"), {"id": "message-arrowhead", "viewBox": "0 0 18 18", "markerWidth": "22", "markerHeight": "22", "refX": "17", "refY": "9", "orient": "auto", "markerUnits": "userSpaceOnUse"})
-    ET.SubElement(marker, tag("path"), {"d": "M 1 1 L 17 9 L 1 17", "fill": "none", "stroke": "#555555", "stroke-width": "2.2", "stroke-linecap": "round", "stroke-linejoin": "round"})
+    marker = ET.SubElement(definitions, tag("marker"), {"id": "message-arrowhead", "viewBox": "0 0 14 14", "markerWidth": "15", "markerHeight": "15", "refX": "13", "refY": "7", "orient": "auto", "markerUnits": "userSpaceOnUse"})
+    ET.SubElement(marker, tag("path"), {"d": "M 1 1 L 13 7 L 1 13", "fill": "none", "stroke": "#5D5D5D", "stroke-width": "1.6", "stroke-linecap": "round", "stroke-linejoin": "round"})
     ET.SubElement(root, tag("rect"), {"x": "0", "y": "0", "width": f"{plan.canvas.width:.2f}", "height": f"{plan.canvas.height:.2f}", "class": "page"})
     _heading(root, plan.heading)
 

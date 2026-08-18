@@ -12,16 +12,16 @@ class CollaborationLayout:
     inherits the compact lecturer-style network without per-page coordinate patches.
     """
 
-    width: int = 14000
-    height: int = 9000
+    width: int = 13200
+    height: int = 8400
     composition_width: int = 16000
     composition_height: int = 10400
-    network_scale: float = 0.86
-    participant_width: int = 1950
-    participant_height: int = 620
-    participant_font_size: int = 60
-    message_font_size: int = 60
-    message_line_height: int = 74
+    network_scale: float = 0.78
+    participant_width: int = 1840
+    participant_height: int = 580
+    participant_font_size: int = 58
+    message_font_size: int = 58
+    message_line_height: int = 70
 
 
 # This is intentionally not a list of free-floating message coordinates.  Each
@@ -120,7 +120,7 @@ LAYOUTS: dict[str, tuple[CollaborationLayout, dict]] = {
         },
     ),
     "aafiatak-cd05-checkin-queue-call-next": (
-        CollaborationLayout(participant_width=1900),
+        CollaborationLayout(participant_width=1800),
         {
             "participants": {
                 "participant.cd05.aafiatak-backend": (7850, 5000),

@@ -8,8 +8,8 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-cd01-patient-registration-otp.png",
-      "previewHash": "a21ebcec2b21fa42e11adc69f8424d6b77775e5def3aa2784c84a974ec8d9aaf",
-      "hashMatchesRecordedPreview": false,
+      "previewHash": "ed9f79444b6f3fccd384dd4e7f7a0a568f7c36465c5928055bb7493a91cd0bd2",
+      "hashMatchesRecordedPreview": true,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-18T00:00:00+00:00",
       "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-cd01-patient-registration-otp.png",
-    "previewHash": "a21ebcec2b21fa42e11adc69f8424d6b77775e5def3aa2784c84a974ec8d9aaf",
+    "previewHash": "ed9f79444b6f3fccd384dd4e7f7a0a568f7c36465c5928055bb7493a91cd0bd2",
     "status": "awaiting-user-approval"
   }
 }

@@ -54,7 +54,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-18T00:00:00+00:00'
   notes: Awaiting the user's final visual approval after semantic and rendering QA.
-  previewHash: eb1b1b976e21ed61cd9919587e3456f277dc3306291e5bc51f518d5f075bb965
+  previewHash: bb330d3d6336ca2bf21083149a455c414efc13af5c4f32b12f58671d59a8208a
 options:
   sourceSpecification: CD02_Book_Appointment_FULL_PAYMENT_FINAL_VERIFIED_9PASS.md
   outputStem: Aafiatak_CD02_Book_Appointment_FULL_PAYMENT
