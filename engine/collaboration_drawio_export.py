@@ -45,15 +45,14 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
         counter += 1
         return result
 
+    # The lecture reference uses an unframed white canvas with no diagram title band.
     page = cell(cells, next_id("page"), "", style="rounded=0;html=1;fillColor=#FFFFFF;strokeColor=none;pointerEvents=0;", vertex="1", parent="1")
     geometry(page, 0, 0, layout.width, layout.height)
-    title = cell(cells, next_id("title"), view.title, style="text;html=1;align=center;verticalAlign=middle;fontSize=64;fontStyle=1;fontColor=#111111;whiteSpace=wrap;", vertex="1", parent="1")
-    geometry(title, 700, 65, layout.width - 1400, 170)
 
     node_ids: dict[str, str] = {}
     for item in participants:
         cx, cy = positions[item.id]
-        node = cell(cells, next_id("participant"), f"<b>{item.name}</b>", style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=3;fontColor=#111111;fontSize=34;align=center;verticalAlign=middle;", vertex="1", parent="1")
+        node = cell(cells, next_id("participant"), f"<u>{item.name}</u>", style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#222222;strokeWidth=2.5;fontColor=#222222;fontFamily=Times New Roman;fontSize=48;fontStyle=4;align=center;verticalAlign=middle;", vertex="1", parent="1")
         geometry(node, cx - layout.participant_width / 2, cy - layout.participant_height / 2, layout.participant_width, layout.participant_height)
         node_ids[item.id] = node.attrib["id"]
 
@@ -63,7 +62,7 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
         start = rect_edge_point(positions[source_id], positions[target_id], layout.participant_width / 2, layout.participant_height / 2)
         end = rect_edge_point(positions[target_id], positions[source_id], layout.participant_width / 2, layout.participant_height / 2)
         link_geometry[link["id"]] = (start, end)
-        edge_with_points(cells, next_id(f"link-{link['id']}"), start, end, "html=1;endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=3;rounded=0;")
+        edge_with_points(cells, next_id(f"link-{link['id']}"), start, end, "html=1;endArrow=none;startArrow=none;strokeColor=#777777;strokeWidth=2;rounded=0;")
 
     by_link: dict[str, list] = {}
     self_messages: list = []
@@ -74,10 +73,11 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
             by_link.setdefault(relation.metadata["structuralLink"], []).append(relation)
 
     def label(x: float, y: float, width: float, relation) -> float:
-        lines = wrap(relation.name, max(28, int((width - 170) / 18)))
-        height = max(94, 36 + 48 * len(lines))
-        numbered = f'<b>{relation.metadata["sequence"]}.</b>&nbsp;&nbsp;{"<br/>".join(lines)}'
-        text = cell(cells, next_id("message-label"), numbered, style="text;html=1;align=left;verticalAlign=middle;fontSize=30;fontColor=#111111;fillColor=#FFFFFF;strokeColor=#D0D0D0;whiteSpace=wrap;spacingLeft=22;", vertex="1", parent="1")
+        lines = wrap(relation.name, max(22, int((width - 100) / 31)))
+        height = max(112, 24 + 72 * len(lines))
+        numbered = f'{relation.metadata["sequence"]}.&nbsp;&nbsp;{"<br/>".join(lines)}'
+        # Text floats beside the link as in the lecturer reference; no card, fill, or border is drawn.
+        text = cell(cells, next_id("message-label"), numbered, style="text;html=1;align=left;verticalAlign=top;fontSize=50;fontColor=#333333;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
         geometry(text, x, y, width, height)
         return y + height + 18
 
@@ -98,23 +98,19 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
             length = min(340, max(190, math.dist(start, end) * 0.14))
             arrow_start = (centre[0] - ux * length / 2, centre[1] - uy * length / 2)
             arrow_end = (centre[0] + ux * length / 2, centre[1] + uy * length / 2)
-            edge_with_points(cells, next_id(f"message-{relation.metadata['sequence']}"), arrow_start, arrow_end, "html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=3;rounded=0;")
+            edge_with_points(cells, next_id(f"message-{relation.metadata['sequence']}"), arrow_start, arrow_end, "html=1;endArrow=block;endFill=1;strokeColor=#777777;strokeWidth=2;rounded=0;")
             cursor_y = label(box_x, cursor_y, box_width, relation)
 
     for relation in self_messages:
         cx, cy = positions[relation.source]
         box_x, box_y, box_width = composition["selfMessages"][relation.id]["box"]
-        right = cx + layout.participant_width / 2
-        loop_x = right + 460
-        top = cy - 130 if relation.metadata["sequence"] % 2 else cy + 140
-        bottom = top + 250
-        edge = cell(cells, next_id(f"self-{relation.metadata['sequence']}"), "", style="html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=3;rounded=0;", edge="1", parent="1")
+        top = cy - layout.participant_height / 2
+        edge = cell(cells, next_id(f"self-{relation.metadata['sequence']}"), "", style="html=1;endArrow=block;endFill=1;strokeColor=#777777;strokeWidth=2;rounded=1;curved=1;", edge="1", parent="1")
         geo = ET.SubElement(edge, "mxGeometry", {"relative": "1", "as": "geometry"})
-        ET.SubElement(geo, "mxPoint", {"x": f"{right:g}", "y": f"{top:g}", "as": "sourcePoint"})
-        ET.SubElement(geo, "mxPoint", {"x": f"{right:g}", "y": f"{bottom:g}", "as": "targetPoint"})
+        ET.SubElement(geo, "mxPoint", {"x": f"{cx - 180:g}", "y": f"{top:g}", "as": "sourcePoint"})
+        ET.SubElement(geo, "mxPoint", {"x": f"{cx + 180:g}", "y": f"{top:g}", "as": "targetPoint"})
         points = ET.SubElement(geo, "Array", {"as": "points"})
-        ET.SubElement(points, "mxPoint", {"x": f"{loop_x:g}", "y": f"{top:g}"})
-        ET.SubElement(points, "mxPoint", {"x": f"{loop_x:g}", "y": f"{bottom:g}"})
+        ET.SubElement(points, "mxPoint", {"x": f"{cx:g}", "y": f"{top - 520:g}"})
         label(box_x, box_y, box_width, relation)
 
     output.parent.mkdir(parents=True, exist_ok=True)

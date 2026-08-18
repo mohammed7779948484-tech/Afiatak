@@ -38,7 +38,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-18T00:00:00+00:00'
   notes: Awaiting the user's final visual approval after semantic and rendering QA.
-  previewHash: 4b7e9e4df5007fc30f29a1ab0963ad3676fb335dcabce69404162f29661f7e6f
+  previewHash: b269a14094f5465b7814c176e69705aebfc954c1a4d41f5f3c28f7c584f8897b
 options:
   sourceSpecification: CD01_Patient_Registration_WhatsApp_OTP_FINAL_VERIFIED_9PASS.md
   outputStem: Aafiatak_CD01_Patient_Registration_OTP

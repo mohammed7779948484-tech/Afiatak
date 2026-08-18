@@ -46,7 +46,7 @@ visualReview:
   reviewer: Manus automated QA
   reviewedAt: '2026-08-18T00:00:00+00:00'
   notes: Awaiting the user's final visual approval after semantic and rendering QA.
-  previewHash: 7aa0495da6a9df46bc7caf63d2a9e4c13ea1312522e4bc40badec89673de3f19
+  previewHash: 168c49fd71570cd503202c1d7150fb18d44a4aec0bccadefec405f5010779409
 options:
   sourceSpecification: CD06_Resolve_Operational_Exception_FINAL_VERIFIED_9PASS.md
   outputStem: Aafiatak_CD06_Operational_Exception

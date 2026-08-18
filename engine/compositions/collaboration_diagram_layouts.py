@@ -8,10 +8,10 @@ class CollaborationLayout:
     width: int = 16000
     height: int = 10400
     title_y: int = 250
-    participant_width: int = 2100
-    participant_height: int = 620
-    message_font_size: int = 34
-    participant_font_size: int = 48
+    participant_width: int = 2350
+    participant_height: int = 760
+    message_font_size: int = 62
+    participant_font_size: int = 64
 
 
 # Each composition is a graph-derived spatial arrangement.  Participants use

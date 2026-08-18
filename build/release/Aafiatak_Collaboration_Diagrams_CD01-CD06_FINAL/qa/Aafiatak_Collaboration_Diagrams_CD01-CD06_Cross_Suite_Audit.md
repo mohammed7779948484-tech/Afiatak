@@ -43,3 +43,9 @@ The CD-01–CD-06 family is internally consistent, source-matched, visually cohe
 ## Merged-PDF Verification
 
 The merged file `Aafiatak_Collaboration_Diagrams_CD01-CD06_FINAL.pdf` was generated from the six final SVG masters in the ordered sequence CD-01, CD-02, CD-03, CD-04, CD-05, and CD-06. It reports **six pages**, each **3370.39×2383.94 pt (A0 landscape)**, and `pdfimages -list` reports no embedded raster-image objects. A multipage opening check confirmed that the generated pages preserve the expected diagram-family appearance and ordered titles.
+
+## Visual-Reference Correction — 18 August 2026
+
+The earlier delivery was withdrawn from visual review because its title band, page frame, message-card panels, and network-report spacing did not match the lecturer’s Collaboration Diagram reference. The corrected delivery was regenerated from the same source-matched semantic models and Views. It now uses an unframed white canvas, underlined participant object names, thin reusable communication links, unboxed message labels, directional arrows on links, and self-message loops above the relevant object. No semantic participant, structural link, message number, sender, receiver, label, or specified self-message was changed.
+
+The corrected CD-01, CD-02, CD-05, and CD-06 vector PDFs were opened individually, while all six diagrams were compared as a refreshed contact sheet rendered from the corrected vector PDFs. Source-match audits and QA preview-hash checks passed for all six diagrams. The review status remains **`awaiting-user-approval`**.

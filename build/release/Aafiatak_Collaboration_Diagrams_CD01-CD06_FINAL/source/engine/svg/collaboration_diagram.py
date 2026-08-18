@@ -94,9 +94,9 @@ def draw_participant(parent, item, centre: tuple[float, float], layout) -> None:
         tag("rect"),
         {"x": f"{x:g}", "y": f"{y:g}", "width": str(layout.participant_width), "height": str(layout.participant_height), "class": "participant-box"},
     )
-    name_lines = wrap(item.name, 29)
-    text_y = cy - (len(name_lines) - 1) * 30 + 17
-    add_wrapped_text(group, name_lines, cx, text_y, "participant-name", 60, "middle")
+    name_lines = wrap(item.name, 24)
+    text_y = cy - (len(name_lines) - 1) * 38 + 24
+    add_wrapped_text(group, name_lines, cx, text_y, "participant-name", 76, "middle")
 
 
 def draw_structural_link(parent, link: dict, positions: dict[str, tuple[float, float]], layout) -> tuple[tuple[float, float], tuple[float, float]]:
@@ -129,10 +129,10 @@ def draw_message(parent, relation, start: tuple[float, float], end: tuple[float,
     sequence = relation.metadata["sequence"]
     label = relation.name
     x, _, width = label_box
-    max_chars = max(28, int((width - 170) / 18))
+    max_chars = max(22, int((width - 100) / 31))
     lines = wrap(label, max_chars)
-    line_height = 48
-    row_height = max(94, 36 + len(lines) * line_height)
+    line_height = 72
+    row_height = max(112, 24 + len(lines) * line_height)
     y = cursor_y
     group = ET.SubElement(
         parent,
@@ -172,9 +172,9 @@ def draw_message(parent, relation, start: tuple[float, float], end: tuple[float,
         tag("line"),
         {"x1": f"{arrow_start[0]:g}", "y1": f"{arrow_start[1]:g}", "x2": f"{arrow_end[0]:g}", "y2": f"{arrow_end[1]:g}", "class": "message-arrow", "marker-end": "url(#message-arrowhead)"},
     )
-    ET.SubElement(group, tag("rect"), {"x": f"{x:g}", "y": f"{y:g}", "width": f"{width:g}", "height": f"{row_height:g}", "class": "message-background"})
-    add_text(group, f"{sequence}.", x + 28, y + 58, "message-number")
-    add_wrapped_text(group, lines, x + 112, y + 54, "message-label", line_height)
+    # Lecturer reference: message text floats beside its reusable link; it is not a card or a panel.
+    add_text(group, f"{sequence}.", x, y + 58, "message-number")
+    add_wrapped_text(group, lines, x + 122, y + 54, "message-label", line_height)
     return y + row_height + 18
 
 
@@ -182,14 +182,13 @@ def draw_self_message(parent, relation, item, centre: tuple[float, float], defin
     sequence = relation.metadata["sequence"]
     label = relation.name
     box_x, box_y, box_width = definition["box"]
-    label_lines = wrap(label, max(26, int((box_width - 170) / 18)))
-    line_height = 48
-    box_height = max(94, 36 + len(label_lines) * line_height)
+    label_lines = wrap(label, max(22, int((box_width - 100) / 31)))
+    line_height = 72
     cx, cy = centre
-    box_right = cx + layout.participant_width / 2
-    loop_x = box_right + 460
-    loop_top = cy - 130 if sequence % 2 else cy + 140
-    loop_bottom = loop_top + 250
+    box_top = cy - layout.participant_height / 2
+    loop_left = cx - 180
+    loop_right = cx + 180
+    loop_peak = box_top - 520
     group = ET.SubElement(
         parent,
         tag("g"),
@@ -208,10 +207,10 @@ def draw_self_message(parent, relation, item, centre: tuple[float, float], defin
             "aria-label": f"{sequence}. {label}",
         },
     )
-    ET.SubElement(group, tag("path"), {"d": f"M {box_right:g} {loop_top:g} H {loop_x:g} V {loop_bottom:g} H {box_right:g}", "class": "self-message-self", "marker-end": "url(#message-arrowhead)"})
-    ET.SubElement(group, tag("rect"), {"x": f"{box_x:g}", "y": f"{box_y:g}", "width": f"{box_width:g}", "height": f"{box_height:g}", "class": "message-background"})
-    add_text(group, f"{sequence}.", box_x + 28, box_y + 58, "message-number")
-    add_wrapped_text(group, label_lines, box_x + 112, box_y + 54, "message-label", line_height)
+    # The lecturer reference draws a small loop immediately above the object box.
+    ET.SubElement(group, tag("path"), {"d": f"M {loop_left:g} {box_top:g} C {cx - 390:g} {loop_peak:g}, {cx + 390:g} {loop_peak:g}, {loop_right:g} {box_top:g}", "class": "self-message-self", "marker-end": "url(#message-arrowhead)"})
+    add_text(group, f"{sequence}.", box_x, box_y + 58, "message-number")
+    add_wrapped_text(group, label_lines, box_x + 122, box_y + 54, "message-label", line_height)
 
 
 def render_collaboration_diagram_svg(model: SemanticModel, view: ViewSpec, output: Path) -> None:
@@ -242,22 +241,18 @@ def render_collaboration_diagram_svg(model: SemanticModel, view: ViewSpec, outpu
     defs = ET.SubElement(root, tag("defs"))
     style = ET.SubElement(defs, tag("style"))
     style.text = """
-      .page { fill:#FFFFFF; } .page-border { fill:none; stroke:#111111; stroke-width:3; }
-      .participant-box { fill:#FFFFFF; stroke:#111111; stroke-width:5; }
-      .participant-name { font-family:Arial,sans-serif; font-size:48px; font-weight:700; fill:#111111; }
-      .structural-link-line { stroke:#111111; stroke-width:5; fill:none; stroke-linecap:round; }
-      .message-arrow { stroke:#111111; stroke-width:5; fill:none; stroke-linecap:round; }
-      .self-message-self { stroke:#111111; stroke-width:5; fill:none; stroke-linejoin:round; }
-      .message-background { fill:#FFFFFF; fill-opacity:.985; stroke:#D0D0D0; stroke-width:1.5; }
-      .message-number { font-family:Arial,sans-serif; font-size:34px; font-weight:700; fill:#111111; }
-      .message-label { font-family:Arial,sans-serif; font-size:34px; font-weight:500; fill:#111111; }
-      .page-title { font-family:Arial,sans-serif; font-size:72px; font-weight:700; fill:#111111; }
+      .page { fill:#FFFFFF; }
+      .participant-box { fill:#FFFFFF; stroke:#222222; stroke-width:3.5; }
+      .participant-name { font-family:"Times New Roman",serif; font-size:64px; font-weight:400; text-decoration:underline; fill:#222222; }
+      .structural-link-line { stroke:#777777; stroke-width:2.5; fill:none; stroke-linecap:round; }
+      .message-arrow { stroke:#777777; stroke-width:2.5; fill:none; stroke-linecap:round; }
+      .self-message-self { stroke:#777777; stroke-width:2.5; fill:none; stroke-linejoin:round; }
+      .message-number { font-family:"Times New Roman",serif; font-size:62px; font-weight:400; fill:#333333; }
+      .message-label { font-family:"Times New Roman",serif; font-size:62px; font-weight:400; fill:#333333; }
     """
     marker = ET.SubElement(defs, tag("marker"), {"id": "message-arrowhead", "viewBox": "0 0 14 12", "markerWidth": "18", "markerHeight": "16", "refX": "12", "refY": "6", "orient": "auto", "markerUnits": "strokeWidth"})
-    ET.SubElement(marker, tag("path"), {"d": "M 0 0 L 13 6 L 0 12 Z", "fill": "#111111"})
+    ET.SubElement(marker, tag("path"), {"d": "M 0 0 L 13 6 L 0 12 Z", "fill": "#777777"})
     ET.SubElement(root, tag("rect"), {"x": "0", "y": "0", "width": str(layout.width), "height": str(layout.height), "class": "page"})
-    ET.SubElement(root, tag("rect"), {"x": "90", "y": "90", "width": str(layout.width - 180), "height": str(layout.height - 180), "class": "page-border"})
-    add_text(root, view.title, layout.width / 2, layout.title_y, "page-title", "middle")
 
     link_layer = ET.SubElement(root, tag("g"), {"aria-label": "Reusable structural communication links"})
     link_geometries: dict[str, tuple[tuple[float, float], tuple[float, float]]] = {}
