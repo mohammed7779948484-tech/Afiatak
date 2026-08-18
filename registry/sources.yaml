@@ -245,3 +245,39 @@ sources:
     sha256: 370423b6b59539f17a7539818271daf798a521afd0f883be986d9297190e321b
     immutable: true
     authority_precedence: 5
+  - name: cd01-patient-registration-otp-final-verified-spec
+    path: docs/collaboration-specs/CD01_Patient_Registration_WhatsApp_OTP_FINAL_VERIFIED_9PASS.md
+    role: final_cd01_collaboration_execution
+    sha256: 64335c0b90c64f308be228d9e0d837fc24ddb7c59bbb97b4ff04d83905b3593e
+    immutable: true
+    authority_precedence: 5
+  - name: cd02-book-appointment-full-payment-final-verified-spec
+    path: docs/collaboration-specs/CD02_Book_Appointment_FULL_PAYMENT_FINAL_VERIFIED_9PASS.md
+    role: final_cd02_collaboration_execution
+    sha256: 0e614ff57a554fc17b63958885d76df00f1c0f6b5e043b1f3d22f4d1b5cebdde
+    immutable: true
+    authority_precedence: 5
+  - name: cd03-cancel-appointment-full-refund-final-verified-spec
+    path: docs/collaboration-specs/CD03_Cancel_Appointment_Full_Refund_Required_FINAL_VERIFIED_9PASS.md
+    role: final_cd03_collaboration_execution
+    sha256: 80f07d2330785b9d16f016f1a89326746d9f41e881ef28619f17855347a4aaf6
+    immutable: true
+    authority_precedence: 5
+  - name: cd04-reschedule-appointment-final-verified-spec
+    path: docs/collaboration-specs/CD04_Reschedule_Appointment_FINAL_VERIFIED_9PASS.md
+    role: final_cd04_collaboration_execution
+    sha256: f8f1886e3e45fb10ac0b6ea97fa7116585abb820e8b0d5b6814afc6024ce4b30
+    immutable: true
+    authority_precedence: 5
+  - name: cd05-checkin-queue-call-next-final-verified-spec
+    path: docs/collaboration-specs/CD05_CheckIn_Queue_CallNext_FINAL_VERIFIED_9PASS.md
+    role: final_cd05_collaboration_execution
+    sha256: bd2f4f7afce9de76f67b6b96bff97368cb2a4a0ff0972feda706c63022ebfda0
+    immutable: true
+    authority_precedence: 5
+  - name: cd06-operational-exception-final-verified-spec
+    path: docs/collaboration-specs/CD06_Resolve_Operational_Exception_FINAL_VERIFIED_9PASS.md
+    role: final_cd06_collaboration_execution
+    sha256: 2199d4976815a54cb1e73fc08092b054634b6cf41557d594c20a12e96aa502eb
+    immutable: true
+    authority_precedence: 5

@@ -1,0 +1,109 @@
+id: aafiatak-cd03-cancel-appointment-full-refund
+diagramType: communication
+title: "Collaboration Diagram \u2014 Cancel Appointment \u2014 Full Refund Required"
+model: ../../model/catalog/collaborations/aafiatak-cd03-cancel-appointment-full-refund.yaml
+include:
+- participant.cd03.patient
+- participant.cd03.patient-application
+- participant.cd03.aafiatak-backend
+- participant.cd03.aafiatak-data-store
+- participant.cd03.payment-gateway
+- participant.cd03.notification-service
+relations:
+- message.cd03.01
+- message.cd03.02
+- message.cd03.03
+- message.cd03.04
+- message.cd03.05
+- message.cd03.06
+- message.cd03.07
+- message.cd03.08
+- message.cd03.09
+- message.cd03.10
+- message.cd03.11
+- message.cd03.12
+- message.cd03.13
+- message.cd03.14
+- message.cd03.15
+- message.cd03.16
+- message.cd03.17
+- message.cd03.18
+layoutProfile: lecturer-collaboration-network
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-18T00:00:00+00:00'
+  notes: Awaiting the user's final visual approval after semantic and rendering QA.
+  previewHash: b8b5e4e5c6cf02669b9edb8925c3d17a1808ceae8f6ec88d41a0e227d47d8ef8
+options:
+  sourceSpecification: CD03_Cancel_Appointment_Full_Refund_Required_FINAL_VERIFIED_9PASS.md
+  outputStem: Aafiatak_CD03_Cancel_Appointment_Full_Refund
+  expectedParticipantCount: 6
+  expectedStructuralLinkCount: 5
+  expectedMessageCount: 18
+  expectedSelfMessageSequences:
+  - 5
+  structuralLinks:
+  - id: L01
+    participants:
+    - participant.cd03.aafiatak-backend
+    - participant.cd03.aafiatak-data-store
+    participantNames:
+    - Aafiatak Backend
+    - Aafiatak Data Store
+    messageSequences:
+    - 3
+    - 4
+    - 9
+    - 10
+    - 13
+    - 14
+  - id: L02
+    participants:
+    - participant.cd03.aafiatak-backend
+    - participant.cd03.notification-service
+    participantNames:
+    - Aafiatak Backend
+    - Notification Service
+    messageSequences:
+    - 15
+    - 16
+  - id: L03
+    participants:
+    - participant.cd03.aafiatak-backend
+    - participant.cd03.patient-application
+    participantNames:
+    - Aafiatak Backend
+    - Patient Application
+    messageSequences:
+    - 2
+    - 6
+    - 8
+    - 17
+  - id: L04
+    participants:
+    - participant.cd03.aafiatak-backend
+    - participant.cd03.payment-gateway
+    participantNames:
+    - Aafiatak Backend
+    - Payment Gateway
+    messageSequences:
+    - 11
+    - 12
+  - id: L05
+    participants:
+    - participant.cd03.patient
+    - participant.cd03.patient-application
+    participantNames:
+    - Patient
+    - Patient Application
+    messageSequences:
+    - 1
+    - 7
+    - 18
+  lecturerStyle: 'Academic Collaboration/Communication: object boxes, reusable structural links, numbered directional messages,
+    self loops only where specified.'

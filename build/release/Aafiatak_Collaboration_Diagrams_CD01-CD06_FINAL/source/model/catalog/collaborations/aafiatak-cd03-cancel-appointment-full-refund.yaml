@@ -1,0 +1,388 @@
+modelId: aafiatak-cd03-cancel-appointment-full-refund
+version: '1.0'
+elements:
+- id: participant.cd03.patient
+  name: Patient
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient
+    participantNumber: 1
+- id: participant.cd03.patient-application
+  name: Patient Application
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient Application
+    participantNumber: 2
+- id: participant.cd03.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 3
+- id: participant.cd03.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 4
+- id: participant.cd03.payment-gateway
+  name: Payment Gateway
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Payment Gateway
+    participantNumber: 5
+- id: participant.cd03.notification-service
+  name: Notification Service
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd03
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Notification Service
+    participantNumber: 6
+relations:
+- id: message.cd03.01
+  type: message
+  source: participant.cd03.patient
+  target: participant.cd03.patient-application
+  name: Open confirmed Appointment and choose Cancel
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Patient
+    receiver: Patient Application
+    exactLabel: Open confirmed Appointment and choose Cancel
+    structuralLink: L05
+- id: message.cd03.02
+  type: message
+  source: participant.cd03.patient-application
+  target: participant.cd03.aafiatak-backend
+  name: Request cancellation consequence(appointmentId)
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Request cancellation consequence(appointmentId)
+    structuralLink: L03
+- id: message.cd03.03
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.aafiatak-data-store
+  name: Load Appointment snapshot + payment + check-in + group timing
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Load Appointment snapshot + payment + check-in + group timing
+    structuralLink: L01
+- id: message.cd03.04
+  type: message
+  source: participant.cd03.aafiatak-data-store
+  target: participant.cd03.aafiatak-backend
+  name: Saved policy / payment / eligibility context
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Saved policy / payment / eligibility context
+    structuralLink: L01
+- id: message.cd03.05
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.aafiatak-backend
+  name: Validate ownership, CONFIRMED, not checked-in, group not started
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Backend
+    receiver: Aafiatak Backend
+    exactLabel: Validate ownership, CONFIRMED, not checked-in, group not started
+    structuralLink: SELF
+- id: message.cd03.06
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.patient-application
+  name: 'Display cancellation allowed + expected refund: FULL or ZERO'
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: 'Display cancellation allowed + expected refund: FULL or ZERO'
+    structuralLink: L03
+- id: message.cd03.07
+  type: message
+  source: participant.cd03.patient
+  target: participant.cd03.patient-application
+  name: Confirm cancellation
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: Patient
+    receiver: Patient Application
+    exactLabel: Confirm cancellation
+    structuralLink: L05
+- id: message.cd03.08
+  type: message
+  source: participant.cd03.patient-application
+  target: participant.cd03.aafiatak-backend
+  name: Cancel Appointment
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Cancel Appointment
+    structuralLink: L03
+- id: message.cd03.09
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.aafiatak-data-store
+  name: Atomic revalidation + set CANCELLED_BY_PATIENT + write history + release same-group capacity when eligible
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Atomic revalidation + set CANCELLED_BY_PATIENT + write history + release same-group capacity when eligible
+    structuralLink: L01
+- id: message.cd03.10
+  type: message
+  source: participant.cd03.aafiatak-data-store
+  target: participant.cd03.aafiatak-backend
+  name: Cancellation committed + refund decision + capacity result
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Cancellation committed + refund decision + capacity result
+    structuralLink: L01
+- id: message.cd03.11
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.payment-gateway
+  name: Initiate full collected-amount refund
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Aafiatak Backend
+    receiver: Payment Gateway
+    exactLabel: Initiate full collected-amount refund
+    structuralLink: L04
+- id: message.cd03.12
+  type: message
+  source: participant.cd03.payment-gateway
+  target: participant.cd03.aafiatak-backend
+  name: Refund result / pending reference
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Payment Gateway
+    receiver: Aafiatak Backend
+    exactLabel: Refund result / pending reference
+    structuralLink: L04
+- id: message.cd03.13
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.aafiatak-data-store
+  name: Persist REFUND_PENDING / REFUNDED / review status
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Persist REFUND_PENDING / REFUNDED / review status
+    structuralLink: L01
+- id: message.cd03.14
+  type: message
+  source: participant.cd03.aafiatak-data-store
+  target: participant.cd03.aafiatak-backend
+  name: Payment refund state saved
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Payment refund state saved
+    structuralLink: L01
+- id: message.cd03.15
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.notification-service
+  name: Send Patient/facility cancellation notification
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send Patient/facility cancellation notification
+    structuralLink: L02
+- id: message.cd03.16
+  type: message
+  source: participant.cd03.notification-service
+  target: participant.cd03.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L02
+- id: message.cd03.17
+  type: message
+  source: participant.cd03.aafiatak-backend
+  target: participant.cd03.patient-application
+  name: Cancelled Appointment + independent refund/payment status
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Cancelled Appointment + independent refund/payment status
+    structuralLink: L03
+- id: message.cd03.18
+  type: message
+  source: participant.cd03.patient-application
+  target: participant.cd03.patient
+  name: Display cancellation result
+  sourceRefs:
+  - source: cd03-cancel-appointment-full-refund-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Patient Application
+    receiver: Patient
+    exactLabel: Display cancellation result
+    structuralLink: L05

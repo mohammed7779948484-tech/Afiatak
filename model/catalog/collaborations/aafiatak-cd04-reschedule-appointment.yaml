@@ -1,0 +1,389 @@
+modelId: aafiatak-cd04-reschedule-appointment
+version: '1.0'
+elements:
+- id: participant.cd04.booking-and-reception-staff
+  name: Booking & Reception Staff
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Booking & Reception Staff
+    participantNumber: 1
+- id: participant.cd04.facility-web-dashboard
+  name: Facility Web Dashboard
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Facility Web Dashboard
+    participantNumber: 2
+- id: participant.cd04.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 3
+- id: participant.cd04.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 4
+- id: participant.cd04.notification-service
+  name: Notification Service
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Notification Service
+    participantNumber: 5
+- id: participant.cd04.patient
+  name: Patient
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd04
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient
+    participantNumber: 6
+relations:
+- id: message.cd04.01
+  type: message
+  source: participant.cd04.booking-and-reception-staff
+  target: participant.cd04.facility-web-dashboard
+  name: Open CONFIRMED Appointment and choose Reschedule
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Open CONFIRMED Appointment and choose Reschedule
+    structuralLink: L04
+- id: message.cd04.02
+  type: message
+  source: participant.cd04.facility-web-dashboard
+  target: participant.cd04.aafiatak-backend
+  name: Load reschedule context
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Load reschedule context
+    structuralLink: L02
+- id: message.cd04.03
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.aafiatak-data-store
+  name: Read Appointment snapshot/history/current capacity
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Read Appointment snapshot/history/current capacity
+    structuralLink: L01
+- id: message.cd04.04
+  type: message
+  source: participant.cd04.aafiatak-data-store
+  target: participant.cd04.aafiatak-backend
+  name: Current booking and governing terms
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Current booking and governing terms
+    structuralLink: L01
+- id: message.cd04.05
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.facility-web-dashboard
+  name: Display current snapshot and permitted destination context
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Display current snapshot and permitted destination context
+    structuralLink: L02
+- id: message.cd04.06
+  type: message
+  source: participant.cd04.booking-and-reception-staff
+  target: participant.cd04.facility-web-dashboard
+  name: Select agreed new day/group/session
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Select agreed new day/group/session
+    structuralLink: L04
+- id: message.cd04.07
+  type: message
+  source: participant.cd04.facility-web-dashboard
+  target: participant.cd04.aafiatak-backend
+  name: Validate destination
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Validate destination
+    structuralLink: L02
+- id: message.cd04.08
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.aafiatak-data-store
+  name: Check same ServiceOffering/terms + current destination bookability
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Check same ServiceOffering/terms + current destination bookability
+    structuralLink: L01
+- id: message.cd04.09
+  type: message
+  source: participant.cd04.aafiatak-data-store
+  target: participant.cd04.aafiatak-backend
+  name: Destination valid and currently bookable
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Destination valid and currently bookable
+    structuralLink: L01
+- id: message.cd04.10
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.facility-web-dashboard
+  name: Display valid proposed move
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Display valid proposed move
+    structuralLink: L02
+- id: message.cd04.11
+  type: message
+  source: participant.cd04.booking-and-reception-staff
+  target: participant.cd04.facility-web-dashboard
+  name: Confirm reschedule and record reason
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Confirm reschedule and record reason
+    structuralLink: L04
+- id: message.cd04.12
+  type: message
+  source: participant.cd04.facility-web-dashboard
+  target: participant.cd04.aafiatak-backend
+  name: Commit reschedule
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Commit reschedule
+    structuralLink: L02
+- id: message.cd04.13
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.aafiatak-data-store
+  name: 'Atomic transaction: secure destination first; update schedule/group; release old seat after secure; write history'
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: 'Atomic transaction: secure destination first; update schedule/group; release old seat after secure; write
+      history'
+    structuralLink: L01
+- id: message.cd04.14
+  type: message
+  source: participant.cd04.aafiatak-data-store
+  target: participant.cd04.aafiatak-backend
+  name: Reschedule committed; Appointment remains CONFIRMED
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Reschedule committed; Appointment remains CONFIRMED
+    structuralLink: L01
+- id: message.cd04.15
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.notification-service
+  name: Send appointment-change notification
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send appointment-change notification
+    structuralLink: L03
+- id: message.cd04.16
+  type: message
+  source: participant.cd04.notification-service
+  target: participant.cd04.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L03
+- id: message.cd04.17
+  type: message
+  source: participant.cd04.notification-service
+  target: participant.cd04.patient
+  name: Deliver new agreed arrival details
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Notification Service
+    receiver: Patient
+    exactLabel: Deliver new agreed arrival details
+    structuralLink: L05
+- id: message.cd04.18
+  type: message
+  source: participant.cd04.aafiatak-backend
+  target: participant.cd04.facility-web-dashboard
+  name: Display successful reschedule
+  sourceRefs:
+  - source: cd04-reschedule-appointment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Display successful reschedule
+    structuralLink: L02

@@ -1,0 +1,109 @@
+id: aafiatak-cd04-reschedule-appointment
+diagramType: communication
+title: "Collaboration Diagram \u2014 Reschedule Appointment"
+model: ../../model/catalog/collaborations/aafiatak-cd04-reschedule-appointment.yaml
+include:
+- participant.cd04.booking-and-reception-staff
+- participant.cd04.facility-web-dashboard
+- participant.cd04.aafiatak-backend
+- participant.cd04.aafiatak-data-store
+- participant.cd04.notification-service
+- participant.cd04.patient
+relations:
+- message.cd04.01
+- message.cd04.02
+- message.cd04.03
+- message.cd04.04
+- message.cd04.05
+- message.cd04.06
+- message.cd04.07
+- message.cd04.08
+- message.cd04.09
+- message.cd04.10
+- message.cd04.11
+- message.cd04.12
+- message.cd04.13
+- message.cd04.14
+- message.cd04.15
+- message.cd04.16
+- message.cd04.17
+- message.cd04.18
+layoutProfile: lecturer-collaboration-network
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-18T00:00:00+00:00'
+  notes: Awaiting the user's final visual approval after semantic and rendering QA.
+  previewHash: 57e670cde380ef6010debff33968c6bea146866c82eb90aa9ebc0874e11c19d8
+options:
+  sourceSpecification: CD04_Reschedule_Appointment_FINAL_VERIFIED_9PASS.md
+  outputStem: Aafiatak_CD04_Reschedule_Appointment
+  expectedParticipantCount: 6
+  expectedStructuralLinkCount: 5
+  expectedMessageCount: 18
+  expectedSelfMessageSequences: []
+  structuralLinks:
+  - id: L01
+    participants:
+    - participant.cd04.aafiatak-backend
+    - participant.cd04.aafiatak-data-store
+    participantNames:
+    - Aafiatak Backend
+    - Aafiatak Data Store
+    messageSequences:
+    - 3
+    - 4
+    - 8
+    - 9
+    - 13
+    - 14
+  - id: L02
+    participants:
+    - participant.cd04.aafiatak-backend
+    - participant.cd04.facility-web-dashboard
+    participantNames:
+    - Aafiatak Backend
+    - Facility Web Dashboard
+    messageSequences:
+    - 2
+    - 5
+    - 7
+    - 10
+    - 12
+    - 18
+  - id: L03
+    participants:
+    - participant.cd04.aafiatak-backend
+    - participant.cd04.notification-service
+    participantNames:
+    - Aafiatak Backend
+    - Notification Service
+    messageSequences:
+    - 15
+    - 16
+  - id: L04
+    participants:
+    - participant.cd04.booking-and-reception-staff
+    - participant.cd04.facility-web-dashboard
+    participantNames:
+    - Booking & Reception Staff
+    - Facility Web Dashboard
+    messageSequences:
+    - 1
+    - 6
+    - 11
+  - id: L05
+    participants:
+    - participant.cd04.notification-service
+    - participant.cd04.patient
+    participantNames:
+    - Notification Service
+    - Patient
+    messageSequences:
+    - 17
+  lecturerStyle: 'Academic Collaboration/Communication: object boxes, reusable structural links, numbered directional messages,
+    self loops only where specified.'

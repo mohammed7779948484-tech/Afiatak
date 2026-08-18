@@ -1,0 +1,644 @@
+modelId: aafiatak-cd02-book-appointment-full-payment
+version: '1.0'
+elements:
+- id: participant.cd02.patient
+  name: Patient
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient
+    participantNumber: 1
+- id: participant.cd02.patient-application
+  name: Patient Application
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient Application
+    participantNumber: 2
+- id: participant.cd02.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 3
+- id: participant.cd02.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 4
+- id: participant.cd02.payment-gateway
+  name: Payment Gateway
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Payment Gateway
+    participantNumber: 5
+- id: participant.cd02.notification-service
+  name: Notification Service
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd02
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Notification Service
+    participantNumber: 6
+relations:
+- id: message.cd02.01
+  type: message
+  source: participant.cd02.patient
+  target: participant.cd02.patient-application
+  name: Select service / doctor context / day
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Patient
+    receiver: Patient Application
+    exactLabel: Select service / doctor context / day
+    structuralLink: L05
+- id: message.cd02.02
+  type: message
+  source: participant.cd02.patient-application
+  target: participant.cd02.aafiatak-backend
+  name: Request currently bookable Aafiatak capacity
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Request currently bookable Aafiatak capacity
+    structuralLink: L03
+- id: message.cd02.03
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Load PUBLISHED release + frozen booking terms
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Load PUBLISHED release + frozen booking terms
+    structuralLink: L01
+- id: message.cd02.04
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: Release terms and current capacity state
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Release terms and current capacity state
+    structuralLink: L01
+- id: message.cd02.05
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Find earliest currently bookable ArrivalGroup
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Find earliest currently bookable ArrivalGroup
+    structuralLink: L01
+- id: message.cd02.06
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: Selected group/window + remaining capacity
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Selected group/window + remaining capacity
+    structuralLink: L01
+- id: message.cd02.07
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.patient-application
+  name: Display arrival window and governing booking terms
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Display arrival window and governing booking terms
+    structuralLink: L03
+- id: message.cd02.08
+  type: message
+  source: participant.cd02.patient
+  target: participant.cd02.patient-application
+  name: Confirm intent to proceed
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Patient
+    receiver: Patient Application
+    exactLabel: Confirm intent to proceed
+    structuralLink: L05
+- id: message.cd02.09
+  type: message
+  source: participant.cd02.patient-application
+  target: participant.cd02.aafiatak-backend
+  name: Create temporary ReservationHold
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Create temporary ReservationHold
+    structuralLink: L03
+- id: message.cd02.10
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Atomically revalidate group and acquire one ACTIVE hold
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Atomically revalidate group and acquire one ACTIVE hold
+    structuralLink: L01
+- id: message.cd02.11
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: 'Hold acquired: id + expiresAt + selected group'
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: 'Hold acquired: id + expiresAt + selected group'
+    structuralLink: L01
+- id: message.cd02.12
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.patient-application
+  name: Show protected group and hold countdown
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Show protected group and hold countdown
+    structuralLink: L03
+- id: message.cd02.13
+  type: message
+  source: participant.cd02.patient
+  target: participant.cd02.patient-application
+  name: Proceed to full electronic payment
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Patient
+    receiver: Patient Application
+    exactLabel: Proceed to full electronic payment
+    structuralLink: L05
+- id: message.cd02.14
+  type: message
+  source: participant.cd02.patient-application
+  target: participant.cd02.aafiatak-backend
+  name: Start full payment for active hold
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Start full payment for active hold
+    structuralLink: L03
+- id: message.cd02.15
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Load hold/snapshot and enforce one non-terminal PaymentIntent
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Load hold/snapshot and enforce one non-terminal PaymentIntent
+    structuralLink: L01
+- id: message.cd02.16
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: Valid hold + amount/currency + PaymentIntent context
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Valid hold + amount/currency + PaymentIntent context
+    structuralLink: L01
+- id: message.cd02.17
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Create or safely reuse PaymentIntent
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Create or safely reuse PaymentIntent
+    structuralLink: L01
+- id: message.cd02.18
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: PaymentIntent ready
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: PaymentIntent ready
+    structuralLink: L01
+- id: message.cd02.19
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.payment-gateway
+  name: Initiate full amount payment
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 19
+    sender: Aafiatak Backend
+    receiver: Payment Gateway
+    exactLabel: Initiate full amount payment
+    structuralLink: L04
+- id: message.cd02.20
+  type: message
+  source: participant.cd02.payment-gateway
+  target: participant.cd02.aafiatak-backend
+  name: Gateway payment session/reference
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 20
+    sender: Payment Gateway
+    receiver: Aafiatak Backend
+    exactLabel: Gateway payment session/reference
+    structuralLink: L04
+- id: message.cd02.21
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.patient-application
+  name: Continue approved gateway interaction
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 21
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Continue approved gateway interaction
+    structuralLink: L03
+- id: message.cd02.22
+  type: message
+  source: participant.cd02.patient
+  target: participant.cd02.payment-gateway
+  name: Complete gateway payment interaction
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 22
+    sender: Patient
+    receiver: Payment Gateway
+    exactLabel: Complete gateway payment interaction
+    structuralLink: L06
+- id: message.cd02.23
+  type: message
+  source: participant.cd02.payment-gateway
+  target: participant.cd02.patient-application
+  name: Return to application
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 23
+    sender: Payment Gateway
+    receiver: Patient Application
+    exactLabel: Return to application
+    structuralLink: L07
+- id: message.cd02.24
+  type: message
+  source: participant.cd02.patient-application
+  target: participant.cd02.aafiatak-backend
+  name: Report client return from gateway
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 24
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Report client return from gateway
+    structuralLink: L03
+- id: message.cd02.25
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.payment-gateway
+  name: Verify payment through trusted gateway channel
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 25
+    sender: Aafiatak Backend
+    receiver: Payment Gateway
+    exactLabel: Verify payment through trusted gateway channel
+    structuralLink: L04
+- id: message.cd02.26
+  type: message
+  source: participant.cd02.payment-gateway
+  target: participant.cd02.aafiatak-backend
+  name: 'Trusted payment result: SUCCESS'
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 26
+    sender: Payment Gateway
+    receiver: Aafiatak Backend
+    exactLabel: 'Trusted payment result: SUCCESS'
+    structuralLink: L04
+- id: message.cd02.27
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: Persist SUCCEEDED and atomically revalidate hold/release/group/time
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 27
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Persist SUCCEEDED and atomically revalidate hold/release/group/time
+    structuralLink: L01
+- id: message.cd02.28
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: Payment persisted; booking target still eligible
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 28
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Payment persisted; booking target still eligible
+    structuralLink: L01
+- id: message.cd02.29
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.aafiatak-data-store
+  name: 'Atomic commit: consume hold/capacity once + create CONFIRMED Appointment snapshot'
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 29
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: 'Atomic commit: consume hold/capacity once + create CONFIRMED Appointment snapshot'
+    structuralLink: L01
+- id: message.cd02.30
+  type: message
+  source: participant.cd02.aafiatak-data-store
+  target: participant.cd02.aafiatak-backend
+  name: Appointment confirmed; hold CONSUMED
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 30
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Appointment confirmed; hold CONSUMED
+    structuralLink: L01
+- id: message.cd02.31
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.notification-service
+  name: Send full-payment booking confirmation
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 31
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send full-payment booking confirmation
+    structuralLink: L02
+- id: message.cd02.32
+  type: message
+  source: participant.cd02.notification-service
+  target: participant.cd02.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 32
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L02
+- id: message.cd02.33
+  type: message
+  source: participant.cd02.aafiatak-backend
+  target: participant.cd02.patient-application
+  name: Confirmed Appointment + independent SUCCEEDED payment status
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 33
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Confirmed Appointment + independent SUCCEEDED payment status
+    structuralLink: L03
+- id: message.cd02.34
+  type: message
+  source: participant.cd02.patient-application
+  target: participant.cd02.patient
+  name: Display confirmation / receipt summary / arrival window
+  sourceRefs:
+  - source: cd02-book-appointment-full-payment-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 34
+    sender: Patient Application
+    receiver: Patient
+    exactLabel: Display confirmation / receipt summary / arrival window
+    structuralLink: L05

@@ -1,0 +1,15 @@
+{
+  "spec": "CD05_CheckIn_Queue_CallNext_FINAL_VERIFIED_9PASS.md",
+  "view": "views/collaboration/aafiatak-cd05-checkin-queue-call-next.yaml",
+  "model": "model/catalog/collaborations/aafiatak-cd05-checkin-queue-call-next.yaml",
+  "diagramType": true,
+  "participants": true,
+  "participantCount": true,
+  "structuralLinks": true,
+  "messageCount": true,
+  "messageNumbering": true,
+  "messageSourceMatch": true,
+  "selfMessages": true,
+  "status": true,
+  "passed": true
+}

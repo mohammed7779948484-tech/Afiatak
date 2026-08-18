@@ -1,0 +1,388 @@
+modelId: aafiatak-cd01-patient-registration-otp
+version: '1.0'
+elements:
+- id: participant.cd01.visitor
+  name: Visitor
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd01
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Visitor
+    participantNumber: 1
+- id: participant.cd01.patient-application
+  name: Patient Application
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd01
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient Application
+    participantNumber: 2
+- id: participant.cd01.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd01
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 3
+- id: participant.cd01.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd01
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 4
+- id: participant.cd01.whatsapp-authentication-provider
+  name: WhatsApp Authentication Provider
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd01
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: WhatsApp Authentication Provider
+    participantNumber: 5
+relations:
+- id: message.cd01.01
+  type: message
+  source: participant.cd01.visitor
+  target: participant.cd01.patient-application
+  name: Enter phone number and choose Register
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Visitor
+    receiver: Patient Application
+    exactLabel: Enter phone number and choose Register
+    structuralLink: L04
+- id: message.cd01.02
+  type: message
+  source: participant.cd01.patient-application
+  target: participant.cd01.aafiatak-backend
+  name: Start patient registration(phone)
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Start patient registration(phone)
+    structuralLink: L02
+- id: message.cd01.03
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.aafiatak-backend
+  name: Normalize and validate phone number
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Aafiatak Backend
+    receiver: Aafiatak Backend
+    exactLabel: Normalize and validate phone number
+    structuralLink: SELF
+- id: message.cd01.04
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.aafiatak-data-store
+  name: Check phone identity uniqueness
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Check phone identity uniqueness
+    structuralLink: L01
+- id: message.cd01.05
+  type: message
+  source: participant.cd01.aafiatak-data-store
+  target: participant.cd01.aafiatak-backend
+  name: 'Identity lookup result: available'
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: 'Identity lookup result: available'
+    structuralLink: L01
+- id: message.cd01.06
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.whatsapp-authentication-provider
+  name: Request short-lived single-use OTP delivery
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Aafiatak Backend
+    receiver: WhatsApp Authentication Provider
+    exactLabel: Request short-lived single-use OTP delivery
+    structuralLink: L03
+- id: message.cd01.07
+  type: message
+  source: participant.cd01.whatsapp-authentication-provider
+  target: participant.cd01.aafiatak-backend
+  name: OTP delivery request accepted
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: WhatsApp Authentication Provider
+    receiver: Aafiatak Backend
+    exactLabel: OTP delivery request accepted
+    structuralLink: L03
+- id: message.cd01.08
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.patient-application
+  name: Verification required
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Verification required
+    structuralLink: L02
+- id: message.cd01.09
+  type: message
+  source: participant.cd01.whatsapp-authentication-provider
+  target: participant.cd01.visitor
+  name: Deliver OTP via official WhatsApp channel
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: WhatsApp Authentication Provider
+    receiver: Visitor
+    exactLabel: Deliver OTP via official WhatsApp channel
+    structuralLink: L05
+- id: message.cd01.10
+  type: message
+  source: participant.cd01.visitor
+  target: participant.cd01.patient-application
+  name: Submit OTP
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Visitor
+    receiver: Patient Application
+    exactLabel: Submit OTP
+    structuralLink: L04
+- id: message.cd01.11
+  type: message
+  source: participant.cd01.patient-application
+  target: participant.cd01.aafiatak-backend
+  name: Verify OTP attempt
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Verify OTP attempt
+    structuralLink: L02
+- id: message.cd01.12
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.aafiatak-backend
+  name: Validate expiry, single-use and security limits
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Aafiatak Backend
+    receiver: Aafiatak Backend
+    exactLabel: Validate expiry, single-use and security limits
+    structuralLink: SELF
+- id: message.cd01.13
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.patient-application
+  name: OTP verified; request basic Patient profile
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: OTP verified; request basic Patient profile
+    structuralLink: L02
+- id: message.cd01.14
+  type: message
+  source: participant.cd01.visitor
+  target: participant.cd01.patient-application
+  name: Submit approved basic profile data
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Visitor
+    receiver: Patient Application
+    exactLabel: Submit approved basic profile data
+    structuralLink: L04
+- id: message.cd01.15
+  type: message
+  source: participant.cd01.patient-application
+  target: participant.cd01.aafiatak-backend
+  name: Create verified Patient account/profile
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Patient Application
+    receiver: Aafiatak Backend
+    exactLabel: Create verified Patient account/profile
+    structuralLink: L02
+- id: message.cd01.16
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.aafiatak-data-store
+  name: Atomically create User + Patient for verified phone
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Atomically create User + Patient for verified phone
+    structuralLink: L01
+- id: message.cd01.17
+  type: message
+  source: participant.cd01.aafiatak-data-store
+  target: participant.cd01.aafiatak-backend
+  name: Account/profile created exactly once
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Account/profile created exactly once
+    structuralLink: L01
+- id: message.cd01.18
+  type: message
+  source: participant.cd01.aafiatak-backend
+  target: participant.cd01.patient-application
+  name: Registration confirmed
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Aafiatak Backend
+    receiver: Patient Application
+    exactLabel: Registration confirmed
+    structuralLink: L02
+- id: message.cd01.19
+  type: message
+  source: participant.cd01.patient-application
+  target: participant.cd01.visitor
+  name: Display Patient registration success
+  sourceRefs:
+  - source: cd01-patient-registration-otp-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 19
+    sender: Patient Application
+    receiver: Visitor
+    exactLabel: Display Patient registration success
+    structuralLink: L04

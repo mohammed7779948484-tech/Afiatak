@@ -1,0 +1,614 @@
+modelId: aafiatak-cd05-checkin-queue-call-next
+version: '1.0'
+elements:
+- id: participant.cd05.patient
+  name: Patient
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient
+    participantNumber: 1
+- id: participant.cd05.booking-and-reception-staff
+  name: Booking & Reception Staff
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Booking & Reception Staff
+    participantNumber: 2
+- id: participant.cd05.facility-web-dashboard
+  name: Facility Web Dashboard
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Facility Web Dashboard
+    participantNumber: 3
+- id: participant.cd05.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 4
+- id: participant.cd05.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 5
+- id: participant.cd05.doctor-interface
+  name: Doctor Interface
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Doctor Interface
+    participantNumber: 6
+- id: participant.cd05.doctor
+  name: Doctor
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Doctor
+    participantNumber: 7
+- id: participant.cd05.notification-service
+  name: Notification Service
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd05
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Notification Service
+    participantNumber: 8
+relations:
+- id: message.cd05.01
+  type: message
+  source: participant.cd05.patient
+  target: participant.cd05.booking-and-reception-staff
+  name: Present booking number / phone / QR / verification code
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Patient
+    receiver: Booking & Reception Staff
+    exactLabel: Present booking number / phone / QR / verification code
+    structuralLink: L06
+- id: message.cd05.02
+  type: message
+  source: participant.cd05.booking-and-reception-staff
+  target: participant.cd05.facility-web-dashboard
+  name: Search or scan Appointment
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Search or scan Appointment
+    structuralLink: L05
+- id: message.cd05.03
+  type: message
+  source: participant.cd05.facility-web-dashboard
+  target: participant.cd05.aafiatak-backend
+  name: Find intended Appointment(identifier)
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Find intended Appointment(identifier)
+    structuralLink: L03
+- id: message.cd05.04
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-data-store
+  name: Load Appointment + arrival context + existing VisitInstance
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Load Appointment + arrival context + existing VisitInstance
+    structuralLink: L01
+- id: message.cd05.05
+  type: message
+  source: participant.cd05.aafiatak-data-store
+  target: participant.cd05.aafiatak-backend
+  name: Appointment/visit context
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Appointment/visit context
+    structuralLink: L01
+- id: message.cd05.06
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-backend
+  name: Validate facility + CONFIRMED + normal arrival eligibility
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Aafiatak Backend
+    receiver: Aafiatak Backend
+    exactLabel: Validate facility + CONFIRMED + normal arrival eligibility
+    structuralLink: SELF
+- id: message.cd05.07
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.facility-web-dashboard
+  name: Display valid Appointment for check-in
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Display valid Appointment for check-in
+    structuralLink: L03
+- id: message.cd05.08
+  type: message
+  source: participant.cd05.booking-and-reception-staff
+  target: participant.cd05.facility-web-dashboard
+  name: Confirm Patient arrival
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Confirm Patient arrival
+    structuralLink: L05
+- id: message.cd05.09
+  type: message
+  source: participant.cd05.facility-web-dashboard
+  target: participant.cd05.aafiatak-backend
+  name: Register Patient check-in
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Register Patient check-in
+    structuralLink: L03
+- id: message.cd05.10
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-data-store
+  name: 'Atomic check-in: create VisitInstance if needed; set CHECKED_IN; record actual arrival; create/activate QueueEntry
+    in original group'
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: 'Atomic check-in: create VisitInstance if needed; set CHECKED_IN; record actual arrival; create/activate QueueEntry
+      in original group'
+    structuralLink: L01
+- id: message.cd05.11
+  type: message
+  source: participant.cd05.aafiatak-data-store
+  target: participant.cd05.aafiatak-backend
+  name: Check-in and QueueEntry committed
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Check-in and QueueEntry committed
+    structuralLink: L01
+- id: message.cd05.12
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-data-store
+  name: Calculate normal queue order by check-in time; confirmed_at tie-break
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Calculate normal queue order by check-in time; confirmed_at tie-break
+    structuralLink: L01
+- id: message.cd05.13
+  type: message
+  source: participant.cd05.aafiatak-data-store
+  target: participant.cd05.aafiatak-backend
+  name: Current waiting order / approximate Patient position
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Current waiting order / approximate Patient position
+    structuralLink: L01
+- id: message.cd05.14
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.facility-web-dashboard
+  name: Check-in complete
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Check-in complete
+    structuralLink: L03
+- id: message.cd05.15
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.notification-service
+  name: Send check-in confirmation / approaching-turn status when applicable
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send check-in confirmation / approaching-turn status when applicable
+    structuralLink: L04
+- id: message.cd05.16
+  type: message
+  source: participant.cd05.notification-service
+  target: participant.cd05.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L04
+- id: message.cd05.17
+  type: message
+  source: participant.cd05.notification-service
+  target: participant.cd05.patient
+  name: Deliver check-in/queue notification
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Notification Service
+    receiver: Patient
+    exactLabel: Deliver check-in/queue notification
+    structuralLink: L08
+- id: message.cd05.18
+  type: message
+  source: participant.cd05.doctor
+  target: participant.cd05.doctor-interface
+  name: View waiting Patients
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Doctor
+    receiver: Doctor Interface
+    exactLabel: View waiting Patients
+    structuralLink: L07
+- id: message.cd05.19
+  type: message
+  source: participant.cd05.doctor-interface
+  target: participant.cd05.aafiatak-backend
+  name: Request Doctor-assigned waiting context
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 19
+    sender: Doctor Interface
+    receiver: Aafiatak Backend
+    exactLabel: Request Doctor-assigned waiting context
+    structuralLink: L02
+- id: message.cd05.20
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-data-store
+  name: Load callable QueueEntries using approved ordering
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 20
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Load callable QueueEntries using approved ordering
+    structuralLink: L01
+- id: message.cd05.21
+  type: message
+  source: participant.cd05.aafiatak-data-store
+  target: participant.cd05.aafiatak-backend
+  name: Waiting list / callable entries
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 21
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Waiting list / callable entries
+    structuralLink: L01
+- id: message.cd05.22
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.doctor-interface
+  name: Display relevant waiting list
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 22
+    sender: Aafiatak Backend
+    receiver: Doctor Interface
+    exactLabel: Display relevant waiting list
+    structuralLink: L02
+- id: message.cd05.23
+  type: message
+  source: participant.cd05.doctor
+  target: participant.cd05.doctor-interface
+  name: Choose Call Next Patient
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 23
+    sender: Doctor
+    receiver: Doctor Interface
+    exactLabel: Choose Call Next Patient
+    structuralLink: L07
+- id: message.cd05.24
+  type: message
+  source: participant.cd05.doctor-interface
+  target: participant.cd05.aafiatak-backend
+  name: Call selected QueueEntry
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 24
+    sender: Doctor Interface
+    receiver: Aafiatak Backend
+    exactLabel: Call selected QueueEntry
+    structuralLink: L02
+- id: message.cd05.25
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.aafiatak-data-store
+  name: Revalidate callable state and set QueueEntry = CALLED
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 25
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Revalidate callable state and set QueueEntry = CALLED
+    structuralLink: L01
+- id: message.cd05.26
+  type: message
+  source: participant.cd05.aafiatak-data-store
+  target: participant.cd05.aafiatak-backend
+  name: Queue call recorded
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 26
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Queue call recorded
+    structuralLink: L01
+- id: message.cd05.27
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.doctor-interface
+  name: Call confirmed
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 27
+    sender: Aafiatak Backend
+    receiver: Doctor Interface
+    exactLabel: Call confirmed
+    structuralLink: L02
+- id: message.cd05.28
+  type: message
+  source: participant.cd05.aafiatak-backend
+  target: participant.cd05.notification-service
+  name: Send turn/call notification when applicable
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 28
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send turn/call notification when applicable
+    structuralLink: L04
+- id: message.cd05.29
+  type: message
+  source: participant.cd05.notification-service
+  target: participant.cd05.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 29
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L04
+- id: message.cd05.30
+  type: message
+  source: participant.cd05.notification-service
+  target: participant.cd05.patient
+  name: Notify Patient to proceed when applicable
+  sourceRefs:
+  - source: cd05-checkin-queue-call-next-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 30
+    sender: Notification Service
+    receiver: Patient
+    exactLabel: Notify Patient to proceed when applicable
+    structuralLink: L08

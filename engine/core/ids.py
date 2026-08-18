@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 ID_PATTERN = re.compile(
-    r"^(actor|uc|package|class|object|state|component|node|scenario|relation|activity|message)\.[a-z0-9][a-z0-9._-]*$"
+    r"^(actor|uc|package|class|object|participant|state|component|node|scenario|relation|activity|message)\.[a-z0-9][a-z0-9._-]*$"
 )
 
 

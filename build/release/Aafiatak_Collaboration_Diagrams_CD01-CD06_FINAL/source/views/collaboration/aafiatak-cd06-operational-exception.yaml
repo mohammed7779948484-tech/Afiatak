@@ -1,0 +1,132 @@
+id: aafiatak-cd06-operational-exception
+diagramType: communication
+title: "Collaboration Diagram \u2014 Resolve Operational Exception \u2014 Facility Cancellation & Full-Refund Initiation"
+model: ../../model/catalog/collaborations/aafiatak-cd06-operational-exception.yaml
+include:
+- participant.cd06.booking-and-reception-staff
+- participant.cd06.facility-web-dashboard
+- participant.cd06.aafiatak-backend
+- participant.cd06.aafiatak-data-store
+- participant.cd06.notification-service
+- participant.cd06.patient
+- participant.cd06.payment-gateway
+relations:
+- message.cd06.01
+- message.cd06.02
+- message.cd06.03
+- message.cd06.04
+- message.cd06.05
+- message.cd06.06
+- message.cd06.07
+- message.cd06.08
+- message.cd06.09
+- message.cd06.10
+- message.cd06.11
+- message.cd06.12
+- message.cd06.13
+- message.cd06.14
+- message.cd06.15
+- message.cd06.16
+- message.cd06.17
+- message.cd06.18
+- message.cd06.19
+- message.cd06.20
+- message.cd06.21
+- message.cd06.22
+- message.cd06.23
+- message.cd06.24
+- message.cd06.25
+layoutProfile: lecturer-collaboration-network
+outputTargets:
+- svg
+- png
+approval: reviewed
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus automated QA
+  reviewedAt: '2026-08-18T00:00:00+00:00'
+  notes: Awaiting the user's final visual approval after semantic and rendering QA.
+  previewHash: 7aa0495da6a9df46bc7caf63d2a9e4c13ea1312522e4bc40badec89673de3f19
+options:
+  sourceSpecification: CD06_Resolve_Operational_Exception_FINAL_VERIFIED_9PASS.md
+  outputStem: Aafiatak_CD06_Operational_Exception
+  expectedParticipantCount: 7
+  expectedStructuralLinkCount: 6
+  expectedMessageCount: 25
+  expectedSelfMessageSequences: []
+  structuralLinks:
+  - id: L01
+    participants:
+    - participant.cd06.aafiatak-backend
+    - participant.cd06.aafiatak-data-store
+    participantNames:
+    - Aafiatak Backend
+    - Aafiatak Data Store
+    messageSequences:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 10
+    - 11
+    - 14
+    - 15
+    - 21
+    - 22
+    - 23
+    - 24
+  - id: L02
+    participants:
+    - participant.cd06.aafiatak-backend
+    - participant.cd06.facility-web-dashboard
+    participantNames:
+    - Aafiatak Backend
+    - Facility Web Dashboard
+    messageSequences:
+    - 2
+    - 7
+    - 9
+    - 20
+    - 25
+  - id: L03
+    participants:
+    - participant.cd06.aafiatak-backend
+    - participant.cd06.notification-service
+    participantNames:
+    - Aafiatak Backend
+    - Notification Service
+    messageSequences:
+    - 16
+    - 17
+  - id: L04
+    participants:
+    - participant.cd06.aafiatak-backend
+    - participant.cd06.payment-gateway
+    participantNames:
+    - Aafiatak Backend
+    - Payment Gateway
+    messageSequences:
+    - 12
+    - 13
+  - id: L05
+    participants:
+    - participant.cd06.booking-and-reception-staff
+    - participant.cd06.facility-web-dashboard
+    participantNames:
+    - Booking & Reception Staff
+    - Facility Web Dashboard
+    messageSequences:
+    - 1
+    - 8
+    - 19
+  - id: L06
+    participants:
+    - participant.cd06.notification-service
+    - participant.cd06.patient
+    participantNames:
+    - Notification Service
+    - Patient
+    messageSequences:
+    - 18
+  lecturerStyle: 'Academic Collaboration/Communication: object boxes, reusable structural links, numbered directional messages,
+    self loops only where specified.'

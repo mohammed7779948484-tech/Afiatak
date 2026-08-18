@@ -14,6 +14,7 @@ from engine.svg.sequence_diagram import render_sequence_diagram_svg
 from engine.svg.lecturer_sequence_diagram import render_lecturer_sequence_diagram_svg
 from engine.svg.state_diagram import render_state_diagram_svg
 from engine.svg.activity_diagram import render_activity_diagram_svg
+from engine.svg.collaboration_diagram import render_collaboration_diagram_svg
 from engine.manifests import create_manifest, write_manifest
 from engine.compositions import aafiatak_patient_package_use_case as patient_composition
 from engine.compositions import aafiatak_visitor_package_use_case as visitor_composition
@@ -44,6 +45,7 @@ from qa.class_svg_validation import validate_class_svg
 from qa.sequence_svg_validation import validate_sequence_svg
 from qa.state_svg_validation import validate_state_svg
 from qa.activity_svg_validation import validate_activity_svg
+from qa.collaboration_svg_validation import validate_collaboration_svg
 
 
 def model_path_for(view_path: Path, model_value: str) -> Path:
@@ -58,8 +60,8 @@ def _validated(view_path: Path):
     errors = [item for item in diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
-    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity"}:
-        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, and activity views")
+    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity", "communication"}:
+        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, activity, and communication views")
     return model, view, model_path, diagnostics
 
 
@@ -75,6 +77,9 @@ def _render_svg(model, view, output: Path) -> None:
         return
     if view.diagram_type == "activity":
         render_activity_diagram_svg(model, view, output)
+        return
+    if view.diagram_type == "communication":
+        render_collaboration_diagram_svg(model, view, output)
         return
     if view.id == "aafiatak-mvp-class-diagram":
         render_class_diagram_svg(model, view, output)
@@ -125,7 +130,7 @@ def render(view_path: Path, output: Path | None = None) -> Path:
     model, view, _, _ = _validated(view_path.resolve())
     output = output or ROOT / "build" / "work" / f"{view.id}.svg"
     _render_svg(model, view, output)
-    artifact_diagnostics = validate_class_svg(output, model, view) if view.diagram_type == "class" else validate_sequence_svg(output, model, view) if view.diagram_type == "sequence" else validate_state_svg(output, model, view) if view.diagram_type == "state" else validate_activity_svg(output, model, view) if view.diagram_type == "activity" else validate_svg(output, model, view)
+    artifact_diagnostics = validate_class_svg(output, model, view) if view.diagram_type == "class" else validate_sequence_svg(output, model, view) if view.diagram_type == "sequence" else validate_state_svg(output, model, view) if view.diagram_type == "state" else validate_activity_svg(output, model, view) if view.diagram_type == "activity" else validate_collaboration_svg(output, model, view) if view.diagram_type == "communication" else validate_svg(output, model, view)
     errors = [item for item in artifact_diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
@@ -133,7 +138,7 @@ def render(view_path: Path, output: Path | None = None) -> Path:
 
 
 def _qa_data(model, view, input_diagnostics, svg: Path, preview: Path) -> tuple[dict, list[str]]:
-    artifact_diagnostics = validate_class_svg(svg, model, view) if view.diagram_type == "class" else validate_sequence_svg(svg, model, view) if view.diagram_type == "sequence" else validate_state_svg(svg, model, view) if view.diagram_type == "state" else validate_activity_svg(svg, model, view) if view.diagram_type == "activity" else validate_svg(svg, model, view)
+    artifact_diagnostics = validate_class_svg(svg, model, view) if view.diagram_type == "class" else validate_sequence_svg(svg, model, view) if view.diagram_type == "sequence" else validate_state_svg(svg, model, view) if view.diagram_type == "state" else validate_activity_svg(svg, model, view) if view.diagram_type == "activity" else validate_collaboration_svg(svg, model, view) if view.diagram_type == "communication" else validate_svg(svg, model, view)
     diagnostics = [str(item) for item in [*input_diagnostics, *artifact_diagnostics]]
     export_svg_png(svg, preview)
     preview_hash = sha256_file(preview)

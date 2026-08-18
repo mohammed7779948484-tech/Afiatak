@@ -1,0 +1,516 @@
+modelId: aafiatak-cd06-operational-exception
+version: '1.0'
+elements:
+- id: participant.cd06.booking-and-reception-staff
+  name: Booking & Reception Staff
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Booking & Reception Staff
+    participantNumber: 1
+- id: participant.cd06.facility-web-dashboard
+  name: Facility Web Dashboard
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Facility Web Dashboard
+    participantNumber: 2
+- id: participant.cd06.aafiatak-backend
+  name: Aafiatak Backend
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Backend
+    participantNumber: 3
+- id: participant.cd06.aafiatak-data-store
+  name: Aafiatak Data Store
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Aafiatak Data Store
+    participantNumber: 4
+- id: participant.cd06.notification-service
+  name: Notification Service
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Notification Service
+    participantNumber: 5
+- id: participant.cd06.patient
+  name: Patient
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Patient
+    participantNumber: 6
+- id: participant.cd06.payment-gateway
+  name: Payment Gateway
+  type: participant
+  description: Collaboration/Communication Diagram interaction participant.
+  tags:
+  - cd06
+  - communication
+  - participant
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: Participants
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    visibleLabel: Payment Gateway
+    participantNumber: 7
+relations:
+- id: message.cd06.01
+  type: message
+  source: participant.cd06.booking-and-reception-staff
+  target: participant.cd06.facility-web-dashboard
+  name: Record detected conflict and context
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 1
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Record detected conflict and context
+    structuralLink: L05
+- id: message.cd06.02
+  type: message
+  source: participant.cd06.facility-web-dashboard
+  target: participant.cd06.aafiatak-backend
+  name: Create OperationalException(CONFLICT_DETECTED, context, reason)
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 2
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Create OperationalException(CONFLICT_DETECTED, context, reason)
+    structuralLink: L02
+- id: message.cd06.03
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Persist OPEN exception and link operational context
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 3
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Persist OPEN exception and link operational context
+    structuralLink: L01
+- id: message.cd06.04
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: OperationalException created
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 4
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: OperationalException created
+    structuralLink: L01
+- id: message.cd06.05
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Identify the single affected CONFIRMED Appointment and relevant payment/capacity context
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 5
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Identify the single affected CONFIRMED Appointment and relevant payment/capacity context
+    structuralLink: L01
+- id: message.cd06.06
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: 'Affected Appointment context: unresolved and fully paid'
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 6
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: 'Affected Appointment context: unresolved and fully paid'
+    structuralLink: L01
+- id: message.cd06.07
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.facility-web-dashboard
+  name: Display affected Appointment and required resolution status
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 7
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Display affected Appointment and required resolution status
+    structuralLink: L02
+- id: message.cd06.08
+  type: message
+  source: participant.cd06.booking-and-reception-staff
+  target: participant.cd06.facility-web-dashboard
+  name: Record facility-side cancellation outcome
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 8
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Record facility-side cancellation outcome
+    structuralLink: L05
+- id: message.cd06.09
+  type: message
+  source: participant.cd06.facility-web-dashboard
+  target: participant.cd06.aafiatak-backend
+  name: Cancel affected Appointment by facility
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 9
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Cancel affected Appointment by facility
+    structuralLink: L02
+- id: message.cd06.10
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Set CANCELLED_BY_FACILITY + preserve history + write completed Appointment resolution
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 10
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Set CANCELLED_BY_FACILITY + preserve history + write completed Appointment resolution
+    structuralLink: L01
+- id: message.cd06.11
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: Cancellation committed; collected payment exists
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 11
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Cancellation committed; collected payment exists
+    structuralLink: L01
+- id: message.cd06.12
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.payment-gateway
+  name: Initiate full collected-amount refund
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 12
+    sender: Aafiatak Backend
+    receiver: Payment Gateway
+    exactLabel: Initiate full collected-amount refund
+    structuralLink: L04
+- id: message.cd06.13
+  type: message
+  source: participant.cd06.payment-gateway
+  target: participant.cd06.aafiatak-backend
+  name: Refund result/pending reference
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 13
+    sender: Payment Gateway
+    receiver: Aafiatak Backend
+    exactLabel: Refund result/pending reference
+    structuralLink: L04
+- id: message.cd06.14
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Persist independent refund status
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 14
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Persist independent refund status
+    structuralLink: L01
+- id: message.cd06.15
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: Refund state saved
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 15
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Refund state saved
+    structuralLink: L01
+- id: message.cd06.16
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.notification-service
+  name: Send affected-Patient operational notification
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 16
+    sender: Aafiatak Backend
+    receiver: Notification Service
+    exactLabel: Send affected-Patient operational notification
+    structuralLink: L03
+- id: message.cd06.17
+  type: message
+  source: participant.cd06.notification-service
+  target: participant.cd06.aafiatak-backend
+  name: Notification accepted/result
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 17
+    sender: Notification Service
+    receiver: Aafiatak Backend
+    exactLabel: Notification accepted/result
+    structuralLink: L03
+- id: message.cd06.18
+  type: message
+  source: participant.cd06.notification-service
+  target: participant.cd06.patient
+  name: Deliver exception/resolution information
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 18
+    sender: Notification Service
+    receiver: Patient
+    exactLabel: Deliver exception/resolution information
+    structuralLink: L06
+- id: message.cd06.19
+  type: message
+  source: participant.cd06.booking-and-reception-staff
+  target: participant.cd06.facility-web-dashboard
+  name: Request Close Operational Exception
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 19
+    sender: Booking & Reception Staff
+    receiver: Facility Web Dashboard
+    exactLabel: Request Close Operational Exception
+    structuralLink: L05
+- id: message.cd06.20
+  type: message
+  source: participant.cd06.facility-web-dashboard
+  target: participant.cd06.aafiatak-backend
+  name: Close exception request
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 20
+    sender: Facility Web Dashboard
+    receiver: Aafiatak Backend
+    exactLabel: Close exception request
+    structuralLink: L02
+- id: message.cd06.21
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Verify documented completed action/outcome for the single affected Appointment
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 21
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Verify documented completed action/outcome for the single affected Appointment
+    structuralLink: L01
+- id: message.cd06.22
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: Resolution complete for the selected affected Appointment
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 22
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: Resolution complete for the selected affected Appointment
+    structuralLink: L01
+- id: message.cd06.23
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.aafiatak-data-store
+  name: Close OperationalException and preserve audit trail
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 23
+    sender: Aafiatak Backend
+    receiver: Aafiatak Data Store
+    exactLabel: Close OperationalException and preserve audit trail
+    structuralLink: L01
+- id: message.cd06.24
+  type: message
+  source: participant.cd06.aafiatak-data-store
+  target: participant.cd06.aafiatak-backend
+  name: OperationalException CLOSED
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 24
+    sender: Aafiatak Data Store
+    receiver: Aafiatak Backend
+    exactLabel: OperationalException CLOSED
+    structuralLink: L01
+- id: message.cd06.25
+  type: message
+  source: participant.cd06.aafiatak-backend
+  target: participant.cd06.facility-web-dashboard
+  name: Closure confirmed
+  sourceRefs:
+  - source: cd06-operational-exception-final-verified-spec
+    section: "Ordered Messages \u2014 Binding"
+  - source: aafiatak-product-specification
+    section: MVP interaction scope
+  metadata:
+    sequence: 25
+    sender: Aafiatak Backend
+    receiver: Facility Web Dashboard
+    exactLabel: Closure confirmed
+    structuralLink: L02
