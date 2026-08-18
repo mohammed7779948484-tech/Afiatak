@@ -25,7 +25,7 @@ The source auditor passed for CD-01 through CD-06 before this redesign. The exis
 | A11 | Restore a compact, unobtrusive academic heading and retain the lecturer’s sparse monochrome object/link/message language. | Full-page review shows heading, underlined object names, thin links, unboxed labels, and no sequence primitives/cards/frames. | Implemented — full-page visual pass |
 | A12 | Regenerate SVG, PNG, vector PDF, and `.drawio` for CD-01 through CD-06 from source only. | Reproducible final files; individual and merged PDFs contain no embedded raster images. | Implemented — release rebuilt |
 | A13 | Run full-page and dense-area visual inspection, including all grids/tiles required for dense diagrams. | Inspection notes include CD-02, CD-05, and CD-06 stress cases. | Implemented — visual inspection record complete |
-| A14 | Rebuild reports, release archive, and commit/push the corrective implementation. | QA package, merged PDF, release ZIP, clean Git state, and remote commit hash. | Pending |
+| A14 | Rebuild reports, release archive, and commit/push the corrective implementation. | QA package, merged PDF, release ZIP, clean Git state, and remote commit `68ddcaa`. | Implemented — pushed to `main` |
 
 ## Required regression cases
 

@@ -22,10 +22,10 @@ The source auditor passed for CD-01 through CD-06 before this redesign. The exis
 | A8 | Add Q5 geometry validation for page bounds, participant/label intersections, label/label intersections, unrelated link/label intersections, self-loop collisions, duplicate loops, and arrow density. | Q5 blocks a render when unresolved collisions remain. | Implemented — all-six Q5 pass |
 | A9 | Preserve existing Q4 semantic SVG validation and source-match auditing. | CD-01 through CD-06 source audits and Q4 reports pass unchanged. | Implemented — regression pass |
 | A10 | Make SVG and `.drawio` consume the same computed render plan. | Corresponding objects, links, arrows, labels, and loops have congruent source geometry. | Implemented — shared render-plan source |
-| A11 | Restore a compact, unobtrusive academic heading and retain the lecturer’s sparse monochrome object/link/message language. | Full-page review shows heading, underlined object names, thin links, unboxed labels, and no sequence primitives/cards/frames. | Pending |
-| A12 | Regenerate SVG, PNG, vector PDF, and `.drawio` for CD-01 through CD-06 from source only. | Reproducible final files; individual and merged PDFs contain no embedded raster images. | Pending |
-| A13 | Run full-page and dense-area visual inspection, including all grids/tiles required for dense diagrams. | Inspection notes include CD-02, CD-05, and CD-06 stress cases. | Pending |
-| A14 | Rebuild reports, release archive, and commit/push the corrective implementation. | QA package, merged PDF, release ZIP, clean Git state, and remote commit hash. | Pending |
+| A11 | Restore a compact, unobtrusive academic heading and retain the lecturer’s sparse monochrome object/link/message language. | Full-page review shows heading, underlined object names, thin links, unboxed labels, and no sequence primitives/cards/frames. | Implemented — full-page visual pass |
+| A12 | Regenerate SVG, PNG, vector PDF, and `.drawio` for CD-01 through CD-06 from source only. | Reproducible final files; individual and merged PDFs contain no embedded raster images. | Implemented — release rebuilt |
+| A13 | Run full-page and dense-area visual inspection, including all grids/tiles required for dense diagrams. | Inspection notes include CD-02, CD-05, and CD-06 stress cases. | Implemented — visual inspection record complete |
+| A14 | Rebuild reports, release archive, and commit/push the corrective implementation. | QA package, merged PDF, release ZIP, clean Git state, and remote commit `68ddcaa`. | Implemented — pushed to `main` |
 
 ## Required regression cases
 
