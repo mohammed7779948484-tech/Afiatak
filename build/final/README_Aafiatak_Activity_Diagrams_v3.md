@@ -9,6 +9,8 @@ This delivery contains the complete redesign of the sixteen UML Activity Diagram
 | `Aafiatak_Activity_Diagrams_AD01-AD16_v3_Lecturer_Page11.pdf` | One 16-page vector PDF, ordered AD-01 through AD-16. |
 | `Aafiatak_Activity_Diagrams_AD01-AD16_v3_Verification.md` | Delivery verification including 16-page and vector-PDF checks. |
 | `Aafiatak_Activity_Diagrams_AD01-AD16_Cross_Suite_Audit.json` | Cross-suite structural, style, artifact, and preview-hash audit; 16/16 pass. |
+| `Aafiatak_Activity_Diagrams_AD01-AD16_Page11_UML_Conformance_Report.md` | Academic UML conformance report against the lecturer page-11 `Process Order` reference; 16/16 pass. |
+| `Aafiatak_Activity_Diagrams_AD01-AD16_Page11_UML_Conformance_Audit.json` | Machine-readable page-11 notation, source, and rendered-artifact conformance audit. |
 | `aafiatak-adNN-*.svg` | Editable vector render for each diagram. |
 | `aafiatak-adNN-*.drawio` | Editable diagrams.net source for each diagram. |
 | `aafiatak-adNN-*.png` | High-resolution visual preview for each diagram. |
