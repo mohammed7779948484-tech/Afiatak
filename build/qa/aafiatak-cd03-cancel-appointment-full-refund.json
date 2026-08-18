@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-cd03-cancel-appointment-full-refund.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-cd03-cancel-appointment-full-refund.png",
+      "previewHash": "f5db967c01f750f6221baad1e15d7a79316f14658869bb648e578907c9604cb1",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-18T00:00:00+00:00",
+      "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-cd03-cancel-appointment-full-refund.png",
+    "previewHash": "f5db967c01f750f6221baad1e15d7a79316f14658869bb648e578907c9604cb1",
+    "status": "awaiting-user-approval"
+  }
+}

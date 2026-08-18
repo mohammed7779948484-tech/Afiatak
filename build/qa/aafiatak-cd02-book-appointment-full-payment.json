@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-cd02-book-appointment-full-payment.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-cd02-book-appointment-full-payment.png",
+      "previewHash": "d0dcc88b21ef828f1afbd3789219e8571f9a3e9cd959b3119a7b4f1b762ba149",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-18T00:00:00+00:00",
+      "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-cd02-book-appointment-full-payment.png",
+    "previewHash": "d0dcc88b21ef828f1afbd3789219e8571f9a3e9cd959b3119a7b4f1b762ba149",
+    "status": "awaiting-user-approval"
+  }
+}

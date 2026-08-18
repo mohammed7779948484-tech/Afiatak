@@ -1,0 +1,90 @@
+{
+  "results": [
+    {
+      "view": "aafiatak-cd01-patient-registration-otp",
+      "svg": "build/work/geometry-regression/aafiatak-cd01-patient-registration-otp.svg",
+      "participantCount": 5,
+      "linkCount": 5,
+      "messageCount": 19,
+      "selfMessageSequences": [
+        3,
+        12
+      ],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    },
+    {
+      "view": "aafiatak-cd02-book-appointment-full-payment",
+      "svg": "build/work/geometry-regression/aafiatak-cd02-book-appointment-full-payment.svg",
+      "participantCount": 6,
+      "linkCount": 7,
+      "messageCount": 34,
+      "selfMessageSequences": [],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    },
+    {
+      "view": "aafiatak-cd03-cancel-appointment-full-refund",
+      "svg": "build/work/geometry-regression/aafiatak-cd03-cancel-appointment-full-refund.svg",
+      "participantCount": 6,
+      "linkCount": 5,
+      "messageCount": 18,
+      "selfMessageSequences": [
+        5
+      ],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    },
+    {
+      "view": "aafiatak-cd04-reschedule-appointment",
+      "svg": "build/work/geometry-regression/aafiatak-cd04-reschedule-appointment.svg",
+      "participantCount": 6,
+      "linkCount": 5,
+      "messageCount": 18,
+      "selfMessageSequences": [],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    },
+    {
+      "view": "aafiatak-cd05-checkin-queue-call-next",
+      "svg": "build/work/geometry-regression/aafiatak-cd05-checkin-queue-call-next.svg",
+      "participantCount": 8,
+      "linkCount": 8,
+      "messageCount": 30,
+      "selfMessageSequences": [
+        6
+      ],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    },
+    {
+      "view": "aafiatak-cd06-operational-exception",
+      "svg": "build/work/geometry-regression/aafiatak-cd06-operational-exception.svg",
+      "participantCount": 7,
+      "linkCount": 6,
+      "messageCount": 25,
+      "selfMessageSequences": [],
+      "geometryMetadataComplete": true,
+      "distinctSelfLoopBounds": true,
+      "layoutIssueCount": 0,
+      "q4q5Errors": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

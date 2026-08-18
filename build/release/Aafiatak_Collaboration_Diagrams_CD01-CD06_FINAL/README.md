@@ -1,34 +1,24 @@
-# Aafiatak Collaboration / Communication Diagrams — CD-01 to CD-06
+# Aafiatak Collaboration/Communication Diagrams — Corrected Delivery
 
-## Delivery Contents
+## Contents
 
-This release contains the six final academic UML Collaboration/Communication Diagrams for the Aafiatak Medical Appointment Booking System. Each individual diagram is supplied as an editable `.drawio` source, vector SVG, 8192×5325 PNG preview, and one-page A0 landscape vector PDF. The package also includes one merged six-page A0 vector PDF and complete QA evidence.
+This delivery contains corrected UML Collaboration/Communication Diagrams CD-01 through CD-06 for the Aafiatak Medical Appointment Booking System. Each scenario is available as an editable diagrams.net source (`.drawio`), SVG source, high-resolution PNG preview, and A0-landscape vector PDF. `Aafiatak_Collaboration_Diagrams_CD01-CD06_FINAL.pdf` combines the six PDF pages in CD-01 through CD-06 order.
 
-| Diagram | Scenario | Participants | Links | Messages | Self-messages |
-|---|---|---:|---:|---:|---:|
-| CD-01 | Patient Registration & WhatsApp OTP Verification | 5 | 5 | 19 | 2 |
-| CD-02 | Book Appointment — FULL_PAYMENT_REQUIRED Success | 6 | 7 | 34 | 0 |
-| CD-03 | Cancel Appointment — Full Refund Required | 6 | 5 | 18 | 1 |
-| CD-04 | Reschedule Appointment | 6 | 5 | 18 | 0 |
-| CD-05 | Patient Check-in, Queue & Call Next Patient | 8 | 8 | 30 | 1 |
-| CD-06 | Resolve Operational Exception — Facility Cancellation & Full-Refund Initiation | 7 | 6 | 25 | 0 |
+## Geometry redesign
 
-## Review Status
+The drawings are generated from immutable semantic models and binding Markdown contracts. The implementation uses calculated font metrics, structural-link-anchored message runs, collision-tested label candidates, density-aware arrow lanes, explicit self-loop lanes, and machine-readable SVG geometry. The same calculated render plan drives both SVG and diagrams.net export.
 
-All six diagrams have passed source-match, structural QA, rendering checks, high-resolution visual inspection, and vector-PDF verification. Their declared status is **`awaiting-user-approval`**; automated checks do not replace your final visual approval.
-
-## Quality Guarantees
-
-Every diagram uses the lecturer-required Collaboration/Communication visual language: plain participant rectangles, one reusable structural link for each communicating pair, globally numbered directional messages, and small self-message loops only where the binding specification requires them. The diagrams deliberately contain no lifelines, activation bars, sequence fragments, use-case notation, state notation, or invented participants/messages.
-
-All individual PDFs and the merged PDF use A0 landscape pages (3370.39×2383.94 pt). `pdfimages -list` reported **zero embedded raster-image objects**, so the diagram linework and text remain vector content.
-
-## Directory Guide
-
-| Directory | Contents |
+| Verification | Result |
 |---|---|
-| `final/` | The ready-to-submit SVG, PNG, `.drawio`, individual PDF, and merged six-page PDF files. |
-| `qa/` | Per-diagram QA records, source-match JSON results, visual-inspection notes, and the cross-suite audit. |
-| `source/` | Semantic models, Views, layout composition, SVG renderer, diagrams.net exporter, and the supporting export/audit scripts required to reproduce the delivery. |
+| Source matching against CD-01 through CD-06 contracts | Passed for all six diagrams. |
+| Q4 semantic SVG validation | Passed for all six diagrams. |
+| Q5 geometry validation | Passed for all six diagrams. |
+| Full-page visual inspection | Completed for all six diagrams. |
+| Dense-region visual inspection | Completed for CD-02, CD-05, and CD-06. |
+| Individual and merged PDF raster-image check | Zero embedded raster images. |
 
-Open any `.drawio` file in [diagrams.net](https://app.diagrams.net/) or draw.io Desktop to edit the source. The vector SVG and PDF files are appropriate for high-resolution report insertion and printing.
+Detailed evidence is in `qa/Aafiatak_Collaboration_Geometry_Redesign_Report.md`, `qa/Aafiatak_Collaboration_Geometry_Regression.json`, `qa/Aafiatak_CD0*_geometry_source_match.json`, and `work/collaboration-geometry-visual-inspection.md`.
+
+## Review state
+
+The artifacts are technically verified but deliberately remain **`awaiting-user-approval`**. Open the merged PDF or an individual PDF, then review the visual layout before granting human approval.

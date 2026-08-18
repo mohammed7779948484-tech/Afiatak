@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-cd05-checkin-queue-call-next.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-cd05-checkin-queue-call-next.png",
+      "previewHash": "81beac22134ff31c7b1d24eb1afa494e6c9ad2515322da7e9919edab00cc1560",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-18T00:00:00+00:00",
+      "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-cd05-checkin-queue-call-next.png",
+    "previewHash": "81beac22134ff31c7b1d24eb1afa494e6c9ad2515322da7e9919edab00cc1560",
+    "status": "awaiting-user-approval"
+  }
+}

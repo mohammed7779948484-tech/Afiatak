@@ -1,0 +1,24 @@
+{
+  "artifact": "build/work/aafiatak-cd01-patient-registration-otp.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/preview/aafiatak-cd01-patient-registration-otp.png",
+      "previewHash": "47c3bb81e5c381dd74a47773b9462e050f9958656cb0f51bf6aef7f5fb1bef88",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus automated QA",
+      "reviewedAt": "2026-08-18T00:00:00+00:00",
+      "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/preview/aafiatak-cd01-patient-registration-otp.png",
+    "previewHash": "47c3bb81e5c381dd74a47773b9462e050f9958656cb0f51bf6aef7f5fb1bef88",
+    "status": "awaiting-user-approval"
+  }
+}
