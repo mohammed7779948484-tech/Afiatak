@@ -1,19 +1,16 @@
-# Aafiatak Collaboration Diagrams — CD-01 to CD-06
+# Aafiatak UML Collaboration / Communication Diagrams — Final Label-Proximity Refinement
 
-## Delivery contents
+This package contains six UML Collaboration/Communication Diagrams for the **Aafiatak Medical Appointment Booking System**. The final refinement makes each numbered message label a local visual annotation of its owning communication link, adds an explicit Q5 ownership-distance check, and preserves every approved semantic element and exact scenario message.
 
-This release contains six UML Collaboration/Communication Diagrams for the Aafiatak Medical Appointment Booking System. Each diagram is delivered as editable diagrams.net XML (`.drawio`), scalable vector graphics (`.svg`), a high-resolution PNG preview (`.png`), and an A0-landscape vector PDF (`.pdf`). The file `Aafiatak_Collaboration_Diagrams_CD01-CD06_FINAL.pdf` merges the six diagrams in order from CD-01 to CD-06.
+| Deliverable | Contents |
+|---|---|
+| `diagrams/` | Six editable diagrams.net files, SVG files, high-resolution PNG previews, and A0-landscape vector PDFs; plus the merged six-page A0 vector PDF. |
+| `qa/` | Q4/Q5 reports, source-match audits, geometry regression, own-label-to-link proximity evidence, and the final refinement report. |
+| `work/` | Visual audit notes and final family contact sheet used for human inspection. |
+| `source/` | The shared geometry engine, SVG renderer, diagrams.net exporter, composition settings, Q5 validator, and proximity-evidence tool used for this release. |
 
-## Final visual language
+The diagrams preserve all participants, message labels, global message numbers, senders, receivers, structural-link memberships, and self-message assignments. The output style remains lecturer-like: white academic page, simple underlined participant rectangles, thin neutral links, unboxed local message labels, small open direction marks, and no Sequence-Diagram constructs.
 
-The artifacts are generated from immutable semantic models and View specifications through a shared collision-aware geometry plan. This final visual refinement uses a compact network footprint, underlined unfilled object rectangles, thin calm grey structural links, short small open directional marks, unboxed global message labels placed in local corridors adjacent to their own links, and only the specified compact self-message loops. The SVG and `.drawio` exports consume the same geometry plan.
+The individual PDFs and merged six-page PDF are vector-only. `pdfimages -list` reports no embedded raster images.
 
-No lifelines, activation bars, sequence fragments, page frames, cards, dashboards, decorative panels, or unrelated UML notation are included. The renderer uses a shared approach rather than arbitrary per-diagram message coordinates.
-
-## Verification
-
-The six diagrams pass source-match audits, Q4 semantic SVG validation, and Q5 geometry validation. Full-page visual review covered CD-01 through CD-06; dense-corridor review covered CD-02, CD-05, and CD-06. The final delivery PDFs are vector PDFs verified without embedded raster images. Detailed evidence is in `qa/Aafiatak_Collaboration_Final_Visual_Refinement_Report.md`, `qa/Aafiatak_Collaboration_Geometry_Regression.json`, `qa/CD0*_final_visual_source_match.json`, and `work/final-polish-review/`.
-
-## Review status
-
-All Views deliberately retain `visualReview.status: awaiting-user-approval`. This package provides validated artifacts for the user's final visual review; it does not grant approval automatically.
+> **Approval status:** all six Views remain `awaiting-user-approval`. Passing QA and visual inspection is evidence for user review; it does not self-approve the diagrams.

@@ -60,8 +60,8 @@ def _participant(parent, geometry: ParticipantGeometry) -> None:
     )
     bounds = geometry.bounds
     ET.SubElement(group, tag("rect"), {"x": f"{bounds.x:.2f}", "y": f"{bounds.y:.2f}", "width": f"{bounds.width:.2f}", "height": f"{bounds.height:.2f}", "class": "participant-box"})
-    line_height = 76.0
-    first_baseline = bounds.center.y - (len(geometry.name_lines) - 1) * line_height / 2 + 24.0
+    line_height = 70.0
+    first_baseline = bounds.center.y - (len(geometry.name_lines) - 1) * line_height / 2 + 22.0
     node = ET.SubElement(group, tag("text"), {"x": f"{bounds.center.x:.2f}", "y": f"{first_baseline:.2f}", "class": "participant-name", "text-anchor": "middle"})
     for index, line in enumerate(geometry.name_lines):
         span = ET.SubElement(node, tag("tspan"), {"x": f"{bounds.center.x:.2f}", **({"dy": f"{line_height:.2f}"} if index else {})})
@@ -143,14 +143,14 @@ def _self_loop(parent, loop) -> None:
 def _style() -> str:
     return """
       .page { fill:#FFFFFF; }
-      .page-heading { font-family:"DejaVu Serif","Times New Roman",serif; font-size:48px; font-weight:700; fill:#8B1E1E; }
+      .page-heading { font-family:"DejaVu Serif","Times New Roman",serif; font-size:68px; font-weight:700; fill:#8B1E1E; }
       .participant-box { fill:#FFFFFF; stroke:#222222; stroke-width:2.2; }
-      .participant-name { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:400; text-decoration:underline; fill:#222222; }
+      .participant-name { font-family:"DejaVu Serif","Times New Roman",serif; font-size:56px; font-weight:400; text-decoration:underline; fill:#222222; }
       .structural-link-line { stroke:#878787; stroke-width:1.55; fill:none; stroke-linecap:round; stroke-linejoin:round; }
       .message-arrow { stroke:#5D5D5D; stroke-width:1.45; fill:none; stroke-linecap:round; }
       .self-message-self { stroke:#5D5D5D; stroke-width:1.45; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-      .message-number { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:700; fill:#333333; }
-      .message-label { font-family:"DejaVu Serif","Times New Roman",serif; font-size:58px; font-weight:400; fill:#333333; }
+      .message-number { font-family:"DejaVu Serif","Times New Roman",serif; font-size:48px; font-weight:700; fill:#333333; }
+      .message-label { font-family:"DejaVu Serif","Times New Roman",serif; font-size:48px; font-weight:400; fill:#333333; }
     """
 
 

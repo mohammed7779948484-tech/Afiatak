@@ -19,9 +19,9 @@ class CollaborationLayout:
     network_scale: float = 0.78
     participant_width: int = 1840
     participant_height: int = 580
-    participant_font_size: int = 58
-    message_font_size: int = 58
-    message_line_height: int = 70
+    participant_font_size: int = 56
+    message_font_size: int = 48
+    message_line_height: int = 60
 
 
 # This is intentionally not a list of free-floating message coordinates.  Each

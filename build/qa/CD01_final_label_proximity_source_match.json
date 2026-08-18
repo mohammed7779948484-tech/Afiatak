@@ -1,0 +1,15 @@
+{
+  "spec": "CD01_Patient_Registration_WhatsApp_OTP_FINAL_VERIFIED_9PASS.md",
+  "view": "views/collaboration/aafiatak-cd01-patient-registration-otp.yaml",
+  "model": "model/catalog/collaborations/aafiatak-cd01-patient-registration-otp.yaml",
+  "diagramType": true,
+  "participants": true,
+  "participantCount": true,
+  "structuralLinks": true,
+  "messageCount": true,
+  "messageNumbering": true,
+  "messageSourceMatch": true,
+  "selfMessages": true,
+  "status": true,
+  "passed": true
+}

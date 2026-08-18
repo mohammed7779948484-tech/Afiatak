@@ -8,8 +8,8 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-cd02-book-appointment-full-payment.png",
-      "previewHash": "bb330d3d6336ca2bf21083149a455c414efc13af5c4f32b12f58671d59a8208a",
-      "hashMatchesRecordedPreview": true,
+      "previewHash": "b6449cacf5c40c5401cb8b84fd9aaa3222390b384d65f48b0b2c13905557397b",
+      "hashMatchesRecordedPreview": false,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-18T00:00:00+00:00",
       "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-cd02-book-appointment-full-payment.png",
-    "previewHash": "bb330d3d6336ca2bf21083149a455c414efc13af5c4f32b12f58671d59a8208a",
+    "previewHash": "b6449cacf5c40c5401cb8b84fd9aaa3222390b384d65f48b0b2c13905557397b",
     "status": "awaiting-user-approval"
   }
 }

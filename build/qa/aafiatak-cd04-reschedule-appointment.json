@@ -8,8 +8,8 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-cd04-reschedule-appointment.png",
-      "previewHash": "dc7b79fe2c910d40a33e66636275f04b6ccf880d0667d08d04221f47eba82597",
-      "hashMatchesRecordedPreview": true,
+      "previewHash": "8902c2af49924ffb478d1281a5dc1269e801ed658ade11981499781e65352999",
+      "hashMatchesRecordedPreview": false,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-18T00:00:00+00:00",
       "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-cd04-reschedule-appointment.png",
-    "previewHash": "dc7b79fe2c910d40a33e66636275f04b6ccf880d0667d08d04221f47eba82597",
+    "previewHash": "8902c2af49924ffb478d1281a5dc1269e801ed658ade11981499781e65352999",
     "status": "awaiting-user-approval"
   }
 }

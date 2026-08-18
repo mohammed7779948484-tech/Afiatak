@@ -1,0 +1,245 @@
+{
+  "svg": "build/final/Aafiatak_CD02_Book_Appointment_FULL_PAYMENT.svg",
+  "messageCount": 34,
+  "maxOwnLinkDistance": 400.95,
+  "records": [
+    {
+      "message": "message.cd02.14",
+      "sequence": 14,
+      "structuralLink": "L03",
+      "labelBounds": "5014.86,4432.36,911.03,82.00",
+      "ownLinkDistance": 400.95
+    },
+    {
+      "message": "message.cd02.24",
+      "sequence": 24,
+      "structuralLink": "L03",
+      "labelBounds": "3612.77,3459.46,938.59,82.00",
+      "ownLinkDistance": 380.0
+    },
+    {
+      "message": "message.cd02.21",
+      "sequence": 21,
+      "structuralLink": "L03",
+      "labelBounds": "2802.61,4317.03,1066.69,82.00",
+      "ownLinkDistance": 380.0
+    },
+    {
+      "message": "message.cd02.09",
+      "sequence": 9,
+      "structuralLink": "L03",
+      "labelBounds": "5315.93,3554.96,926.92,82.00",
+      "ownLinkDistance": 380.0
+    },
+    {
+      "message": "message.cd02.12",
+      "sequence": 12,
+      "structuralLink": "L03",
+      "labelBounds": "4328.04,4257.30,1155.17,82.00",
+      "ownLinkDistance": 230.0
+    },
+    {
+      "message": "message.cd02.02",
+      "sequence": 2,
+      "structuralLink": "L03",
+      "labelBounds": "3314.56,3592.97,1179.52,82.00",
+      "ownLinkDistance": 230.0
+    },
+    {
+      "message": "message.cd02.31",
+      "sequence": 31,
+      "structuralLink": "L02",
+      "labelBounds": "7481.09,2835.47,1080.33,82.00",
+      "ownLinkDistance": 176.03
+    },
+    {
+      "message": "message.cd02.25",
+      "sequence": 25,
+      "structuralLink": "L04",
+      "labelBounds": "8327.23,4668.49,1296.05,82.00",
+      "ownLinkDistance": 176.03
+    },
+    {
+      "message": "message.cd02.20",
+      "sequence": 20,
+      "structuralLink": "L04",
+      "labelBounds": "6688.57,4832.16,981.83,82.00",
+      "ownLinkDistance": 176.03
+    },
+    {
+      "message": "message.cd02.26",
+      "sequence": 26,
+      "structuralLink": "L04",
+      "labelBounds": "8500.11,4774.49,950.30,82.00",
+      "ownLinkDistance": 153.19
+    },
+    {
+      "message": "message.cd02.32",
+      "sequence": 32,
+      "structuralLink": "L02",
+      "labelBounds": "7630.79,2941.47,780.94,82.00",
+      "ownLinkDistance": 143.37
+    },
+    {
+      "message": "message.cd02.19",
+      "sequence": 19,
+      "structuralLink": "L04",
+      "labelBounds": "6781.18,4726.16,796.61,82.00",
+      "ownLinkDistance": 119.2
+    },
+    {
+      "message": "message.cd02.34",
+      "sequence": 34,
+      "structuralLink": "L05",
+      "labelBounds": "770.64,4834.00,1476.66,82.00",
+      "ownLinkDistance": 88.25
+    },
+    {
+      "message": "message.cd02.13",
+      "sequence": 13,
+      "structuralLink": "L05",
+      "labelBounds": "1305.66,4728.00,941.64,82.00",
+      "ownLinkDistance": 85.5
+    },
+    {
+      "message": "message.cd02.08",
+      "sequence": 8,
+      "structuralLink": "L05",
+      "labelBounds": "1545.20,4622.00,702.09,82.00",
+      "ownLinkDistance": 82.76
+    },
+    {
+      "message": "message.cd02.33",
+      "sequence": 33,
+      "structuralLink": "L03",
+      "labelBounds": "3428.14,3749.57,1794.94,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.30",
+      "sequence": 30,
+      "structuralLink": "L01",
+      "labelBounds": "5259.52,3424.50,1143.48,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.29",
+      "sequence": 29,
+      "structuralLink": "L01",
+      "labelBounds": "4083.38,3318.50,2319.62,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.28",
+      "sequence": 28,
+      "structuralLink": "L01",
+      "labelBounds": "5161.23,3212.50,1241.77,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.27",
+      "sequence": 27,
+      "structuralLink": "L01",
+      "labelBounds": "4561.66,3106.50,1841.34,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.23",
+      "sequence": 23,
+      "structuralLink": "L07",
+      "labelBounds": "4287.43,4611.02,618.55,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.22",
+      "sequence": 22,
+      "structuralLink": "L06",
+      "labelBounds": "5798.55,6246.67,1060.98,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.18",
+      "sequence": 18,
+      "structuralLink": "L01",
+      "labelBounds": "5791.69,3000.50,611.31,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.17",
+      "sequence": 17,
+      "structuralLink": "L01",
+      "labelBounds": "5390.20,2894.50,1012.80,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.16",
+      "sequence": 16,
+      "structuralLink": "L01",
+      "labelBounds": "4948.28,2788.50,1454.72,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.15",
+      "sequence": 15,
+      "structuralLink": "L01",
+      "labelBounds": "4716.11,2682.50,1686.89,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.11",
+      "sequence": 11,
+      "structuralLink": "L01",
+      "labelBounds": "5144.50,2576.50,1258.50,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.10",
+      "sequence": 10,
+      "structuralLink": "L01",
+      "labelBounds": "4889.94,2470.50,1513.06,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.07",
+      "sequence": 7,
+      "structuralLink": "L03",
+      "labelBounds": "3689.36,4082.88,1362.66,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.06",
+      "sequence": 6,
+      "structuralLink": "L01",
+      "labelBounds": "5220.64,2364.50,1182.36,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.05",
+      "sequence": 5,
+      "structuralLink": "L01",
+      "labelBounds": "5214.25,2258.50,1188.75,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.04",
+      "sequence": 4,
+      "structuralLink": "L01",
+      "labelBounds": "5329.62,2152.50,1073.38,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.03",
+      "sequence": 3,
+      "structuralLink": "L01",
+      "labelBounds": "5108.41,2046.50,1294.59,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd02.01",
+      "sequence": 1,
+      "structuralLink": "L05",
+      "labelBounds": "1303.55,4516.00,943.75,82.00",
+      "ownLinkDistance": 80.0
+    }
+  ]
+}

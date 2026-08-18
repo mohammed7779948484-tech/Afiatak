@@ -53,12 +53,12 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
     page = cell(cells, next_id("page"), "", style="rounded=0;html=1;fillColor=#FFFFFF;strokeColor=none;pointerEvents=0;", vertex="1", parent="1")
     geometry(page, plan.canvas.x, plan.canvas.y, plan.canvas.width, plan.canvas.height)
     heading_value = "<br/>".join(plan.heading.lines)
-    heading = cell(cells, next_id("heading"), heading_value, style="text;html=1;align=left;verticalAlign=top;fontSize=44;fontStyle=1;fontColor=#8B1E1E;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
+    heading = cell(cells, next_id("heading"), heading_value, style="text;html=1;align=left;verticalAlign=top;fontSize=68;fontStyle=1;fontColor=#8B1E1E;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
     geometry(heading, plan.heading.bounds.x, plan.heading.bounds.y, plan.heading.bounds.width, plan.heading.bounds.height)
 
     for participant in plan.participants.values():
         bounds = participant.bounds
-        node = cell(cells, next_id("participant"), f"<u>{participant.element.name}</u>", style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#222222;strokeWidth=1.8;fontColor=#222222;fontFamily=Times New Roman;fontSize=44;fontStyle=4;align=center;verticalAlign=middle;", vertex="1", parent="1")
+        node = cell(cells, next_id("participant"), f"<u>{participant.element.name}</u>", style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#222222;strokeWidth=1.8;fontColor=#222222;fontFamily=Times New Roman;fontSize=56;fontStyle=4;align=center;verticalAlign=middle;", vertex="1", parent="1")
         geometry(node, bounds.x, bounds.y, bounds.width, bounds.height)
 
     for link in plan.links.values():
@@ -70,7 +70,7 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
             arrow = arrows[label.relation.id]
             polyline_edge(cells, next_id(f"message-{label.relation.metadata['sequence']}"), (arrow.segment.start, arrow.segment.end), "html=1;endArrow=open;endFill=0;endSize=6;strokeColor=#5D5D5D;strokeWidth=1.3;rounded=0;")
             value = f"{label.text.number}&nbsp;&nbsp;" + "<br/>".join(label.text.lines)
-            text = cell(cells, next_id("message-label"), value, style="text;html=1;align=left;verticalAlign=top;fontSize=46;fontColor=#333333;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
+            text = cell(cells, next_id("message-label"), value, style="text;html=1;align=left;verticalAlign=top;fontSize=48;fontColor=#333333;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
             bounds = label.text.bounds
             geometry(text, bounds.x, bounds.y, bounds.width, bounds.height)
 
@@ -78,7 +78,7 @@ def export_collaboration_drawio(model, view, output: Path) -> None:
         polyline_edge(cells, next_id(f"self-{loop.relation.metadata['sequence']}"), loop.path.points, "html=1;endArrow=open;endFill=0;endSize=6;strokeColor=#5D5D5D;strokeWidth=1.3;rounded=1;curved=1;")
         label = loop.label
         value = f"{label.text.number}&nbsp;&nbsp;" + "<br/>".join(label.text.lines)
-        text = cell(cells, next_id("self-label"), value, style="text;html=1;align=left;verticalAlign=top;fontSize=46;fontColor=#333333;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
+        text = cell(cells, next_id("self-label"), value, style="text;html=1;align=left;verticalAlign=top;fontSize=48;fontColor=#333333;fontFamily=Times New Roman;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=0;spacingTop=0;", vertex="1", parent="1")
         bounds = label.text.bounds
         geometry(text, bounds.x, bounds.y, bounds.width, bounds.height)
 

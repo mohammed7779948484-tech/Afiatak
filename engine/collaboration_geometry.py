@@ -363,6 +363,36 @@ def segment_intersects_rect(segment: Segment, rect: Rect) -> bool:
     return any(segments_intersect(segment, edge) for edge in edges)
 
 
+def point_to_segment_distance(point: Point, segment: Segment) -> float:
+    dx = segment.end.x - segment.start.x
+    dy = segment.end.y - segment.start.y
+    length_squared = dx * dx + dy * dy
+    if length_squared == 0:
+        return hypot(point.x - segment.start.x, point.y - segment.start.y)
+    projection = ((point.x - segment.start.x) * dx + (point.y - segment.start.y) * dy) / length_squared
+    projection = min(1.0, max(0.0, projection))
+    nearest = Point(segment.start.x + projection * dx, segment.start.y + projection * dy)
+    return hypot(point.x - nearest.x, point.y - nearest.y)
+
+
+def segment_to_segment_distance(first: Segment, second: Segment) -> float:
+    if segments_intersect(first, second):
+        return 0.0
+    return min(
+        point_to_segment_distance(first.start, second),
+        point_to_segment_distance(first.end, second),
+        point_to_segment_distance(second.start, first),
+        point_to_segment_distance(second.end, first),
+    )
+
+
+def rect_to_polyline_distance(rect: Rect, polyline: Polyline) -> float:
+    """Return the shortest edge-to-edge distance from a label rectangle to a link."""
+    corners = (Point(rect.left, rect.top), Point(rect.right, rect.top), Point(rect.right, rect.bottom), Point(rect.left, rect.bottom))
+    rectangle_edges = tuple(Segment(corners[index], corners[(index + 1) % 4]) for index in range(4))
+    return min(segment_to_segment_distance(rectangle_edge, link_segment) for rectangle_edge in rectangle_edges for link_segment in polyline.segments)
+
+
 def rect_edge_point(centre: Point, other: Point, bounds: Rect) -> Point:
     dx, dy = other.x - centre.x, other.y - centre.y
     if dx == 0 and dy == 0:
@@ -426,21 +456,44 @@ def _link_geometries(view: ViewSpec, participants: dict[str, ParticipantGeometry
     return result
 
 
-def _candidate_group_rect(anchor: Point, side: str, width: float, height: float, shift: float, gap: float) -> Rect:
-    """Place a message run from a local point on its own communication link.
+def _side_vector(side: str) -> Point:
+    return {
+        "right": Point(1.0, 0.0),
+        "left": Point(-1.0, 0.0),
+        "above": Point(0.0, -1.0),
+        "below": Point(0.0, 1.0),
+    }[side]
 
-    This avoids the detached, bounding-box-driven placement that made labels appear
-    far from diagonal and long structural links in earlier revisions.
+
+def _local_sides(hint: object, tangent: Point) -> tuple[str, ...]:
+    """Return useful local normal sides for the current link segment.
+
+    A vertical corridor accepts labels to its right or left, while a horizontal
+    corridor accepts labels above or below.  Diagonal corridors retain all
+    cardinal preferences, projected onto the actual segment normal below.
     """
-    if side == "right":
-        return Rect(anchor.x + gap, anchor.y - height / 2 + shift, width, height)
-    if side == "left":
-        return Rect(anchor.x - gap - width, anchor.y - height / 2 + shift, width, height)
-    if side == "above":
-        return Rect(anchor.x - width / 2 + shift, anchor.y - gap - height, width, height)
-    if side == "below":
-        return Rect(anchor.x - width / 2 + shift, anchor.y + gap, width, height)
-    raise ValueError(f"Unknown label side: {side}")
+    requested = _layout_side_candidates(hint)
+    if abs(tangent.y) >= abs(tangent.x) * 1.35:
+        useful = ("right", "left")
+    elif abs(tangent.x) >= abs(tangent.y) * 1.35:
+        useful = ("above", "below")
+    else:
+        useful = ("right", "left", "above", "below")
+    return tuple(side for side in requested if side in useful) + tuple(side for side in useful if side not in requested)
+
+
+def _candidate_group_rect(anchor: Point, tangent: Point, side: str, width: float, height: float, shift: float, gap: float) -> Rect:
+    """Place an axis-aligned label run in the local tangent/normal frame of a link."""
+    normal = Point(-tangent.y, tangent.x)
+    preferred = _side_vector(side)
+    sign = 1.0 if normal.x * preferred.x + normal.y * preferred.y >= 0 else -1.0
+    outward = Point(normal.x * sign, normal.y * sign)
+    projected_half_extent = abs(outward.x) * width / 2 + abs(outward.y) * height / 2
+    centre = anchor.shifted(
+        outward.x * (projected_half_extent + gap) + tangent.x * shift,
+        outward.y * (projected_half_extent + gap) + tangent.y * shift,
+    )
+    return Rect(centre.x - width / 2, centre.y - height / 2, width, height)
 
 
 def _shifts() -> tuple[float, ...]:
@@ -485,6 +538,89 @@ def _collides_group(
     return any(link_id != own_link_id and link.polyline.intersects(candidate.expanded(28)) for link_id, link in links.items())
 
 
+def _labels_for_group(
+    link_id: str,
+    relations: Sequence[SemanticRelation],
+    group: Rect,
+    measurer: TextMeasurer,
+    width_limit: float,
+    side: str,
+) -> tuple[MessageLabelGeometry, ...]:
+    """Build labels inside a local group while keeping their near edge link-facing."""
+    labels: list[MessageLabelGeometry] = []
+    cursor = group.y
+    for relation in relations:
+        draft = measurer.label(relation, Point(0.0, cursor), width_limit)
+        # A left-side vertical corridor must right-align each individual label.
+        # Otherwise a short label inherits the group width as empty space and looks
+        # detached even though the group envelope itself touches the link.
+        if side == "left":
+            origin_x = group.right - draft.bounds.width
+        elif side in {"above", "below"}:
+            origin_x = group.center.x - draft.bounds.width / 2
+        else:
+            origin_x = group.x
+        text = measurer.label(relation, Point(origin_x, cursor), width_limit)
+        labels.append(MessageLabelGeometry(relation, link_id, text))
+        cursor += text.bounds.height + 24.0
+    return tuple(labels)
+
+
+def _link_run_candidates(
+    link_id: str,
+    relations: Sequence[SemanticRelation],
+    hint: dict,
+    link: StructuralLinkGeometry,
+    canvas: Rect,
+    heading: Rect,
+    participants: dict[str, ParticipantGeometry],
+    links: dict[str, StructuralLinkGeometry],
+    occupied_labels: list[Rect],
+    occupied_loops: list[Rect],
+    measurer: TextMeasurer,
+) -> list[tuple[tuple[float, float, int, int, int, float], str, Rect, tuple[MessageLabelGeometry, ...]]]:
+    """Enumerate local, collision-free candidates ordered by own-link proximity."""
+    base_width = float(hint.get("maxLabelWidth", 2700))
+    local_gap = max(100.0, min(180.0, float(hint.get("labelGap", 180)) * 0.55))
+    # Dense runs may occupy a small stack of parallel local lanes.  Every lane
+    # remains within the hard own-link proximity ceiling; no remote text column
+    # is introduced when the nearest lane is already occupied.
+    local_gaps = tuple(dict.fromkeys((80.0, local_gap, 230.0, 380.0)))
+    anchor_fractions = (0.50, 0.42, 0.58, 0.32, 0.68)
+    anchors = tuple((fraction, *link.polyline.at(link.polyline.length * fraction)) for fraction in anchor_fractions)
+    # The primary pass implements the target 80–250-unit local corridor.  The
+    # second pass is reserved for dense, otherwise collision-free corridors.
+    for allowed_distance in (250.0, 450.0):
+        candidates: list[tuple[tuple[float, float, int, int, int, float], str, Rect, tuple[MessageLabelGeometry, ...]]] = []
+        for width_index, width_limit in enumerate((base_width, max(1600.0, base_width - 320), max(1400.0, base_width - 640))):
+            _, group_width, group_height = _group_measure(relations, measurer, width_limit)
+            for fraction_index, (_, anchor, tangent) in enumerate(anchors):
+                sides = _local_sides(hint.get("side"), tangent)
+                for side_index, side in enumerate(sides):
+                    for gap in local_gaps:
+                        for shift in _shifts():
+                            group = _candidate_group_rect(anchor, tangent, side, group_width, group_height, shift, gap)
+                            if _collides_group(group, canvas, heading, participants.values(), links, link_id, occupied_labels, occupied_loops):
+                                continue
+                            labels = _labels_for_group(link_id, relations, group, measurer, width_limit, side)
+                            distances = [rect_to_polyline_distance(label.text.bounds, link.polyline) for label in labels]
+                            if min(distances) < 60.0 or max(distances) > allowed_distance:
+                                continue
+                            score = (max(distances), sum(distances) / len(distances), width_index, side_index, fraction_index, abs(shift))
+                            candidates.append((score, side, group, labels))
+        if candidates:
+            unique: list[tuple[tuple[float, float, int, int, int, float], str, Rect, tuple[MessageLabelGeometry, ...]]] = []
+            seen: set[tuple[str, int, int, int, int]] = set()
+            for candidate in sorted(candidates, key=lambda item: item[0]):
+                _, side, group, _ = candidate
+                key = (side, round(group.x), round(group.y), round(group.width), round(group.height))
+                if key not in seen:
+                    seen.add(key)
+                    unique.append(candidate)
+            return unique
+    return []
+
+
 def _place_link_run(
     link_id: str,
     relations: Sequence[SemanticRelation],
@@ -498,31 +634,111 @@ def _place_link_run(
     occupied_loops: list[Rect],
     measurer: TextMeasurer,
 ) -> tuple[str, Rect, tuple[MessageLabelGeometry, ...]] | None:
-    base_width = float(hint.get("maxLabelWidth", 2700))
-    local_gap = max(88.0, float(hint.get("labelGap", 180)) * 0.55)
-    # Keep labels attached to their own link, but try nearby local anchor points
-    # and all four local sides before expanding the search into a remote position.
-    anchors = tuple(link.polyline.at(link.polyline.length * fraction)[0] for fraction in (0.50, 0.42, 0.58, 0.32, 0.68))
-    preferred_sides = _layout_side_candidates(hint.get("side"))
-    sides = preferred_sides + tuple(side for side in ("right", "left", "above", "below") if side not in preferred_sides)
-    for side in sides:
-        for width_limit in (base_width, max(1600.0, base_width - 320), max(1400.0, base_width - 640)):
-            drafts, group_width, group_height = _group_measure(relations, measurer, width_limit)
-            for gap in (local_gap, 76.0):
-                for anchor in anchors:
-                    for shift in _shifts():
-                        group = _candidate_group_rect(anchor, side, group_width, group_height, shift, gap)
-                        if _collides_group(group, canvas, heading, participants.values(), links, link_id, occupied_labels, occupied_loops):
-                            continue
-                        labels: list[MessageLabelGeometry] = []
-                        cursor = group.y
-                        for relation in relations:
-                            text = measurer.label(relation, Point(group.x, cursor), width_limit)
-                            labels.append(MessageLabelGeometry(relation, link_id, text))
-                            cursor += text.bounds.height + 24.0
-                        occupied_labels.extend(label.text.bounds for label in labels)
-                        return side, group, tuple(labels)
+    """Choose the closest collision-free local annotation corridor for one link."""
+    candidates = _link_run_candidates(link_id, relations, hint, link, canvas, heading, participants, links, occupied_labels, occupied_loops, measurer)
+    if not candidates:
+        return None
+    _, side, group, labels = candidates[0]
+    occupied_labels.extend(label.text.bounds for label in labels)
+    return side, group, labels
+
+
+def _place_link_runs(
+    link_id: str,
+    relations: Sequence[SemanticRelation],
+    hint: dict,
+    link: StructuralLinkGeometry,
+    canvas: Rect,
+    heading: Rect,
+    participants: dict[str, ParticipantGeometry],
+    links: dict[str, StructuralLinkGeometry],
+    occupied_labels: list[Rect],
+    occupied_loops: list[Rect],
+    measurer: TextMeasurer,
+) -> tuple[tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...]], ...] | None:
+    """Place one local run, or minimally split a dense run into local sub-runs.
+
+    Splitting preserves a message's structural-link membership and only occurs
+    when the complete run cannot fit in the link's own local corridor.  It is a
+    generic density adaptation: each chunk is still a compact numbered block
+    beside the same reusable communication link.
+    """
+    whole = _place_link_run(link_id, relations, hint, link, canvas, heading, participants, links, occupied_labels, occupied_loops, measurer)
+    if whole is not None:
+        side, group, labels = whole
+        return ((side, group, labels, tuple(relations)),)
+    if len(relations) < 2:
+        return None
+    # Prefer the fewest local blocks, then progressively reduce the block size
+    # only when another occupied label or a crossing corridor makes it necessary.
+    for chunk_size in range((len(relations) + 1) // 2, 0, -1):
+        chunks = tuple(tuple(relations[start:start + chunk_size]) for start in range(0, len(relations), chunk_size))
+        if chunk_size == 1:
+            # Deterministic last resort for a genuinely dense corridor: reserve
+            # the longest labels first and use the closest open stacked lane.
+            ranked = sorted(
+                chunks,
+                key=lambda chunk: measurer.label(chunk[0], Point(0.0, 0.0), float(hint.get("maxLabelWidth", 2700))).bounds.width,
+                reverse=True,
+            )
+            final_occupied = list(occupied_labels)
+            placements: list[tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...]]] = []
+            for chunk in ranked:
+                candidates = _link_run_candidates(link_id, chunk, hint, link, canvas, heading, participants, links, final_occupied, occupied_loops, measurer)
+                if not candidates:
+                    placements = []
+                    break
+                _, side, group, labels = candidates[0]
+                placements.append((side, group, labels, chunk))
+                final_occupied.extend(label.text.bounds for label in labels)
+            if placements:
+                occupied_labels[:] = final_occupied
+                return tuple(placements)
+            continue
+        # Keep a small beam of the best non-overlapping partial arrangements.
+        # This solves dense paired/singleton lanes without exponential search and
+        # remains deterministic because candidates are already proximity-sorted.
+        beam: list[tuple[float, list[tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...]]], list[Rect]]] = [(0.0, [], list(occupied_labels))]
+        for chunk in chunks:
+            expanded: list[tuple[float, list[tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...]]], list[Rect]]] = []
+            for cost, placements, current_occupied in beam:
+                for candidate_score, side, group, labels in _link_run_candidates(link_id, chunk, hint, link, canvas, heading, participants, links, current_occupied, occupied_loops, measurer)[:8]:
+                    next_occupied = [*current_occupied, *(label.text.bounds for label in labels)]
+                    next_cost = cost + candidate_score[0] * 1000.0 + candidate_score[1]
+                    expanded.append((next_cost, [*placements, (side, group, labels, chunk)], next_occupied))
+            if not expanded:
+                beam = []
+                break
+            beam = sorted(expanded, key=lambda item: item[0])[:24]
+        if beam:
+            _, placements, final_occupied = beam[0]
+            occupied_labels[:] = final_occupied
+            return tuple(placements)
     return None
+
+
+def _point_projection_on_segment(point: Point, segment: Segment) -> tuple[Point, float]:
+    dx = segment.end.x - segment.start.x
+    dy = segment.end.y - segment.start.y
+    denominator = dx * dx + dy * dy
+    if denominator == 0:
+        return segment.start, 0.0
+    factor = min(1.0, max(0.0, ((point.x - segment.start.x) * dx + (point.y - segment.start.y) * dy) / denominator))
+    return Point(segment.start.x + factor * dx, segment.start.y + factor * dy), factor
+
+
+def _closest_polyline_distance(point: Point, polyline: Polyline) -> float:
+    travelled = 0.0
+    best_distance = float("inf")
+    best_along = 0.0
+    for segment in polyline.segments:
+        projected, factor = _point_projection_on_segment(point, segment)
+        distance = hypot(point.x - projected.x, point.y - projected.y)
+        if distance < best_distance:
+            best_distance = distance
+            best_along = travelled + segment.length * factor
+        travelled += segment.length
+    return best_along
 
 
 def _arrow_geometries(
@@ -530,9 +746,10 @@ def _arrow_geometries(
     relations: Sequence[SemanticRelation],
     link: StructuralLinkGeometry,
     first_participant_id: str,
+    labels: Sequence[MessageLabelGeometry],
     label_bounds: Sequence[Rect],
 ) -> tuple[ArrowGeometry, ...]:
-    """Place small arrows on a link while reserving every rendered label corridor."""
+    """Place small arrows on the same local link corridor as their own labels."""
     if not relations:
         return ()
     total = link.polyline.length
@@ -558,6 +775,7 @@ def _arrow_geometries(
             Point(centre.x + actual_direction.x * half, centre.y + actual_direction.y * half),
         )
 
+    label_by_relation = {label.relation.id: label for label in labels}
     arrows: list[ArrowGeometry] = []
     for lane, assigned in enumerate(assignments):
         slot_count = len(assigned)
@@ -566,9 +784,13 @@ def _arrow_geometries(
         lane_offset = (lane - (lane_count - 1) / 2) * 36.0
         used_distances: list[float] = []
         for slot, (_, relation) in enumerate(assigned, start=1):
-            preferred = endpoint_clearance + slot * spacing
-            step = max(88.0, arrow_length + minimum_gap)
-            candidates = [preferred]
+            label = label_by_relation[relation.id]
+            label_centre = label.text.bounds.center
+            preferred = _closest_polyline_distance(label_centre, link.polyline)
+            preferred = min(total - endpoint_clearance - arrow_length / 2, max(endpoint_clearance + arrow_length / 2, preferred))
+            fallback = endpoint_clearance + slot * spacing
+            step = max(72.0, arrow_length + minimum_gap)
+            candidates = [preferred, fallback]
             for multiple in range(1, 16):
                 candidates.extend((preferred - multiple * step, preferred + multiple * step))
             centre_distance = preferred
@@ -689,13 +911,13 @@ def _place_self_loops(
 
 
 def _heading(view: ViewSpec, canvas: Rect) -> TextBlock:
-    measurer = TextMeasurer(48, 58)
+    measurer = TextMeasurer(68, 78)
     relation = type("Heading", (), {"metadata": {"sequence": ""}, "name": view.title})()
     # A heading is ordinary text without a visible numerical prefix.
     lines = measurer.wrap(view.title, canvas.width - 520)
     width = max(measurer.width(line) for line in lines)
-    top = 92.0
-    return TextBlock(lines, Rect(230.0, top, width, 14.0 + len(lines) * 58.0), "", 230.0, 230.0, top + 48.0, 58.0, 48.0)
+    top = 100.0
+    return TextBlock(lines, Rect(230.0, top, width, 18.0 + len(lines) * 78.0), "", 230.0, 230.0, top + 68.0, 78.0, 68.0)
 
 
 def build_collaboration_render_plan(model: SemanticModel, view: ViewSpec) -> CollaborationRenderPlan:
@@ -714,33 +936,36 @@ def build_collaboration_render_plan(model: SemanticModel, view: ViewSpec) -> Col
     for relation in relations:
         if relation.source != relation.target:
             by_link[relation.metadata["structuralLink"]].append(relation)
-    pending_runs: dict[str, tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...], str]] = {}
+    pending_runs: dict[str, tuple[str, Rect, tuple[MessageLabelGeometry, ...], tuple[SemanticRelation, ...], str, str]] = {}
     for link_data in view.options["structuralLinks"]:
         link_id = link_data["id"]
         group = tuple(sorted(by_link.get(link_id, []), key=lambda relation: relation.metadata["sequence"]))
-        placement = _place_link_run(link_id, group, composition["links"].get(link_id, {}), links[link_id], canvas, heading.bounds, participants, links, occupied_labels, occupied_loops, measurer)
-        if placement is None:
-            issues.append(Collision("message-run-unplaced", link_id, None, "No collision-free message-run lane was available"))
+        placements = _place_link_runs(link_id, group, composition["links"].get(link_id, {}), links[link_id], canvas, heading.bounds, participants, links, occupied_labels, occupied_loops, measurer)
+        if placements is None:
+            issues.append(Collision("message-run-unplaced", link_id, None, "No collision-free local message-run lane was available"))
             # Leave a deterministic in-bounds fallback so Q5 can report the exact geometry conflict.
-            drafts, width, height = _group_measure(group, measurer, 1800)
+            _, width, height = _group_measure(group, measurer, 1800)
             group_bounds = Rect(120.0, 900.0, width, height)
-            labels = []
-            cursor = group_bounds.y
-            for relation in group:
-                text = measurer.label(relation, Point(group_bounds.x, cursor), 1500)
-                labels.append(MessageLabelGeometry(relation, link_id, text))
-                cursor += text.bounds.height + 24
-            side = "fallback"
-        else:
-            side, group_bounds, labels = placement
-        pending_runs[link_id] = (side, group_bounds, tuple(labels), group, link_data["participants"][0])
+            labels = _labels_for_group(link_id, group, group_bounds, measurer, 1500, "fallback")
+            placements = (("fallback", group_bounds, labels, group),)
+        for chunk_index, (side, group_bounds, labels, chunk) in enumerate(placements, start=1):
+            run_key = link_id if len(placements) == 1 else f"{link_id}#{chunk_index}"
+            pending_runs[run_key] = (side, group_bounds, labels, chunk, link_data["participants"][0], link_id)
 
     all_label_bounds = [label.text.bounds for loop in loops for label in (loop.label,)]
-    all_label_bounds.extend(label.text.bounds for _, _, labels, _, _ in pending_runs.values() for label in labels)
+    all_label_bounds.extend(label.text.bounds for _, _, labels, _, _, _ in pending_runs.values() for label in labels)
+    arrows_by_relation: dict[str, ArrowGeometry] = {}
+    for link_data in view.options["structuralLinks"]:
+        link_id = link_data["id"]
+        link_run_records = [record for record in pending_runs.values() if record[5] == link_id]
+        link_relations = tuple(relation for _, _, _, chunk, _, _ in link_run_records for relation in chunk)
+        link_labels = tuple(label for _, _, labels, _, _, _ in link_run_records for label in labels)
+        for arrow in _arrow_geometries(link_id, link_relations, links[link_id], link_data["participants"][0], link_labels, all_label_bounds):
+            arrows_by_relation[arrow.relation.id] = arrow
     runs: dict[str, MessageRunGeometry] = {}
-    for link_id, (side, group_bounds, labels, group, first_participant_id) in pending_runs.items():
-        arrows = _arrow_geometries(link_id, group, links[link_id], first_participant_id, all_label_bounds)
-        runs[link_id] = MessageRunGeometry(link_id, side, group_bounds, labels, arrows)
+    for run_key, (side, group_bounds, labels, group, first_participant_id, link_id) in pending_runs.items():
+        arrows = tuple(arrows_by_relation[relation.id] for relation in group)
+        runs[run_key] = MessageRunGeometry(link_id, side, group_bounds, labels, arrows)
     return CollaborationRenderPlan(canvas, heading, participants, links, runs, loops, issues)
 
 

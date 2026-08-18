@@ -5,9 +5,12 @@ from math import hypot
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from engine.collaboration_geometry import Rect, parse_polyline, parse_rect, parse_segment, segment_intersects_rect
+from engine.collaboration_geometry import Rect, parse_polyline, parse_rect, parse_segment, rect_to_polyline_distance, segment_intersects_rect
 from engine.core.models import SemanticModel, ViewSpec
 from qa.diagnostics import Diagnostic
+
+OWN_LABEL_TO_LINK_MAX_DISTANCE = 450.0
+
 
 FORBIDDEN_KINDS = {
     "lifeline",
@@ -112,6 +115,29 @@ def _geometry_diagnostics(root, participants, structural_links, messages) -> lis
             message_node = next((item for item in messages if item.attrib.get("data-semantic-id") == message_id), None)
             if message_node is not None and message_node.attrib.get("data-structural-link") != identifier and polyline.intersects(bounds.expanded(18)):
                 diagnostics.append(Diagnostic("Q5", "link-unrelated-label-intersection", "Structural link crosses an unrelated message label", subject=f"{identifier}->{message_id}"))
+
+    # Q5 ownership rule: collision avoidance is not enough.  A message label must
+    # remain a visibly local annotation of its *own* structural link.
+    for node in messages:
+        identifier = node.attrib.get("data-semantic-id", "unknown")
+        if node.attrib.get("data-self-message") == "true":
+            continue
+        bounds = label_bounds.get(identifier)
+        link_id = node.attrib.get("data-structural-link", "")
+        link_record = link_geometry.get(link_id)
+        if bounds is None or link_record is None:
+            continue
+        polyline, _ = link_record
+        distance = rect_to_polyline_distance(bounds, polyline)
+        if distance > OWN_LABEL_TO_LINK_MAX_DISTANCE:
+            diagnostics.append(
+                Diagnostic(
+                    "Q5",
+                    "own-label-to-link-distance",
+                    f"Message label is {distance:.1f} units from its owning structural link; maximum is {OWN_LABEL_TO_LINK_MAX_DISTANCE:.0f}",
+                    subject=f"{identifier}->{link_id}",
+                )
+            )
 
     arrow_by_lane: dict[tuple[str, str], list[tuple[float, float, str]]] = {}
     for node in messages:

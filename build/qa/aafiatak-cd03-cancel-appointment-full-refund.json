@@ -8,8 +8,8 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/preview/aafiatak-cd03-cancel-appointment-full-refund.png",
-      "previewHash": "6fc0ecfa30745e11f80c53806a8fe3025398a778ece92e5c0728a7aa6e19232b",
-      "hashMatchesRecordedPreview": true,
+      "previewHash": "7c9cb38ebaf4a7166a7f9c931ecbd1113039c26b00d99328e4c077dd878c72f2",
+      "hashMatchesRecordedPreview": false,
       "reviewer": "Manus automated QA",
       "reviewedAt": "2026-08-18T00:00:00+00:00",
       "notes": "Awaiting the user's final visual approval after semantic and rendering QA.",
@@ -18,7 +18,7 @@
   },
   "visualReview": {
     "preview": "build/preview/aafiatak-cd03-cancel-appointment-full-refund.png",
-    "previewHash": "6fc0ecfa30745e11f80c53806a8fe3025398a778ece92e5c0728a7aa6e19232b",
+    "previewHash": "7c9cb38ebaf4a7166a7f9c931ecbd1113039c26b00d99328e4c077dd878c72f2",
     "status": "awaiting-user-approval"
   }
 }

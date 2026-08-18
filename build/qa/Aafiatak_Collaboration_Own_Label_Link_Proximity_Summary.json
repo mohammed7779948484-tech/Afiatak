@@ -1,0 +1,44 @@
+[
+  {
+    "diagram": "Aafiatak_CD01_Patient_Registration_OTP",
+    "messages": 17,
+    "maxOwnLinkDistance": 380.0,
+    "worstSequence": 18,
+    "worstLink": "L02"
+  },
+  {
+    "diagram": "Aafiatak_CD02_Book_Appointment_FULL_PAYMENT",
+    "messages": 34,
+    "maxOwnLinkDistance": 400.95,
+    "worstSequence": 14,
+    "worstLink": "L03"
+  },
+  {
+    "diagram": "Aafiatak_CD03_Cancel_Appointment_Full_Refund",
+    "messages": 17,
+    "maxOwnLinkDistance": 397.88,
+    "worstSequence": 17,
+    "worstLink": "L03"
+  },
+  {
+    "diagram": "Aafiatak_CD04_Reschedule_Appointment",
+    "messages": 18,
+    "maxOwnLinkDistance": 319.55,
+    "worstSequence": 2,
+    "worstLink": "L02"
+  },
+  {
+    "diagram": "Aafiatak_CD05_CheckIn_Queue_CallNext",
+    "messages": 29,
+    "maxOwnLinkDistance": 397.04,
+    "worstSequence": 3,
+    "worstLink": "L03"
+  },
+  {
+    "diagram": "Aafiatak_CD06_Operational_Exception",
+    "messages": 25,
+    "maxOwnLinkDistance": 290.68,
+    "worstSequence": 2,
+    "worstLink": "L02"
+  }
+]

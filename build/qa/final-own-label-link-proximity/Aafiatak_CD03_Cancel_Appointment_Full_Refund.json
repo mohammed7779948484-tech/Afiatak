@@ -1,0 +1,126 @@
+{
+  "svg": "build/final/Aafiatak_CD03_Cancel_Appointment_Full_Refund.svg",
+  "messageCount": 17,
+  "maxOwnLinkDistance": 397.88,
+  "records": [
+    {
+      "message": "message.cd03.17",
+      "sequence": 17,
+      "structuralLink": "L03",
+      "labelBounds": "3604.45,4409.93,1613.88,82.00",
+      "ownLinkDistance": 397.88
+    },
+    {
+      "message": "message.cd03.08",
+      "sequence": 8,
+      "structuralLink": "L03",
+      "labelBounds": "4128.00,4303.93,566.78,82.00",
+      "ownLinkDistance": 321.64
+    },
+    {
+      "message": "message.cd03.06",
+      "sequence": 6,
+      "structuralLink": "L03",
+      "labelBounds": "3597.57,4197.93,1627.64,82.00",
+      "ownLinkDistance": 185.83
+    },
+    {
+      "message": "message.cd03.11",
+      "sequence": 11,
+      "structuralLink": "L04",
+      "labelBounds": "7795.62,4336.28,984.16,82.00",
+      "ownLinkDistance": 178.36
+    },
+    {
+      "message": "message.cd03.15",
+      "sequence": 15,
+      "structuralLink": "L02",
+      "labelBounds": "7640.88,2707.14,1195.17,82.00",
+      "ownLinkDistance": 176.03
+    },
+    {
+      "message": "message.cd03.16",
+      "sequence": 16,
+      "structuralLink": "L02",
+      "labelBounds": "7847.99,2813.14,780.94,82.00",
+      "ownLinkDistance": 167.68
+    },
+    {
+      "message": "message.cd03.12",
+      "sequence": 12,
+      "structuralLink": "L04",
+      "labelBounds": "7824.21,4442.28,926.98,82.00",
+      "ownLinkDistance": 90.66
+    },
+    {
+      "message": "message.cd03.02",
+      "sequence": 2,
+      "structuralLink": "L03",
+      "labelBounds": "3758.19,4091.93,1306.39,82.00",
+      "ownLinkDistance": 89.08
+    },
+    {
+      "message": "message.cd03.01",
+      "sequence": 1,
+      "structuralLink": "L05",
+      "labelBounds": "2462.84,6092.77,1262.56,82.00",
+      "ownLinkDistance": 82.82
+    },
+    {
+      "message": "message.cd03.07",
+      "sequence": 7,
+      "structuralLink": "L05",
+      "labelBounds": "2462.84,6198.77,577.69,82.00",
+      "ownLinkDistance": 81.41
+    },
+    {
+      "message": "message.cd03.18",
+      "sequence": 18,
+      "structuralLink": "L05",
+      "labelBounds": "2462.84,6304.77,748.36,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.14",
+      "sequence": 14,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,2510.00,777.69,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.13",
+      "sequence": 13,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,2404.00,1496.05,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.10",
+      "sequence": 10,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,2298.00,1561.03,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.09",
+      "sequence": 9,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,2192.00,2854.69,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.04",
+      "sequence": 4,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,2086.00,1105.78,82.00",
+      "ownLinkDistance": 80.0
+    },
+    {
+      "message": "message.cd03.03",
+      "sequence": 3,
+      "structuralLink": "L01",
+      "labelBounds": "6563.00,1980.00,1697.38,82.00",
+      "ownLinkDistance": 80.0
+    }
+  ]
+}
