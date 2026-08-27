@@ -1,0 +1,118 @@
+from importlib import import_module
+from pathlib import Path
+from xml.etree import ElementTree as ET
+
+from engine.core.io import ROOT, load_model, load_view
+from engine.pipeline import model_path_for, render
+
+
+VIEW_PATH = ROOT / "views" / "deployment" / "aafiatak-mvp-deployment.yaml"
+EXPECTED_NODES = {
+    "node.dep01.patient-mobile-device",
+    "node.dep01.facility-client-device",
+    "node.dep01.platform-admin-client-device",
+    "node.dep01.aafiatak-centralized-server",
+    "node.dep01.postgresql-environment",
+    "node.dep01.whatsapp-auth-provider",
+    "node.dep01.payment-gateway",
+    "node.dep01.notification-service",
+    "node.dep01.map-service",
+}
+EXPECTED_PATHS = {
+    "relation.dep01.communication.patient-mobile-to-server",
+    "relation.dep01.communication.facility-client-to-server",
+    "relation.dep01.communication.platform-admin-client-to-server",
+    "relation.dep01.communication.server-to-postgresql",
+    "relation.dep01.communication.server-to-whatsapp-auth",
+    "relation.dep01.communication.server-to-payment-gateway",
+    "relation.dep01.communication.server-to-notification-service",
+}
+
+
+def _render(tmp_path: Path) -> tuple[Path, object, object]:
+    output = tmp_path / "dep01.svg"
+    render(VIEW_PATH, output)
+    view = load_view(VIEW_PATH)
+    model = load_model(model_path_for(VIEW_PATH, view.model))
+    return output, model, view
+
+
+def _node(root: ET.Element, semantic_id: str) -> ET.Element:
+    return next(node for node in root.iter() if node.attrib.get("data-semantic-id") == semantic_id)
+
+
+def _rewrite(svg_path: Path, mutate) -> None:
+    tree = ET.parse(svg_path)
+    mutate(tree.getroot())
+    tree.write(svg_path, encoding="utf-8", xml_declaration=True)
+
+
+def test_dep01_pipeline_renders_the_exact_logical_topology(tmp_path: Path) -> None:
+    """Catches a missing render dispatch or a changed DEP-01 node/path inventory."""
+    output, _, _ = _render(tmp_path)
+    root = ET.parse(output).getroot()
+    assert root.attrib["data-kind"] == "deployment-diagram"
+    nodes = {node.attrib["data-semantic-id"] for node in root.iter() if node.attrib.get("data-kind") == "deployment-node"}
+    paths = {node.attrib["data-semantic-id"] for node in root.iter() if node.attrib.get("data-kind") == "communication-path"}
+    assert nodes == EXPECTED_NODES
+    assert paths == EXPECTED_PATHS
+    assert "marker-end" not in output.read_text(encoding="utf-8")
+
+
+def test_dep01_renderer_keeps_map_service_intentionally_disconnected(tmp_path: Path) -> None:
+    """Catches an invented Map Service connection in the generated deployment topology."""
+    output, _, _ = _render(tmp_path)
+    root = ET.parse(output).getroot()
+    map_id = "node.dep01.map-service"
+    assert _node(root, map_id).attrib["data-kind"] == "deployment-node"
+    endpoints = {
+        endpoint
+        for relation in root.iter()
+        if relation.attrib.get("data-kind") == "communication-path"
+        for endpoint in (relation.attrib.get("data-source-id"), relation.attrib.get("data-target-id"))
+    }
+    assert map_id not in endpoints
+
+
+def test_dep01_qa_rejects_an_arrowhead_on_a_communication_path(tmp_path: Path) -> None:
+    """Catches an accidental directed arrow on an undirected UML communication path."""
+    output, model, view = _render(tmp_path)
+
+    def mutate(root: ET.Element) -> None:
+        path = _node(root, "relation.dep01.communication.patient-mobile-to-server")
+        path.attrib["marker-end"] = "url(#forbidden-arrow)"
+
+    _rewrite(output, mutate)
+    validate = import_module("qa.deployment_svg_validation").validate_deployment_svg
+    codes = {diagnostic.code for diagnostic in validate(output, model, view)}
+    assert "communication-path-arrowhead" in codes
+
+
+def test_dep01_qa_rejects_a_path_through_an_unrelated_node(tmp_path: Path) -> None:
+    """Catches a connector route that crosses a visible deployment node unrelated to it."""
+    output, model, view = _render(tmp_path)
+
+    def mutate(root: ET.Element) -> None:
+        path = _node(root, "relation.dep01.communication.patient-mobile-to-server")
+        unrelated = _node(root, "node.dep01.facility-client-device")
+        bounds = unrelated.attrib["data-bounds"].split(",")
+        x = float(bounds[0]) + float(bounds[2]) / 2
+        y = float(bounds[1]) + float(bounds[3]) / 2
+        points = path.attrib["data-points"].split()
+        path.attrib["data-points"] = f"{points[0]} {x:.2f},{y:.2f} {points[-1]}"
+
+    _rewrite(output, mutate)
+    validate = import_module("qa.deployment_svg_validation").validate_deployment_svg
+    codes = {diagnostic.code for diagnostic in validate(output, model, view)}
+    assert "communication-path-through-unrelated-node" in codes
+
+
+def test_dep01_composition_is_compact_and_keeps_the_server_central() -> None:
+    """Catches an oversized or directionally incorrect deterministic deployment composition."""
+    layout = import_module("engine.compositions.deployment_diagram_layouts").layout_for("aafiatak-mvp-deployment")
+    assert layout.width <= 13000
+    assert layout.height <= 7600
+    server = layout.nodes["node.dep01.aafiatak-centralized-server"]
+    patient = layout.nodes["node.dep01.patient-mobile-device"]
+    whatsapp = layout.nodes["node.dep01.whatsapp-auth-provider"]
+    assert patient.box.x < server.box.x < whatsapp.box.x

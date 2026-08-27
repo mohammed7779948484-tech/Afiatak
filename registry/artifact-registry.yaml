@@ -4,5 +4,7 @@ artifacts:
   manifest: build\final\aafiatak-main-use-case.manifest.json
 - diagramId: aafiatak-system-component-architecture
   manifest: build/final/aafiatak-system-component-architecture.manifest.json
+- diagramId: aafiatak-mvp-deployment
+  manifest: build/final/aafiatak-mvp-deployment.manifest.json
 policy: Approved files under build/final are tracked; work, preview, and QA intermediates
   are regenerated.

@@ -60,8 +60,8 @@ def _validated(view_path: Path):
     errors = [item for item in diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
-    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity", "communication", "component"}:
-        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, activity, communication, and component views")
+    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity", "communication", "component", "deployment"}:
+        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, activity, communication, component, and deployment views")
     return model, view, model_path, diagnostics
 
 
@@ -70,6 +70,11 @@ def _render_svg(model, view, output: Path) -> None:
         from engine.svg.component_diagram import render_component_diagram_svg
 
         render_component_diagram_svg(model, view, output)
+        return
+    if view.diagram_type == "deployment":
+        from engine.svg.deployment_diagram import render_deployment_diagram_svg
+
+        render_deployment_diagram_svg(model, view, output)
         return
     if view.id == "aafiatak-sd01-patient-registration-otp":
         render_sequence_diagram_svg(model, view, output)
@@ -136,6 +141,10 @@ def _artifact_diagnostics(svg: Path, model, view):
         from qa.component_svg_validation import validate_component_svg
 
         return validate_component_svg(svg, model, view)
+    if view.diagram_type == "deployment":
+        from qa.deployment_svg_validation import validate_deployment_svg
+
+        return validate_deployment_svg(svg, model, view)
     if view.diagram_type == "class":
         return validate_class_svg(svg, model, view)
     if view.diagram_type == "sequence":

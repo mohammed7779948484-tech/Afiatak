@@ -4,7 +4,7 @@
   "required": ["id", "title", "diagramType", "model", "include"],
   "properties": {
     "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"}, "title": {"type": "string", "minLength": 1},
-    "diagramType": {"enum": ["use_case", "class", "sequence", "state", "activity", "communication", "component"]},
+    "diagramType": {"enum": ["use_case", "class", "sequence", "state", "activity", "communication", "component", "deployment"]},
     "model": {"type": "string"}, "include": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "relations": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "layoutProfile": {"type": "string"}, "outputTargets": {"type": "array", "items": {"enum": ["png", "svg"]}, "uniqueItems": true, "minItems": 2, "maxItems": 2, "allOf": [{"contains": {"const": "svg"}}, {"contains": {"const": "png"}}]},

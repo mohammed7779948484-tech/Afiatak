@@ -1,0 +1,43 @@
+{
+  "compilerHash": "a721d142b4cbddd390d9b8625fb377a925a9187ff4f98df7f5dd2835c9be21f9",
+  "designSystemHash": "7e839317e9a9233952a98c6ad7bcf2ace01b7af68d5b8032989356f20e0011c5",
+  "diagramId": "aafiatak-mvp-deployment",
+  "diagramType": "deployment",
+  "generatedAt": "2026-08-27T04:26:47.133036+00:00",
+  "governanceHash": "c0c1e95acec047c3dd7cddcd0b15f1c60868f7b8735c2177ab1b0decfb605d73",
+  "lecturerRulesHash": "0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73",
+  "outputs": {
+    "build/final/aafiatak-mvp-deployment.png": "2e88efceb968389e2f171f7cd61831ca53f572fbcd2d833573d56eba40dd7deb",
+    "build/final/aafiatak-mvp-deployment.svg": "3c1a8d45eda58a797e75823c8fa9efe79e24edf1542121066a318732c4ec572d"
+  },
+  "projectSpecHash": "9ff2337c1fb334cff24e93d2830c5c3648ef001e5f3e06ab2ad951ba8854d593",
+  "qa": {
+    "Q7": "awaiting-user-approval",
+    "gates": {
+      "Q4": "pass",
+      "Q5": "pass",
+      "Q6": {
+        "declaredStatus": "awaiting-user-approval",
+        "hashMatchesRecordedPreview": true,
+        "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality.",
+        "notes": "Actual final SVG and 8192\u00d74757 PNG were inspected in twelve ordered overlapping tiles. All nine deployment nodes, contained labels, seven solid unarrowed paths, Map Service's intentional disconnection, lecturer-style 3D node notation, and geometry were reviewed. User visual approval has not been granted.",
+        "preview": "build/final/aafiatak-mvp-deployment.png",
+        "previewHash": "2e88efceb968389e2f171f7cd61831ca53f572fbcd2d833573d56eba40dd7deb",
+        "reviewedAt": "2026-08-27T07:26:15+03:00",
+        "reviewer": "Manus AI",
+        "status": "awaiting-user-approval"
+      }
+    },
+    "report": "build/qa/aafiatak-mvp-deployment.json",
+    "result": "pass"
+  },
+  "rendererVersion": "0.1.0",
+  "requestedTargets": [
+    "svg",
+    "png"
+  ],
+  "semanticModelHash": "2a14c7e9e523b418753b1f827d927eeae12eb828490f6f9e963e612abbabeab8",
+  "semanticModelPath": "model/catalog/deployment-nodes/aafiatak-mvp-deployment.yaml",
+  "viewHash": "c84807aebfe6609cd578d4cedb275322fcce27832750ca1275d940dfcc6bab2b",
+  "viewPath": "views/deployment/aafiatak-mvp-deployment.yaml"
+}

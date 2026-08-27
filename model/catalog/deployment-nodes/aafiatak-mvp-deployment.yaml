@@ -1,0 +1,282 @@
+modelId: deployment.aafiatak-mvp-deployment
+version: "1.0"
+elements:
+  - id: node.dep01.patient-mobile-device
+    name: Patient Mobile Device
+    type: deployment_node
+    description: Patient device deployment node providing the approved mobile application runtime.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.1"
+        line_start: 1730
+        line_end: 1737
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N01"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: device
+      containedItems: ["Android / iOS", "Patient Application"]
+      componentMapping: [component.cmp01.patient-application]
+
+  - id: node.dep01.facility-client-device
+    name: Facility Client Device
+    type: deployment_node
+    description: Facility desktop or tablet client device providing browser access to the approved facility dashboard.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.2"
+        line_start: 1738
+        line_end: 1743
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N02"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: device
+      containedItems: ["Desktop / Tablet", "Web Browser"]
+      accessFor: component.cmp01.facility-web-dashboard
+
+  - id: node.dep01.platform-admin-client-device
+    name: Platform Administrator Client Device
+    type: deployment_node
+    description: Platform-administration client device providing protected browser access without assuming a hardware type.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.3"
+        line_start: 1744
+        line_end: 1748
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N03"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: device
+      containedItems: ["Web Browser"]
+      accessFor: component.cmp01.platform-administration-dashboard
+      physicalHardware: unspecified
+      modelingInference: minimal-client-device-representation
+
+  - id: node.dep01.aafiatak-centralized-server
+    name: Aafiatak Centralized Server
+    type: deployment_node
+    description: Logical server-side deployment grouping for the approved web dashboards and centralized backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4"
+        line_start: 1749
+        line_end: 1769
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§6.1 / §7 / N04"
+        line_start: 145
+        line_end: 195
+    metadata:
+      nodeKind: logical-server-node
+      containedItems: ["Facility Web Dashboard", "Aafiatak Platform Administration Dashboard", "Aafiatak Backend"]
+      componentMapping:
+        - component.cmp01.facility-web-dashboard
+        - component.cmp01.platform-administration-dashboard
+        - component.cmp01.aafiatak-backend
+      modelingInference: logical-server-side-grouping
+      physicalPlacement: unresolved
+
+  - id: node.dep01.postgresql-environment
+    name: PostgreSQL Database Environment
+    type: deployment_node
+    description: Logical PostgreSQL database execution environment with physical placement intentionally unresolved.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.5"
+        line_start: 1771
+        line_end: 1774
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§6.2 / §7 / N05"
+        line_start: 161
+        line_end: 195
+    metadata:
+      nodeKind: logical-execution-environment
+      containedItems: ["PostgreSQL Database"]
+      componentMapping: [component.cmp01.postgresql-database]
+      physicalPlacement: unresolved
+
+  - id: node.dep01.whatsapp-auth-provider
+    name: WhatsApp Authentication Provider
+    type: deployment_node
+    description: External deployment node for the approved official WhatsApp authentication provider/API.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N06"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: external-service-node
+      componentMapping: [component.cmp01.whatsapp-authentication-provider]
+
+  - id: node.dep01.payment-gateway
+    name: Payment Gateway
+    type: deployment_node
+    description: External deployment node for the approved trusted electronic payment and refund gateway.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N07"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: external-service-node
+      componentMapping: [component.cmp01.payment-gateway]
+
+  - id: node.dep01.notification-service
+    name: Notification Service
+    type: deployment_node
+    description: External deployment node for approved general system notifications, distinct from authentication.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§7 / N08"
+        line_start: 179
+        line_end: 195
+    metadata:
+      nodeKind: external-service-node
+      componentMapping: [component.cmp01.notification-service]
+
+  - id: node.dep01.map-service
+    name: Map Service
+    type: deployment_node
+    description: Approved external map and location deployment node with intentionally unresolved technical caller.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§10 / §7 / N09"
+        line_start: 239
+        line_end: 258
+    metadata:
+      nodeKind: external-service-node
+      componentMapping: [component.cmp01.map-service]
+      technicalCaller: unresolved
+
+relations:
+  - id: relation.dep01.communication.patient-mobile-to-server
+    type: communication_path
+    source: node.dep01.patient-mobile-device
+    target: node.dep01.aafiatak-centralized-server
+    name: ""
+    rationale: Patient Application connects to the approved centralized server.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.1 and §31.4"
+        line_start: 1730
+        line_end: 1769
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP01"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.facility-client-to-server
+    type: communication_path
+    source: node.dep01.facility-client-device
+    target: node.dep01.aafiatak-centralized-server
+    name: ""
+    rationale: Facility Web Dashboard is accessed through a browser and communicates with the centralized server grouping.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.2 and §31.4"
+        line_start: 1738
+        line_end: 1769
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP02"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.platform-admin-client-to-server
+    type: communication_path
+    source: node.dep01.platform-admin-client-device
+    target: node.dep01.aafiatak-centralized-server
+    name: ""
+    rationale: Platform administration is accessed through a protected browser and communicates with the centralized server grouping.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.3 and §31.4"
+        line_start: 1744
+        line_end: 1769
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP03"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.server-to-postgresql
+    type: communication_path
+    source: node.dep01.aafiatak-centralized-server
+    target: node.dep01.postgresql-environment
+    name: ""
+    rationale: PostgreSQL provides the approved persistence boundary for centralized Aafiatak responsibilities.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.5"
+        line_start: 1749
+        line_end: 1774
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP04"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.server-to-whatsapp-auth
+    type: communication_path
+    source: node.dep01.aafiatak-centralized-server
+    target: node.dep01.whatsapp-auth-provider
+    name: ""
+    rationale: The official WhatsApp provider/API is the approved server-side OTP authentication integration.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP05"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.server-to-payment-gateway
+    type: communication_path
+    source: node.dep01.aafiatak-centralized-server
+    target: node.dep01.payment-gateway
+    name: ""
+    rationale: Payment Gateway is the approved server-side electronic payment and refund integration boundary.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP06"
+        line_start: 219
+        line_end: 235
+
+  - id: relation.dep01.communication.server-to-notification-service
+    type: communication_path
+    source: node.dep01.aafiatak-centralized-server
+    target: node.dep01.notification-service
+    name: ""
+    rationale: Notification Service is the approved external general notification delivery boundary.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: dep01-mvp-deployment-reviewed-spec
+        section: "§9 / CP07"
+        line_start: 219
+        line_end: 235

@@ -1,0 +1,47 @@
+id: aafiatak-mvp-deployment
+title: Deployment Diagram — Aafiatak Medical Appointment Booking System
+diagramType: deployment
+model: ../../model/catalog/deployment-nodes/aafiatak-mvp-deployment.yaml
+include:
+  - node.dep01.patient-mobile-device
+  - node.dep01.facility-client-device
+  - node.dep01.platform-admin-client-device
+  - node.dep01.aafiatak-centralized-server
+  - node.dep01.postgresql-environment
+  - node.dep01.whatsapp-auth-provider
+  - node.dep01.payment-gateway
+  - node.dep01.notification-service
+  - node.dep01.map-service
+relations:
+  - relation.dep01.communication.patient-mobile-to-server
+  - relation.dep01.communication.facility-client-to-server
+  - relation.dep01.communication.platform-admin-client-to-server
+  - relation.dep01.communication.server-to-postgresql
+  - relation.dep01.communication.server-to-whatsapp-auth
+  - relation.dep01.communication.server-to-payment-gateway
+  - relation.dep01.communication.server-to-notification-service
+layoutProfile: lecturer-deployment
+outputTargets: [svg, png]
+approval: approved
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus AI
+  reviewedAt: "2026-08-27T07:26:15+03:00"
+  notes: "Actual final SVG and 8192×4757 PNG were inspected in twelve ordered overlapping tiles. All nine deployment nodes, contained labels, seven solid unarrowed paths, Map Service's intentional disconnection, lecturer-style 3D node notation, and geometry were reviewed. User visual approval has not been granted."
+  previewHash: "2e88efceb968389e2f171f7cd61831ca53f572fbcd2d833573d56eba40dd7deb"
+options:
+  diagramId: DEP-01
+  lecturerReference: "UML PDF page 11 Deployment Diagram section"
+  expectedCounts:
+    deploymentDiagrams: 1
+    deploymentNodes: 9
+    communicationPaths: 7
+    internalSoftwareComponentsMapped: 5
+    externalServiceNodes: 4
+    mapServiceCommunicationPaths: 0
+    inventedInfrastructureNodes: 0
+  unresolvedDecisions:
+    mapServiceCaller: unresolved
+    databasePhysicalPlacement: unresolved
+    backendAndWebTechnology: unspecified
+    providerOsCloudContainerTopology: unresolved

@@ -287,3 +287,9 @@ sources:
     sha256: c7c8edee23d547c41f14459aa24a6053cb609747c756463a6125ba0d04ff8c1f
     immutable: true
     authority_precedence: 5
+  - name: dep01-mvp-deployment-reviewed-spec
+    path: docs/deployment-specs/Aafiatak_DEP01_MVP_Deployment_Topology_FINAL_REVIEWED.md
+    role: final_dep01_deployment_execution
+    sha256: 22239ffb7d1bb2e790301c6657a702aa9f13a1aecb757dfddc471ce36b68975c
+    immutable: true
+    authority_precedence: 5
