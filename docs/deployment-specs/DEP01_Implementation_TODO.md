@@ -29,4 +29,4 @@ This checklist tracks the implementation of the single approved UML Deployment D
 - [x] Regenerate and inspect final SVG plus fit-to-page and twelve-tile PNG review; update the matching preview hash while retaining `awaiting-user-approval`.
 - [x] Validate source/model/view/traceability, DEP-01 QA, full regression, CMP-01 regression QA, and diagrams.net strict lint. Final result: 34 tests passed; draw.io 0 errors, 0 warnings, score 0.
 - [x] Commit and push the DEP-01 UML notation refinement to `main` as `e86c2d9 refine(uml): improve DEP-01 deployment notation`.
-- [ ] Commit and push the compact line-and-design refinement to `main` after final artifact and PDF verification.
+- [x] Commit and push the compact line-and-design refinement to `main` as `3939d8f refine(uml): compact DEP-01 routes and composition`.
