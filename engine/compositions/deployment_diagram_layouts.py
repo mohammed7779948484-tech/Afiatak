@@ -91,84 +91,87 @@ def device_context(label: str, bounds: Rect) -> ContainedItem:
     return ContainedItem(label, bounds, "device-context", "device-context", "device")
 
 
-CANVAS_WIDTH = 12400
-CANVAS_HEIGHT = 7200
+# Compact academic composition: clients on the left, logical server at the centre,
+# database immediately below, and external service boundaries on the right. All
+# communication paths use dedicated, short orthogonal corridors around the server.
+CANVAS_WIDTH = 10800
+CANVAS_HEIGHT = 6400
 
 
 LAYOUT = DeploymentLayout(
     width=CANVAS_WIDTH,
     height=CANVAS_HEIGHT,
-    title_y=245,
+    title_y=190,
     nodes={
         "node.dep01.patient-mobile-device": NodeLayout(
-            Rect(650, 1060, 2400, 980),
-            Rect(870, 1160, 1960, 230),
+            Rect(450, 900, 2250, 900),
+            Rect(650, 960, 1850, 210),
             (
-                execution_environment("Android / iOS", Rect(900, 1515, 1900, 140)),
-                deployed_artifact("Patient Application", Rect(900, 1720, 1900, 140)),
+                execution_environment("Android / iOS", Rect(700, 1270, 1750, 115)),
+                deployed_artifact("Patient Application", Rect(700, 1450, 1750, 115)),
             ),
             node_stereotype="device",
         ),
         "node.dep01.facility-client-device": NodeLayout(
-            Rect(650, 3200, 2400, 980),
-            Rect(870, 3300, 1960, 230),
+            Rect(450, 2800, 2250, 900),
+            Rect(650, 2860, 1850, 210),
             (
-                device_context("Desktop / Tablet", Rect(900, 3655, 1900, 140)),
-                execution_environment("Web Browser", Rect(900, 3860, 1900, 140)),
+                device_context("Desktop / Tablet", Rect(700, 3170, 1750, 115)),
+                execution_environment("Web Browser", Rect(700, 3350, 1750, 115)),
             ),
             node_stereotype="device",
         ),
         "node.dep01.platform-admin-client-device": NodeLayout(
-            Rect(650, 5340, 2400, 980),
-            Rect(835, 5440, 2030, 270),
-            (execution_environment("Web Browser", Rect(900, 5820, 1900, 140)),),
+            Rect(450, 4700, 2250, 900),
+            Rect(625, 4760, 1900, 250),
+            (execution_environment("Web Browser", Rect(700, 5120, 1750, 115)),),
             node_stereotype="device",
         ),
         "node.dep01.aafiatak-centralized-server": NodeLayout(
-            Rect(4500, 1960, 3300, 2540),
-            Rect(4740, 2050, 2820, 250),
+            Rect(3850, 1700, 3100, 2700),
+            Rect(4070, 1780, 2660, 220),
             (
-                deployed_artifact("Facility Web Dashboard", Rect(4780, 2660, 2740, 330)),
-                deployed_artifact("Aafiatak Platform Administration Dashboard", Rect(4780, 3215, 2740, 330)),
-                deployed_artifact("Aafiatak Backend", Rect(4780, 3770, 2740, 330)),
+                deployed_artifact("Facility Web Dashboard", Rect(4140, 2360, 2520, 280)),
+                deployed_artifact("Aafiatak Platform Administration Dashboard", Rect(4140, 2860, 2520, 280)),
+                deployed_artifact("Aafiatak Backend", Rect(4140, 3360, 2520, 280)),
             ),
-            ("Logical server-side grouping; physical placement unresolved", Rect(4780, 4260, 2740, 100)),
+            ("Logical server-side grouping; physical placement unresolved", Rect(4140, 4000, 2520, 100)),
             node_stereotype="executionEnvironment",
         ),
         "node.dep01.postgresql-environment": NodeLayout(
-            Rect(5150, 5440, 2200, 900),
-            Rect(5350, 5500, 1800, 260),
-            (deployed_artifact("PostgreSQL Database", Rect(5400, 5905, 1700, 150)),),
-            ("Physical placement unresolved", Rect(5400, 6130, 1700, 80)),
+            Rect(4300, 4920, 2200, 830),
+            Rect(4500, 4970, 1800, 245),
+            (deployed_artifact("PostgreSQL Database", Rect(4550, 5300, 1700, 125)),),
+            ("Physical placement unresolved", Rect(4550, 5540, 1700, 70)),
             node_stereotype="executionEnvironment",
         ),
         "node.dep01.whatsapp-auth-provider": NodeLayout(
-            Rect(9200, 860, 2500, 820),
-            Rect(9410, 1000, 2080, 260),
+            Rect(7450, 900, 2600, 720),
+            Rect(7670, 1015, 2160, 220),
         ),
         "node.dep01.payment-gateway": NodeLayout(
-            Rect(9200, 2460, 2500, 820),
-            Rect(9410, 2600, 2080, 180),
+            Rect(7450, 2300, 2600, 720),
+            Rect(7670, 2420, 2160, 170),
         ),
         "node.dep01.notification-service": NodeLayout(
-            Rect(9200, 4060, 2500, 820),
-            Rect(9410, 4200, 2080, 180),
+            Rect(7450, 3700, 2600, 720),
+            Rect(7670, 3820, 2160, 170),
         ),
         "node.dep01.map-service": NodeLayout(
-            Rect(9200, 5660, 2500, 820),
-            Rect(9410, 5785, 2080, 180),
+            Rect(7450, 5100, 2600, 720),
+            Rect(7670, 5210, 2160, 170),
             (),
-            ("Technical caller unresolved", Rect(9410, 6210, 2080, 80)),
+            ("Technical caller unresolved", Rect(7670, 5605, 2160, 70)),
         ),
     },
     communication_paths={
-        "relation.dep01.communication.patient-mobile-to-server": ((3050, 1550), (4300, 1550), (4300, 2700), (4500, 2700)),
-        "relation.dep01.communication.facility-client-to-server": ((3050, 3690), (4050, 3690), (4050, 3180), (4500, 3180)),
-        "relation.dep01.communication.platform-admin-client-to-server": ((3050, 5830), (4250, 5830), (4250, 3950), (4500, 3950)),
-        "relation.dep01.communication.server-to-postgresql": ((6200, 4500), (6200, 5440)),
-        "relation.dep01.communication.server-to-whatsapp-auth": ((7800, 2490), (8500, 2490), (8500, 1270), (9200, 1270)),
-        "relation.dep01.communication.server-to-payment-gateway": ((7800, 3000), (8740, 3000), (8740, 2870), (9200, 2870)),
-        "relation.dep01.communication.server-to-notification-service": ((7800, 3900), (8600, 3900), (8600, 4470), (9200, 4470)),
+        "relation.dep01.communication.patient-mobile-to-server": ((2700, 1350), (3400, 1350), (3400, 2100), (3850, 2100)),
+        "relation.dep01.communication.facility-client-to-server": ((2700, 3250), (3330, 3250), (3330, 2700), (3850, 2700)),
+        "relation.dep01.communication.platform-admin-client-to-server": ((2700, 5130), (3520, 5130), (3520, 3650), (3850, 3650)),
+        "relation.dep01.communication.server-to-postgresql": ((5400, 4400), (5400, 4920)),
+        "relation.dep01.communication.server-to-whatsapp-auth": ((6950, 2200), (7200, 2200), (7200, 1260), (7450, 1260)),
+        "relation.dep01.communication.server-to-payment-gateway": ((6950, 2750), (7280, 2750), (7280, 2660), (7450, 2660)),
+        "relation.dep01.communication.server-to-notification-service": ((6950, 3400), (7200, 3400), (7200, 4060), (7450, 4060)),
     },
 )
 

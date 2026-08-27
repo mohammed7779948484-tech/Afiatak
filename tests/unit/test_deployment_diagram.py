@@ -182,3 +182,25 @@ def test_dep01_composition_is_compact_and_keeps_the_server_central() -> None:
     patient = layout.nodes["node.dep01.patient-mobile-device"]
     whatsapp = layout.nodes["node.dep01.whatsapp-auth-provider"]
     assert patient.box.x < server.box.x < whatsapp.box.x
+
+
+def test_dep01_layout_uses_compact_separate_communication_corridors() -> None:
+    """Catches the line-dominated wide layout and a client/server corridor that is longer than necessary."""
+    layout = import_module("engine.compositions.deployment_diagram_layouts").layout_for("aafiatak-mvp-deployment")
+    server = layout.nodes["node.dep01.aafiatak-centralized-server"].box
+    client_right_edges = [
+        layout.nodes["node.dep01.patient-mobile-device"].box.right,
+        layout.nodes["node.dep01.facility-client-device"].box.right,
+        layout.nodes["node.dep01.platform-admin-client-device"].box.right,
+    ]
+    segment_lengths = [
+        abs(second[0] - first[0]) + abs(second[1] - first[1])
+        for path in layout.communication_paths.values()
+        for first, second in zip(path, path[1:])
+    ]
+
+    assert layout.width <= 11000
+    assert layout.height <= 6400
+    assert layout.title_y <= 200
+    assert server.x - max(client_right_edges) <= 1200
+    assert max(segment_lengths) <= 1550

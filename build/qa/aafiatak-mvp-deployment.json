@@ -8,17 +8,17 @@
       "status": "awaiting-user-approval",
       "declaredStatus": "awaiting-user-approval",
       "preview": "build/final/aafiatak-mvp-deployment.png",
-      "previewHash": "b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9",
+      "previewHash": "b2349ccf435c11990259abb28ee5c62aec88e198ff4f9096e43f88d5cbabe992",
       "hashMatchesRecordedPreview": true,
       "reviewer": "Manus AI",
-      "reviewedAt": "2026-08-27T08:34:44+03:00",
-      "notes": "Actual final SVG and 8192\u00d74757 PNG were inspected at fit-to-page and in twelve ordered overlapping tiles after the UML-notation refinement. Device, execution-environment, device-context, and artifact distinctions are clear; all nine nodes, seven solid unarrowed paths, the logical PostgreSQL boundary, Map Service's intentional disconnection, lecturer-style 3D nodes, and geometry were reviewed. User visual approval has not been granted.",
+      "reviewedAt": "2026-08-27T10:08:14+03:00",
+      "notes": "Actual final SVG and 8192\u00d74855 PNG were inspected at fit-to-page and in twelve ordered overlapping tiles after the line-and-composition refinement. The 10800\u00d76400 compact academic layout has shorter dedicated client and provider corridors, clear execution-environment/device-context/artifact distinctions, all nine nodes, seven solid unarrowed paths, the logical PostgreSQL boundary, and Map Service's intentional disconnection. User visual approval has not been granted.",
       "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
     }
   },
   "visualReview": {
     "preview": "build/final/aafiatak-mvp-deployment.png",
-    "previewHash": "b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9",
+    "previewHash": "b2349ccf435c11990259abb28ee5c62aec88e198ff4f9096e43f88d5cbabe992",
     "status": "awaiting-user-approval"
   }
 }

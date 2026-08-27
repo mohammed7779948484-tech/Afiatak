@@ -1,14 +1,14 @@
 {
-  "compilerHash": "3da45bd7b47fd4915976ca462c34e4edb624d9497f3f8bf30a2a070a4a6240e9",
+  "compilerHash": "a931728d5edfb523d1b0ae9c327696191a96dd902902d50965b2432c2f0cf5b5",
   "designSystemHash": "7e839317e9a9233952a98c6ad7bcf2ace01b7af68d5b8032989356f20e0011c5",
   "diagramId": "aafiatak-mvp-deployment",
   "diagramType": "deployment",
-  "generatedAt": "2026-08-27T05:35:12.206228+00:00",
+  "generatedAt": "2026-08-27T07:08:46.794894+00:00",
   "governanceHash": "c0c1e95acec047c3dd7cddcd0b15f1c60868f7b8735c2177ab1b0decfb605d73",
   "lecturerRulesHash": "0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73",
   "outputs": {
-    "build/final/aafiatak-mvp-deployment.png": "b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9",
-    "build/final/aafiatak-mvp-deployment.svg": "a115ade6930b444c9b8235451b0ceade513b219e86218da0887c57682306c13d"
+    "build/final/aafiatak-mvp-deployment.png": "b2349ccf435c11990259abb28ee5c62aec88e198ff4f9096e43f88d5cbabe992",
+    "build/final/aafiatak-mvp-deployment.svg": "70730a601e254dc7bb3e99fcadae24b1d37eb709d9856d230d20dd9ab0577131"
   },
   "projectSpecHash": "9ff2337c1fb334cff24e93d2830c5c3648ef001e5f3e06ab2ad951ba8854d593",
   "qa": {
@@ -20,10 +20,10 @@
         "declaredStatus": "awaiting-user-approval",
         "hashMatchesRecordedPreview": true,
         "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality.",
-        "notes": "Actual final SVG and 8192\u00d74757 PNG were inspected at fit-to-page and in twelve ordered overlapping tiles after the UML-notation refinement. Device, execution-environment, device-context, and artifact distinctions are clear; all nine nodes, seven solid unarrowed paths, the logical PostgreSQL boundary, Map Service's intentional disconnection, lecturer-style 3D nodes, and geometry were reviewed. User visual approval has not been granted.",
+        "notes": "Actual final SVG and 8192\u00d74855 PNG were inspected at fit-to-page and in twelve ordered overlapping tiles after the line-and-composition refinement. The 10800\u00d76400 compact academic layout has shorter dedicated client and provider corridors, clear execution-environment/device-context/artifact distinctions, all nine nodes, seven solid unarrowed paths, the logical PostgreSQL boundary, and Map Service's intentional disconnection. User visual approval has not been granted.",
         "preview": "build/final/aafiatak-mvp-deployment.png",
-        "previewHash": "b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9",
-        "reviewedAt": "2026-08-27T08:34:44+03:00",
+        "previewHash": "b2349ccf435c11990259abb28ee5c62aec88e198ff4f9096e43f88d5cbabe992",
+        "reviewedAt": "2026-08-27T10:08:14+03:00",
         "reviewer": "Manus AI",
         "status": "awaiting-user-approval"
       }
@@ -38,6 +38,6 @@
   ],
   "semanticModelHash": "2a14c7e9e523b418753b1f827d927eeae12eb828490f6f9e963e612abbabeab8",
   "semanticModelPath": "model/catalog/deployment-nodes/aafiatak-mvp-deployment.yaml",
-  "viewHash": "9af8bc5c722518477c319d605eea7385f5f56f75efee00a5c88527eb6ae69dfe",
+  "viewHash": "a590b5e33f95480a7290c945c5558fbd025401d5caf503924b1040a7b72f522e",
   "viewPath": "views/deployment/aafiatak-mvp-deployment.yaml"
 }
