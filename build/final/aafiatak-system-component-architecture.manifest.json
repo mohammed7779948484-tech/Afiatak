@@ -1,14 +1,14 @@
 {
-  "compilerHash": "3c3c1d9ff8173b241ded245c6af7e2147021b43e6d98ab8f7758e713c35d2a77",
+  "compilerHash": "be6c7e58904e2bcb50a478046692f8035985105e6510d30bc95bc1a7b934608c",
   "designSystemHash": "7e839317e9a9233952a98c6ad7bcf2ace01b7af68d5b8032989356f20e0011c5",
   "diagramId": "aafiatak-system-component-architecture",
   "diagramType": "component",
-  "generatedAt": "2026-08-27T02:38:50.664166+00:00",
+  "generatedAt": "2026-08-27T03:53:19.210893+00:00",
   "governanceHash": "c0c1e95acec047c3dd7cddcd0b15f1c60868f7b8735c2177ab1b0decfb605d73",
   "lecturerRulesHash": "0e27cda316e4098101e0696d9e1ff4b0f89e40d3e7ab565c652f4a3f50644b73",
   "outputs": {
-    "build/final/aafiatak-system-component-architecture.png": "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6",
-    "build/final/aafiatak-system-component-architecture.svg": "d18717519ad318087ab37edcccf6e5c941def8a25b7031266310ed7a8a660014"
+    "build/final/aafiatak-system-component-architecture.png": "e7061df6da348539539066ffa829e4dba0b49e4bf16246d4e994fc6da387b3e9",
+    "build/final/aafiatak-system-component-architecture.svg": "a7da80a43384edc1b5877f9c21c011c4e1bdb393668f9130230269f3b3e8adb7"
   },
   "projectSpecHash": "9ff2337c1fb334cff24e93d2830c5c3648ef001e5f3e06ab2ad951ba8854d593",
   "qa": {
@@ -20,10 +20,10 @@
         "declaredStatus": "awaiting-user-approval",
         "hashMatchesRecordedPreview": true,
         "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality.",
-        "notes": "The actual generated SVG and all 28 ordered PNG inspection tiles were reviewed for readability, UML component/interface notation, connector routing, text clipping, and the intentionally unconnected Map Service. User visual approval has not been granted.",
+        "notes": "The actual refined SVG and final 8192x4757 PNG were inspected in 12 ordered overlapping tiles covering regions A-L for UML module glyphs, external lollipop/socket labels, routing, clipping, and the intentionally unconnected Map Service. User visual approval has not been granted.",
         "preview": "build/final/aafiatak-system-component-architecture.png",
-        "previewHash": "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6",
-        "reviewedAt": "2026-08-27T03:05:00+03:00",
+        "previewHash": "e7061df6da348539539066ffa829e4dba0b49e4bf16246d4e994fc6da387b3e9",
+        "reviewedAt": "2026-08-27T06:52:23+03:00",
         "reviewer": "Manus AI",
         "status": "awaiting-user-approval"
       }
@@ -38,6 +38,6 @@
   ],
   "semanticModelHash": "e07d7850b599dcda03adfc6a1c1bb198718f5e23bc8ade6590f64845e2a2be12",
   "semanticModelPath": "model/catalog/components/aafiatak-system-component-architecture.yaml",
-  "viewHash": "60ddbf107c2086b0964a5f4761642b2d5e4a4171d9f117d2bbbadea234508281",
+  "viewHash": "59d261b942d5b9bb6c3082d797e8ad5c9516ab48e3033b26fbc0aa835c276a05",
   "viewPath": "views/component/aafiatak-system-component-architecture.yaml"
 }

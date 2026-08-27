@@ -45,9 +45,9 @@ approval: approved
 visualReview:
   status: awaiting-user-approval
   reviewer: Manus AI
-  reviewedAt: "2026-08-27T03:05:00+03:00"
-  notes: "The actual generated SVG and all 28 ordered PNG inspection tiles were reviewed for readability, UML component/interface notation, connector routing, text clipping, and the intentionally unconnected Map Service. User visual approval has not been granted."
-  previewHash: "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6"
+  reviewedAt: "2026-08-27T06:52:23+03:00"
+  notes: "The actual refined SVG and final 8192x4757 PNG were inspected in 12 ordered overlapping tiles covering regions A-L for UML module glyphs, external lollipop/socket labels, routing, clipping, and the intentionally unconnected Map Service. User visual approval has not been granted."
+  previewHash: "e7061df6da348539539066ffa829e4dba0b49e4bf16246d4e994fc6da387b3e9"
 options:
   diagramId: CMP-01
   lecturerReference: "UML PDF page 10 Component Diagram section"
