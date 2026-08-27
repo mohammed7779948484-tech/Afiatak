@@ -1,24 +1,22 @@
-# DEP-01 — MVP Deployment Topology: Final Review
+# DEP-01 — Final UML Notation Refinement Review
 
-## Review scope and conclusion
+## Scope, semantic boundary, and conclusion
 
-DEP-01 is the **first and only approved UML Deployment Diagram** for the current Aafiatak MVP. It was implemented through the repository's ordinary semantic-model → ViewSpec → deterministic composition → SVG → PNG → manifest pipeline. The result uses simple, monochrome UML deployment nodes with contained runtime/component labels and seven unarrowed communication paths. It does **not** claim a cloud, host, operating system, reverse proxy, container platform, or database-hosting arrangement.
+This review records the **final UML-notation and visual-fidelity refinement** of the one approved logical Deployment Diagram for the Aafiatak Medical Appointment Booking System. The task changed only the shared visual representation of deployed contents and logical execution boundaries. It did **not** modify the approved deployment topology, semantic model inventory, ViewSpec selection, communication-path endpoints, or any open technical decision.
 
-> **Visual-review boundary.** The SVG and final PNG were actually reviewed by Manus AI, but the visual-review record deliberately remains `awaiting-user-approval`. Artifact review is not user approval.
+> **Visual-review boundary.** The final SVG and final PNG were actually reviewed by Manus AI. This confirms the recorded artifact was inspected; it is not user approval. The ViewSpec status remains `awaiting-user-approval`.
 
 | Item | Final value |
 |---|---|
-| Diagram ID | `DEP-01` |
-| View ID | `aafiatak-mvp-deployment` |
-| Reviewed execution spec | `docs/deployment-specs/Aafiatak_DEP01_MVP_Deployment_Topology_FINAL_REVIEWED.md` |
-| Registered source identity | `dep01-mvp-deployment-reviewed-spec` |
-| Execution-spec SHA-256 | `22239ffb7d1bb2e790301c6657a702aa9f13a1aecb757dfddc471ce36b68975c` |
-| SVG / PNG final-review hash | `3c1a8d45eda58a797e75823c8fa9efe79e24edf1542121066a318732c4ec572d` / `2e88efceb968389e2f171f7cd61831ca53f572fbcd2d833573d56eba40dd7deb` |
-| Visual-review status | `awaiting-user-approval` |
+| Diagram ID / View ID | `DEP-01` / `aafiatak-mvp-deployment` |
+| Reviewed execution specification | `docs/deployment-specs/Aafiatak_DEP01_MVP_Deployment_Topology_FINAL_REVIEWED.md` |
+| Final SVG / PNG review hash | `b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9` (PNG) |
+| Canvas / preview | 12400×7200 SVG artboard / 8192×4757 PNG |
+| Visual-review state | `awaiting-user-approval` |
 
-## Verified DEP-01 inventory
+## Final semantic inventory
 
-| Contract item | Required | Verified result |
+| Contract item | Required | Verified |
 |---|---:|---:|
 | Deployment Diagrams | 1 | 1 |
 | Top-level Deployment Nodes | 9 | 9 |
@@ -26,66 +24,76 @@ DEP-01 is the **first and only approved UML Deployment Diagram** for the current
 | Internal software components mapped | 5 | 5 |
 | External service Nodes | 4 | 4 |
 | Map Service Communication Paths | 0 | 0 |
-| Invented infrastructure nodes | 0 | 0 |
+| Invented infrastructure Nodes | 0 | 0 |
 
-The nine selected nodes are Patient Mobile Device, Facility Client Device, Platform Administrator Client Device, Aafiatak Centralized Server, PostgreSQL Database Environment, WhatsApp Authentication Provider, Payment Gateway, Notification Service, and Map Service. The canonical semantic model includes only the required seven communication-path relations. The Map Service is included as a visible node but is intentionally excluded from all path endpoints.
+The final diagram still contains only Patient Mobile Device, Facility Client Device, Platform Administrator Client Device, Aafiatak Centralized Server, PostgreSQL Database Environment, WhatsApp Authentication Provider, Payment Gateway, Notification Service, and Map Service. The seven approved communication paths have their same endpoints, and Map Service remains a deliberate zero-path exception.
 
-## Nine-pass review record
+## UML notation refinement applied
 
-| Pass | Checked evidence | Finding | Result |
+| Visual concern | Final treatment | Rationale |
+|---|---|---|
+| Client Device | Outer shallow 3D UML node with secondary `«device»` marker | Retains the approved node name while making the device role explicit and subordinate to the name. |
+| Android / iOS and Web Browser | Small contained 3D `«executionEnvironment»` blocks | Expresses runtime/access environment rather than business software. |
+| Desktop / Tablet | Small dashed contained `«device»` context block | Shows the approved access context without claiming a specific hardware product or duplicating dashboard software. |
+| Patient Application, both Dashboards, Backend, PostgreSQL Database | Folded-corner `«artifact»` blocks | Makes deployed software visibly different from execution environments, without importing Component-Diagram lollipops, sockets, or dependencies. |
+| Aafiatak Centralized Server | Approved name retained with secondary `«executionEnvironment»` marker | Clarifies a logical server-side boundary rather than committing to one physical server machine. |
+| PostgreSQL Database Environment | Secondary `«executionEnvironment»` marker containing the PostgreSQL `«artifact»` | Preserves the unresolved co-location/separation decision and avoids renaming it to an unsupported Database Server. |
+| External services | Simple unadorned shallow 3D UML deployment nodes | Keeps WhatsApp, Payment, Notification, and Map as external runtime/service boundaries without vendor, cloud, or actor imagery. |
+| Communication paths | Solid, unnumbered, unlabeled, unarrowed paths at node boundaries | Preserves their non-temporal UML Communication Path meaning. |
+
+## Nine-pass final review record
+
+| Pass | Evidence checked | Finding | Result |
 |---:|---|---|---|
-| 1. Authority and source integrity | Registered reviewed specification, product specification, governance hierarchy, and lecturer PDF | The execution specification is copied under `docs/`, registered with its real hash, and every DEP-01 node/path has source references. | Passed |
-| 2. Exact nine-node inventory | Semantic model, ViewSpec, SVG Q4 inventory | All and only N01–N09 are selected/rendered exactly once. | Passed |
-| 3. Component-to-node mapping | CMP-01 model and node `componentMapping` / `accessFor` metadata | Patient Application, Facility Web Dashboard, Platform Administration Dashboard, Aafiatak Backend, and PostgreSQL Database map to logical deployment representations without creating microservices. | Passed |
-| 4. Exact communication paths and no arrowheads | Seven semantic relations, SVG Q4, actual PNG/SVG | CP01–CP07 have the mandated endpoint pairs, are solid, unnumbered, unlabeled, and unarrowed. | Passed |
-| 5. Cross-diagram consistency | Main Use Case, sequence/collaboration stable boundaries, CMP-01, contradiction-only class/state/activity check | Only approved client/backend, persistence, WhatsApp, Payment, and Notification boundaries were promoted. Scenario participants were not turned into deployment nodes. | Passed |
-| 6. Open-decision and no-invention audit | Node metadata, visible subtitles, forbidden-content QA | Map caller and DB physical placement remain unresolved. No cloud, VPS, OS, framework, proxy, container, cache, broker, HIS/EHR, SMS, or similar infrastructure was added. | Passed |
-| 7. Lecturer notation audit | Actual lecturer deployment reference and final SVG/PNG | The final uses the reference's simple academic style: 3D deployment nodes, contained items, and plain solid communication paths. | Passed |
-| 8. Geometry and readability audit | DEP-01 Q5 and diagrams.net structural lint | No node overlap, label clipping/collision, path through an unrelated node, page clipping, arrowhead, or machine-detectable crossing remains. Draw.io lint: 0 errors, 0 warnings, 0 crossings, 0 overlaps. | Passed |
-| 9. Final actual-render inspection | Final SVG plus 8192×4757 PNG viewed in twelve ordered overlapping tiles | All nine nodes, contained labels, paths, PostgreSQL wording, and the visibly unresolved Map node were inspected. | Passed |
+| 1. Semantic freeze | DEP-01 model, ViewSpec, expected-count checks, traceability | The 9-node / 7-path topology, mappings, and open decisions are unchanged. | Passed |
+| 2. Lecturer deployment notation | Actual lecturer PDF introduction page and deployment-example page | The shallow 3D nodes, contained blocks, monochrome palette, plain lines, and academic simplicity remain faithful to the reference. | Passed |
+| 3. Device vs Execution Environment | SVG/PNG regions for all three clients and Q4 notation assertions | Devices use `«device»`; Android/iOS and browsers use `«executionEnvironment»`; Desktop/Tablet is device context. | Passed |
+| 4. Deployed software / artifact | SVG/PNG server, patient, and PostgreSQL regions; Q4 inventory/notation checks | The five approved deployed software items are distinct folded-corner `«artifact»` blocks, not generic runtime/component boxes. | Passed |
+| 5. Communication Paths | SVG metadata, Q4/Q5, final PNG tiles, draw.io lint | All seven paths are solid, unnumbered, unarrowed, endpoint-attached, and avoid unrelated nodes and labels. | Passed |
+| 6. Open decisions / no invention | Model/ViewSpec, visible notes, forbidden-content checks | Map caller and DB placement remain unresolved; no cloud, provider, OS, framework, container, proxy, or invented node appears. | Passed |
+| 7. SVG / diagrams.net parity | Shared `ContainedItem` visual model, SVG renderer, draw.io exporter, export test | Both exports consume the same visual kind, stereotype, dimensions, routes, and shared tokens. | Passed |
+| 8. Geometry / readability | DEP-01 Q5, final SVG/PNG visual review, draw.io strict lint | No clipping, node or label overlap, escaped contained item, path collision, or arrowhead was found. | Passed |
+| 9. Actual final render comparison | Final SVG opened directly; final 8192×4757 PNG viewed at fit-to-page and as 12 overlapping tiles | All required regions A–K were inspected, including Map Service's intentionally unconnected state. | Passed |
 
-## Implemented quality gates
+## QA and regression evidence
 
-The DEP-01 artifact validator separates **structural correctness** from **geometry/readability**. Q4 confirms the diagram ID/title, exact selected inventory, node notation, contained items, endpoints, unique identifiers, registered source references, absence of forbidden UML/technology content, Map Service's zero paths, and no arrowheads. Q5 validates safe page bounds, non-overlap of nodes and labels, containment of deployed items, title clearance, endpoint attachment, and avoidance of unrelated nodes, labels, and crossings by communication paths.
-
-| Gate / check | Final result |
+| Gate / check | Result |
 |---|---|
-| `validate-sources` | Passed |
+| Source registration validation | Passed |
 | DEP-01 model validation | Passed |
 | DEP-01 ViewSpec validation | Passed |
 | DEP-01 traceability | 16/16 records covered |
-| DEP-01 focused tests | 5 passed |
-| Full regression suite | 29 passed |
-| DEP-01 Q4 structural QA | Passed |
-| DEP-01 Q5 geometry QA | Passed |
-| CMP-01 QA after shared changes | Passed |
-| Editable diagrams.net structural lint | 0 errors; 0 warnings; score 0 |
+| DEP-01 focused test suite | 9 passed |
+| Full regression suite | 33 passed |
+| DEP-01 Q4 structural QA | Passed; no diagnostics |
+| DEP-01 Q5 geometry QA | Passed; no diagnostics |
+| CMP-01 QA after shared-pipeline regression check | Passed |
+| Editable diagrams.net strict structural lint | 0 errors; 0 warnings; score 0 |
+| Recorded preview hash matches inspected artifact | True |
 
-## Renderer, composition, and editable-source parity
+The focused tests were written before implementation and initially failed as expected: they exposed the absence of typed execution-environment, device-context, and artifact rendering, the absence of logical-node stereotypes, and the absence of draw.io parity. The final tests exercise real SVG and draw.io exports and also mutate a runtime element into an artifact to verify that Q4 rejects the regression.
 
-The deterministic composition places the three approved client devices on the left, the Aafiatak Centralized Server in the centre, PostgreSQL below the server, and the four approved external-service nodes on the right. The direct SVG renderer and the diagrams.net exporter both read the same composition and visual-token source. The editable export pins edge endpoints to their respective node boundaries rather than node centres; this correction eliminated the first lint run's false route-through-contained-item warnings and produced a clean final lint result.
+## Actual visual inspection summary
 
-The only implementation-level defects found before acceptance were missing SVG title-bound metadata needed by Q5, and initially unpinned editable-edge endpoints. Both were corrected in canonical source code before final regeneration. **No generated SVG, PNG, or `.drawio` file was manually patched.**
+The final 8192×4757 PNG was opened at fit-to-page scale and examined in twelve ordered overlapping 2300×2300-pixel tiles. The visual audit explicitly covered Patient Mobile Device, Facility Client Device, Platform Administrator Client Device, the Centralized Server and each of its three artifacts, PostgreSQL Database Environment and its physical-placement note, the four external service nodes, all seven communication paths, and the full-page composition. The final vector SVG was also opened directly after PNG review.
 
-## Actual visual inspection
+The final result remains a light formal-university UML diagram, not a cloud architecture, DevOps board, network map, or system-design infographic. Node names dominate; stereotypes are small and secondary; contained execution environments and deployed artifacts are legible and distinct; small unresolved subtitles do not overwhelm their owners; and the white page with dark neutral strokes follows the lecturer example's academic restraint.
 
-The final SVG was opened directly. The final PNG was inspected at 8192×4757 pixels as twelve ordered overlapping tiles. The inspection confirmed that the client device labels and contained runtimes are readable; the central server contains exactly the three required software blocks; the PostgreSQL environment describes only logical deployment and its unresolved physical placement; the right-side provider nodes are legible; and Map Service visibly communicates its unresolved caller status without appearing accidentally omitted.
-
-The presentation is intentionally light and academic: a white page, dark neutral outlines, serif page heading, sans-serif node content, no gradient, no shadow, no vendor icon, and no DevOps/cloud-infographic treatment. This is consistent with the lecturer's page-11 deployment notation rather than a production cloud-design diagram.
-
-## Preserved unresolved decisions
+## Preserved open decisions
 
 | Decision | DEP-01 treatment |
 |---|---|
 | Map Service technical caller | Explicitly unresolved; Map Service has no communication path. |
-| PostgreSQL physical co-location or separation from N04 | Explicitly unresolved; no physical-server claim is made. |
-| Backend/web technology | Unspecified; no framework, web server, or proxy is shown. |
-| Provider, operating system, cloud, container, and host topology | Unresolved; no vendor or deployment-infrastructure node is invented. |
+| PostgreSQL co-location or separation from the logical centralized server boundary | Explicitly unresolved; no physical server claim is made. |
+| Backend and web technology | Unspecified; no framework, web server, or proxy is shown. |
+| Provider, operating system, cloud, container, and host topology | Unresolved; none is inferred or rendered. |
 
 Semantic status: verified
 
 Structural QA: passed
 
 Geometry QA: passed
+
+Lecturer-style visual review: passed
 
 Visual status: awaiting-user-approval

@@ -18,3 +18,14 @@ This checklist tracks the implementation of the single approved UML Deployment D
 - [x] Perform and document the nine required final review passes. See `build/qa/DEP01_MVP_Deployment_Topology_Final_Review.md`.
 - [x] Update final preview hash while retaining `awaiting-user-approval`. The recorded hash matches the inspected final PNG.
 - [x] Commit and push the validated DEP-01 update to `main` as `da3daa2 feat(uml): add DEP-01 deployment topology`.
+
+## UML notation refinement — 2026-08-27
+
+- [x] Inspect the current DEP-01 renderer, composition, QA, SVG, PNG, editable draw.io artifact, final review, and actual lecturer deployment example.
+- [x] Write and observe RED tests for runtime/device-context/artifact visual distinctions, logical execution-environment node stereotypes, QA enforcement, and SVG/draw.io parity.
+- [x] Add shared contained-item visual kinds: `execution-environment`, `deployed-artifact`, and `device-context`; retain the frozen topology and all routes.
+- [x] Render secondary `«device»` and `«executionEnvironment»` node markers where approved, 3D execution-environment content, and folded-corner `«artifact»` deployed software.
+- [x] Extend DEP-01 Q4 notation/duplicate checks while retaining Q5 containment, collision, path, and clipping checks.
+- [x] Regenerate and inspect final SVG plus fit-to-page and twelve-tile PNG review; update the matching preview hash while retaining `awaiting-user-approval`.
+- [x] Validate source/model/view/traceability, DEP-01 QA, full regression, CMP-01 regression QA, and diagrams.net strict lint. Final result: 33 tests passed; draw.io 0 errors, 0 warnings, score 0.
+- [ ] Commit and push the DEP-01 UML notation refinement to `main`.

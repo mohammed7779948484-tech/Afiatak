@@ -26,9 +26,9 @@ approval: approved
 visualReview:
   status: awaiting-user-approval
   reviewer: Manus AI
-  reviewedAt: "2026-08-27T07:26:15+03:00"
-  notes: "Actual final SVG and 8192×4757 PNG were inspected in twelve ordered overlapping tiles. All nine deployment nodes, contained labels, seven solid unarrowed paths, Map Service's intentional disconnection, lecturer-style 3D node notation, and geometry were reviewed. User visual approval has not been granted."
-  previewHash: "2e88efceb968389e2f171f7cd61831ca53f572fbcd2d833573d56eba40dd7deb"
+  reviewedAt: "2026-08-27T08:34:44+03:00"
+  notes: "Actual final SVG and 8192×4757 PNG were inspected at fit-to-page and in twelve ordered overlapping tiles after the UML-notation refinement. Device, execution-environment, device-context, and artifact distinctions are clear; all nine nodes, seven solid unarrowed paths, the logical PostgreSQL boundary, Map Service's intentional disconnection, lecturer-style 3D nodes, and geometry were reviewed. User visual approval has not been granted."
+  previewHash: "b59e4d8e817074fea67b60beae9525869924dda98c400675498950a5ed1eb8e9"
 options:
   diagramId: DEP-01
   lecturerReference: "UML PDF page 11 Deployment Diagram section"

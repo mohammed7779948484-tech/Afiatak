@@ -54,6 +54,10 @@ def _shape_bounds(box: Rect) -> Rect:
     return Rect(box.x, box.y - TOKENS.perspective_y, box.width + TOKENS.perspective_x, box.height + TOKENS.perspective_y)
 
 
+def _stereotype(value: str) -> str:
+    return f"«{value}»"
+
+
 def _node(parent, item, layout: NodeLayout) -> None:
     box = layout.box
     shape_bounds = _shape_bounds(box)
@@ -67,6 +71,7 @@ def _node(parent, item, layout: NodeLayout) -> None:
             "data-semantic-id": item.id,
             "data-node-name": item.name,
             "data-node-symbol": "uml-deployment-node-3d",
+            "data-node-stereotype": layout.node_stereotype or "",
             "data-bounds": _bounds(box),
             "data-shape-bounds": _bounds(shape_bounds),
             "data-name-bounds": _bounds(layout.title_bounds),
@@ -78,29 +83,47 @@ def _node(parent, item, layout: NodeLayout) -> None:
     ET.SubElement(group, tag("path"), {"d": f"M {box.x:.2f} {box.y:.2f} H {box.right:.2f} V {box.bottom:.2f} H {box.x:.2f} Z", "class": "deployment-node-front"})
     ET.SubElement(group, tag("path"), {"d": f"M {box.x:.2f} {box.y:.2f} H {box.right:.2f} L {box.right + TOKENS.perspective_x:.2f} {box.y - TOKENS.perspective_y:.2f} H {box.x + TOKENS.perspective_x:.2f} {box.y - TOKENS.perspective_y:.2f} Z", "class": "deployment-node-top"})
     ET.SubElement(group, tag("path"), {"d": f"M {box.right:.2f} {box.y:.2f} L {box.right + TOKENS.perspective_x:.2f} {box.y - TOKENS.perspective_y:.2f} V {box.bottom - TOKENS.perspective_y:.2f} L {box.right:.2f} {box.bottom:.2f} Z", "class": "deployment-node-side"})
-    title_y = layout.title_bounds.y + TOKENS.node_name_font_size
-    _multiline(group, title_lines, layout.title_bounds.x + layout.title_bounds.width / 2, title_y, "node-name", TOKENS.node_name_line_height)
+    title_x = layout.title_bounds.center_x
+    if layout.node_stereotype:
+        _multiline(group, [_stereotype(layout.node_stereotype)], title_x, layout.title_bounds.y + TOKENS.node_stereotype_font_size, "node-stereotype", TOKENS.node_stereotype_line_height)
+        title_y = layout.title_bounds.y + TOKENS.node_stereotype_line_height + TOKENS.node_name_font_size
+    else:
+        title_y = layout.title_bounds.y + TOKENS.node_name_font_size
+    _multiline(group, title_lines, title_x, title_y, "node-name", TOKENS.node_name_line_height)
 
-    for index, (label, bounds) in enumerate(layout.contained):
+    for index, contained_item in enumerate(layout.contained):
+        label, bounds = contained_item.label, contained_item.bounds
         contained = ET.SubElement(
             group,
             tag("g"),
             {
                 "id": f"{item.id}-contained-{index + 1}",
-                "data-kind": "deployed-item",
+                "data-kind": contained_item.visual_kind,
                 "data-owner-node": item.id,
                 "data-item-name": label,
+                "data-uml-kind": contained_item.uml_kind,
+                "data-stereotype": contained_item.stereotype,
                 "data-bounds": _bounds(bounds),
-                "aria-label": f"Deployed item {label}",
+                "aria-label": f"{contained_item.uml_kind} {label}",
             },
         )
-        ET.SubElement(contained, tag("rect"), {"x": f"{bounds.x:.2f}", "y": f"{bounds.y:.2f}", "width": f"{bounds.width:.2f}", "height": f"{bounds.height:.2f}", "class": "contained-item"})
-        marker_w, marker_h = 48.0, 26.0
-        ET.SubElement(contained, tag("path"), {"d": f"M {bounds.x + 24:.2f} {bounds.y + 23:.2f} H {bounds.x + 24 + marker_w:.2f} V {bounds.y + 23 + marker_h:.2f} H {bounds.x + 24:.2f}", "class": "contained-item-marker"})
-        lines = _wrap(label, max(18, int(bounds.width / 32)))
-        height = TOKENS.contained_line_height * len(lines)
-        baseline = bounds.y + (bounds.height - height) / 2 + TOKENS.contained_font_size
-        _multiline(contained, lines, bounds.center_x + 24, baseline, "contained-item-name", TOKENS.contained_line_height)
+        if contained_item.visual_kind == "execution-environment":
+            depth_x, depth_y = 18.0, 14.0
+            ET.SubElement(contained, tag("path"), {"d": f"M {bounds.x:.2f} {bounds.y:.2f} H {bounds.right:.2f} V {bounds.bottom:.2f} H {bounds.x:.2f} Z", "class": "execution-environment-front"})
+            ET.SubElement(contained, tag("path"), {"d": f"M {bounds.x:.2f} {bounds.y:.2f} H {bounds.right:.2f} L {bounds.right + depth_x:.2f} {bounds.y - depth_y:.2f} H {bounds.x + depth_x:.2f} {bounds.y - depth_y:.2f} Z", "class": "execution-environment-top"})
+            ET.SubElement(contained, tag("path"), {"d": f"M {bounds.right:.2f} {bounds.y:.2f} L {bounds.right + depth_x:.2f} {bounds.y - depth_y:.2f} V {bounds.bottom - depth_y:.2f} L {bounds.right:.2f} {bounds.bottom:.2f} Z", "class": "execution-environment-side"})
+        elif contained_item.visual_kind == "deployed-artifact":
+            fold = min(54.0, max(32.0, bounds.height * 0.24))
+            ET.SubElement(contained, tag("path"), {"d": f"M {bounds.x:.2f} {bounds.y:.2f} H {bounds.right - fold:.2f} L {bounds.right:.2f} {bounds.y + fold:.2f} V {bounds.bottom:.2f} H {bounds.x:.2f} Z", "class": "deployed-artifact"})
+            ET.SubElement(contained, tag("path"), {"d": f"M {bounds.right - fold:.2f} {bounds.y:.2f} V {bounds.y + fold:.2f} H {bounds.right:.2f}", "class": "deployed-artifact-fold"})
+        else:
+            ET.SubElement(contained, tag("rect"), {"x": f"{bounds.x:.2f}", "y": f"{bounds.y:.2f}", "width": f"{bounds.width:.2f}", "height": f"{bounds.height:.2f}", "class": "device-context"})
+
+        label_lines = _wrap(label, max(18, int(bounds.width / 32)))
+        total_height = TOKENS.contained_stereotype_line_height + TOKENS.contained_line_height * len(label_lines)
+        top = bounds.y + (bounds.height - total_height) / 2
+        _multiline(contained, [_stereotype(contained_item.stereotype)], bounds.center_x, top + TOKENS.contained_stereotype_font_size, "contained-stereotype", TOKENS.contained_stereotype_line_height)
+        _multiline(contained, label_lines, bounds.center_x, top + TOKENS.contained_stereotype_line_height + TOKENS.contained_font_size, "contained-item-name", TOKENS.contained_line_height)
 
     if layout.subtitle:
         subtitle, bounds = layout.subtitle
@@ -133,8 +156,13 @@ def _style() -> str:
       .deployment-node-front {{ fill:#FFFFFF; stroke:#262626; stroke-width:{TOKENS.node_stroke_width}; stroke-linejoin:miter; }}
       .deployment-node-top, .deployment-node-side {{ fill:#F6F6F6; stroke:#262626; stroke-width:{TOKENS.node_stroke_width}; stroke-linejoin:miter; }}
       .node-name {{ font-family:Arial,Helvetica,sans-serif; font-size:{TOKENS.node_name_font_size}px; font-weight:700; fill:#1F1F1F; }}
-      .contained-item {{ fill:#FFFFFF; stroke:#343434; stroke-width:{TOKENS.contained_stroke_width}; }}
-      .contained-item-marker {{ fill:none; stroke:#343434; stroke-width:{TOKENS.contained_stroke_width}; stroke-linecap:square; stroke-linejoin:miter; }}
+      .node-stereotype {{ font-family:Arial,Helvetica,sans-serif; font-size:{TOKENS.node_stereotype_font_size}px; font-style:italic; fill:#454545; }}
+      .execution-environment-front {{ fill:#FFFFFF; stroke:#3D3D3D; stroke-width:{TOKENS.contained_stroke_width}; stroke-linejoin:miter; }}
+      .execution-environment-top, .execution-environment-side {{ fill:#F7F7F7; stroke:#3D3D3D; stroke-width:{TOKENS.contained_stroke_width}; stroke-linejoin:miter; }}
+      .deployed-artifact {{ fill:#FFFFFF; stroke:#343434; stroke-width:{TOKENS.contained_stroke_width}; stroke-linejoin:miter; }}
+      .deployed-artifact-fold {{ fill:none; stroke:#343434; stroke-width:{TOKENS.contained_stroke_width}; stroke-linejoin:miter; }}
+      .device-context {{ fill:#FCFCFC; stroke:#5A5A5A; stroke-width:{TOKENS.contained_stroke_width}; stroke-dasharray:9 7; }}
+      .contained-stereotype {{ font-family:Arial,Helvetica,sans-serif; font-size:{TOKENS.contained_stereotype_font_size}px; font-style:italic; fill:#4A4A4A; }}
       .contained-item-name {{ font-family:Arial,Helvetica,sans-serif; font-size:{TOKENS.contained_font_size}px; font-weight:500; fill:#242424; }}
       .node-subtitle {{ font-family:Arial,Helvetica,sans-serif; font-size:{TOKENS.subtitle_font_size}px; font-style:italic; fill:#454545; }}
       .communication-path {{ fill:none; stroke:#303030; stroke-width:{TOKENS.connector_stroke_width}; stroke-linecap:round; stroke-linejoin:round; }}
@@ -164,7 +192,7 @@ def render_deployment_diagram_svg(model: SemanticModel, view: ViewSpec, output: 
     title = ET.SubElement(root, tag("title"), {"id": "diagram-title"})
     title.text = view.title
     description = ET.SubElement(root, tag("desc"), {"id": "diagram-description"})
-    description.text = "Lecturer-style UML Deployment Diagram with logical deployment nodes, contained runtimes or components, and solid unarrowed communication paths."
+    description.text = "Lecturer-style UML Deployment Diagram with logical deployment nodes, contained execution environments or deployed artifacts, and solid unarrowed communication paths."
     definitions = ET.SubElement(root, tag("defs"))
     style = ET.SubElement(definitions, tag("style"))
     style.text = _style()

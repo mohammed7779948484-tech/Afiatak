@@ -5,6 +5,7 @@ from itertools import combinations
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from engine.compositions.deployment_diagram_layouts import layout_for
 from engine.core.models import SemanticModel, ViewSpec
 from qa.diagnostics import Diagnostic
 
@@ -14,6 +15,9 @@ FORBIDDEN_KINDS = {
     "action", "decision", "merge", "fork", "join", "class", "component",
     "provided-interface", "required-interface", "assembly-connector",
 }
+CONTAINED_ITEM_VISUAL_KINDS = {"execution-environment", "deployed-artifact", "device-context"}
+
+
 FORBIDDEN_VISIBLE = (
     "AWS", "Azure", "GCP", "Vercel", "Railway", "VPS", "Docker", "Kubernetes",
     "Load Balancer", "CDN", "Reverse Proxy", "Nginx", "Caddy", "Apache", "API Gateway",
@@ -61,6 +65,10 @@ def _points(value: str) -> list[tuple[float, float]]:
 
 def _nodes(root, kind: str):
     return [node for node in root.iter() if node.attrib.get("data-kind") == kind]
+
+
+def _contained_nodes(root):
+    return [node for node in root.iter() if node.attrib.get("data-kind") in CONTAINED_ITEM_VISUAL_KINDS]
 
 
 def _expected_count(view: ViewSpec, key: str, fallback: int) -> int:
@@ -142,7 +150,7 @@ def _geometry_diagnostics(root, nodes, paths) -> list[Diagnostic]:
         if first.intersects(second):
             diagnostics.append(Diagnostic("Q5", "deployment-node-overlap", "Deployment node front faces overlap", subject=f"{first_id}<->{second_id}"))
 
-    for item in _nodes(root, "deployed-item"):
+    for item in _contained_nodes(root):
         owner = item.attrib.get("data-owner-node", "")
         item_name = item.attrib.get("data-item-name", "unknown")
         try:
@@ -219,6 +227,7 @@ def validate_deployment_svg(svg_path: Path, model: SemanticModel, view: ViewSpec
     relations = {item.id: item for item in model.relations if item.id in view.relations}
     expected_nodes = {item.id: item for item in selected.values() if item.type == "deployment_node"}
     expected_paths = {item.id: item for item in relations.values() if item.type == "communication_path"}
+    expected_layout_nodes = layout_for(view.id).nodes
 
     if root.attrib.get("data-diagram-id") != "DEP-01":
         diagnostics.append(Diagnostic("Q4", "diagram-id", "Rendered Deployment Diagram ID must be DEP-01"))
@@ -245,10 +254,29 @@ def validate_deployment_svg(svg_path: Path, model: SemanticModel, view: ViewSpec
             continue
         if rendered.attrib.get("data-node-name") != item.name or rendered.attrib.get("data-node-symbol") != "uml-deployment-node-3d":
             diagnostics.append(Diagnostic("Q4", "deployment-node-notation", "Deployment node name or UML deployment-node notation is incorrect", subject=node_id))
+        expected_layout = expected_layout_nodes[node_id]
+        if rendered.attrib.get("data-node-stereotype", "") != (expected_layout.node_stereotype or ""):
+            diagnostics.append(Diagnostic("Q4", "deployment-node-stereotype", "Deployment node stereotype does not match its approved logical notation", subject=node_id))
         expected_items = list(item.metadata.get("containedItems", []))
-        actual_items = [candidate.attrib.get("data-item-name") for candidate in _nodes(rendered, "deployed-item")]
+        actual_item_nodes = _contained_nodes(rendered)
+        actual_items = [candidate.attrib.get("data-item-name") for candidate in actual_item_nodes]
         if actual_items != expected_items:
             diagnostics.append(Diagnostic("Q4", "contained-item-inventory", "Contained runtime/component inventory does not match node metadata", subject=node_id))
+        if len(actual_items) != len(set(actual_items)):
+            diagnostics.append(Diagnostic("Q4", "contained-item-duplicate", "Contained runtime/component must render exactly once within its owner node", subject=node_id))
+        expected_notation = {
+            contained.label: (contained.visual_kind, contained.uml_kind, contained.stereotype)
+            for contained in expected_layout.contained
+        }
+        for candidate in actual_item_nodes:
+            item_name = candidate.attrib.get("data-item-name", "unknown")
+            actual_notation = (
+                candidate.attrib.get("data-kind"),
+                candidate.attrib.get("data-uml-kind"),
+                candidate.attrib.get("data-stereotype"),
+            )
+            if item_name not in expected_notation or actual_notation != expected_notation[item_name]:
+                diagnostics.append(Diagnostic("Q4", "contained-item-notation", "Contained item UML visual kind must match its approved runtime, artifact, or device-context representation", subject=item_name))
         if not item.source_refs:
             diagnostics.append(Diagnostic("Q4", "node-source-refs", "Deployment node requires source references", subject=node_id))
 

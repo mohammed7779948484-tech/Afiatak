@@ -3,6 +3,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from engine.core.io import ROOT, load_model, load_view
+from engine.deployment_drawio_export import export_deployment_drawio
 from engine.pipeline import model_path_for, render
 
 
@@ -105,6 +106,71 @@ def test_dep01_qa_rejects_a_path_through_an_unrelated_node(tmp_path: Path) -> No
     validate = import_module("qa.deployment_svg_validation").validate_deployment_svg
     codes = {diagnostic.code for diagnostic in validate(output, model, view)}
     assert "communication-path-through-unrelated-node" in codes
+
+
+def test_dep01_renderer_distinguishes_runtime_environment_from_deployed_artifacts(tmp_path: Path) -> None:
+    """Catches Android/iOS or browser content rendered as the same module-like software item as an artifact."""
+    output, _, _ = _render(tmp_path)
+    root = ET.parse(output).getroot()
+    rendered = [node for node in root.iter() if node.attrib.get("data-kind") in {"execution-environment", "deployed-artifact", "device-context"}]
+    by_name = {node.attrib["data-item-name"]: node for node in rendered}
+
+    assert {name for name, node in by_name.items() if node.attrib["data-uml-kind"] == "executionEnvironment"} == {"Android / iOS", "Web Browser"}
+    assert by_name["Desktop / Tablet"].attrib["data-uml-kind"] == "device-context"
+    assert {name for name, node in by_name.items() if node.attrib["data-uml-kind"] == "artifact"} == {
+        "Patient Application",
+        "Facility Web Dashboard",
+        "Aafiatak Platform Administration Dashboard",
+        "Aafiatak Backend",
+        "PostgreSQL Database",
+    }
+    assert not [node for node in root.iter() if node.attrib.get("data-kind") == "deployed-item"]
+
+
+def test_dep01_renderer_marks_logical_execution_environment_nodes_without_renaming(tmp_path: Path) -> None:
+    """Catches a logical server/database grouping that is rendered as an unexplained physical-machine assertion."""
+    output, _, _ = _render(tmp_path)
+    root = ET.parse(output).getroot()
+    assert _node(root, "node.dep01.aafiatak-centralized-server").attrib["data-node-stereotype"] == "executionEnvironment"
+    assert _node(root, "node.dep01.postgresql-environment").attrib["data-node-stereotype"] == "executionEnvironment"
+    assert _node(root, "node.dep01.patient-mobile-device").attrib["data-node-stereotype"] == "device"
+    assert _node(root, "node.dep01.aafiatak-centralized-server").attrib["data-node-name"] == "Aafiatak Centralized Server"
+
+
+def test_dep01_qa_rejects_a_runtime_rendered_as_an_artifact(tmp_path: Path) -> None:
+    """Catches execution environments accidentally regressing to deployed-artifact notation."""
+    output, model, view = _render(tmp_path)
+
+    def mutate(root: ET.Element) -> None:
+        runtime = next(node for node in root.iter() if node.attrib.get("data-item-name") == "Android / iOS")
+        runtime.attrib["data-kind"] = "deployed-artifact"
+        runtime.attrib["data-uml-kind"] = "artifact"
+
+    _rewrite(output, mutate)
+    validate = import_module("qa.deployment_svg_validation").validate_deployment_svg
+    codes = {diagnostic.code for diagnostic in validate(output, model, view)}
+    assert "contained-item-notation" in codes
+
+
+def test_dep01_drawio_export_uses_the_same_runtime_and_artifact_notation(tmp_path: Path) -> None:
+    """Catches SVG/draw.io parity drift where execution environments fall back to generic module cells."""
+    _, model, view = _render(tmp_path)
+    drawio_path = tmp_path / "dep01.drawio"
+    export_deployment_drawio(model, view, drawio_path)
+    cells = ET.parse(drawio_path).getroot().iter("mxCell")
+    by_id = {cell.attrib["id"]: cell for cell in cells if "id" in cell.attrib}
+    runtime_cells = [cell for cell_id, cell in by_id.items() if cell_id.startswith("runtime-")]
+    artifact_cells = [cell for cell_id, cell in by_id.items() if cell_id.startswith("artifact-")]
+    context_cells = [cell for cell_id, cell in by_id.items() if cell_id.startswith("device-context-")]
+
+    assert {cell.attrib["value"].split("<br>")[-1] for cell in runtime_cells} == {"Android / iOS", "Web Browser"}
+    assert all("«executionEnvironment»" in cell.attrib["value"] for cell in runtime_cells)
+    assert all("shape=module" not in cell.attrib["style"] and "shape=cube" in cell.attrib["style"] for cell in runtime_cells)
+    assert {"Patient Application", "Facility Web Dashboard", "Aafiatak Platform Administration Dashboard", "Aafiatak Backend", "PostgreSQL Database"} == {
+        cell.attrib["value"].split("<br>")[-1] for cell in artifact_cells
+    }
+    assert all("shape=note" in cell.attrib["style"] and "«artifact»" in cell.attrib["value"] for cell in artifact_cells)
+    assert len(context_cells) == 1 and "Desktop / Tablet" in context_cells[0].attrib["value"]
 
 
 def test_dep01_composition_is_compact_and_keeps_the_server_central() -> None:
