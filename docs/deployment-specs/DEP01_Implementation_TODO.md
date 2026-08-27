@@ -17,4 +17,4 @@ This checklist tracks the implementation of the single approved UML Deployment D
 - [x] Inspect the actual generated SVG and PNG, correcting only canonical source/composition/renderer code. The final 8192×4757 PNG was reviewed as 12 ordered overlapping tiles, and the final SVG was opened independently.
 - [x] Perform and document the nine required final review passes. See `build/qa/DEP01_MVP_Deployment_Topology_Final_Review.md`.
 - [x] Update final preview hash while retaining `awaiting-user-approval`. The recorded hash matches the inspected final PNG.
-- [ ] Commit and push the validated DEP-01 update to `main`.
+- [x] Commit and push the validated DEP-01 update to `main` as `da3daa2 feat(uml): add DEP-01 deployment topology`.
