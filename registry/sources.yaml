@@ -281,3 +281,9 @@ sources:
     sha256: 2199d4976815a54cb1e73fc08092b054634b6cf41557d594c20a12e96aa502eb
     immutable: true
     authority_precedence: 5
+  - name: cmp01-system-component-architecture-reviewed-spec
+    path: docs/component-specs/Aafiatak_CMP01_System_Component_Architecture_FINAL_REVIEWED.md
+    role: final_cmp01_component_execution
+    sha256: c7c8edee23d547c41f14459aa24a6053cb609747c756463a6125ba0d04ff8c1f
+    immutable: true
+    authority_precedence: 5

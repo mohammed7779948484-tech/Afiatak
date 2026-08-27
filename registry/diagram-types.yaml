@@ -3,3 +3,4 @@ types:
   use_case: {renderer: engine.svg.use_case, dependencies: [actor-use-case-model]}
   use_case_modeling: {renderer: markdown, dependencies: [actor-use-case-model]}
   activity: {renderer: engine.svg.activity_diagram, dependencies: [activity-control-flow-model]}
+  component: {renderer: engine.svg.component_diagram, dependencies: [component-interface-model]}

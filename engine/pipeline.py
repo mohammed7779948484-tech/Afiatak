@@ -60,12 +60,17 @@ def _validated(view_path: Path):
     errors = [item for item in diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
-    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity", "communication"}:
-        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, activity, and communication views")
+    if view.diagram_type not in {"use_case", "class", "sequence", "state", "activity", "communication", "component"}:
+        raise ValueError("the simplified renderer supports Aafiatak use-case, class, sequence, state, activity, communication, and component views")
     return model, view, model_path, diagnostics
 
 
 def _render_svg(model, view, output: Path) -> None:
+    if view.diagram_type == "component":
+        from engine.svg.component_diagram import render_component_diagram_svg
+
+        render_component_diagram_svg(model, view, output)
+        return
     if view.id == "aafiatak-sd01-patient-registration-otp":
         render_sequence_diagram_svg(model, view, output)
         return
@@ -126,11 +131,29 @@ def _render_svg(model, view, output: Path) -> None:
     raise ValueError(f"no curated SVG composition for {view.id}")
 
 
+def _artifact_diagnostics(svg: Path, model, view):
+    if view.diagram_type == "component":
+        from qa.component_svg_validation import validate_component_svg
+
+        return validate_component_svg(svg, model, view)
+    if view.diagram_type == "class":
+        return validate_class_svg(svg, model, view)
+    if view.diagram_type == "sequence":
+        return validate_sequence_svg(svg, model, view)
+    if view.diagram_type == "state":
+        return validate_state_svg(svg, model, view)
+    if view.diagram_type == "activity":
+        return validate_activity_svg(svg, model, view)
+    if view.diagram_type == "communication":
+        return validate_collaboration_svg(svg, model, view)
+    return validate_svg(svg, model, view)
+
+
 def render(view_path: Path, output: Path | None = None) -> Path:
     model, view, _, _ = _validated(view_path.resolve())
     output = output or ROOT / "build" / "work" / f"{view.id}.svg"
     _render_svg(model, view, output)
-    artifact_diagnostics = validate_class_svg(output, model, view) if view.diagram_type == "class" else validate_sequence_svg(output, model, view) if view.diagram_type == "sequence" else validate_state_svg(output, model, view) if view.diagram_type == "state" else validate_activity_svg(output, model, view) if view.diagram_type == "activity" else validate_collaboration_svg(output, model, view) if view.diagram_type == "communication" else validate_svg(output, model, view)
+    artifact_diagnostics = _artifact_diagnostics(output, model, view)
     errors = [item for item in artifact_diagnostics if item.severity == "error"]
     if errors:
         raise ValueError("\n".join(map(str, errors)))
@@ -138,7 +161,7 @@ def render(view_path: Path, output: Path | None = None) -> Path:
 
 
 def _qa_data(model, view, input_diagnostics, svg: Path, preview: Path) -> tuple[dict, list[str]]:
-    artifact_diagnostics = validate_class_svg(svg, model, view) if view.diagram_type == "class" else validate_sequence_svg(svg, model, view) if view.diagram_type == "sequence" else validate_state_svg(svg, model, view) if view.diagram_type == "state" else validate_activity_svg(svg, model, view) if view.diagram_type == "activity" else validate_collaboration_svg(svg, model, view) if view.diagram_type == "communication" else validate_svg(svg, model, view)
+    artifact_diagnostics = _artifact_diagnostics(svg, model, view)
     diagnostics = [str(item) for item in [*input_diagnostics, *artifact_diagnostics]]
     export_svg_png(svg, preview)
     preview_hash = sha256_file(preview)
@@ -203,10 +226,10 @@ def build(view_path: Path) -> list[Path]:
     if model.test_data:
         raise ValueError("release forbids models marked testData")
     if set(view.output_targets) != {"svg", "png"}:
-        raise ValueError("the simplified Main Use Case build produces exactly SVG and PNG")
+        raise ValueError("the standard build produces exactly SVG and PNG")
 
     work_svg = ROOT / "build" / "work" / f"{view.id}.svg"
-    render_use_case_svg(model, view, work_svg)
+    _render_svg(model, view, work_svg)
     work_png = ROOT / "build" / "work" / f"{view.id}.png"
     report_data, diagnostics = _qa_data(model, view, input_diagnostics, work_svg, work_png)
     if report_data["gates"]["Q4"] == "fail" or report_data["gates"]["Q5"] == "fail":

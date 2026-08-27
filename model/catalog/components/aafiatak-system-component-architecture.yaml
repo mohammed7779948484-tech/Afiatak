@@ -1,0 +1,498 @@
+modelId: component.aafiatak-system-component-architecture
+version: "1.0"
+elements:
+  - id: component.cmp01.patient-application
+    name: Patient Application
+    type: component
+    description: Flutter Android and iOS patient-facing application for discovery, booking, payment presentation, appointment status, notifications, and visit/queue visibility.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.1"
+        line_start: 291
+        line_end: 317
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C01"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: internal-client-application}
+  - id: component.cmp01.facility-web-dashboard
+    name: Facility Web Dashboard
+    type: component
+    description: One responsive role-dependent web dashboard for Facility Administrator, Booking & Reception Staff, and Doctor.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.2"
+        line_start: 319
+        line_end: 329
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C02"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: internal-web-application}
+  - id: component.cmp01.platform-administration-dashboard
+    name: Aafiatak Platform Administration Dashboard
+    type: component
+    description: Protected platform-administration web dashboard for Platform Administrator users.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.3"
+        line_start: 331
+        line_end: 348
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C03"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: internal-web-application}
+  - id: component.cmp01.aafiatak-backend
+    name: Aafiatak Backend
+    type: component
+    description: Centralized server-side orchestration for approved Aafiatak responsibilities including authentication, booking, payment, visit, queue, notifications, permissions, and audit history.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4"
+        line_start: 1749
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C04"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: internal-centralized-server}
+  - id: component.cmp01.postgresql-database
+    name: PostgreSQL Database
+    type: component
+    description: Approved MVP persistence component; tables, columns, and ERD details are outside this diagram.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.5"
+        line_start: 1771
+        line_end: 1774
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C05"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: internal-persistence-component}
+  - id: component.cmp01.whatsapp-authentication-provider
+    name: WhatsApp Authentication Provider
+    type: component
+    description: Official WhatsApp provider/API used only for phone verification and passwordless OTP authentication.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C06"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: external-service-component}
+  - id: component.cmp01.payment-gateway
+    name: Payment Gateway
+    type: component
+    description: External full-electronic-payment verification and refund integration for FULL_PAYMENT_REQUIRED flows.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C07"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: external-service-component}
+  - id: component.cmp01.notification-service
+    name: Notification Service
+    type: component
+    description: Approved external general system-notification delivery service; it is distinct from WhatsApp OTP authentication.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C08"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: external-service-component}
+  - id: component.cmp01.map-service
+    name: Map Service
+    type: component
+    description: Approved external map and facility-location service whose technical caller remains intentionally unresolved.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§5 / C09 and §11"
+        line_start: 140
+        line_end: 152
+    metadata: {classification: external-service-component, technicalConsumer: unresolved}
+
+  - id: component.cmp01.pi.aafiatak-application-interface
+    name: Aafiatak Application Interface
+    type: provided_interface
+    description: Implementation-neutral application/server contract provided by Aafiatak Backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4"
+        line_start: 1749
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI01"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.aafiatak-backend}
+  - id: component.cmp01.pi.persistence-interface
+    name: Persistence Interface
+    type: provided_interface
+    description: Persistence capability provided by PostgreSQL Database.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.5"
+        line_start: 1771
+        line_end: 1774
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI02"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.postgresql-database}
+  - id: component.cmp01.pi.whatsapp-authentication-interface
+    name: WhatsApp Authentication Interface
+    type: provided_interface
+    description: Official WhatsApp authentication and phone-verification integration capability.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI03"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.whatsapp-authentication-provider}
+  - id: component.cmp01.pi.payment-interface
+    name: Payment Interface
+    type: provided_interface
+    description: Full-payment verification, payment, and refund integration capability.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI04"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.payment-gateway}
+  - id: component.cmp01.pi.notification-interface
+    name: Notification Interface
+    type: provided_interface
+    description: General system-notification delivery capability distinct from WhatsApp authentication.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI05"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.notification-service}
+  - id: component.cmp01.pi.map-location-interface
+    name: Map / Location Interface
+    type: provided_interface
+    description: Facility map and location capability; no technical consumer is modeled because the caller is unresolved.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§8 / PI06 and §11"
+        line_start: 208
+        line_end: 219
+    metadata: {providerComponent: component.cmp01.map-service, technicalConsumer: unresolved}
+
+  - id: component.cmp01.ri.patient-application-interface
+    name: Aafiatak Application Interface
+    type: required_interface
+    description: Application/server contract required by Patient Application.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.1"
+        line_start: 1730
+        line_end: 1737
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI01"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.patient-application, matchingProvidedInterface: component.cmp01.pi.aafiatak-application-interface}
+  - id: component.cmp01.ri.facility-web-dashboard-interface
+    name: Aafiatak Application Interface
+    type: required_interface
+    description: Application/server contract required by Facility Web Dashboard.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.2"
+        line_start: 1738
+        line_end: 1743
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI02"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.facility-web-dashboard, matchingProvidedInterface: component.cmp01.pi.aafiatak-application-interface}
+  - id: component.cmp01.ri.platform-administration-dashboard-interface
+    name: Aafiatak Application Interface
+    type: required_interface
+    description: Application/server contract required by Aafiatak Platform Administration Dashboard.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.3"
+        line_start: 1744
+        line_end: 1748
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI03"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.platform-administration-dashboard, matchingProvidedInterface: component.cmp01.pi.aafiatak-application-interface}
+  - id: component.cmp01.ri.persistence-interface
+    name: Persistence Interface
+    type: required_interface
+    description: Persistence capability required by Aafiatak Backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.5"
+        line_start: 1749
+        line_end: 1774
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI04"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.aafiatak-backend, matchingProvidedInterface: component.cmp01.pi.persistence-interface}
+  - id: component.cmp01.ri.whatsapp-authentication-interface
+    name: WhatsApp Authentication Interface
+    type: required_interface
+    description: Official WhatsApp authentication capability required by Aafiatak Backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI05"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.aafiatak-backend, matchingProvidedInterface: component.cmp01.pi.whatsapp-authentication-interface}
+  - id: component.cmp01.ri.payment-interface
+    name: Payment Interface
+    type: required_interface
+    description: Payment and refund integration capability required by Aafiatak Backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI06"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.aafiatak-backend, matchingProvidedInterface: component.cmp01.pi.payment-interface}
+  - id: component.cmp01.ri.notification-interface
+    name: Notification Interface
+    type: required_interface
+    description: General notification delivery capability required by Aafiatak Backend.
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§9 / RI07"
+        line_start: 227
+        line_end: 247
+    metadata: {ownerComponent: component.cmp01.aafiatak-backend, matchingProvidedInterface: component.cmp01.pi.notification-interface}
+
+relations:
+  - id: relation.cmp01.realizes.aafiatak-application-interface
+    type: realization
+    source: component.cmp01.aafiatak-backend
+    target: component.cmp01.pi.aafiatak-application-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4"
+        line_start: 1749
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ01"
+        line_start: 296
+        line_end: 309
+  - id: relation.cmp01.realizes.persistence-interface
+    type: realization
+    source: component.cmp01.postgresql-database
+    target: component.cmp01.pi.persistence-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.5"
+        line_start: 1771
+        line_end: 1774
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ02"
+        line_start: 296
+        line_end: 309
+  - id: relation.cmp01.realizes.whatsapp-authentication-interface
+    type: realization
+    source: component.cmp01.whatsapp-authentication-provider
+    target: component.cmp01.pi.whatsapp-authentication-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ03"
+        line_start: 296
+        line_end: 309
+  - id: relation.cmp01.realizes.payment-interface
+    type: realization
+    source: component.cmp01.payment-gateway
+    target: component.cmp01.pi.payment-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ04"
+        line_start: 296
+        line_end: 309
+  - id: relation.cmp01.realizes.notification-interface
+    type: realization
+    source: component.cmp01.notification-service
+    target: component.cmp01.pi.notification-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ05"
+        line_start: 296
+        line_end: 309
+  - id: relation.cmp01.realizes.map-location-interface
+    type: realization
+    source: component.cmp01.map-service
+    target: component.cmp01.pi.map-location-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.6"
+        line_start: 1775
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§12 / RZ06"
+        line_start: 296
+        line_end: 309
+
+  - id: relation.cmp01.assembly.patient-application
+    type: connector
+    source: component.cmp01.ri.patient-application-interface
+    target: component.cmp01.pi.aafiatak-application-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.1 and §31.4"
+        line_start: 1730
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K01"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.facility-web-dashboard
+    type: connector
+    source: component.cmp01.ri.facility-web-dashboard-interface
+    target: component.cmp01.pi.aafiatak-application-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.2 and §31.4"
+        line_start: 1738
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K02"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.platform-administration-dashboard
+    type: connector
+    source: component.cmp01.ri.platform-administration-dashboard-interface
+    target: component.cmp01.pi.aafiatak-application-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.3 and §31.4"
+        line_start: 1744
+        line_end: 1769
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K03"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.persistence
+    type: connector
+    source: component.cmp01.ri.persistence-interface
+    target: component.cmp01.pi.persistence-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.5"
+        line_start: 1749
+        line_end: 1774
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K04"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.whatsapp-authentication
+    type: connector
+    source: component.cmp01.ri.whatsapp-authentication-interface
+    target: component.cmp01.pi.whatsapp-authentication-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§8.4"
+        line_start: 350
+        line_end: 382
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K05"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.payment
+    type: connector
+    source: component.cmp01.ri.payment-interface
+    target: component.cmp01.pi.payment-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K06"
+        line_start: 251
+        line_end: 269
+  - id: relation.cmp01.assembly.notification
+    type: connector
+    source: component.cmp01.ri.notification-interface
+    target: component.cmp01.pi.notification-interface
+    name: ""
+    sourceRefs:
+      - source: aafiatak-product-specification
+        section: "§31.4 and §31.6"
+        line_start: 1749
+        line_end: 1784
+      - source: cmp01-system-component-architecture-reviewed-spec
+        section: "§10 / K07"
+        line_start: 251
+        line_end: 269

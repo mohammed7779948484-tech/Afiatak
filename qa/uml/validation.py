@@ -353,6 +353,25 @@ def validate_uml(model: SemanticModel, view: ViewSpec) -> list[Diagnostic]:
                         subject=relation.id,
                     )
                 )
+        for item_id in view.include:
+            item = elements[item_id]
+            if item.type != "required_interface":
+                continue
+            owner_id = item.metadata.get("ownerComponent")
+            if (
+                not isinstance(owner_id, str)
+                or owner_id not in selected
+                or owner_id not in elements
+                or elements[owner_id].type != "component"
+            ):
+                diagnostics.append(
+                    Diagnostic(
+                        "Q3",
+                        "required-interface-owner",
+                        "Required interface must declare one visible owning component in metadata.ownerComponent",
+                        subject=item_id,
+                    )
+                )
     if view.diagram_type == "deployment":
         for item in view.include:
             if elements[item].type != "deployment_node":

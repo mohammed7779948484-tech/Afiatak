@@ -1,0 +1,61 @@
+id: aafiatak-system-component-architecture
+title: Component Diagram — Aafiatak Medical Appointment Booking System
+diagramType: component
+model: ../../model/catalog/components/aafiatak-system-component-architecture.yaml
+include:
+  - component.cmp01.patient-application
+  - component.cmp01.facility-web-dashboard
+  - component.cmp01.platform-administration-dashboard
+  - component.cmp01.aafiatak-backend
+  - component.cmp01.postgresql-database
+  - component.cmp01.whatsapp-authentication-provider
+  - component.cmp01.payment-gateway
+  - component.cmp01.notification-service
+  - component.cmp01.map-service
+  - component.cmp01.pi.aafiatak-application-interface
+  - component.cmp01.pi.persistence-interface
+  - component.cmp01.pi.whatsapp-authentication-interface
+  - component.cmp01.pi.payment-interface
+  - component.cmp01.pi.notification-interface
+  - component.cmp01.pi.map-location-interface
+  - component.cmp01.ri.patient-application-interface
+  - component.cmp01.ri.facility-web-dashboard-interface
+  - component.cmp01.ri.platform-administration-dashboard-interface
+  - component.cmp01.ri.persistence-interface
+  - component.cmp01.ri.whatsapp-authentication-interface
+  - component.cmp01.ri.payment-interface
+  - component.cmp01.ri.notification-interface
+relations:
+  - relation.cmp01.realizes.aafiatak-application-interface
+  - relation.cmp01.realizes.persistence-interface
+  - relation.cmp01.realizes.whatsapp-authentication-interface
+  - relation.cmp01.realizes.payment-interface
+  - relation.cmp01.realizes.notification-interface
+  - relation.cmp01.realizes.map-location-interface
+  - relation.cmp01.assembly.patient-application
+  - relation.cmp01.assembly.facility-web-dashboard
+  - relation.cmp01.assembly.platform-administration-dashboard
+  - relation.cmp01.assembly.persistence
+  - relation.cmp01.assembly.whatsapp-authentication
+  - relation.cmp01.assembly.payment
+  - relation.cmp01.assembly.notification
+layoutProfile: lecturer-component
+outputTargets: [svg, png]
+approval: approved
+visualReview:
+  status: awaiting-user-approval
+  reviewer: Manus AI
+  reviewedAt: "2026-08-27T03:05:00+03:00"
+  notes: "The actual generated SVG and all 28 ordered PNG inspection tiles were reviewed for readability, UML component/interface notation, connector routing, text clipping, and the intentionally unconnected Map Service. User visual approval has not been granted."
+  previewHash: "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6"
+options:
+  diagramId: CMP-01
+  lecturerReference: "UML PDF page 10 Component Diagram section"
+  mapServiceTechnicalConsumer: unresolved
+  expectedCounts:
+    components: 9
+    providedInterfaces: 6
+    requiredInterfaces: 7
+    assemblyConnectors: 7
+    providedInterfaceRealizations: 6
+    componentDependencies: 0

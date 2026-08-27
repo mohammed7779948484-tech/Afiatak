@@ -1,0 +1,24 @@
+{
+  "artifact": "build/final/aafiatak-system-component-architecture.svg",
+  "diagnostics": [],
+  "gates": {
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": {
+      "status": "awaiting-user-approval",
+      "declaredStatus": "awaiting-user-approval",
+      "preview": "build/final/aafiatak-system-component-architecture.png",
+      "previewHash": "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6",
+      "hashMatchesRecordedPreview": true,
+      "reviewer": "Manus AI",
+      "reviewedAt": "2026-08-27T03:05:00+03:00",
+      "notes": "The actual generated SVG and all 28 ordered PNG inspection tiles were reviewed for readability, UML component/interface notation, connector routing, text clipping, and the intentionally unconnected Map Service. User visual approval has not been granted.",
+      "hashPurpose": "Identifies the reviewed artifact; it does not prove visual quality."
+    }
+  },
+  "visualReview": {
+    "preview": "build/final/aafiatak-system-component-architecture.png",
+    "previewHash": "fe46e4f0bd8f75469e0b0d0efb3279500f502d7cb46c142f53fc99e445ceeaf6",
+    "status": "awaiting-user-approval"
+  }
+}
